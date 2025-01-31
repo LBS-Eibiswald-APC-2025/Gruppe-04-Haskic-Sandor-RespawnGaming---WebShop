@@ -1,3 +1,3 @@
 # RespawnGaming
-Tagebuch von Dino Haskic und Thomas Sandor /
+Tagebuch von Dino Haskic und Thomas Sandor <br>
 Test
