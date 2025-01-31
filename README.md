@@ -1,18 +1,15 @@
-# RespawnGaming
+# Projekttagebuch
+## [RespawnGaming - WebShop]
 
-## Projekt-Tagebuch – WebShop 
+## [Dino Haskic]
+---
+Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
+-----|-----|--------|-------|---|---------|--------|-------
+1.1.2023|1.1|7:30-10:00|2h15min|LBS|Ideenfindung|mir fällt nichts ein|[Projektmanagement](https://de.wikipedia.org/wiki/Projektmanagement)
 
-### Dino Haskic 31.01.2025
-#### Was wurde gemacht?
-- Hetzner WebServer organisiert. Steckbrief erstellt.
-#### Herausforderungen & Probleme?
-- Habe vorher noch nie einen WebServer bestellt und musste mich daher etwas einlesen.
-#### Nächste Schritte?
-- MailServer bereitstellen.
-### Thomas Sandor 31.01.2025
-#### Was wurde gemacht?
-- Mindmap angefangen zu erstellen, PhpStorm Lizenc angefordert, Github Reposetory erstellt
-#### Herausforderungen & Probleme?
-- Mindmap vorher noch nie gemacht und versuch mich damit mal Herumzuspielen und auszuprobieren.
-#### Nächste Schritte?
-- Warten das PhpStorm meine Lizenc freigibt, Mindmap fertigstellen und mit Dino die nächsten Schritte besprechen.
+
+## [Thomas Sandor]
+---
+Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
+-----|-----|--------|-------|---|---------|--------|-------
+1.1.2023|1.1|7:30-10:00|2h15min|LBS|Ideenfindung|mir fällt nichts ein|[Projektmanagement](https://de.wikipedia.org/wiki/Projektmanagement)
