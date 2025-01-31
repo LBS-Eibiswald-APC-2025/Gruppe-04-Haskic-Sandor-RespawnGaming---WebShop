@@ -9,7 +9,7 @@
 - Habe vorher noch nie einen WebServer bestellt und musste mich daher etwas einlesen.
 #### Nächste Schritte?
 - MailServer bereitstellen.
-- ### Thomas Sandor 31.01.2025
+### Thomas Sandor 31.01.2025
 #### Was wurde gemacht?
 - Mindmap angefangen zu erstellen, PhpStorm Lizenc angefordert, Github Reposetory erstellt
 #### Herausforderungen & Probleme?
