@@ -7,7 +7,7 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 -----|-----|--------|-------|---|---------|--------|-------
 31.1.2025|-|7:30-10:00|2h15min|LBS|Steckbrief|Ideenfindung|[Projektmanagement]
 04.02.2025|-|10:00-12:20|2h20min|LBS|Github verbindung testen, Huge anpassen, Online Hosting versuchen Daten hochzuladen|Daten beim Online Hosting raufspielen|[Projektmanagement]
-05.02.2025|-|10:00-12:20|2h20min|LBS|Projektstrukturplanung, Pflichtenheft besprochen|Aufpassen beim Strukturieren der Planung|[Projektmanagement]
+05.02.2025|-|10:00-12:20|2h20min|LBS|Projektstrukturplanung, Pflichtenheft besprochen, Gran|Aufpassen beim Strukturieren der Planung|[Projektmanagement]
 
 ## [Thomas Sandor]
 ---
