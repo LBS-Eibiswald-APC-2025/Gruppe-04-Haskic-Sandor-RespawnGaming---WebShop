@@ -1,5 +1,5 @@
 # Projekttagebuch
-## [RespawnGaming - WebShop]
+## [Respawn Gaming - WebShop]
 
 ## [Dino Haskic]
 ---
