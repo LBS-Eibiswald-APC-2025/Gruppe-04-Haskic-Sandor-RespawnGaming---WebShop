@@ -113,7 +113,7 @@ class Mail
 
     /**
      * The main mail sending method, this simply calls a certain mail sending method depending on which mail provider
-     * you've selected in the application's config.
+     * you've selected in the app's config.
      *
      * @param $user_email string email
      * @param $from_email string sender's email

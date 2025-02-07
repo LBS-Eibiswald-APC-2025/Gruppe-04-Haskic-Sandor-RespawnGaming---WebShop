@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 /**
  * LoginController
  * Controls everything that is authentication-related
@@ -67,7 +69,7 @@ class LoginController extends Controller
      * The logout action
      * Perform logout, redirect user to main-page
      */
-    public function logout()
+    #[NoReturn] public function logout()
     {
         LoginModel::logout();
         Redirect::home();
