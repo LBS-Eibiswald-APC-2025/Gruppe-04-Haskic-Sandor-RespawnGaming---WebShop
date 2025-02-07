@@ -10,7 +10,7 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 05.02.2025|-|10:00-12:20|2h20min|LBS|Gantt Strukturierung|---|[Projektmanagement]
 06.02.2025|-|09:25-12:50|3h25min|LBS|Datenbanktabellen erstellt/Coding der Hauptseite begonnen|---|[Projektmanagement]
 07.02.2025|-|07:30-11:05|3h35min|LBS|Code der Hauptseite
-
+test by adnan
 ## [Thomas Sandor]
 ---
 Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
