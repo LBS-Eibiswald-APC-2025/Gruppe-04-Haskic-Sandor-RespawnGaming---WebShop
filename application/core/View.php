@@ -4,6 +4,7 @@
  * Class View
  * The part that handles all the output
  */
+
 class View
 {
     /**
@@ -21,9 +22,7 @@ class View
             }
         }
 
-        require Config::get('PATH_VIEW') . '_templates/header.php';
         require Config::get('PATH_VIEW') . $filename . '.php';
-        require Config::get('PATH_VIEW') . '_templates/footer.php';
     }
 
     /**

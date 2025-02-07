@@ -1,7 +1,7 @@
-        <div class="footer"></div>
-    </div><!-- close class="wrapper" -->
+<footer class="bg-light text-center text-dark py-3">
+    <p>&copy; 2025 Respawn Gaming - Alle Rechte vorbehalten.</p>
+</footer>
 
-    <!-- the support button on the top right -->
-    <a class="support-button" href="https://affiliates.a2hosting.com/idevaffiliate.php?id=4471&url=579" target="_blank"></a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

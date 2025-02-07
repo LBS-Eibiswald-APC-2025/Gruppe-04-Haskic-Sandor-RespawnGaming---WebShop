@@ -1,18 +1,37 @@
-<div class="container">
-    <h1>IndexController/index</h1>
-    <div class="box">
+<?php
+/** @var $this View */
+require_once APP . 'model/Game.php';
+$games = Game::getAllGames();
+?>
 
-        <!-- echo out the system feedback (error and success messages) -->
-        <?php $this->renderFeedbackMessages(); ?>
+<!-- Header nur einmal einbinden -->
+<?php require APP . 'view/_templates/header.php'; ?>
 
-        <h3>What happens here ?</h3>
-        <p>
-            This is the homepage. As no real URL-route (like /register/index) is provided, the app uses the default
-            controller and the default action, defined in application/config/config.php, by default it's
-            IndexController and index()-method. So, the app will load application/controller/IndexController.php and
-            run index() from that file. Easy. That index()-method (= the action) has just one line of code inside
-            ($this->view->render('index/index');) that loads application/view/index/index.php, which is basically
-            this text you are reading right now.
-        </p>
+<header class="hero-section text-dark text-center">
+    <div class="container">
+        <h1>Willkommen bei Respawn Gaming</h1>
+        <p>Dein Gaming-Portal für neue Spiele, Bewertungen und Community-Features.</p>
+        <a href="<?php echo Config::get('URL'); ?>games" class="btn btn-primary">Jetzt entdecken</a>
     </div>
-</div>
+</header>
+
+<section class="container my-5">
+    <h2 class="text-center mb-4">Beliebte Spiele</h2>
+    <div class="row">
+        <?php foreach ($games as $game) : ?>
+            <div class="col-md-4">
+                <div class="card game-card">
+                    <img src="<?php echo Config::get('URL') . 'assets/images/' . $game->image; ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
+                        <a href="<?php echo Config::get('URL') . 'games/details/' . $game->id; ?>" class="btn btn-outline-primary">Mehr erfahren</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+<!-- Footer einbinden -->
+<?php require APP . 'view/_templates/footer.php'; ?>
