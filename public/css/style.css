@@ -49,9 +49,3 @@ footer {
     background: #23272A;
     color: #EAEAEA;
 }
-
-/* Zusatz-Design für die Startseite */
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
