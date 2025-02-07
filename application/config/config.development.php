@@ -33,7 +33,7 @@ return array(
      * This detects your URL/IP incl. sub-folder automatically. You can also deactivate auto-detection and provide the
      * URL manually. This should then look like 'http://192.168.33.44/' ! Note the slash in the end.
      */
-    'URL' => 'http://' . $_SERVER['HTTP_HOST'] . str_replace('public', '', dirname($_SERVER['SCRIPT_NAME'])),
+    'URL' => 'https://' . $_SERVER['HTTP_HOST'] . str_replace('public', '', dirname($_SERVER['SCRIPT_NAME'])),
     /**
      * Configuration for: Folders
      * Usually there's no reason to change this.
@@ -62,10 +62,10 @@ return array(
      * DB_CHARSET The charset, necessary for security reasons. Check Database.php class for more info.
      */
     'DB_TYPE' => 'mysql',
-    'DB_HOST' => '127.0.0.1',
-    'DB_NAME' => 'huge',
-    'DB_USER' => 'root',
-    'DB_PASS' => '12345678',
+    'DB_HOST' => 'sql571.your-server.de',
+    'DB_NAME' => 'respawn_db',
+    'DB_USER' => 'respawn_admin',
+    'DB_PASS' => 'PqYkj7z24n7MfYru',
     'DB_PORT' => '3306',
     'DB_CHARSET' => 'utf8',
     /**
