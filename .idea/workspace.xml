@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9793529b-069c-434b-b77c-9a6043f81741" name="Changes" comment="Zweiter Commit mit sehr kleinen Änderungen an CSS.">
+    <list default="true" id="9793529b-069c-434b-b77c-9a6043f81741" name="Changes" comment="README update Sandor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/config.development.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.development.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/login/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/login/requestPasswordReset.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/requestPasswordReset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/register/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/register/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +25,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\Laragon\bin\php\php-8.4.1-Win32-vs17-x64\php.exe">
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Sandorthomas"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/dino-2602/respawngaming.git",
+    "accountId": "f3319a1b-6282-49f6-b5c4-2b525d444d13"
+  }
+}]]></component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
@@ -79,22 +95,8 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="QodanaHighlightedReportService">
-    <option name="localRunNotPublishedPersistedInfo">
-      <LocalReportPersistedInfo>
-        <option name="path" value="C:\Users\dh\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
-        <option name="reportGuid" value="381bd224-c755-47eb-86c2-f4466a148156" />
-        <option name="reportName" value="config.development.php/qodana/2025-02-07" />
-      </LocalReportPersistedInfo>
-    </option>
-  </component>
   <component name="QodanaIsSelectedPersistenceService">
     <option name="selectedOrLoading" value="true" />
-  </component>
-  <component name="QodanaReportsService">
-    <option name="descriptions">
-      <ReportDescription localRun="true" path="C:\Users\dh\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="381bd224-c755-47eb-86c2-f4466a148156" reportId="config.development.php/qodana/2025-02-07" />
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -120,6 +122,7 @@
       <updated>1738910562386</updated>
       <workItem from="1738910563616" duration="299000" />
       <workItem from="1738910890238" duration="13916000" />
+      <workItem from="1739265776520" duration="3613000" />
     </task>
     <task id="LOCAL-00001" summary="Erster Commit">
       <option name="closed" value="true" />
@@ -145,7 +148,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738938920928</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="README update Sandor">
+      <option name="closed" value="true" />
+      <created>1738939320838</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738939320838</updated>
+    </task>
+    <task id="LOCAL-00005" summary="README update Sandor">
+      <option name="closed" value="true" />
+      <created>1738939459702</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738939459702</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,6 +185,7 @@
     <MESSAGE value="Erster Commit" />
     <MESSAGE value="Zweiter Commit mit sehr kleinen Änderungen an CSS." />
     <MESSAGE value="Remove unused CSS styles from the homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused CSS styles from the homepage" />
+    <MESSAGE value="README update Sandor" />
+    <option name="LAST_COMMIT_MESSAGE" value="README update Sandor" />
   </component>
 </project>
