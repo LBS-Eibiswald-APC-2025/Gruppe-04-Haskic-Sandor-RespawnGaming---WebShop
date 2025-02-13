@@ -20,6 +20,15 @@ class Session
     }
 
     /**
+     * @throws \Random\RandomException
+     */
+    public static function regenerateCSRFToken(): void
+    {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Sicherer zufälliger Token
+    }
+
+
+    /**
      * sets a specific value to a specific key of the session
      *
      * @param mixed $key key
@@ -128,8 +137,16 @@ class Session
      *
      * @return bool user's login status
      */
-    public static function userIsLoggedIn()
+    public static function userIsLoggedIn(): bool
     {
-        return (self::get('user_logged_in') ? true : false);
+        return (bool)self::get('user_logged_in');
+    }
+        public static function validateCSRFToken(mixed $csrf_token): bool
+    {
+        if (!isset($_SESSION['csrf_token']) || empty($csrf_token)) {
+            return false;
+        }
+
+        return hash_equals($_SESSION['csrf_token'], $csrf_token);
     }
 }

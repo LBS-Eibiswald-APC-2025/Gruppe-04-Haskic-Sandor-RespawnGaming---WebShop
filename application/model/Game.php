@@ -1,6 +1,7 @@
 <?php
 
-class Game
+class
+Game
 {
     public static function getAllGames()
     {

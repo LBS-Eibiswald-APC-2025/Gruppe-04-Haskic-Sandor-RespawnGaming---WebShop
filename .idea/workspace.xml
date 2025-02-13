@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9793529b-069c-434b-b77c-9a6043f81741" name="Changes" comment="README update Sandor">
+    <list default="true" id="9793529b-069c-434b-b77c-9a6043f81741" name="Changes" comment="Test für CSS Sandor">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/config/config.development.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/config.development.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Filter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/View.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/Game.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/Game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/LoginModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/LoginModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/RegistrationModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/RegistrationModel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/login/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/login/requestPasswordReset.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/requestPasswordReset.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/register/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/register/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,18 +33,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Sandorthomas"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Sandorthomas&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/dino-2602/respawngaming.git",
-    "accountId": "f3319a1b-6282-49f6-b5c4-2b525d444d13"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dino-2602/respawngaming.git&quot;,
+    &quot;accountId&quot;: &quot;f3319a1b-6282-49f6-b5c4-2b525d444d13&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
     <include_path>
@@ -66,7 +74,7 @@
     </include_path>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -82,6 +90,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;PHPUnit.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -93,10 +102,29 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora&quot;
+    ]
   }
 }</component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunNotPublishedPersistedInfo">
+      <LocalReportPersistedInfo>
+        <option name="path" value="C:\Users\thoma\AppData\Local\Temp\qodana_output\qodana.sarif.json" />
+        <option name="reportGuid" value="0d3e6bc1-ce41-4e12-b36f-0f50350643a0" />
+        <option name="reportName" value="config.development.php/qodana/2025-02-13" />
+      </LocalReportPersistedInfo>
+    </option>
+  </component>
   <component name="QodanaIsSelectedPersistenceService">
     <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="C:\Users\thoma\AppData\Local\Temp\qodana_output\qodana.sarif.json" reportGuid="0d3e6bc1-ce41-4e12-b36f-0f50350643a0" reportId="config.development.php/qodana/2025-02-13" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -122,7 +150,9 @@
       <updated>1738910562386</updated>
       <workItem from="1738910563616" duration="299000" />
       <workItem from="1738910890238" duration="13916000" />
-      <workItem from="1739265776520" duration="3613000" />
+      <workItem from="1739265776520" duration="6927000" />
+      <workItem from="1739284402685" duration="1346000" />
+      <workItem from="1739435802916" duration="10532000" />
     </task>
     <task id="LOCAL-00001" summary="Erster Commit">
       <option name="closed" value="true" />
@@ -164,7 +194,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738939459702</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Login,Register,Password Rücksetzung angepasst Sandor">
+      <option name="closed" value="true" />
+      <created>1739272045933</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739272045933</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Test für CSS Sandor">
+      <option name="closed" value="true" />
+      <created>1739277411115</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1739277411115</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,7 +221,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -186,6 +244,8 @@
     <MESSAGE value="Zweiter Commit mit sehr kleinen Änderungen an CSS." />
     <MESSAGE value="Remove unused CSS styles from the homepage" />
     <MESSAGE value="README update Sandor" />
-    <option name="LAST_COMMIT_MESSAGE" value="README update Sandor" />
+    <MESSAGE value="Login,Register,Password Rücksetzung angepasst Sandor" />
+    <MESSAGE value="Test für CSS Sandor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test für CSS Sandor" />
   </component>
 </project>

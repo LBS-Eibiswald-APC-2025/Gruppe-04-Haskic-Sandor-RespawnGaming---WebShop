@@ -21,7 +21,7 @@ class LoginController extends Controller
     /**
      * Index, default action (shows the login form), when you do login/index
      */
-    public function index()
+    public function index(): void
     {
         // if user is logged in redirect to main-page, if not show the view
         if (LoginModel::isUserLoggedIn()) {
@@ -97,7 +97,7 @@ class LoginController extends Controller
     /**
      * Show the request-password-reset page
      */
-    public function requestPasswordReset()
+    public function requestPasswordReset(): void
     {
         $this->View->render('login/requestPasswordReset');
     }
@@ -106,7 +106,7 @@ class LoginController extends Controller
      * The request-password-reset action
      * POST-request after form submit
      */
-    public function requestPasswordReset_action()
+    public function requestPasswordReset_action(): void
     {
         PasswordResetModel::requestPasswordReset(Request::post('user_name_or_email'), Request::post('captcha'));
         Redirect::to('login/index');
@@ -117,7 +117,7 @@ class LoginController extends Controller
      * @param string $user_name username
      * @param string $verification_code password reset verification token
      */
-    public function verifyPasswordReset($user_name, $verification_code)
+    public function verifyPasswordReset($user_name, $verification_code): void
     {
         // check if this the provided verification code fits the user's verification code
         if (PasswordResetModel::verifyPasswordReset($user_name, $verification_code)) {

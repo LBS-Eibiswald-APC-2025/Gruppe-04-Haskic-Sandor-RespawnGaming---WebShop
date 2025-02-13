@@ -10,8 +10,7 @@
             <div class="login-box">
                 <h2>Hier Anmelden</h2>
                 <form action="<?php echo Config::get('URL'); ?>login/login" method="post">
-                    <input type="text" name="Username" placeholder="Benutzername" required />
-                    <input type="text" name="email" placeholder="Email" required />
+                    <input type="text" name="Username" placeholder="Benutzername oder E-Mail" required />
                     <input type="password" name="user_password" placeholder="Password" required />
                     <label for="set_remember_me_cookie" class="remember-me-label">
                         <input type="checkbox" name="set_remember_me_cookie" class="remember-me-checkbox" />
@@ -33,7 +32,7 @@
 							3. http://stackoverflow.com/questions/13667437/how-to-add-csrf-token-to-login-form?lq=1
 					-->
 					<input type="hidden" name="csrf_token" value="<?= Csrf::makeToken(); ?>" />
-                    <input type="submit" class="login-submit-button" value="Einloggen" />
+                    <input type="submit" class="login-submit-button" value=" Einloggen" />
                 </form>
                 <div class="link-forgot-my-password">
                     <a href="<?php echo Config::get('URL'); ?>login/requestPasswordReset">Password vergessen!</a>
@@ -42,8 +41,8 @@
 
             <!-- register box on right side -->
             <div class="register-box">
-                <h2>Besitzen sie bereits ein Konto ?</h2>
-                <a href="<?php echo Config::get('URL'); ?>register/index">Einloggen</a>
+                <h2>Besitzen sie noch kein Konto?</h2>
+                <a href="<?php echo Config::get('URL'); ?>register/index">Zur Registrierung</a>
             </div>
 
         </div>

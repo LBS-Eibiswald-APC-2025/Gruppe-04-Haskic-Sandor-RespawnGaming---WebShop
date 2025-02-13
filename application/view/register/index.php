@@ -5,7 +5,7 @@
 
     <!-- login box on left side -->
     <div class="login-box" style="width: 50%; display: block;">
-        <h2>Register a new account</h2>
+        <h2>Neuen Account erstellen</h2>
 
         <!-- register form -->
         <form method="post" action="<?php echo Config::get('URL'); ?>register/register_action">

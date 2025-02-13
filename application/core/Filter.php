@@ -46,10 +46,10 @@ class Filter
      *
      * @see http://www.php.net/manual/en/function.htmlspecialchars.php
      *
-     * @param  $value    The value to be filtered
+     * @param  $value
      * @return mixed    
      */
-    public static function XSSFilter(&$value)
+    public static function XSSFilter(&$value): mixed
     {
         // if argument is a string, filters that string
         if (is_string($value)) {
