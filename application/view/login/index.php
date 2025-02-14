@@ -13,7 +13,8 @@
                     <input type="text" name="Username" placeholder="Benutzername oder E-Mail" required />
                     <input type="password" name="user_password" placeholder="Password" required />
                     <label for="set_remember_me_cookie" class="remember-me-label">
-                        <input type="checkbox" name="set_remember_me_cookie" class="remember-me-checkbox" />
+                        <input type="hidden" name="set_remember_me_cookie" value="0">
+                        <input type="checkbox" name="set_remember_me_cookie" class="remember-me-checkbox" value="1" />
                         Eingeloggt bleiben.
                     </label>
                     <!-- when a user navigates to a page that's only accessible for logged a logged-in user, then

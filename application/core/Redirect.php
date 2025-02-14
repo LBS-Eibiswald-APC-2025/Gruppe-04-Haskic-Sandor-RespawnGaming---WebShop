@@ -25,9 +25,9 @@ class Redirect
     /**
      * To the homepage
      */
-    public static function home()
+    public static function home(): void
     {
-        header("location: " . Config::get('URL'));
+        header("location: " . Config::get('https://respawngaming.local/'));
     }
 
     /**

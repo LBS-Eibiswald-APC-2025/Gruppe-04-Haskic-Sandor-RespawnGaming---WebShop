@@ -33,43 +33,62 @@ class LoginController extends Controller
     }
 
     /**
-     * The login action, when you do login/login
+     * The login action, when you do log in/login
      */
-    public function login()
+    #[NoReturn] public function login(): void
     {
-        // check if csrf token is valid
+        // Prüfen, ob es sich um eine POST-Anfrage handelt
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            die("Fehler: Dies ist keine POST-Anfrage.");
+        }
+
+        // Debugging: Falls keine POST-Daten empfangen wurden
+        if (empty($_POST)) {
+            die("⚠ Fehler: Keine POST-Daten empfangen. Formular korrekt gesendet?");
+        }
+
+        // Überprüfung des CSRF-Tokens
         if (!Csrf::isTokenValid()) {
             LoginModel::logout();
             Redirect::home();
             exit();
         }
 
-        // perform the login method, put result (true or false) into $login_successful
-        $login_successful = LoginModel::login(
-            Request::post('user_name'), Request::post('user_password'), Request::post('set_remember_me_cookie')
-        );
+        // Sicherstellen, dass die POST-Daten existieren
+        $user_name = trim(Request::post('user_name') ?? '');
+        $user_password = trim(Request::post('user_password') ?? '');
 
-        // check login status: if true, then redirect user to user/index, if false, then to login form again
-        if ($login_successful) {
-            if (Request::post('redirect')) {
-                Redirect::toPreviousViewedPageAfterLogin(ltrim(urldecode(Request::post('redirect')), '/'));
-            } else {
-                Redirect::to('user/index');
-            }
-        } else {
-            if (Request::post('redirect')) {
-                Redirect::to('login?redirect=' . ltrim(urlencode(Request::post('redirect')), '/'));
-            } else {
-                Redirect::to('login/index');
-            }
+        // Checkbox "Eingeloggt bleiben" verarbeiten
+        $set_remember_me_cookie = isset($_POST['set_remember_me_cookie']) && $_POST['set_remember_me_cookie'] == '1' ? 1 : 0;
+
+        if (empty($user_name) || empty($user_password)) {
+            Session::add('feedback_negative', "Fehlende Eingaben: Benutzername oder Passwort nicht vorhanden.");
+            Redirect::to('login/index');
+            exit();
         }
+
+        // Login aufrufen
+        $login_successful = LoginModel::login($user_name, $user_password, null, $set_remember_me_cookie);
+
+        // Falls Login erfolgreich weiterleiten
+        if ($login_successful) {
+            $redirect_url = Request::post('redirect') ? ltrim(urldecode(Request::post('redirect')), '/') : 'user/index';
+            Redirect::to($redirect_url);
+            exit();
+        }
+
+        // Falls Login fehlschlägt, zur Login-Seite weiterleiten
+        $redirect_fail_url = Request::post('redirect') ? 'login?redirect=' . ltrim(urlencode(Request::post('redirect')), '/') : 'login/index';
+        Redirect::to($redirect_fail_url);
+        exit();
     }
+
 
     /**
      * The logout action
      * Perform logout, redirect user to main-page
      */
-    #[NoReturn] public function logout()
+    #[NoReturn] public function logout(): void
     {
         LoginModel::logout();
         Redirect::home();
@@ -79,7 +98,7 @@ class LoginController extends Controller
     /**
      * Login with cookie
      */
-    public function loginWithCookie()
+    public function loginWithCookie(): void
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
          $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
@@ -139,7 +158,7 @@ class LoginController extends Controller
      * POST request !
      * TODO this is an _action
      */
-    public function setNewPassword()
+    public function setNewPassword(): void
     {
         PasswordResetModel::setNewPassword(
             Request::post('user_name'), Request::post('user_password_reset_hash'),

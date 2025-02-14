@@ -21,7 +21,7 @@ class UserController extends Controller
     /**
      * Show user's PRIVATE profile
      */
-    public function index()
+    public function index(): void
     {
         $this->View->render('user/index', array(
             'user_name' => Session::get('user_name'),
@@ -35,15 +35,15 @@ class UserController extends Controller
     /**
      * Show edit-my-username page
      */
-    public function editUsername()
+    public function editUsername(): void
     {
         $this->View->render('user/editUsername');
     }
 
     /**
-     * Edit user name (perform the real action after form has been submitted)
+     * Edit username (perform the real action after form has been submitted)
      */
-    public function editUsername_action()
+    public function editUsername_action(): void
     {
         // check if csrf token is valid
         if (!Csrf::isTokenValid()) {
@@ -59,7 +59,7 @@ class UserController extends Controller
     /**
      * Show edit-my-user-email page
      */
-    public function editUserEmail()
+    public function editUserEmail(): void
     {
         $this->View->render('user/editUserEmail');
     }
@@ -68,7 +68,7 @@ class UserController extends Controller
      * Edit user email (perform the real action after form has been submitted)
      */
     // make this POST
-    public function editUserEmail_action()
+    public function editUserEmail_action(): void
     {
         UserModel::editUserEmail(Request::post('user_email'));
         Redirect::to('user/editUserEmail');

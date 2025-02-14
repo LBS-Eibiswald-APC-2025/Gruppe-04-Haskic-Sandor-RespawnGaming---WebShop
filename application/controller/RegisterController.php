@@ -20,7 +20,7 @@ class RegisterController extends Controller
      * Register page
      * Show the register form, but redirect to main-page if user is already logged-in
      */
-    public function index()
+    public function index(): void
     {
         if (LoginModel::isUserLoggedIn()) {
             Redirect::home();
@@ -33,7 +33,7 @@ class RegisterController extends Controller
      * Register page action
      * POST-request after form submit
      */
-    public function register_action()
+    public function register_action(): void
     {
         $registration_successful = RegistrationModel::registerNewUser();
 
@@ -49,9 +49,9 @@ class RegisterController extends Controller
      * @param int $user_id user's id
      * @param string $user_activation_verification_code user's verification token
      */
-    public function verify(int $user_id, string $user_activation_verification_code)
+    public function verify(int $user_id, string $user_activation_verification_code): void
     {
-        if (isset($user_id) && isset($user_activation_verification_code)) {
+        if (isset($user_id)) {
             RegistrationModel::verifyNewUser($user_id, $user_activation_verification_code);
             $this->View->render('register/verify');
         } else {
