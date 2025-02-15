@@ -1,53 +1,259 @@
-/* Allgemeines Design */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
 body {
-    background-color: #2C2F33; /* Dunkelgrauer Hintergrund */
-    font-family: 'Arial', sans-serif;
-    color: #EAEAEA;
+  height: 100%;
 }
 
-/* Navigation */
-.navbar {
-    background-color: #23272A; /* Dunkler, aber nicht schwarz */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+body {
+  background-color: #1B2838;
+  background-image: url("https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943");
+  background-attachment: fixed;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #FFFFFF;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-.navbar a {
-    color: #EAEAEA !important;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex: 1;
+}
+main .inner {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Hero-Sektion */
 .hero-section {
-    background: linear-gradient(to right, #2C2F33, #3B3F45);
-    padding: 60px 20px;
-    color: white;
-    border-radius: 8px;
-    margin-top: 20px;
+  width: 100%;
+  background: linear-gradient(135deg, #1B2838, #2A475E);
+  padding: 100px 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.hero-section h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+}
+.hero-section p {
+  color: #FFFFFF;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+}
+.hero-section .btn.btn-primary {
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+  text-decoration: none;
+}
+.hero-section .btn.btn-primary:hover {
+  background: linear-gradient(135deg, #4a90d9, #357ab8);
+}
+.hero-section .search-bar {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.hero-section .search-bar .input-group {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  background: #2a475e;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.hero-section .search-bar .input-group input.form-control {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+.hero-section .search-bar .input-group input.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.hero-section .search-bar .input-group input.form-control:focus {
+  outline: none;
+}
+.hero-section .search-bar .input-group button.btn-primary {
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  border: none;
+  color: #FFFFFF;
+  padding: 0 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.hero-section .search-bar .input-group button.btn-primary:hover {
+  background: linear-gradient(135deg, #4a90d9, #357ab8);
 }
 
-/* Spielkarten */
+section.container {
+  padding: 50px 20px;
+}
+section.container h2 {
+  color: #FFFFFF;
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+section.container .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
 .game-card {
-    background: #23272A;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease-in-out;
-    color: #EAEAEA;
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+  max-width: 350px;
+  width: 32%;
 }
-
+.game-card img {
+  width: 100%;
+  height: auto;
+}
+.game-card .card-body {
+  padding: 20px;
+}
+.game-card .card-body .card-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+.game-card .card-body .card-text {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+.game-card .card-body .btn.btn-outline-primary {
+  background: transparent;
+  border: 1px solid #66c0f4;
+  color: #66c0f4;
+  padding: 8px 15px;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.game-card .card-body .btn.btn-outline-primary:hover {
+  background: #66c0f4;
+  color: #FFFFFF;
+}
 .game-card:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
+.navbar {
+  background-color: #2A2D32;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+}
+.navbar a {
+  color: #FFFFFF !important;
+  text-decoration: none;
+  margin-right: 15px;
+}
+.navbar a:hover {
+  text-decoration: underline;
 }
 
-/* Footer */
+.auth-page-box {
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 500px;
+}
+.auth-page-box .form-control {
+  background-color: #3a3f44;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+.auth-page-box .form-control::placeholder {
+  color: white;
+}
+.auth-page-box .btn.btn-primary {
+  background-color: #66c0f4;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.auth-page-box .btn.btn-primary:hover {
+  background-color: #1B75BC;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
 footer {
-    margin-top: 40px;
-    padding: 20px 0;
-    background: #23272A;
-    color: #EAEAEA;
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px 20px;
+}
+footer p {
+  margin: 0;
+  font-size: 0.9em;
 }
 
-/* Test 1 2 Sandor */
+@media (max-width: 768px) {
+  .inner {
+    width: 95%;
+  }
+  .hero-section {
+    padding: 80px 10px;
+  }
+  .hero-section h1 {
+    font-size: 2.5em;
+  }
+  .hero-section p {
+    font-size: 1em;
+  }
+  section.container {
+    padding: 30px 10px;
+  }
+  section.container h2 {
+    font-size: 2em;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

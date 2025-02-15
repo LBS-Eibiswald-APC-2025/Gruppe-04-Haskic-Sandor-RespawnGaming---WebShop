@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respawn Gaming</title>
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo Config::get('URL'); ?>assets/css/style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="<?php echo Config::get('URL'); ?>">Respawn Gaming</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -18,7 +19,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>games">Spiele</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>community">Community</a></li>
-                <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>shop">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>contact">Info</a></li>
                 <?php if (Session::userIsLoggedIn()) : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>login/logout">Logout</a></li>

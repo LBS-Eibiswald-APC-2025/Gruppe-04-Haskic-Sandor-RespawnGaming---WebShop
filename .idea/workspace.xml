@@ -4,15 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Test ide entfernt" />
+    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Add .gitignore">
+      <change afterPath="$PROJECT_DIR$/public/css/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/respawngaming.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/respawngaming.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/core/Redirect.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Redirect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/model/Game.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/model/Game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/error/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/error/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/index/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/login/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/login/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/register/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/register/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+    </list>
+    <list id="5d13cc01-ed10-40d0-bc47-4620e36d8ee1" name="Changes by Psy" comment="">
+      <change beforePath="$PROJECT_DIR$/application/core/Redirect.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/core/Redirect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/index/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerConfigs">
+    <option name="notifyAboutSettingsSync" value="false" />
+  </component>
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <phar pharPath="$PROJECT_DIR$/composer_2.phar" interpreterId="144e4ad4-9f2e-48ef-b1ec-63bc90453e47" />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,11 +53,29 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/dino-2602/respawngaming.git&quot;,
-    &quot;accountId&quot;: &quot;f3319a1b-6282-49f6-b5c4-2b525d444d13&quot;
+    &quot;url&quot;: &quot;https://github.com/LBS-Eibiswald-APC-2025/Gruppe-04-Haskic-Sandor-RespawnGaming---WebShop.git&quot;,
+    &quot;accountId&quot;: &quot;ef37ff47-c98e-4b10-ac22-e2ef05ab34b7&quot;
   }
 }</component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe">
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/application/view/index/index.php">
+      <ranges>
+        <range start1="0" end1="7" start2="0" end2="1" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+        <range start1="8" end1="8" start2="2" end2="22" changelist="5d13cc01-ed10-40d0-bc47-4620e36d8ee1" />
+        <range start1="9" end1="16" start2="23" end2="40" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+        <range start1="17" end1="34" start2="41" end2="62" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/application/core/Redirect.php">
+      <ranges>
+        <range start1="19" end1="20" start2="19" end2="20" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+        <range start1="21" end1="22" start2="21" end2="22" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+        <range start1="29" end1="30" start2="29" end2="30" changelist="5d13cc01-ed10-40d0-bc47-4620e36d8ee1" />
+        <range start1="36" end1="37" start2="36" end2="37" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
+      </ranges>
+    </file>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\Laragon\bin\php\php-8.4.1-Win32-vs17-x64\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/gregwar/captcha" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
@@ -64,36 +110,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/laragon/www/respawngaming&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Laragon/www/respawngaming",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "ssh.settings",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql_aurora&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora"
     ]
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="PHPUnit.Main">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/tests/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="public_html" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/public_html/tests/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PS-243.23654.168" />
-        <option value="bundled-php-predefined-a98d8de5180a-4c3855d0ab16-com.jetbrains.php.sharedIndexes-PS-243.23654.168" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-PS-243.24978.50" />
+        <option value="bundled-php-predefined-a98d8de5180a-fbeb0b58ac0f-com.jetbrains.php.sharedIndexes-PS-243.24978.50" />
       </set>
     </attachedChunks>
   </component>
@@ -108,6 +159,8 @@
       <workItem from="1739451172960" duration="6000" />
       <workItem from="1739451185594" duration="558000" />
       <workItem from="1739453333590" duration="920000" />
+      <workItem from="1739635226911" duration="230000" />
+      <workItem from="1739635550451" duration="9876000" />
     </task>
     <task id="LOCAL-00001" summary="Test ide entfernt">
       <option name="closed" value="true" />
@@ -117,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739451331488</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add .gitignore">
+      <option name="closed" value="true" />
+      <created>1739635688591</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739635688591</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,6 +197,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Test ide entfernt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test ide entfernt" />
+    <MESSAGE value="Add .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add .gitignore" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

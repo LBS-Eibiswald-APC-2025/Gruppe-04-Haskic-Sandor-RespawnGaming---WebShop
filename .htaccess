@@ -50,3 +50,7 @@ RewriteRule ^(.*) public/$1 [L]
   Header set Cache-Control "max-age=216000, private"
  </filesmatch>
 </ifmodule>
+AuthUserFile "/usr/www/users/respaw/.htpasswd"
+AuthName "dev"
+AuthType Basic
+require valid-user

@@ -1,51 +1,22 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Respawn Gaming</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
 
-    <!-- echo out the system feedback (error and success messages) -->
-    <?php $this->renderFeedbackMessages(); ?>
-
-    <div class="login-page-box">
-        <div class="table-wrapper">
-
-            <!-- login box on left side -->
-            <div class="login-box">
-                <h2>Hier Anmelden</h2>
-                <form action="<?php echo Config::get('URL'); ?>login/login" method="post">
-                    <input type="text" name="Username" placeholder="Benutzername oder E-Mail" required />
-                    <input type="password" name="user_password" placeholder="Password" required />
-                    <label for="set_remember_me_cookie" class="remember-me-label">
-                        <input type="hidden" name="set_remember_me_cookie" value="0">
-                        <input type="checkbox" name="set_remember_me_cookie" class="remember-me-checkbox" value="1" />
-                        Eingeloggt bleiben.
-                    </label>
-                    <!-- when a user navigates to a page that's only accessible for logged a logged-in user, then
-                         the user is sent to this page here, also having the page he/she came from in the URL parameter
-                         (have a look). This "where did you came from" value is put into this form to sent the user back
-                         there after being logged in successfully.
-                         Simple but powerful feature, big thanks to @tysonlist. -->
-                    <?php if (!empty($this->redirect)) { ?>
-                        <input type="hidden" name="redirect" value="<?php echo $this->encodeHTML($this->redirect); ?>" />
-                    <?php } ?>
-					<!--
-						set CSRF token in login form, although sending fake login requests mightn't be interesting gap here.
-						If you want to get deeper, check these answers:
-							1. natevw's http://stackoverflow.com/questions/6412813/do-login-forms-need-tokens-against-csrf-attacks?rq=1
-							2. http://stackoverflow.com/questions/15602473/is-csrf-protection-necessary-on-a-sign-up-form?lq=1
-							3. http://stackoverflow.com/questions/13667437/how-to-add-csrf-token-to-login-form?lq=1
-					-->
-					<input type="hidden" name="csrf_token" value="<?= Csrf::makeToken(); ?>" />
-                    <input type="submit" class="login-submit-button" value=" Einloggen" />
-                </form>
-                <div class="link-forgot-my-password">
-                    <a href="<?php echo Config::get('URL'); ?>login/requestPasswordReset">Password vergessen!</a>
-                </div>
-            </div>
-
-            <!-- register box on right side -->
-            <div class="register-box">
-                <h2>Besitzen sie noch kein Konto?</h2>
-                <a href="<?php echo Config::get('URL'); ?>register/index">Zur Registrierung</a>
-            </div>
-
-        </div>
+<div class="auth-page-box">
+    <h2 class="text-center">Login</h2>
+    <form action="<?php echo Config::get('URL'); ?>login/login" method="post">
+        <input type="text" class="form-control mb-3" name="user_name" placeholder="Benutzername" required>
+        <input type="password" class="form-control mb-3" name="user_password" placeholder="Passwort" required>
+        <button type="submit" class="btn btn-primary w-100">Einloggen</button>
+    </form>
+    <div class="text-center mt-3">
+        <a href="<?php echo Config::get('URL'); ?>register/index">Noch keinen Account? Jetzt registrieren!</a>
     </div>
 </div>

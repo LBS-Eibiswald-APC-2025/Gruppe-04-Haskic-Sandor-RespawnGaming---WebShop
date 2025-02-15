@@ -17,9 +17,9 @@ class Redirect
      *
      * @param $path string
      */
-    public static function toPreviousViewedPageAfterLogin($path)
+    public static function toPreviousViewedPageAfterLogin($path): void
     {
-        header('location: http://' . $_SERVER['HTTP_HOST'] . '/' . $path);
+        header('location: https://' . $_SERVER['HTTP_HOST'] . '/' . $path);
     }
 
     /**
@@ -34,7 +34,7 @@ class Redirect
      * To the defined page, uses a relative path (like "user/profile")
      *
      * Redirects to a RELATIVE path, like "user/profile" (which works very fine unless you are using HUGE inside tricky
-     * sub-folder structures)
+     * subfolder structures)
      *
      * @see https://github.com/panique/huge/issues/770
      * @see https://github.com/panique/huge/issues/754
