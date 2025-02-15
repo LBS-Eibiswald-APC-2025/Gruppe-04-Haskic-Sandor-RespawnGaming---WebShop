@@ -26,7 +26,7 @@ $games = [
         <header class="hero-section text-center">
             <div class="container">
                 <h1>Willkommen bei Respawn Gaming</h1>
-                <p>Entdecke die besten Spiele und triff andere Gamer!</p>
+                <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
                 <a href="<?php echo Config::get('URL'); ?>games" class="btn btn-primary">Jetzt loslegen</a>
                 <div class="search-bar mt-4">
                     <form action="<?php echo Config::get('URL'); ?>games/search" method="post">

@@ -1,31 +1,133 @@
+//Schriftarten einbinden
+@font-face {
+  font-family: 'Dice';
+  src: url('fonts/DICE/DICE.woff2') format('woff2');
+}
+
+// Farben & Backgrounds
 $background_color_dark: #2A2D32;
 $white: #FFFFFF;
+$glow_blue: #4a90d9;
+$bg_blue1: #1B2838;
+$bg_blue2: #2A475E;
+$auth_bg: #3a3f44;
 $background_url: "https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943";
 
+// Größen, Abstände & Übergänge
+$scrollbar-size: 12px;
+$border-radius: 10px;
+$transition-time: 0.3s;
+$base-font-size: 16px;
+$font-family: 'Dice', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+// Gradients
+$btn-primary-gradient: linear-gradient(135deg, #66c0f4, #4a90d9);
+$btn-primary-gradient-hover: linear-gradient(135deg, #4a90d9, #357ab8);
+
+// Button- & Input-Werte
+$btn-padding: 10px 20px;
+$search-btn-padding: 0 25px;
+$input-padding: 12px 20px;
+
+// Hero Section
+$hero-h1-font-size: 3em;
+$hero-h1-padding-bottom: 20px;
+$hero-p-font-size: 1.2em;
+
+// Section Container
+$section-padding: 50px 20px;
+$section-h2-font-size: 2.5em;
+$section-h2-margin-bottom: 40px;
+
+// Game Card
+$game-card-max-width: 350px;
+$game-card-width: 32%;
+$card-padding: 20px;
+$card-title-margin-bottom: 15px;
+$card-text-margin-bottom: 20px;
+
+// Navbar
+$navbar-link-margin-right: 15px;
+
+// Auth-Box
+$auth-form-padding: 10px;
+$auth-form-margin-bottom: 15px;
+$auth-form-border-radius: 5px;
+$auth-btn-bg: #66c0f4;
+$auth-btn-bg-hover: #1B75BC;
+
+// Scrollbar Track Border
+$scrollbar-track-border: darken($background_color_dark, 10%);
+
+// Global Reset
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html,
 body {
   height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
+// Body
 body {
-  background-color: #1B2838;
+  background-color: $bg_blue1;
   background-image: url($background_url);
   background-attachment: fixed;
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
   color: $white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: $font-family !important;
+  display: flex;
+  flex-direction: column;
+  scrollbar-color: $glow_blue $background_color_dark !important;
+  scrollbar-width: thin !important;
+}
+
+// Webkit Scrollbars
+::-webkit-scrollbar {
+  width: $scrollbar-size !important;
+  height: $scrollbar-size !important;
+}
+
+::-webkit-scrollbar-track {
+  background: $background_color_dark !important;
+  border: 1px solid $scrollbar-track-border !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, $glow_blue, darken($glow_blue, 10%)) !important;
+  border-radius: $border-radius !important;
+  border: 3px solid transparent !important;
+  background-clip: padding-box !important;
+  transition: background $transition-time, transform $transition-time !important;
+
+  &:hover {
+    background: linear-gradient(135deg, lighten($glow_blue, 10%), $glow_blue) !important;
+    transform: scale(1.2) !important;
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: $background_color_dark !important;
+}
+
+// Wrapper & Main Content
+.wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+.main-content {
+  flex: 1;
+}
+
+// Main
 main {
   display: flex;
   flex-direction: column;
@@ -43,37 +145,42 @@ main {
   }
 }
 
+// Hero Section
 .hero-section {
   width: 100%;
-  background: linear-gradient(135deg, #1B2838, #2A475E);
+  background: linear-gradient(135deg, $bg_blue1, $bg_blue2);
   padding: 100px 20px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: $white;
+    font-size: $hero-h1-font-size;
+    text-transform: uppercase;
+    background-color: $glow_blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    padding-bottom: $hero-h1-padding-bottom;
   }
 
   p {
     color: $white;
-    font-size: 1.2em;
+    font-size: $hero-p-font-size;
     margin-bottom: 30px;
   }
 
   .btn.btn-primary {
-    background: linear-gradient(135deg, #66c0f4, #4a90d9);
+    background: $btn-primary-gradient;
     border: none;
     color: $white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: $btn-padding;
+    font-size: $base-font-size;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background $transition-time;
     text-decoration: none;
 
     &:hover {
-      background: linear-gradient(135deg, #4a90d9, #357ab8);
+      background: $btn-primary-gradient-hover;
     }
   }
 
@@ -86,7 +193,7 @@ main {
       display: flex;
       width: 100%;
       max-width: 600px;
-      background: #2a475e;
+      background: $bg_blue2;
       border-radius: 50px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -95,41 +202,45 @@ main {
         flex: 1;
         background: transparent;
         border: none;
-        padding: 12px 20px;
-        font-size: 16px;
+        padding: $input-padding;
+        font-size: $base-font-size;
         color: $white;
+
         &::placeholder {
           color: rgba(255, 255, 255, 0.7);
         }
+
         &:focus {
           outline: none;
         }
       }
 
       button.btn-primary {
-        background: linear-gradient(135deg, #66c0f4, #4a90d9);
+        background: $btn-primary-gradient;
         border: none;
         color: $white;
-        padding: 0 25px;
-        font-size: 16px;
+        padding: $search-btn-padding;
+        font-size: $base-font-size;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background $transition-time;
+
         &:hover {
-          background: linear-gradient(135deg, #4a90d9, #357ab8);
+          background: $btn-primary-gradient-hover;
         }
       }
     }
   }
 }
 
+// Section Container
 section.container {
-  padding: 50px 20px;
+  padding: $section-padding;
 
   h2 {
     color: $white;
-    font-size: 2.5em;
+    font-size: $section-h2-font-size;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: $section-h2-margin-bottom;
   }
 
   .row {
@@ -140,16 +251,17 @@ section.container {
   }
 }
 
+// Game Card
 .game-card {
   background-color: $background_color_dark;
   color: $white;
   border: none;
-  border-radius: 10px;
+  border-radius: $border-radius;
   overflow: hidden;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-  max-width: 350px;
-  width: 32%;
+  transition: transform $transition-time ease;
+  max-width: $game-card-max-width;
+  width: $game-card-width;
 
   img {
     width: 100%;
@@ -157,16 +269,16 @@ section.container {
   }
 
   .card-body {
-    padding: 20px;
+    padding: $card-padding;
 
     .card-title {
       font-size: 1.5em;
-      margin-bottom: 15px;
+      margin-bottom: $card-title-margin-bottom;
     }
 
     .card-text {
       font-size: 1em;
-      margin-bottom: 20px;
+      margin-bottom: $card-text-margin-bottom;
     }
 
     .btn.btn-outline-primary {
@@ -174,7 +286,7 @@ section.container {
       border: 1px solid #66c0f4;
       color: #66c0f4;
       padding: 8px 15px;
-      transition: background 0.3s, color 0.3s;
+      transition: background $transition-time, color $transition-time;
       cursor: pointer;
       text-decoration: none;
 
@@ -190,26 +302,52 @@ section.container {
   }
 }
 
+// Navbar
 .navbar {
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  padding: 10px 20px;
+  padding: 20px !important;
 
   a {
+    position: relative;
     color: $white !important;
     text-decoration: none;
-    margin-right: 15px;
+    margin-right: $navbar-link-margin-right;
+    transition: text-shadow $transition-time ease;
+
+    &.navbar-brand {
+      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue !important;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: $white;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition-time ease, box-shadow $transition-time ease;
+    }
 
     &:hover {
-      text-decoration: underline;
+      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+
+      &:after {
+        transform: scaleX(1);
+        box-shadow: 0 0 8px 4px $glow_blue;
+      }
     }
   }
 }
 
+// Auth Page Box
 .auth-page-box {
   background-color: $background_color_dark;
   color: $white;
-  border-radius: 10px;
+  border-radius: $border-radius;
   padding: 30px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   margin: 50px auto;
@@ -217,40 +355,32 @@ section.container {
   max-width: 500px;
 
   .form-control {
-    background-color: #3a3f44;
+    background-color: $auth_bg;
     border: none;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: $auth-form-padding;
+    margin-bottom: $auth-form-margin-bottom;
     color: $white;
-    border-radius: 5px;
+    border-radius: $auth-form-border-radius;
+
     &::placeholder {
       color: lighten($white, 20%);
     }
   }
 
   .btn.btn-primary {
-    background-color: #66c0f4;
+    background-color: $auth-btn-bg;
     border: none;
-    padding: 10px 20px;
+    padding: $btn-padding;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background $transition-time;
 
     &:hover {
-      background-color: #1B75BC;
+      background-color: $auth-btn-bg-hover;
     }
   }
 }
 
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-}
-
+// Footer
 footer {
   background-color: $background_color_dark;
   color: $white;
@@ -263,6 +393,7 @@ footer {
   }
 }
 
+// Responsive
 @media (max-width: 768px) {
   .inner {
     width: 95%;

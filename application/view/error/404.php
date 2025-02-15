@@ -4,7 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Seite nicht gefunden</title>
     <style>
-        * {margin: 0; padding: 0; box-sizing: border-box}
+        @font-face {
+            font-family: 'Dice';
+            src: url('../../../public/css/fonts/DICE/DICE.woff2') format('woff2');
+        }
+        * {margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Dice', 'Segoe UI', Tahoma, sans-serif !important;}
         body {background: #1f1f1f; display: flex; align-items: center; justify-content: center; min-height: 80vh; font-family: Arial, sans-serif; color: #fff; text-align: center}
         .container {max-width: 800px; padding: 20px; background: rgba(0,0,0,0.6); border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.5)}
         .error-image {width: auto; height: 40vh; max-width: 400px; margin: 0 auto 20px; display: block; animation: pulse 2s infinite}
