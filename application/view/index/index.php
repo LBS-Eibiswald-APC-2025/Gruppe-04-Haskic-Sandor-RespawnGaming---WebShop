@@ -17,6 +17,36 @@ $games = [
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg',
         'title' => 'Left 4 Dead 2',
         'description' => 'Tauche ein in eine fantastische Welt.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg',
+        'title' => 'Team Fortress 2',
+        'description' => 'Team-basierter Shooter mit Humor.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg',
+        'title' => 'Dota 2',
+        'description' => 'Strategie und Teamwork in einem MOBA.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg',
+        'title' => 'CS:GO',
+        'description' => 'Intensiver Taktik-Shooter im Wettkampf.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg',
+        'title' => 'The Witcher 3',
+        'description' => 'Episches Rollenspiel in einer offenen Welt.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg',
+        'title' => 'Stardew Valley',
+        'description' => 'Entspanne auf dem Land und baue deine Farm aus.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
+        'title' => 'Rocket League',
+        'description' => 'Futebol trifft auf schnelle Autos.'
     ]
 ];
 ?>
@@ -41,15 +71,17 @@ $games = [
 
         <section class="container my-5">
             <h2 class="text-center mb-4">Beliebte Spiele</h2>
-            <div class="d-flex flex-nowrap justify-content-between">
+            <div class="row">
                 <?php if (!empty($games)): ?>
                     <?php foreach ($games as $game): ?>
-                        <div class="card game-card">
-                            <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
-                                <a href="#" class="btn btn-outline-primary">Mehr erfahren</a>
+                        <div class="col-md-3 mb-3">
+                            <div class="card game-card">
+                                <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
+                                    <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
+                                    <a href="#" class="btn btn-outline-primary">Mehr erfahren</a>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
