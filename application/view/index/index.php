@@ -1,6 +1,26 @@
 <!-- Header einbinden -->
 <?php require APP . 'view/_templates/header.php'; ?>
 
+<?php
+$games = [
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg',
+        'title' => 'Portal 2',
+        'description' => 'Ein cooles Spiel, das dich fesselt.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/220/header.jpg',
+        'title' => 'Half-Life 2',
+        'description' => 'Ein spannendes Abenteuer wartet auf dich.'
+    ],
+    (object)[
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg',
+        'title' => 'Left 4 Dead 2',
+        'description' => 'Tauche ein in eine fantastische Welt.'
+    ]
+];
+?>
+
 <main>
     <div class="inner">
         <header class="hero-section text-center">

@@ -1,4 +1,4 @@
-<footer class="bg-light text-center text-dark py-3">
+<footer class="text-center">
     <p>&copy; 2025 Respawn Gaming - Alle Rechte vorbehalten.</p>
 </footer>
 
