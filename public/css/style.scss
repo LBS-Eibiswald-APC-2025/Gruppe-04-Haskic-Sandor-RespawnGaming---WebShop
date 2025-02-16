@@ -411,6 +411,7 @@ section.container {
     transition: text-shadow $transition-time ease;
 
     &.navbar-brand {
+      font-size: 1.7em;
       text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue !important;
     }
 
@@ -439,7 +440,6 @@ section.container {
 }
 
 // Anpassung der Navbar mit dauerhaftem Glow-Effekt beim aktiven Menüpunkt
-
 .navbar {
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -540,16 +540,13 @@ footer {
     width: 95%;
   }
 
-  .hero-section {
-    padding: 80px 10px;
-
-    h1 {
-      font-size: 2.5em;
-    }
-
-    p {
-      font-size: 1em;
-    }
+  .hero-section h1 {
+    font-size: 2.5em;
+    color: $white;
+    text-transform: uppercase;
+    position: relative;
+    animation: glowingText 4s linear infinite;
+    text-shadow: 0 0 5px $glow_blue, 0 0 10px $glow_blue, 0 0 20px $glow_blue;
   }
 
   section.container {

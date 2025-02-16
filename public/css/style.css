@@ -306,6 +306,7 @@ section.container .row {
   transition: text-shadow 0.3s ease;
 }
 .navbar a.navbar-brand {
+  font-size: 1.7em;
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9 !important;
 }
 .navbar a:after {
@@ -413,14 +414,13 @@ footer p {
   .inner {
     width: 95%;
   }
-  .hero-section {
-    padding: 80px 10px;
-  }
   .hero-section h1 {
     font-size: 2.5em;
-  }
-  .hero-section p {
-    font-size: 1em;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    position: relative;
+    animation: glowingText 4s linear infinite;
+    text-shadow: 0 0 5px #4a90d9, 0 0 10px #4a90d9, 0 0 20px #4a90d9;
   }
   section.container h2 {
     font-size: 2em;

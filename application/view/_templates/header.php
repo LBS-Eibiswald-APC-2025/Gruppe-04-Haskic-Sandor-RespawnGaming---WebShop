@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respawn Gaming</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
@@ -23,20 +23,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (strpos($current_page, '/games') !== false) ? 'active-link' : ''; ?>"
+                    <a class="nav-link <?php echo (str_contains($current_page, '/games')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>games">Spiele</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (strpos($current_page, '/community') !== false) ? 'active-link' : ''; ?>"
+                    <a class="nav-link <?php echo (str_contains($current_page, '/community')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>community">Community</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (strpos($current_page, '/info') !== false) ? 'active-link' : ''; ?>"
+                    <a class="nav-link <?php echo (str_contains($current_page, '/info')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>info">Info</a>
                 </li>
                 <?php if (Session::userIsLoggedIn()) : ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($current_page, '/user/index') !== false) ? 'active-link' : ''; ?>"
+                        <a class="nav-link <?php echo (str_contains($current_page, '/user/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a>
                     </li>
                     <li class="nav-item">
@@ -44,7 +44,7 @@
                     </li>
                 <?php else : ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($current_page, '/login/index') !== false) ? 'active-link' : ''; ?>"
+                        <a class="nav-link <?php echo (str_contains($current_page, '/login/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>login/index">Login</a>
                     </li>
                 <?php endif; ?>
