@@ -45,7 +45,7 @@ $games = [
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
         'title' => 'Rocket League',
-        'description' => 'Futebol trifft auf schnelle Autos.'
+        'description' => 'Fussball trifft auf schnelle Autos.'
     ]
 ];
 
@@ -87,7 +87,9 @@ $featured_games = [
                 <div class="search-bar mt-4">
                     <form action="<?php echo Config::get('URL'); ?>games/search" method="post">
                         <div class="input-group">
-                            <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
+                            <label>
+                                <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
+                            </label>
                             <button type="submit" class="btn btn-primary">Suchen</button>
                         </div>
                     </form>
@@ -123,6 +125,8 @@ $featured_games = [
             const carouselPrev = document.getElementById('carouselPrev');
             const carouselNext = document.getElementById('carouselNext');
 
+            let autoSwitchInterval;
+
             function updateCarousel() {
                 const game = featuredGames[currentIndex];
                 carouselImg.src = game.image;
@@ -132,33 +136,88 @@ $featured_games = [
                 carouselPrice.textContent = game.price;
             }
 
-            function goToSlide(newIndex) {
-                slideEl.classList.remove('slide-in-right', 'slide-out-left');
-                slideEl.classList.add('slide-out-left');
-                setTimeout(() => {
-                    currentIndex = newIndex;
-                    updateCarousel();
-                    slideEl.classList.remove('slide-out-left');
-                    slideEl.classList.add('slide-in-right');
+            function goToSlide(newIndex, direction = 'right') {
+                slideEl.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
+
+                if (direction === 'right') {
+                    slideEl.classList.add('slide-out-left');
                     setTimeout(() => {
-                        slideEl.classList.remove('slide-in-right');
+                        currentIndex = newIndex;
+                        updateCarousel();
+                        slideEl.classList.remove('slide-out-left');
+                        slideEl.classList.add('slide-in-right');
                     }, 500);
-                }, 500);
+                } else {
+                    slideEl.classList.add('slide-out-right');
+                    setTimeout(() => {
+                        currentIndex = newIndex;
+                        updateCarousel();
+                        slideEl.classList.remove('slide-out-right');
+                        slideEl.classList.add('slide-in-left');
+                    }, 500);
+                }
+            }
+
+            function startAutoSwitch() {
+                if (autoSwitchInterval) clearInterval(autoSwitchInterval);
+                autoSwitchInterval = setInterval(() => {
+                    goToSlide((currentIndex + 1) % featuredGames.length, 'right');
+                }, 7000);
             }
 
             carouselPrev.addEventListener('click', () => {
-                goToSlide((currentIndex - 1 + featuredGames.length) % featuredGames.length);
+                const newIndex = (currentIndex - 1 + featuredGames.length) % featuredGames.length;
+                goToSlide(newIndex, 'left');
+                startAutoSwitch();
             });
 
             carouselNext.addEventListener('click', () => {
-                goToSlide((currentIndex + 1) % featuredGames.length);
+                const newIndex = (currentIndex + 1) % featuredGames.length;
+                goToSlide(newIndex, 'right');
+                startAutoSwitch();
             });
 
             updateCarousel();
-            setInterval(() => {
-                goToSlide((currentIndex + 1) % featuredGames.length);
-            }, 7000);
+            startAutoSwitch();
         </script>
+
+        <style>
+            .slide-out-left {
+                animation: slideOutLeft 0.5s forwards;
+            }
+
+            .slide-in-right {
+                animation: slideInRight 0.5s forwards;
+            }
+
+            .slide-out-right {
+                animation: slideOutRight 0.5s forwards;
+            }
+
+            .slide-in-left {
+                animation: slideInLeft 0.5s forwards;
+            }
+
+            @keyframes slideOutLeft {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(-100%); opacity: 0; }
+            }
+
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+
+            @keyframes slideInLeft {
+                from { transform: translateX(-100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        </style>
 
         <!-- Game Cards -->
         <section class="container my-5">
