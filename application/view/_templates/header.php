@@ -22,7 +22,8 @@
                 </li>
                 <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>info">Info</a></li>
                 <?php if (Session::userIsLoggedIn()) : ?>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>user/index">Mein
+                            Konto</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>login/logout">Logout</a></li>
                 <?php else : ?>
                     <li class="nav-item"><a class="nav-link" href="<?php echo Config::get('URL'); ?>login/index">Login</a></li>

@@ -12,6 +12,7 @@ body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x: hidden;
 }
 
 body {
@@ -157,7 +158,7 @@ main .inner {
 }
 
 section.container {
-  padding: 50px 20px;
+  padding: 0 20px;
 }
 section.container h2 {
   color: #FFFFFF;
@@ -213,6 +214,83 @@ section.container .row {
 }
 .game-card:hover {
   transform: scale(1.05);
+}
+
+.custom-carousel-title {
+  margin-top: 80px;
+  color: #FFFFFF;
+  font-size: 250%;
+}
+
+.custom-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #FFFFFF;
+}
+.custom-carousel-container .carousel-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.custom-carousel-container .carousel-btn:hover {
+  color: #66c0f4;
+}
+.custom-carousel-container .carousel-slide {
+  display: flex;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+.custom-carousel-container .carousel-slide .carousel-image {
+  flex: 1;
+}
+.custom-carousel-container .carousel-slide .carousel-image img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+.custom-carousel-container .carousel-slide .carousel-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.custom-carousel-container .carousel-slide .carousel-info h3, .custom-carousel-container .carousel-slide .carousel-info p, .custom-carousel-container .carousel-slide .carousel-info span {
+  margin: 0 0 10px;
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-out-left {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s forwards;
 }
 
 .navbar {
@@ -287,6 +365,7 @@ footer {
   color: #FFFFFF;
   text-align: center;
   padding: 10px 20px;
+  margin-top: auto;
 }
 footer p {
   margin: 0;
@@ -305,9 +384,6 @@ footer p {
   }
   .hero-section p {
     font-size: 1em;
-  }
-  section.container {
-    padding: 30px 10px;
   }
   section.container h2 {
     font-size: 2em;

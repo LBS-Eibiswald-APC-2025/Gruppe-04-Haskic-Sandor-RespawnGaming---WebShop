@@ -1,3 +1,7 @@
+//                      SCSS Variablen
+// ====================================================
+//
+
 //Schriftarten einbinden
 @font-face {
   font-family: 'Dice';
@@ -35,7 +39,7 @@ $hero-h1-padding-bottom: 20px;
 $hero-p-font-size: 1.2em;
 
 // Section Container
-$section-padding: 50px 20px;
+$section-padding: 0 20px;
 $section-h2-font-size: 2.5em;
 $section-h2-margin-bottom: 40px;
 
@@ -59,6 +63,10 @@ $auth-btn-bg-hover: #1B75BC;
 // Scrollbar Track Border
 $scrollbar-track-border: darken($background_color_dark, 10%);
 
+//                      SCSS Styling
+// ====================================================
+//
+
 // Global Reset
 * {
   margin: 0;
@@ -70,6 +78,7 @@ body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
+  overflow-x: hidden;
 }
 
 // Body
@@ -302,6 +311,90 @@ section.container {
   }
 }
 
+// Game Carousel
+.custom-carousel-title {
+  margin-top: 80px;
+  color: $white;
+  font-size: 250%;
+}
+
+.custom-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: $white;
+
+  .carousel-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    &:hover {
+      color: #66c0f4;
+    }
+  }
+
+  .carousel-slide {
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+
+    .carousel-image {
+      flex: 1;
+      img {
+        max-width: 100%;
+        border-radius: 5px;
+      }
+    }
+
+    .carousel-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h3, p, span {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-out-left {
+  animation: slideOutLeft 0.5s forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s forwards;
+}
+
 // Navbar
 .navbar {
   background-color: $background_color_dark;
@@ -386,6 +479,7 @@ footer {
   color: $white;
   text-align: center;
   padding: 10px 20px;
+  margin-top: auto;
 
   p {
     margin: 0;
@@ -412,8 +506,6 @@ footer {
   }
 
   section.container {
-    padding: 30px 10px;
-
     h2 {
       font-size: 2em;
     }
