@@ -19,11 +19,11 @@ class LoginController extends Controller
     }
 
     /**
-     * Index, default action (shows the login form), when you do login/index
+     * Index, default action (shows the login form), when you do log in/index
      */
     public function index(): void
     {
-        // if user is logged in redirect to main-page, if not show the view
+        // if a user is logged in redirect to main-page, if not show the view
         if (LoginModel::isUserLoggedIn()) {
             Redirect::home();
         } else {
@@ -101,11 +101,11 @@ class LoginController extends Controller
     public function loginWithCookie(): void
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
-         $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
+        $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
 
-        // if login successful, redirect to dashboard/index ...
+        // if login successful, redirect to games/index ...
         if ($login_successful) {
-            Redirect::to('dashboard/index');
+            Redirect::to('games/index');
         } else {
             // if not, delete cookie (outdated? attack?) and route user to login form to prevent infinite login loops
             LoginModel::deleteCookie();

@@ -17,10 +17,10 @@ class DashboardController extends Controller
     }
 
     /**
-     * This method controls what happens when you move to /dashboard/index in your app.
+     * This method controls what happens when you move to /games/index in your app.
      */
     public function index()
     {
-        $this->View->render('dashboard/index');
+        $this->View->render('games/index');
     }
 }

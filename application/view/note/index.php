@@ -5,7 +5,7 @@
         <!-- echo out the system feedback (error and success messages) -->
         <?php $this->renderFeedbackMessages(); ?>
 
-        <h3>What happens here ?</h3>
+        <h3>What happens here?</h3>
         <p>
             This is just a simple CRUD implementation. Creating, reading, updating and deleting things.
         </p>
