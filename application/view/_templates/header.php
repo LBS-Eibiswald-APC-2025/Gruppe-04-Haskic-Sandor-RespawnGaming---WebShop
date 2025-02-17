@@ -1,6 +1,10 @@
 <?php
 require_once APP . 'model/OnlineModel.php';
 OnlineModel::trackUser();
+$uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
+$uri = trim($uri, '/');
+$segments = explode('/', $uri);
+$view = empty($segments[0]) ? 'index' : array_shift($segments);
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +15,8 @@ OnlineModel::trackUser();
     <title>Respawn Gaming</title>
 
     <!-- Haupt-Styling -->
-    <link rel="stylesheet" href="/public/css/index/style.css">
+    <link rel="stylesheet" href="../../../public/css/main/style.css">
+    <link rel="stylesheet" href="../../../public/css/<?= $view ?>/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
@@ -23,7 +28,9 @@ OnlineModel::trackUser();
 
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="<?php echo Config::get('URL'); ?>">Respawn Gaming</a>
+        <a class="navbar-brand d-flex align-items-center" href="<?php echo Config::get('URL'); ?>">
+            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2"> Respawn Gaming </a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>

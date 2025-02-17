@@ -8,6 +8,11 @@
   src: url('../fonts/DICE/DICE.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'DemonSlayer';
+  src: url('../fonts/DemonSlayer/demonslayer.woff2') format('woff2');
+}
+
 // Farben & Backgrounds
 $background_color_dark: #2A2D32;
 $white: #FFFFFF;
@@ -158,9 +163,12 @@ main {
 // Hero Section
 .hero-section {
   width: 100%;
-  background: linear-gradient(135deg, $bg_blue1, $bg_blue2);
   padding: 100px 20px;
   text-align: center;
+  border-radius: 0 0 15px 15px;
+  background-blend-mode: darken;
+  background-size: cover;
+  background: rgba(0, 0, 0, .30) url("../../image/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   h1 {
@@ -174,8 +182,9 @@ main {
   }
 
   p {
+    font-family: 'DemonSlayer', sans-serif;
+    font-size: 1.5em;
     color: $white;
-    font-size: $hero-p-font-size;
     margin-bottom: 30px;
   }
 
@@ -289,6 +298,8 @@ section.container {
     .card-text {
       font-size: 1em;
       margin-bottom: $card-text-margin-bottom;
+      font-family: 'DemonSlayer', sans-serif;
+      font-size: 150%;
     }
 
     .btn.btn-outline-primary {
@@ -361,6 +372,8 @@ section.container {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      font-family: 'DemonSlayer', sans-serif;
+      font-size: 150%;
 
       h3, p, span {
         margin: 0 0 10px;
@@ -480,6 +493,17 @@ section.container {
   }
 }
 
+.logo {
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
 // Optional: Sicherstellen, dass die .nav-link.active auch hervorgehoben wird
 .nav-link.active {
   text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
@@ -565,7 +589,7 @@ footer {
 
 .info-page {
   color: #fff;
-  font-family: 'Dice', sans-serif;
+  font-family: 'DICE', sans-serif;
 
   .info-hero {
     background: linear-gradient(135deg, #1b2838, #2a475e);

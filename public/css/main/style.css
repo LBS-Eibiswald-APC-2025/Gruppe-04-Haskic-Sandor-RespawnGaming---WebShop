@@ -2,6 +2,10 @@
   font-family: "Dice";
   src: url("../fonts/DICE/DICE.woff2") format("woff2");
 }
+@font-face {
+  font-family: "DemonSlayer";
+  src: url("../fonts/DemonSlayer/demonslayer.woff2") format("woff2");
+}
 * {
   margin: 0;
   padding: 0;
@@ -84,9 +88,12 @@ main .inner {
 
 .hero-section {
   width: 100%;
-  background: linear-gradient(135deg, #1B2838, #2A475E);
   padding: 100px 20px;
   text-align: center;
+  border-radius: 0 0 15px 15px;
+  background-blend-mode: darken;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .hero-section h1 {
@@ -99,8 +106,9 @@ main .inner {
   padding-bottom: 20px;
 }
 .hero-section p {
+  font-family: "DemonSlayer", sans-serif;
+  font-size: 1.5em;
   color: #FFFFFF;
-  font-size: 1.2em;
   margin-bottom: 30px;
 }
 .hero-section .btn.btn-primary {
@@ -198,6 +206,8 @@ section.container .row {
 .game-card .card-body .card-text {
   font-size: 1em;
   margin-bottom: 20px;
+  font-family: "DemonSlayer", sans-serif;
+  font-size: 150%;
 }
 .game-card .card-body .btn.btn-outline-primary {
   background: transparent;
@@ -260,6 +270,8 @@ section.container .row {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  font-family: "DemonSlayer", sans-serif;
+  font-size: 150%;
 }
 .custom-carousel-container .carousel-slide .carousel-info h3, .custom-carousel-container .carousel-slide .carousel-info p, .custom-carousel-container .carousel-slide .carousel-info span {
   margin: 0 0 10px;
@@ -361,6 +373,17 @@ section.container .row {
   box-shadow: 0 0 8px 4px #4a90d9;
 }
 
+.logo {
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
 .nav-link.active {
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
   border-bottom: 2px solid #4a90d9;
@@ -428,7 +451,7 @@ footer p {
 }
 .info-page {
   color: #fff;
-  font-family: "Dice", sans-serif;
+  font-family: "DICE", sans-serif;
 }
 .info-page .info-hero {
   background: linear-gradient(135deg, #1b2838, #2a475e);

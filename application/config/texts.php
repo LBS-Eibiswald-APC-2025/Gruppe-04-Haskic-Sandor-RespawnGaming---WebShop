@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Texts used in the application.
+ * Texts used in the app.
  * These texts are used via Text::get('FEEDBACK_USERNAME_ALREADY_TAKEN').
  * Could be extended to i18n etc.
  */

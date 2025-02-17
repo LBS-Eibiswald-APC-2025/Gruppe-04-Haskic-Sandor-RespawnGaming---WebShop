@@ -1,92 +1,55 @@
-.info-page {
+.info-page .info-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
-  padding: 50px;
-  background: linear-gradient(145deg, #1B2838, #2A475E);
+  height: 90vh;
+  text-align: center;
+  margin: 20px 0;
   color: #ffffff;
+  background-blend-mode: darken;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration.png") no-repeat center;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
-.info-page .info-container {
-  display: flex;
-  width: 100%;
-  max-width: 1100px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+.info-page .info-content {
+  max-width: 600px;
+  padding: 30px;
 }
-.info-page .info-container .info-text {
-  flex: 1;
-  background-color: rgba(43, 62, 80, 0.85);
-  padding: 40px;
-  box-sizing: border-box;
+.info-page .logo {
+  height: 100px;
+  margin-bottom: 20px;
 }
-.info-page .info-container .info-text .info-logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-}
-.info-page .info-container .info-text .info-logo img {
-  width: 80px;
-  height: 80px;
-  margin-right: 20px;
-  filter: drop-shadow(0 0 10px #66c0f4);
-}
-.info-page .info-container .info-text .info-logo h1 {
+.info-page .info-title {
+  font-family: "DICE", sans-serif;
   font-size: 2.5em;
-  text-transform: uppercase;
-  color: #66c0f4;
-  text-shadow: 0 0 15px #66c0f4;
-  margin: 0;
+  margin-bottom: 20px;
+  color: #00aaff;
+  text-shadow: 0 0 10px #00aaff;
 }
-.info-page .info-container .info-text .info-description {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-  color: #d6eaff;
-}
-.info-page .info-container .info-text .info-stats {
-  margin-bottom: 25px;
-}
-.info-page .info-container .info-text .info-stats .stat {
-  margin: 15px 0;
-}
-.info-page .info-container .info-text .info-stats .stat .stat-label {
-  font-weight: bold;
-  color: #66c0f4;
-  font-size: 1.2em;
-}
-.info-page .info-container .info-text .info-stats .stat .stat-value {
+.info-page .info-text {
+  font-family: "DemonSlayer", sans-serif;
   font-size: 1.5em;
-  color: #d6eaff;
+  margin-bottom: 30px;
+  line-height: 1.5;
 }
-.info-page .info-container .info-text .info-btn {
-  display: inline-block;
-  padding: 15px 25px;
-  background: linear-gradient(135deg, #66c0f4, #4a90d9);
-  border: none;
-  border-radius: 5px;
+.info-page .online-status {
+  font-size: 1em;
+  margin-bottom: 20px;
+  color: #39ff14;
+}
+.info-page .info-btn {
+  padding: 15px 30px;
+  background-color: #007BFF;
   color: #fff;
   text-decoration: none;
-  font-size: 1.2em;
-  box-shadow: 0 0 20px rgba(102, 192, 244, 0.5);
-  transition: background 0.3s;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: transform 0.3s;
+  display: inline-block;
 }
-.info-page .info-container .info-text .info-btn:hover {
-  background: linear-gradient(135deg, #4a90d9, #357ab8);
-  transform: translateY(-5px);
-}
-.info-page .info-container .info-image {
-  flex: 1;
-  background-color: rgba(30, 45, 60, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.info-page .info-container .info-image img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
-  filter: drop-shadow(0 0 15px #66c0f4);
+.info-page .info-btn:hover {
+  transform: scale(1.05);
 }
 
 /*# sourceMappingURL=style.css.map */
