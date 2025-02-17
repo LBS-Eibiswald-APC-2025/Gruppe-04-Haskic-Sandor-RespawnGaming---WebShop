@@ -58,7 +58,7 @@ $featured_games = [
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
-        'title' => 'Halo Infinite',
+        'title' => 'Death Stranding',
         'description' => 'Erlebe epische Schlachten im Halo-Universum.',
         'price' => '39,99€'
     ],

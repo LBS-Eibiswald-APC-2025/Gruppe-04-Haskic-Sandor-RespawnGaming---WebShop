@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Dice";
-  src: url("fonts/DICE/DICE.woff2") format("woff2");
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
 }
 * {
   margin: 0;
@@ -424,6 +424,148 @@ footer p {
   }
   section.container h2 {
     font-size: 2em;
+  }
+}
+.info-page {
+  color: #fff;
+  font-family: "Dice", sans-serif;
+}
+.info-page .info-hero {
+  background: linear-gradient(135deg, #1b2838, #2a475e);
+  padding: 60px 20px;
+  text-align: center;
+}
+.info-page .info-hero .info-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.info-page .info-hero .info-container h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+  color: #66c0f4;
+  text-shadow: 0 0 10px #66c0f4;
+}
+.info-page .info-hero .info-container p {
+  font-size: 1.5em;
+  margin-bottom: 40px;
+}
+.info-page .info-hero .info-container .info-stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+.info-page .info-hero .info-container .info-stats .stat .number {
+  font-size: 2em;
+  color: #66c0f4;
+  text-shadow: 0 0 5px #66c0f4;
+  display: block;
+}
+.info-page .info-hero .info-container .info-stats .stat .label {
+  font-size: 1em;
+  color: #ccc;
+}
+.info-page .info-hero .info-container .btn-info {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 20px 0;
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #66c0f4;
+  transition: transform 0.3s;
+}
+.info-page .info-hero .info-container .btn-info:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #4a90d9, #357ab8);
+}
+.info-page .info-hero .info-container .platform-icons {
+  margin-top: 20px;
+  font-size: 2em;
+}
+.info-page .info-hero .info-container .platform-icons i {
+  margin: 0 10px;
+  color: #66c0f4;
+  text-shadow: 0 0 5px #66c0f4;
+  transition: transform 0.3s;
+}
+.info-page .info-hero .info-container .platform-icons i:hover {
+  transform: scale(1.2);
+}
+.info-page .info-details {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 40px 20px;
+}
+.info-page .info-details .info-item {
+  margin: 30px 0;
+  text-align: center;
+}
+.info-page .info-details .info-item h3 {
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #66c0f4;
+}
+.info-page .info-details .info-item p {
+  font-size: 1.2em;
+}
+.info-page .info-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #2a2d32;
+  font-size: 0.9em;
+}
+
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(27, 40, 56, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+#page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+#page-loader .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#page-loader .loader span {
+  display: inline-block;
+  width: 5px;
+  height: 30px;
+  margin: 0 5px;
+  background: #4a90d9;
+  animation: wave 1.2s infinite ease-in-out;
+}
+#page-loader .loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+#page-loader .loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+#page-loader .loader span:nth-child(4) {
+  animation-delay: 0.6s;
+}
+#page-loader .loader span:nth-child(5) {
+  animation-delay: 0.8s;
+}
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2);
   }
 }
 

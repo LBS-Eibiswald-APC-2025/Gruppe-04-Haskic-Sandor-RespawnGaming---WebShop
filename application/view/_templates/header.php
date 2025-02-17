@@ -1,14 +1,26 @@
+<?php
+require_once APP . 'model/OnlineModel.php';
+OnlineModel::trackUser();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respawn Gaming</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+
+    <!-- Haupt-Styling -->
+    <link rel="stylesheet" href="/public/css/index/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
+<!-- Ladebildschirm -->
+<div id="page-loader">
+    <div class="loader"></div>
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="<?php echo Config::get('URL'); ?>">Respawn Gaming</a>
@@ -52,4 +64,35 @@
         </div>
     </div>
 </nav>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Ladebildschirm-Skript -->
+<script>
+    // Beim Seitenwechsel anzeigen
+    window.addEventListener('beforeunload', () => {
+        document.getElementById('page-loader').style.display = 'flex';
+    });
+
+    // Nach dem Laden ausblenden
+    window.addEventListener('load', () => {
+        const loader = document.getElementById('page-loader');
+        loader.style.opacity = '0';
+        setTimeout(() => loader.style.display = 'none', 500);
+    });
+
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            if (this.href && this.target !== '_blank' && !this.href.startsWith('#')) {
+                e.preventDefault();
+                document.getElementById('page-loader').classList.remove('hidden');
+                setTimeout(() => {
+                    window.location.href = this.href;
+                }, 300);
+            }
+        });
+    });
+</script>
 </body>
+</html>

@@ -5,7 +5,7 @@
 //Schriftarten einbinden
 @font-face {
   font-family: 'Dice';
-  src: url('fonts/DICE/DICE.woff2') format('woff2');
+  src: url('../fonts/DICE/DICE.woff2') format('woff2');
 }
 
 // Farben & Backgrounds
@@ -64,9 +64,8 @@ $auth-btn-bg-hover: #1B75BC;
 $scrollbar-track-border: darken($background_color_dark, 10%);
 
 
-
-//                      SCSS Styling
-// ====================================================
+//                      SCSS Styling Landigpage
+// =============================================================
 //
 
 // Global Reset
@@ -319,6 +318,7 @@ section.container {
   color: $white;
   font-size: 250%;
 }
+
 .custom-carousel-container {
   display: flex;
   align-items: center;
@@ -332,6 +332,7 @@ section.container {
     color: #fff;
     font-size: 2rem;
     cursor: pointer;
+
     &:hover {
       color: #66c0f4;
     }
@@ -348,6 +349,7 @@ section.container {
 
     .carousel-image {
       flex: 1;
+
       img {
         max-width: 100%;
         border-radius: 5px;
@@ -359,6 +361,7 @@ section.container {
       display: flex;
       flex-direction: column;
       justify-content: center;
+
       h3, p, span {
         margin: 0 0 10px;
       }
@@ -552,6 +555,178 @@ footer {
   section.container {
     h2 {
       font-size: 2em;
+    }
+  }
+}
+
+//                    SCSS Styling Infoseite
+// =============================================================
+//
+
+.info-page {
+  color: #fff;
+  font-family: 'Dice', sans-serif;
+
+  .info-hero {
+    background: linear-gradient(135deg, #1b2838, #2a475e);
+    padding: 60px 20px;
+    text-align: center;
+
+    .info-container {
+      max-width: 800px;
+      margin: 0 auto;
+
+      h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        color: #66c0f4;
+        text-shadow: 0 0 10px #66c0f4;
+      }
+
+      p {
+        font-size: 1.5em;
+        margin-bottom: 40px;
+      }
+
+      .info-stats {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-bottom: 30px;
+
+        .stat {
+          .number {
+            font-size: 2em;
+            color: #66c0f4;
+            text-shadow: 0 0 5px #66c0f4;
+            display: block;
+          }
+
+          .label {
+            font-size: 1em;
+            color: #ccc;
+          }
+        }
+      }
+
+      .btn-info {
+        display: inline-block;
+        padding: 15px 30px;
+        margin: 20px 0;
+        background: linear-gradient(135deg, #66c0f4, #4a90d9);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #66c0f4;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: translateY(-5px);
+          background: linear-gradient(135deg, #4a90d9, #357ab8);
+        }
+      }
+
+      .platform-icons {
+        margin-top: 20px;
+        font-size: 2em;
+
+        i {
+          margin: 0 10px;
+          color: #66c0f4;
+          text-shadow: 0 0 5px #66c0f4;
+          transition: transform 0.3s;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+  }
+
+  .info-details {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px 20px;
+
+    .info-item {
+      margin: 30px 0;
+      text-align: center;
+
+      h3 {
+        font-size: 2em;
+        margin-bottom: 15px;
+        color: #66c0f4;
+      }
+
+      p {
+        font-size: 1.2em;
+      }
+    }
+  }
+
+  .info-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2a2d32;
+    font-size: 0.9em;
+  }
+}
+
+// Ladebildschirm
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(27, 40, 56, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    span {
+      display: inline-block;
+      width: 5px;
+      height: 30px;
+      margin: 0 5px;
+      background: #4a90d9;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+
+    span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    span:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+    span:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+  }
+
+  @keyframes wave {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(2);
     }
   }
 }
