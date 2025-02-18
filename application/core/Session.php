@@ -68,6 +68,16 @@ class Session
     }
 
     /**
+     * removes a specific key from the session
+     *
+     * @param mixed $key
+     */
+    public static function remove($key)
+    {
+        unset($_SESSION[$key]);
+    }
+
+    /**
      * deletes the session (= logs the user out)
      */
     public static function destroy()

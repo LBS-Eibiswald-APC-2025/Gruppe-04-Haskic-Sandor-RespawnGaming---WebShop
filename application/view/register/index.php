@@ -1,4 +1,5 @@
 <?php require APP . 'view/_templates/header.php'; ?>
+<?php require APP . 'view/_templates/feedback.php'; ?>
 
 <div class="auth-page-box">
     <h2 class="text-center">Registrieren</h2>
@@ -10,7 +11,7 @@
                required>
         <button type="submit" class="btn btn-primary w-100">Registrieren</button>
     </form>
-    <div class="text-center mt-3">
+    <div class="text-center mt-3 link">
         <a href="<?php echo Config::get('URL'); ?>login/index">Schon einen Account? Hier einloggen.</a>
     </div>
 </div>

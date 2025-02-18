@@ -2,6 +2,8 @@
 
 /* Using PHPMailer's namespace */
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
 /**
  * Class Mail
@@ -52,11 +54,10 @@ class Mail
      *
      * @return bool
      * @throws Exception
-     * @throws phpmailerException
      */
-    public function sendMailWithPHPMailer($user_email, $from_email, $from_name, $subject, $body)
+    public function sendMailWithPHPMailer($user_email, $from_email, $from_name, $subject, $body): bool
     {
-        $mail = new PHPMailer;
+        $mail = new PHPMailer(true);
         
         // you should use UTF-8 to avoid encoding issues
         $mail->CharSet = 'UTF-8';
@@ -66,6 +67,7 @@ class Mail
 
             // set PHPMailer to use SMTP
             $mail->IsSMTP();
+            $mail->isHTML();
 
             // 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors
             $mail->SMTPDebug = 0;
@@ -90,8 +92,7 @@ class Mail
         }
 
         // fill mail with data
-        $mail->From = $from_email;
-        $mail->FromName = $from_name;
+        $mail->setFrom($from_email, $from_name);
         $mail->AddAddress($user_email);
         $mail->Subject = $subject;
         $mail->Body = $body;
@@ -121,6 +122,7 @@ class Mail
      * @param $subject string subject
      * @param $body string full mail body text
      * @return bool the success status of the according mail sending method
+     * @throws Exception
      */
     public function sendMail($user_email, $from_email, $from_name, $subject, $body)
     {

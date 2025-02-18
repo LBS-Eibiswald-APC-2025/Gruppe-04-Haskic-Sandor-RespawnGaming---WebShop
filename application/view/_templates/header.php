@@ -4,7 +4,10 @@ OnlineModel::trackUser();
 $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = trim($uri, '/');
 $segments = explode('/', $uri);
-$view = empty($segments[0]) ? 'index' : array_shift($segments);
+$view = $segments[0];
+if (empty($view)) {
+    $view = 'index';
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +18,9 @@ $view = empty($segments[0]) ? 'index' : array_shift($segments);
     <title>Respawn Gaming</title>
 
     <!-- Haupt-Styling -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../public/css/main/style.css">
     <link rel="stylesheet" href="../../../public/css/<?= $view ?>/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>

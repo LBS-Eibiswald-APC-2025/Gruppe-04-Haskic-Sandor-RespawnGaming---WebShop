@@ -1,0 +1,259 @@
+@charset "UTF-8";
+/* ===========================================
+              SCSS Integrations
+   =========================================== */
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* Game Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+/* Hero-Section (Titelbereich) */
+.hero-section {
+  width: 100%;
+  padding: 100px 20px;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  background-blend-mode: darken;
+  background-size: cover;
+  background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration2.png") no-repeat center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.hero-section h1 {
+  font-size: 3em;
+  text-transform: uppercase;
+  background-color: #4a90d9;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  padding-bottom: 20px;
+}
+.hero-section p {
+  font-family: "Playstation", sans-serif;
+  font-size: 1.5em;
+  color: #FFFFFF;
+  margin-bottom: 30px;
+}
+.hero-section .btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+.hero-section .btn-primary:hover {
+  background: #8ed529;
+  transform: scale(1.05);
+}
+.hero-section .btn-secondary {
+  display: inline-block;
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  border: none;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out;
+}
+.hero-section .btn-secondary:hover {
+  background: #8ed529;
+}
+.hero-section .search-bar {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.hero-section .search-bar .input-group {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  background: #2A475E;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.hero-section .search-bar .input-group input.form-control {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+  font-family: "Playstation", sans-serif;
+}
+.hero-section .search-bar .input-group input.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.hero-section .search-bar .input-group input.form-control:focus {
+  outline: none;
+}
+.hero-section .search-bar .input-group button.btn-primary {
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  border: none;
+  color: #FFFFFF;
+  padding: 0 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.hero-section .search-bar .input-group button.btn-primary:hover {
+  background: #8ed529;
+}
+
+/* Karten-Design für Spiele */
+.game-card {
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+  max-width: 350px;
+  width: 100%;
+}
+.game-card img {
+  width: 100%;
+  height: auto;
+}
+.game-card .card-body {
+  padding: 20px;
+  background: #1B2838;
+  color: #FFFFFF;
+}
+.game-card .card-body .card-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+.game-card .card-body .card-text {
+  margin-bottom: 20px;
+  font-family: "Playstation", sans-serif;
+  font-size: 120%;
+}
+.game-card .card-body .btn.btn-outline-primary {
+  background: transparent;
+  border: 1px solid #66c0f4;
+  color: #66c0f4;
+  padding: 8px 15px;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+}
+.game-card .card-body .btn.btn-outline-primary:hover {
+  background: #66c0f4;
+  color: #FFFFFF;
+}
+.game-card:hover {
+  transform: scale(1.05);
+}
+
+/* Carousel-Container mit Pfeilen und Slide */
+.custom-carousel-title {
+  font-family: "DICE", sans-serif;
+  font-size: 250%;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.custom-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #fff;
+}
+.custom-carousel-container .carousel-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.custom-carousel-container .carousel-btn:hover {
+  color: #66c0f4;
+}
+.custom-carousel-container .carousel-slide {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+}
+.custom-carousel-container .carousel-slide .carousel-image {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-carousel-container .carousel-slide .carousel-image img {
+  max-width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.custom-carousel-container .carousel-slide .carousel-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Playstation", sans-serif;
+  font-size: 120%;
+}
+.custom-carousel-container .carousel-slide .carousel-info h3 {
+  font-family: "DICE", sans-serif;
+  font-size: 150%;
+}
+.custom-carousel-container .carousel-slide .carousel-info p,
+.custom-carousel-container .carousel-slide .carousel-info span {
+  margin: 0 0 10px;
+}
+
+.carousel-indicators-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.carousel-indicators-custom .indicator {
+  width: 12px;
+  height: 12px;
+  background-color: #666;
+  border-radius: 15%;
+  margin: 0 7px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.carousel-indicators-custom .indicator.active {
+  background-color: #ffffff;
+  transform: scale(1.2);
+}
+.carousel-indicators-custom .indicator:hover {
+  background-color: #aaa;
+}
+
+/*# sourceMappingURL=style.css.map */

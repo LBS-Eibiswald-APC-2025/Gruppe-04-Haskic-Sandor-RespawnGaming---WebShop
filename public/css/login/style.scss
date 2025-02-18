@@ -1,0 +1,57 @@
+/* ===========================================
+              SCSS Integrations
+   =========================================== */
+
+@import '../main/_variables.scss';
+
+/* Auth-Box (z.B. für Login/Registration) */
+.auth-page-box {
+  background-color: $background_color_dark;
+  color: $white;
+  border-radius: $border-radius;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 500px;
+
+  .form-control {
+    font-family: 'Playstation', sans-serif;
+    background-color: $auth_bg;
+    border: none;
+    padding: $auth-form-padding;
+    margin-bottom: $auth-form-margin-bottom;
+    color: $white;
+    border-radius: $auth-form-border-radius;
+
+    &::placeholder {
+      color: lighten($white, 20%);
+    }
+  }
+
+  .link {
+    a {
+      display: inline-block;
+      font-family: 'Playstation', sans-serif !important;
+      color: $white !important;
+      transition: transform $transition-time ease-in-out !important;
+
+      &:hover {
+        transform: scale(1.05) !important;
+      }
+    }
+  }
+
+  .btn.btn-primary {
+    background-color: $auth-btn-bg;
+    border: none;
+    padding: $btn-padding;
+    cursor: pointer;
+    transition: transform $transition-time ease-in-out;
+
+    &:hover {
+      background-color: $b_green;
+      transform: scale(1.05);
+    }
+  }
+}

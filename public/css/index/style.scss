@@ -1,0 +1,267 @@
+/* ===========================================
+              SCSS Integrations
+   =========================================== */
+
+@import '../main/_variables.scss';
+
+/* Hero-Section (Titelbereich) */
+.hero-section {
+  width: 100%;
+  padding: 100px 20px;
+  text-align: center;
+  border-radius: 0 0 15px 15px;
+  background-blend-mode: darken;
+  background-size: cover;
+  background: rgba(0, 0, 0, .30) url("../../image/Hero_Illustration2.png") no-repeat center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  h1 {
+    font-size: $hero-h1-font-size;
+    text-transform: uppercase;
+    background-color: $glow_blue;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    padding-bottom: $hero-h1-padding-bottom;
+  }
+
+  p {
+    font-family: 'Playstation', sans-serif;
+    font-size: 1.5em;
+    color: $white;
+    margin-bottom: 30px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: $btn-primary-gradient;
+    border: none;
+    color: $white;
+    padding: $btn-padding;
+    font-size: $base-font-size;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform $transition-time ease-in-out;
+
+    &:hover {
+      background: $b_green;
+      transform: scale(1.05);
+    }
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: $btn-primary-gradient;
+    border: none;
+    color: $white;
+    padding: $btn-padding;
+    font-size: $base-font-size;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform $transition-time ease-in-out;
+
+    &:hover {
+      background: $b_green;
+    }
+  }
+
+  .search-bar {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+
+    .input-group {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      background: $bg_blue2;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
+      input.form-control {
+        flex: 1;
+        background: transparent;
+        border: none;
+        padding: $input-padding;
+        font-size: $base-font-size;
+        color: $white;
+        font-family: 'Playstation', sans-serif;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button.btn-primary {
+        background: $btn-primary-gradient;
+        border: none;
+        color: $white;
+        padding: $search-btn-padding;
+        font-size: $base-font-size;
+        cursor: pointer;
+
+        &:hover {
+          background: $b_green;
+        }
+      }
+    }
+  }
+}
+
+/* Karten-Design für Spiele */
+.game-card {
+  background-color: $background_color_dark;
+  color: $white;
+  border: none;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  transition: transform $transition-time ease;
+  max-width: $game-card-max-width;
+  width: $game-card-width;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-body {
+    padding: $card-padding;
+    background: $bg_blue1;
+    color: $white;
+
+    .card-title {
+      font-size: 1.5em;
+      margin-bottom: $card-title-margin-bottom;
+    }
+
+    .card-text {
+      margin-bottom: $card-text-margin-bottom;
+      font-family: 'Playstation', sans-serif;
+      font-size: 120%;
+    }
+
+    .btn.btn-outline-primary {
+      background: transparent;
+      border: 1px solid #66c0f4;
+      color: #66c0f4;
+      padding: 8px 15px;
+      transition: background $transition-time, color $transition-time;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        background: #66c0f4;
+        color: $white;
+      }
+    }
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Carousel-Container mit Pfeilen und Slide */
+.custom-carousel-title {
+  font-family: 'DICE', sans-serif;
+  font-size: 250%;
+  color: $white;
+  text-align: center;
+  margin-top: 150px;
+
+}
+
+.custom-carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #fff;
+
+  .carousel-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #66c0f4;
+    }
+  }
+
+  .carousel-slide {
+    display: flex;
+    align-items: stretch;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
+
+    .carousel-image {
+      flex: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+    }
+
+    .carousel-info {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: 'Playstation', sans-serif;
+      font-size: 120%;
+
+      h3 {
+        font-family: 'DICE', sans-serif;
+        font-size: 150%;
+      }
+
+      p,
+      span {
+        margin: 0 0 10px;
+      }
+    }
+  }
+}
+
+.carousel-indicators-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #666;
+    border-radius: 15%;
+    margin: 0 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &.active {
+      background-color: #ffffff;
+      transform: scale(1.2);
+    }
+
+    &:hover {
+      background-color: #aaa;
+    }
+  }
+}

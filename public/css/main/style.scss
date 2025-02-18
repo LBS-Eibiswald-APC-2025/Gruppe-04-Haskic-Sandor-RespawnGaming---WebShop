@@ -1,85 +1,19 @@
-/* scss */
-/* ===========================
-   SCSS Variablen und Fonts
-   =========================== */
-
-/* Einbinden spezieller Schriftart 'Dice' */
-@font-face {
-  font-family: 'Dice';
-  src: url('../fonts/DICE/DICE.woff2') format('woff2');
-}
-
-/* Einbinden spezieller Schriftart 'Playstation' */
-@font-face {
-  font-family: 'Playstation';
-  src: url('../fonts/Playstation/playstation.woff2') format('woff2');
-}
-
-/* Farbliche Grundwerte und URL-Hintergrund */
-$background_color_dark: #2A2D32;
-$white: #FFFFFF;
-$glow_blue: #4a90d9;
-$bg_blue1: #1B2838;
-$bg_blue2: #2A475E;
-$auth_bg: #3a3f44;
-$background_url: "https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943";
-
-/* Größen, Abstände und Übergänge */
-$scrollbar-size: 12px;
-$border-radius: 10px;
-$transition-time: 0.3s;
-$base-font-size: 16px;
-$font-family: 'Dice', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-/* Hintergründe für Buttons */
-$btn-primary-gradient: linear-gradient(135deg, #66c0f4, #4a90d9);
-$btn-primary-gradient-hover: linear-gradient(135deg, #4a90d9, #357ab8);
-
-/* Button- und Input-Parameter */
-$btn-padding: 10px 20px;
-$search-btn-padding: 0 25px;
-$input-padding: 12px 20px;
-
-/* Hero-Section-Größen */
-$hero-h1-font-size: 3em;
-$hero-h1-padding-bottom: 20px;
-$hero-p-font-size: 1.2em;
-
-/* Allgemeine Sektionseinstellungen */
-$section-padding: 0 20px;
-$section-h2-font-size: 2.5em;
-$section-h2-margin-bottom: 40px;
-
-/* Game Card */
-$game-card-max-width: 350px;
-$game-card-width: 100%;
-$card-padding: 20px;
-$card-title-margin-bottom: 15px;
-$card-text-margin-bottom: 20px;
-
-/* Navbar */
-$navbar-link-margin-right: 15px;
-
-/* Auth-Box (z.B. für Login) */
-$auth-form-padding: 10px;
-$auth-form-margin-bottom: 15px;
-$auth-form-border-radius: 5px;
-$auth-btn-bg: #66c0f4;
-$auth-btn-bg-hover: #1B75BC;
-
-/* Scrollbar-Farbe */
-$scrollbar-track-border: darken($background_color_dark, 10%);
-
+/* ===========================================
+   SCSS Integrations
+   =========================================== */
+@import './_variables.scss';
 
 /* ===========================================
-   SCSS Styling Landingpage (Global Reset)
+   Global Reset und Basis-Styling
    =========================================== */
+
+/* Reset: Alle Elemente ohne Margin & Padding */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* HTML, Body-Einstellungen */
+/* HTML und Body Grund-Einstellungen */
 html,
 body {
   height: 100%;
@@ -88,9 +22,8 @@ body {
   overflow-x: hidden;
 }
 
-/* Body-Hintergrund und Schrift */
+/* Body-Hintergrund, Schrift und Layout */
 body {
-  background-color: $bg_blue1;
   background-image: url($background_url);
   background-attachment: fixed;
   background-position: bottom center;
@@ -104,7 +37,10 @@ body {
   scrollbar-width: thin !important;
 }
 
-/* WebKit-spezifische Scrollbar-Styling */
+/* ===========================================
+   Scrollbar-Styling (WebKit)
+   =========================================== */
+
 ::-webkit-scrollbar {
   width: $scrollbar-size !important;
   height: $scrollbar-size !important;
@@ -132,18 +68,23 @@ body {
   background: $background_color_dark !important;
 }
 
-/* Wrapper für Layout */
+/* ===========================================
+   Layout-Struktur
+   =========================================== */
+
+/* Wrapper für das Layout */
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* Haupt-Inhalt */
 .main-content {
   flex: 1;
 }
 
-/* Hauptbereich mit zentriertem Inhalt */
+/* Zentrale Hauptsektion */
 main {
   display: flex;
   flex-direction: column;
@@ -161,98 +102,23 @@ main {
   }
 }
 
-/* Hero-Section (Titelbereich) */
-.hero-section {
-  width: 100%;
-  padding: 100px 20px;
-  text-align: center;
-  border-radius: 0 0 15px 15px;
-  background-blend-mode: darken;
-  background-size: cover;
-  background: rgba(0, 0, 0, .30) url("../../image/Hero_Illustration2.png") no-repeat center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-
-  h1 {
-    font-size: $hero-h1-font-size;
-    text-transform: uppercase;
-    background-color: $glow_blue;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 0;
-    padding-bottom: $hero-h1-padding-bottom;
-  }
-
-  p {
-    font-family: 'Playstation', sans-serif;
-    font-size: 1.5em;
-    color: $white;
-    margin-bottom: 30px;
-  }
-
-  .btn.btn-primary {
-    background: $btn-primary-gradient;
-    border: none;
-    color: $white;
-    padding: $btn-padding;
-    font-size: $base-font-size;
-    cursor: pointer;
-    transition: background $transition-time;
-    text-decoration: none;
-
-    &:hover {
-      background: $btn-primary-gradient-hover;
+//feedback
+.feedback {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: $b_green;
+    &.error {
+        background-color: red;
     }
-  }
-
-  .search-bar {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-
-    .input-group {
-      display: flex;
-      width: 100%;
-      max-width: 600px;
-      background: $bg_blue2;
-      border-radius: 50px;
-      overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-
-      input.form-control {
-        flex: 1;
-        background: transparent;
-        border: none;
-        padding: $input-padding;
-        font-size: $base-font-size;
-        color: $white;
-
-        &::placeholder {
-          color: rgba(255, 255, 255, 0.7);
-        }
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      button.btn-primary {
-        background: $btn-primary-gradient;
-        border: none;
-        color: $white;
-        padding: $search-btn-padding;
-        font-size: $base-font-size;
-        cursor: pointer;
-        transition: background $transition-time;
-
-        &:hover {
-          background: $btn-primary-gradient-hover;
-        }
-      }
-    }
-  }
 }
 
-/* Allgemeine Sektion in Containern */
+/* Allgemeine Container-Sektionen */
 section.container {
   padding: $section-padding;
 
@@ -271,167 +137,51 @@ section.container {
   }
 }
 
-/* Karten-Design für Spiele */
-.game-card {
-  background-color: $background_color_dark;
-  color: $white;
-  border: none;
-  border-radius: $border-radius;
-  overflow: hidden;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  transition: transform $transition-time ease;
-  max-width: $game-card-max-width;
-  width: $game-card-width;
+/* ===========================================
+   Komponenten
+   =========================================== */
 
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  .card-body {
-    padding: $card-padding;
-    background: $bg_blue1;
-    color: $white;
-
-    .card-title {
-      font-size: 1.5em;
-      margin-bottom: $card-title-margin-bottom;
-    }
-
-    .card-text {
-      margin-bottom: $card-text-margin-bottom;
-      font-family: 'Playstation', sans-serif;
-      font-size: 120%;
-    }
-
-    .btn.btn-outline-primary {
-      background: transparent;
-      border: 1px solid #66c0f4;
-      color: #66c0f4;
-      padding: 8px 15px;
-      transition: background $transition-time, color $transition-time;
-      cursor: pointer;
-      text-decoration: none;
-
-      &:hover {
-        background: #66c0f4;
-        color: $white;
-      }
-    }
-  }
-
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-/* Carousel-Container mit Pfeilen und Slide */
-.custom-carousel-title {
-  font-family: 'DICE', sans-serif;
-  font-size: 250%;
-  color: $white;
-  text-align: center;
-  margin-top: 150px;
-
-}
-
-.custom-carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  color: #fff;
-
-  .carousel-btn {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    cursor: pointer;
-
-    &:hover {
-      color: #66c0f4;
-    }
-  }
-
-  .carousel-slide {
-    display: flex;
-    align-items: stretch;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    padding: 20px;
-    max-width: 900px;
-    width: 100%;
-
-    .carousel-image {
-      flex: 3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        max-width: 100%;
-        border-radius: 5px;
-        object-fit: cover;
-      }
-    }
-
-    .carousel-info {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-family: 'Playstation', sans-serif;
-      font-size: 120%;
-
-      h3 {
-        font-family: 'DICE', sans-serif;
-        font-size: 150%;
-      }
-
-      p,
-      span {
-        margin: 0 0 10px;
-      }
-    }
-  }
-}
-
-/* ============================================
-   Bullet-Indikatoren für das Carousel
-   ============================================ */
-.carousel-indicators {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 100px;
-
-  .indicator {
-    width: 12px;
-    height: 12px;
-    background-color: #666;
-    border-radius: 15%;
-    margin: 0 7px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
-    &.active {
-      background-color: #ffffff;
-      transform: scale(1.2);
-    }
-
-    &:hover {
-      background-color: #aaa;
-    }
-  }
-}
-
-/* Navbar-Styling mit Glow-Effekt */
+/* Navbar mit Glow-Effekt */
 .navbar {
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px !important;
+
+  .nav-link {
+    position: relative;
+    color: $white !important;
+    text-decoration: none;
+    margin-right: $navbar-link-margin-right;
+    transition: text-shadow $transition-time ease;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: $white;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform $transition-time ease, box-shadow $transition-time ease;
+    }
+
+    &:hover,
+    &.active-link {
+      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+
+      &::after {
+        transform: scaleX(1);
+        box-shadow: 0 0 8px 4px $glow_blue;
+      }
+    }
+
+    &:active {
+      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+      border-bottom: 2px solid $glow_blue;
+    }
+  }
 
   a {
     position: relative;
@@ -467,97 +217,16 @@ section.container {
       }
     }
   }
-}
 
-/* Erweiterte Navbar-Elemente */
-.navbar {
-  background-color: $background_color_dark;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  padding: 20px !important;
-
-  .nav-link {
-    position: relative;
-    color: $white !important;
-    text-decoration: none;
-    margin-right: $navbar-link-margin-right;
-    transition: text-shadow $transition-time ease;
-
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 2px;
-      background: $white;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform $transition-time ease, box-shadow $transition-time ease;
-    }
-
-    &:hover,
-    &.active-link {
-      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
-
-      &::after {
-        transform: scaleX(1);
-        box-shadow: 0 0 8px 4px $glow_blue;
-      }
-    }
-  }
-}
-
-.logo {
-  height: 40px;
-  width: auto;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.1);
-}
-
-/* Aktive Navigation hervorheben */
-.nav-link.active {
-  text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
-  border-bottom: 2px solid $glow_blue;
-}
-
-/* Auth-Box (z.B. für Login/Registration) */
-.auth-page-box {
-  background-color: $background_color_dark;
-  color: $white;
-  border-radius: $border-radius;
-  padding: 30px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
-  max-width: 500px;
-
-  .form-control {
-    background-color: $auth_bg;
-    border: none;
-    padding: $auth-form-padding;
-    margin-bottom: $auth-form-margin-bottom;
-    color: $white;
-    border-radius: $auth-form-border-radius;
-
-    &::placeholder {
-      color: lighten($white, 20%);
-    }
+  .logo {
+    height: 40px;
+    width: auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
   }
 
-  .btn.btn-primary {
-    background-color: $auth-btn-bg;
-    border: none;
-    padding: $btn-padding;
-    cursor: pointer;
-    transition: background $transition-time;
-
-    &:hover {
-      background-color: $auth-btn-bg-hover;
-    }
+  .logo:hover {
+    transform: scale(1.5);
   }
 }
 
@@ -575,139 +244,26 @@ footer {
   }
 }
 
-/* Responsives Design (kleinere Bildschirme) */
-@media (max-width: 768px) {
-  .inner {
-    width: 95%;
-  }
+/* Formular-Steuerung */
+.form-control {
+  background: $bg_blue2 !important;
+  border-radius: 10px !important;
+  color: $white !important;
 
-  .hero-section h1 {
-    font-size: 250%;
-    color: $white;
-    text-transform: uppercase;
-    position: relative;
-    animation: glowingText 4s linear infinite;
-    text-shadow: 0 0 5px $glow_blue, 0 0 10px $glow_blue, 0 0 20px $glow_blue;
-  }
-
-  section.container {
-    h2 {
-      font-size: 200%;
-    }
+  &:active {
+    color: $white !important;
   }
 }
 
-/* Infoseite mit Hero-Bereich */
-.info-page {
-  color: $white;
-  font-family: 'DICE', sans-serif;
-
-  .info-hero {
-    background: linear-gradient(135deg, #1b2838, #2a475e);
-    padding: 60px 20px;
-    text-align: center;
-
-    .info-container {
-      max-width: 800px;
-      margin: 0 auto;
-
-      h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        color: #66c0f4;
-        text-shadow: 0 0 10px #66c0f4;
-      }
-
-      p {
-        font-size: 1.5em;
-        margin-bottom: 40px;
-      }
-
-      .info-stats {
-        display: flex;
-        justify-content: center;
-        gap: 50px;
-        margin-bottom: 30px;
-
-        .stat {
-          .number {
-            font-size: 2em;
-            color: #66c0f4;
-            text-shadow: 0 0 5px #66c0f4;
-            display: block;
-          }
-
-          .label {
-            font-size: 1em;
-            color: #ccc;
-          }
-        }
-      }
-
-      .btn-info {
-        display: inline-block;
-        padding: 15px 30px;
-        margin: 20px 0;
-        background: linear-gradient(135deg, #66c0f4, #4a90d9);
-        color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        box-shadow: 0 0 10px #66c0f4;
-        transition: transform 0.3s;
-
-        &:hover {
-          transform: translateY(-5px);
-          background: linear-gradient(135deg, #4a90d9, #357ab8);
-        }
-      }
-
-      .platform-icons {
-        margin-top: 20px;
-        font-size: 2em;
-
-        i {
-          margin: 0 10px;
-          color: #66c0f4;
-          text-shadow: 0 0 5px #66c0f4;
-          transition: transform 0.3s;
-
-          &:hover {
-            transform: scale(1.2);
-          }
-        }
-      }
-    }
-  }
-
-  .info-details {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 40px 20px;
-
-    .info-item {
-      margin: 30px 0;
-      text-align: center;
-
-      h3 {
-        font-size: 2em;
-        margin-bottom: 15px;
-        color: #66c0f4;
-      }
-
-      p {
-        font-size: 1.2em;
-      }
-    }
-  }
-
-  .info-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #2a2d32;
-    font-size: 0.9em;
-  }
+/* Primärer Button */
+.btn-primary {
+  border-radius: 10px !important;
 }
 
-/* Ladebildschirm */
+/* ===========================================
+   Ladebildschirm
+   =========================================== */
+
 #page-loader {
   position: fixed;
   top: 0;
@@ -769,9 +325,9 @@ footer {
   }
 }
 
-/* ============================================
-   KEYFRAMES FÜR ANIMATIONEN (Karussell)
-   ============================================ */
+/* ===========================================
+   Animationen (Keyframes für Karussell)
+   =========================================== */
 
 /* Rechts raus/sliden */
 @keyframes slideOutLeft {
@@ -785,7 +341,7 @@ footer {
   }
 }
 
-/* Von rechts hinein sliden */
+/* Von rechts herein sliden */
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
@@ -809,7 +365,7 @@ footer {
   }
 }
 
-/* Von links hinein sliden */
+/* Von links herein sliden */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);
@@ -821,7 +377,6 @@ footer {
   }
 }
 
-/* Klassen, die diese Keyframes verwenden */
 .slide-out-left {
   animation: slideOutLeft 0.7s forwards ease-in-out;
 }
@@ -836,4 +391,29 @@ footer {
 
 .slide-in-left {
   animation: slideInLeft 0.7s forwards ease-in-out;
+}
+
+/* ===========================================
+   Responsives Design (kleinere Bildschirme)
+   =========================================== */
+
+@media (max-width: 768px) {
+  .inner {
+    width: 95%;
+  }
+
+  .hero-section h1 {
+    font-size: 250%;
+    color: $white;
+    text-transform: uppercase;
+    position: relative;
+    animation: glowingText 4s linear infinite;
+    text-shadow: 0 0 5px $glow_blue, 0 0 10px $glow_blue, 0 0 20px $glow_blue;
+  }
+
+  section.container {
+    h2 {
+      font-size: 200%;
+    }
+  }
 }

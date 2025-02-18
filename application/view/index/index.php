@@ -4,89 +4,89 @@
 // Beispiel: Datenarrays für Spiele und "featured_games"
 $games = [
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg',
-        'title'       => 'Portal 2',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg',
+        'title' => 'Portal 2',
         'description' => 'Ein cooles Spiel, das dich fesselt.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/220/header.jpg',
-        'title'       => 'Half-Life 2',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/220/header.jpg',
+        'title' => 'Half-Life 2',
         'description' => 'Ein spannendes Abenteuer wartet auf dich.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg',
-        'title'       => 'Left 4 Dead 2',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg',
+        'title' => 'Left 4 Dead 2',
         'description' => 'Tauche ein in eine fantastische Welt.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg',
-        'title'       => 'Team Fortress 2',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg',
+        'title' => 'Team Fortress 2',
         'description' => 'Team-basierter Shooter mit Humor.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg',
-        'title'       => 'Dota 2',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg',
+        'title' => 'Dota 2',
         'description' => 'Strategie und Teamwork in einem MOBA.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg',
-        'title'       => 'CS:GO',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg',
+        'title' => 'CS:GO',
         'description' => 'Intensiver Taktik-Shooter im Wettkampf.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg',
-        'title'       => 'The Witcher 3',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg',
+        'title' => 'The Witcher 3',
         'description' => 'Episches Rollenspiel in einer offenen Welt.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg',
-        'title'       => 'Stardew Valley',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg',
+        'title' => 'Stardew Valley',
         'description' => 'Entspanne auf dem Land und baue deine Farm aus.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
-        'title'       => 'Rocket League',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
+        'title' => 'Rocket League',
         'description' => 'Fussball trifft auf schnelle Autos.',
-        'url'         => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games'
     ]
 ];
 
 $featured_games = [
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg',
-        'title'       => 'Forza Horizon 5',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg',
+        'title' => 'Forza Horizon 5',
         'description' => 'Erkunde eine offene Welt voller Rennen und Abenteuer.',
-        'price'       => '59,99€',
-        'url'         => Config::get('URL') . 'games'
+        'price' => '59,99€',
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
-        'title'       => 'Death Stranding',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
+        'title' => 'Death Stranding',
         'description' => 'Erlebe epische Schlachten im Halo-Universum.',
-        'price'       => '39,99€',
-        'url'         => Config::get('URL') . 'games'
+        'price' => '39,99€',
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg',
-        'title'       => 'GTA V',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg',
+        'title' => 'GTA V',
         'description' => 'Der Klassiker unter den Open-World-Spielen.',
-        'price'       => '29,99€',
-        'url'         => Config::get('URL') . 'games'
+        'price' => '29,99€',
+        'url' => Config::get('URL') . 'games'
     ],
     (object)[
-        'image'       => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
-        'title'       => 'Rocket League',
+        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
+        'title' => 'Rocket League',
         'description' => 'Autos und Fußball kombiniert zu einer actiongeladenen Erfahrung.',
-        'price'       => 'Gratis',
-        'url'         => Config::get('URL') . 'games'
+        'price' => 'Gratis',
+        'url' => Config::get('URL') . 'games'
     ]
 ];
 ?>
@@ -98,14 +98,14 @@ $featured_games = [
             <div class="container">
                 <h1>Willkommen bei Respawn Gaming</h1>
                 <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
-                <a href="<?php echo Config::get('URL'); ?>games" class="btn btn-primary">Jetzt loslegen</a>
+                <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt loslegen</a>
                 <div class="search-bar mt-4">
                     <form action="<?php echo Config::get('URL'); ?>games/search" method="post">
                         <div class="input-group">
                             <label>
                                 <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
                             </label>
-                            <button type="submit" class="btn btn-primary">Suchen</button>
+                            <button type="submit" class="btn-secondary">Suchen</button>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* ===========================================
+              SCSS Integrations
+   =========================================== */
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* Game Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+/* Auth-Box (z.B. für Login/Registration) */
+.auth-page-box {
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 500px;
+}
+.auth-page-box .form-control {
+  font-family: "Playstation", sans-serif;
+  background-color: #3a3f44;
+  border: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+.auth-page-box .form-control::placeholder {
+  color: white;
+}
+.auth-page-box .link a {
+  display: inline-block;
+  font-family: "Playstation", sans-serif !important;
+  color: #FFFFFF !important;
+  transition: transform 0.3s ease-in-out !important;
+}
+.auth-page-box .link a:hover {
+  transform: scale(1.05) !important;
+}
+.auth-page-box .btn.btn-primary {
+  background-color: #66c0f4;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+.auth-page-box .btn.btn-primary:hover {
+  background-color: #8ed529;
+  transform: scale(1.05);
+}
+
+/*# sourceMappingURL=style.css.map */

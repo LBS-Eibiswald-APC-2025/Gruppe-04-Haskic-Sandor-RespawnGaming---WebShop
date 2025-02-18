@@ -72,6 +72,10 @@ class Application
             $url = filter_var($url, FILTER_SANITIZE_URL);
             $url = explode('/', $url);
 
+            if ($url[0] == 'images') {
+                return;
+            }
+
             // put URL parts into according properties
             $this->controller_name = isset($url[0]) ? $url[0] : null;
             $this->action_name = isset($url[1]) ? $url[1] : null;

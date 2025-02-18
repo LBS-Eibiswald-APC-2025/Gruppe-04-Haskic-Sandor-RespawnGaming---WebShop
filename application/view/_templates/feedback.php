@@ -9,6 +9,7 @@ if (isset($feedback_positive)) {
     foreach ($feedback_positive as $feedback) {
         echo '<div class="feedback success">'.$feedback.'</div>';
     }
+    Session::remove('feedback_positive');
 }
 
 // echo out negative messages
@@ -16,4 +17,5 @@ if (isset($feedback_negative)) {
     foreach ($feedback_negative as $feedback) {
         echo '<div class="feedback error">'.$feedback.'</div>';
     }
+    Session::remove('feedback_negative');
 }

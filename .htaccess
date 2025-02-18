@@ -1,3 +1,14 @@
+SetEnvIf Request_URI "/image/" noauth=1
+SetEnvIf Request_URI "/css/fonts/" noauth=1
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile "/usr/www/users/respaw/.htpasswd"
+Require valid-user
+Order allow,deny
+Allow from env=noauth
+Satisfy any
+
 # This file is - if you set up HUGE correctly - not needed.
 # But, for fallback reasons (if you don't route your vhost to /public), it will stay here.
 RewriteEngine on
@@ -50,7 +61,3 @@ RewriteRule ^(.*) public/$1 [L]
   Header set Cache-Control "max-age=216000, private"
  </filesmatch>
 </ifmodule>
-AuthUserFile "/usr/www/users/respaw/.htpasswd"
-AuthName "dev"
-AuthType Basic
-require valid-user

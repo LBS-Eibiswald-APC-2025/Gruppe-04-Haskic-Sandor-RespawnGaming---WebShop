@@ -1,3 +1,11 @@
+/* ===========================================
+              SCSS Integrations
+   =========================================== */
+
+@import '../main/_variables.scss';
+
+
+
 .info-page {
   .info-section {
     display: flex;
@@ -58,5 +66,6 @@
 
   .info-btn:hover {
     transform: scale(1.05);
+    background: $b_green;
   }
 }
