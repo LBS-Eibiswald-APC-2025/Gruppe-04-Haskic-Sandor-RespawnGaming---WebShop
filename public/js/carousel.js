@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
             dot.classList.add('indicator');
             if (index === currentIndex) dot.classList.add('active');
 
-            dot.addEventListener('click', () => {
+            dot.addEventListener('click', (e) => {
+                // Verhindern, dass der Klick auf den Slider durchgeht
+                e.stopPropagation();
                 const direction = (index > currentIndex) ? 'right' : 'left';
                 goToSlide(index, direction);
                 startAutoSwitch();
@@ -36,23 +38,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const game = featuredGames[currentIndex];
         if (!game) return;
 
-        // Bild & Infos
+        // Bild & Infos setzen
         carouselImg.src = game.image;
         carouselImg.alt = game.title;
         carouselTitle.textContent = game.title;
         carouselDesc.textContent = game.description;
         carouselPrice.textContent = game.price;
 
-        // Indicator aktualisieren
+        // Indikatoren aktualisieren
         const dots = carouselIndicators.querySelectorAll('.indicator');
         dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === currentIndex);
         });
+
+        // KLICK-LOGIK: Falls eine URL existiert, bei Klick auf die Slide weiterleiten
+        if (game.url) {
+            slideEl.style.cursor = 'pointer';
+            slideEl.onclick = () => {
+                window.location.href = game.url;
+            };
+        } else {
+            slideEl.style.cursor = 'default';
+            slideEl.onclick = null;
+        }
     }
 
     // 3) Weiche Animation
     function goToSlide(newIndex, direction = 'right') {
-        // Entfernen aller Animationsklassen
         slideEl.classList.remove(
             'slide-in-right',
             'slide-out-left',
@@ -60,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'slide-out-right'
         );
 
-        // Ausblend-Animation abhängig von Richtung
         if (direction === 'right') {
             slideEl.classList.add('slide-out-left');
             setTimeout(() => {
@@ -68,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCarousel();
                 slideEl.classList.remove('slide-out-left');
                 slideEl.classList.add('slide-in-right');
-            }, 700); // Dieser Wert sollte mit der SCSS-Animation übereinstimmen (0.7s -> 700ms)
+            }, 700);
         } else {
             slideEl.classList.add('slide-out-right');
             setTimeout(() => {
@@ -85,17 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (autoSwitchInterval) clearInterval(autoSwitchInterval);
         autoSwitchInterval = setInterval(() => {
             goToSlide((currentIndex + 1) % featuredGames.length, 'right');
-        }, 7000); // Alle 7s ein Wechsel
+        }, 7000);
     }
 
     // 5) Button-Events
-    carouselPrev.addEventListener('click', () => {
+    carouselPrev.addEventListener('click', (e) => {
+        // Verhindern, dass Klick aufs Slide-Element durchgeht
+        e.stopPropagation();
         const newIndex = (currentIndex - 1 + featuredGames.length) % featuredGames.length;
         goToSlide(newIndex, 'left');
         startAutoSwitch();
     });
 
-    carouselNext.addEventListener('click', () => {
+    carouselNext.addEventListener('click', (e) => {
+        e.stopPropagation();
         const newIndex = (currentIndex + 1) % featuredGames.length;
         goToSlide(newIndex, 'right');
         startAutoSwitch();
