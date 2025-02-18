@@ -15,9 +15,9 @@ $view = empty($segments[0]) ? 'index' : array_shift($segments);
     <title>Respawn Gaming</title>
 
     <!-- Haupt-Styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../public/css/main/style.css">
     <link rel="stylesheet" href="../../../public/css/<?= $view ?>/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -29,15 +29,15 @@ $view = empty($segments[0]) ? 'index' : array_shift($segments);
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="<?php echo Config::get('URL'); ?>">
-            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2"> Respawn Gaming </a>
+            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">
+            Respawn Gaming
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <?php
-        $current_page = $_SERVER['REQUEST_URI'];
-        ?>
+        <?php $current_page = $_SERVER['REQUEST_URI']; ?>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
@@ -101,5 +101,9 @@ $view = empty($segments[0]) ? 'index' : array_shift($segments);
         });
     });
 </script>
+
+<!--- Carousel JS -->
+<script src="/public/js/carousel.js"></script>
+
 </body>
 </html>

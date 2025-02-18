@@ -1,16 +1,37 @@
+@charset "UTF-8";
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
   font-family: "Dice";
   src: url("../fonts/DICE/DICE.woff2") format("woff2");
 }
+/* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
-  font-family: "DemonSlayer";
-  src: url("../fonts/DemonSlayer/demonslayer.woff2") format("woff2");
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
 }
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* Game Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+/* ===========================================
+   SCSS Styling Landingpage (Global Reset)
+   =========================================== */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* HTML, Body-Einstellungen */
 html,
 body {
   height: 100%;
@@ -19,6 +40,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Body-Hintergrund und Schrift */
 body {
   background-color: #1B2838;
   background-image: url("https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943");
@@ -34,6 +56,7 @@ body {
   scrollbar-width: thin !important;
 }
 
+/* WebKit-spezifische Scrollbar-Styling */
 ::-webkit-scrollbar {
   width: 12px !important;
   height: 12px !important;
@@ -60,6 +83,7 @@ body {
   background: #2A2D32 !important;
 }
 
+/* Wrapper für Layout */
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -70,6 +94,7 @@ body {
   flex: 1;
 }
 
+/* Hauptbereich mit zentriertem Inhalt */
 main {
   display: flex;
   flex-direction: column;
@@ -86,6 +111,7 @@ main .inner {
   align-items: center;
 }
 
+/* Hero-Section (Titelbereich) */
 .hero-section {
   width: 100%;
   padding: 100px 20px;
@@ -106,7 +132,7 @@ main .inner {
   padding-bottom: 20px;
 }
 .hero-section p {
-  font-family: "DemonSlayer", sans-serif;
+  font-family: "Playstation", sans-serif;
   font-size: 1.5em;
   color: #FFFFFF;
   margin-bottom: 30px;
@@ -165,6 +191,7 @@ main .inner {
   background: linear-gradient(135deg, #4a90d9, #357ab8);
 }
 
+/* Allgemeine Sektion in Containern */
 section.container {
   padding: 0 20px;
 }
@@ -181,6 +208,7 @@ section.container .row {
   gap: 30px;
 }
 
+/* Karten-Design für Spiele */
 .game-card {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -198,16 +226,17 @@ section.container .row {
 }
 .game-card .card-body {
   padding: 20px;
+  background: #1B2838;
+  color: #FFFFFF;
 }
 .game-card .card-body .card-title {
   font-size: 1.5em;
   margin-bottom: 15px;
 }
 .game-card .card-body .card-text {
-  font-size: 1em;
   margin-bottom: 20px;
-  font-family: "DemonSlayer", sans-serif;
-  font-size: 150%;
+  font-family: "Playstation", sans-serif;
+  font-size: 120%;
 }
 .game-card .card-body .btn.btn-outline-primary {
   background: transparent;
@@ -226,10 +255,13 @@ section.container .row {
   transform: scale(1.05);
 }
 
+/* Carousel-Container mit Pfeilen und Slide */
 .custom-carousel-title {
-  margin-top: 80px;
-  color: #FFFFFF;
+  font-family: "DICE", sans-serif;
   font-size: 250%;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 150px;
 }
 
 .custom-carousel-container {
@@ -237,7 +269,7 @@ section.container .row {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: #FFFFFF;
+  color: #fff;
 }
 .custom-carousel-container .carousel-btn {
   background: none;
@@ -251,60 +283,69 @@ section.container .row {
 }
 .custom-carousel-container .carousel-slide {
   display: flex;
+  align-items: stretch;
   gap: 20px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
 }
 .custom-carousel-container .carousel-slide .carousel-image {
-  flex: 1;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .custom-carousel-container .carousel-slide .carousel-image img {
   max-width: 100%;
   border-radius: 5px;
+  object-fit: cover;
 }
 .custom-carousel-container .carousel-slide .carousel-info {
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: "DemonSlayer", sans-serif;
+  font-family: "Playstation", sans-serif;
+  font-size: 120%;
+}
+.custom-carousel-container .carousel-slide .carousel-info h3 {
+  font-family: "DICE", sans-serif;
   font-size: 150%;
 }
-.custom-carousel-container .carousel-slide .carousel-info h3, .custom-carousel-container .carousel-slide .carousel-info p, .custom-carousel-container .carousel-slide .carousel-info span {
+.custom-carousel-container .carousel-slide .carousel-info p,
+.custom-carousel-container .carousel-slide .carousel-info span {
   margin: 0 0 10px;
 }
 
-@keyframes slideOutLeft {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
+/* ============================================
+   Bullet-Indikatoren für das Carousel
+   ============================================ */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
 }
-@keyframes slideInRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.carousel-indicators .indicator {
+  width: 12px;
+  height: 12px;
+  background-color: #666;
+  border-radius: 15%;
+  margin: 0 7px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.slide-out-left {
-  animation: slideOutLeft 0.5s forwards;
+.carousel-indicators .indicator.active {
+  background-color: #ffffff;
+  transform: scale(1.2);
 }
-
-.slide-in-right {
-  animation: slideInRight 0.5s forwards;
+.carousel-indicators .indicator:hover {
+  background-color: #aaa;
 }
 
+/* Navbar-Styling mit Glow-Effekt */
 .navbar {
   background-color: #2A2D32;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -341,6 +382,7 @@ section.container .row {
   box-shadow: 0 0 8px 4px #4a90d9;
 }
 
+/* Erweiterte Navbar-Elemente */
 .navbar {
   background-color: #2A2D32;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -384,11 +426,13 @@ section.container .row {
   transform: scale(1.1);
 }
 
+/* Aktive Navigation hervorheben */
 .nav-link.active {
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
   border-bottom: 2px solid #4a90d9;
 }
 
+/* Auth-Box (z.B. für Login/Registration) */
 .auth-page-box {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -421,6 +465,7 @@ section.container .row {
   background-color: #1B75BC;
 }
 
+/* Footer */
 footer {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -433,12 +478,13 @@ footer p {
   font-size: 0.9em;
 }
 
+/* Responsives Design (kleinere Bildschirme) */
 @media (max-width: 768px) {
   .inner {
     width: 95%;
   }
   .hero-section h1 {
-    font-size: 2.5em;
+    font-size: 250%;
     color: #FFFFFF;
     text-transform: uppercase;
     position: relative;
@@ -446,11 +492,12 @@ footer p {
     text-shadow: 0 0 5px #4a90d9, 0 0 10px #4a90d9, 0 0 20px #4a90d9;
   }
   section.container h2 {
-    font-size: 2em;
+    font-size: 200%;
   }
 }
+/* Infoseite mit Hero-Bereich */
 .info-page {
-  color: #fff;
+  color: #FFFFFF;
   font-family: "DICE", sans-serif;
 }
 .info-page .info-hero {
@@ -539,6 +586,7 @@ footer p {
   font-size: 0.9em;
 }
 
+/* Ladebildschirm */
 #page-loader {
   position: fixed;
   top: 0;
@@ -590,6 +638,70 @@ footer p {
   50% {
     transform: scaleY(2);
   }
+}
+
+/* ============================================
+   KEYFRAMES FÜR ANIMATIONEN (Karussell)
+   ============================================ */
+/* Rechts raus/sliden */
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+/* Von rechts hinein sliden */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Links raus/sliden */
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+/* Von links hinein sliden */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/* Klassen, die diese Keyframes verwenden */
+.slide-out-left {
+  animation: slideOutLeft 0.7s forwards ease-in-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.7s forwards ease-in-out;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.7s forwards ease-in-out;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.7s forwards ease-in-out;
 }
 
 /*# sourceMappingURL=style.css.map */

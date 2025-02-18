@@ -1,6 +1,7 @@
 <?php require APP . 'view/_templates/header.php'; ?>
 
 <?php
+// Beispiel: Datenarrays für Spiele und "featured_games"
 $games = [
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/620/header.jpg',
@@ -79,6 +80,7 @@ $featured_games = [
 
 <main>
     <div class="inner">
+        <!-- Hero-Section -->
         <header class="hero-section text-center">
             <div class="container">
                 <h1>Willkommen bei Respawn Gaming</h1>
@@ -100,7 +102,9 @@ $featured_games = [
         <!-- Game Carousel -->
         <h2 class="text-center mb-4 custom-carousel-title">Angesagt und Beliebt</h2>
         <section class="custom-carousel-container container my-5">
+            <!-- Vor-/Zurück-Buttons -->
             <button class="carousel-btn" id="carouselPrev">&lt;</button>
+
             <div class="carousel-slide" id="carouselSlide">
                 <div class="carousel-image">
                     <img id="carouselImg" src="" alt="">
@@ -111,113 +115,17 @@ $featured_games = [
                     <span id="carouselPrice"></span>
                 </div>
             </div>
+
             <button class="carousel-btn" id="carouselNext">&gt;</button>
+
+            <!-- Bullet-Indikatoren -->
+            <div class="carousel-indicators" id="carouselIndicators"></div>
         </section>
 
+        <!-- Übergabe der PHP-Array-Daten an dein JS-Karussell -->
         <script>
-            const featuredGames = <?php echo json_encode($featured_games); ?>;
-            let currentIndex = 0;
-            const slideEl = document.getElementById('carouselSlide');
-            const carouselImg = document.getElementById('carouselImg');
-            const carouselTitle = document.getElementById('carouselTitle');
-            const carouselDescription = document.getElementById('carouselDescription');
-            const carouselPrice = document.getElementById('carouselPrice');
-            const carouselPrev = document.getElementById('carouselPrev');
-            const carouselNext = document.getElementById('carouselNext');
-
-            let autoSwitchInterval;
-
-            function updateCarousel() {
-                const game = featuredGames[currentIndex];
-                carouselImg.src = game.image;
-                carouselImg.alt = game.title;
-                carouselTitle.textContent = game.title;
-                carouselDescription.textContent = game.description;
-                carouselPrice.textContent = game.price;
-            }
-
-            function goToSlide(newIndex, direction = 'right') {
-                slideEl.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
-
-                if (direction === 'right') {
-                    slideEl.classList.add('slide-out-left');
-                    setTimeout(() => {
-                        currentIndex = newIndex;
-                        updateCarousel();
-                        slideEl.classList.remove('slide-out-left');
-                        slideEl.classList.add('slide-in-right');
-                    }, 500);
-                } else {
-                    slideEl.classList.add('slide-out-right');
-                    setTimeout(() => {
-                        currentIndex = newIndex;
-                        updateCarousel();
-                        slideEl.classList.remove('slide-out-right');
-                        slideEl.classList.add('slide-in-left');
-                    }, 500);
-                }
-            }
-
-            function startAutoSwitch() {
-                if (autoSwitchInterval) clearInterval(autoSwitchInterval);
-                autoSwitchInterval = setInterval(() => {
-                    goToSlide((currentIndex + 1) % featuredGames.length, 'right');
-                }, 7000);
-            }
-
-            carouselPrev.addEventListener('click', () => {
-                const newIndex = (currentIndex - 1 + featuredGames.length) % featuredGames.length;
-                goToSlide(newIndex, 'left');
-                startAutoSwitch();
-            });
-
-            carouselNext.addEventListener('click', () => {
-                const newIndex = (currentIndex + 1) % featuredGames.length;
-                goToSlide(newIndex, 'right');
-                startAutoSwitch();
-            });
-
-            updateCarousel();
-            startAutoSwitch();
+            window.featuredGames = <?php echo json_encode($featured_games); ?>;
         </script>
-
-        <style>
-            .slide-out-left {
-                animation: slideOutLeft 0.5s forwards;
-            }
-
-            .slide-in-right {
-                animation: slideInRight 0.5s forwards;
-            }
-
-            .slide-out-right {
-                animation: slideOutRight 0.5s forwards;
-            }
-
-            .slide-in-left {
-                animation: slideInLeft 0.5s forwards;
-            }
-
-            @keyframes slideOutLeft {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(-100%); opacity: 0; }
-            }
-
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-
-            @keyframes slideInLeft {
-                from { transform: translateX(-100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-        </style>
 
         <!-- Game Cards -->
         <section class="container my-5">
@@ -227,7 +135,9 @@ $featured_games = [
                     <?php foreach ($games as $game): ?>
                         <div class="col-md-3 mb-3">
                             <div class="card game-card">
-                                <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
+                                <img src="<?php echo htmlspecialchars($game->image); ?>"
+                                     class="card-img-top"
+                                     alt="<?php echo htmlspecialchars($game->title); ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
                                     <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>

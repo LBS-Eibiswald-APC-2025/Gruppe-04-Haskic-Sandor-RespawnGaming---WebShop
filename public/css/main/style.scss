@@ -1,19 +1,21 @@
-//                      SCSS Variablen
-// ====================================================
-//
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
 
-//Schriftarten einbinden
+/* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
   font-family: 'Dice';
   src: url('../fonts/DICE/DICE.woff2') format('woff2');
 }
 
+/* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
-  font-family: 'DemonSlayer';
-  src: url('../fonts/DemonSlayer/demonslayer.woff2') format('woff2');
+  font-family: 'Playstation';
+  src: url('../fonts/Playstation/playstation.woff2') format('woff2');
 }
 
-// Farben & Backgrounds
+/* Farbliche Grundwerte und URL-Hintergrund */
 $background_color_dark: #2A2D32;
 $white: #FFFFFF;
 $glow_blue: #4a90d9;
@@ -22,63 +24,62 @@ $bg_blue2: #2A475E;
 $auth_bg: #3a3f44;
 $background_url: "https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943";
 
-// Größen, Abstände & Übergänge
+/* Größen, Abstände und Übergänge */
 $scrollbar-size: 12px;
 $border-radius: 10px;
 $transition-time: 0.3s;
 $base-font-size: 16px;
 $font-family: 'Dice', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-// Gradients
+/* Hintergründe für Buttons */
 $btn-primary-gradient: linear-gradient(135deg, #66c0f4, #4a90d9);
 $btn-primary-gradient-hover: linear-gradient(135deg, #4a90d9, #357ab8);
 
-// Button- & Input-Werte
+/* Button- und Input-Parameter */
 $btn-padding: 10px 20px;
 $search-btn-padding: 0 25px;
 $input-padding: 12px 20px;
 
-// Hero Section
+/* Hero-Section-Größen */
 $hero-h1-font-size: 3em;
 $hero-h1-padding-bottom: 20px;
 $hero-p-font-size: 1.2em;
 
-// Section Container
+/* Allgemeine Sektionseinstellungen */
 $section-padding: 0 20px;
 $section-h2-font-size: 2.5em;
 $section-h2-margin-bottom: 40px;
 
-// Game Card
+/* Game Card */
 $game-card-max-width: 350px;
 $game-card-width: 100%;
 $card-padding: 20px;
 $card-title-margin-bottom: 15px;
 $card-text-margin-bottom: 20px;
 
-// Navbar
+/* Navbar */
 $navbar-link-margin-right: 15px;
 
-// Auth-Box
+/* Auth-Box (z.B. für Login) */
 $auth-form-padding: 10px;
 $auth-form-margin-bottom: 15px;
 $auth-form-border-radius: 5px;
 $auth-btn-bg: #66c0f4;
 $auth-btn-bg-hover: #1B75BC;
 
-// Scrollbar Track Border
+/* Scrollbar-Farbe */
 $scrollbar-track-border: darken($background_color_dark, 10%);
 
 
-//                      SCSS Styling Landigpage
-// =============================================================
-//
-
-// Global Reset
+/* ===========================================
+   SCSS Styling Landingpage (Global Reset)
+   =========================================== */
 * {
   margin: 0;
   padding: 0;
 }
 
+/* HTML, Body-Einstellungen */
 html,
 body {
   height: 100%;
@@ -87,7 +88,7 @@ body {
   overflow-x: hidden;
 }
 
-// Body
+/* Body-Hintergrund und Schrift */
 body {
   background-color: $bg_blue1;
   background-image: url($background_url);
@@ -103,7 +104,7 @@ body {
   scrollbar-width: thin !important;
 }
 
-// Webkit Scrollbars
+/* WebKit-spezifische Scrollbar-Styling */
 ::-webkit-scrollbar {
   width: $scrollbar-size !important;
   height: $scrollbar-size !important;
@@ -131,7 +132,7 @@ body {
   background: $background_color_dark !important;
 }
 
-// Wrapper & Main Content
+/* Wrapper für Layout */
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -142,7 +143,7 @@ body {
   flex: 1;
 }
 
-// Main
+/* Hauptbereich mit zentriertem Inhalt */
 main {
   display: flex;
   flex-direction: column;
@@ -160,7 +161,7 @@ main {
   }
 }
 
-// Hero Section
+/* Hero-Section (Titelbereich) */
 .hero-section {
   width: 100%;
   padding: 100px 20px;
@@ -182,7 +183,7 @@ main {
   }
 
   p {
-    font-family: 'DemonSlayer', sans-serif;
+    font-family: 'Playstation', sans-serif;
     font-size: 1.5em;
     color: $white;
     margin-bottom: 30px;
@@ -251,7 +252,7 @@ main {
   }
 }
 
-// Section Container
+/* Allgemeine Sektion in Containern */
 section.container {
   padding: $section-padding;
 
@@ -270,7 +271,7 @@ section.container {
   }
 }
 
-// Game Card
+/* Karten-Design für Spiele */
 .game-card {
   background-color: $background_color_dark;
   color: $white;
@@ -289,6 +290,8 @@ section.container {
 
   .card-body {
     padding: $card-padding;
+    background: $bg_blue1;
+    color: $white;
 
     .card-title {
       font-size: 1.5em;
@@ -296,10 +299,9 @@ section.container {
     }
 
     .card-text {
-      font-size: 1em;
       margin-bottom: $card-text-margin-bottom;
-      font-family: 'DemonSlayer', sans-serif;
-      font-size: 150%;
+      font-family: 'Playstation', sans-serif;
+      font-size: 120%;
     }
 
     .btn.btn-outline-primary {
@@ -323,11 +325,14 @@ section.container {
   }
 }
 
-// Game Carousel
+/* Carousel-Container mit Pfeilen und Slide */
 .custom-carousel-title {
-  margin-top: 80px;
-  color: $white;
+  font-family: 'DICE', sans-serif;
   font-size: 250%;
+  color: $white;
+  text-align: center;
+  margin-top: 150px;
+
 }
 
 .custom-carousel-container {
@@ -335,7 +340,7 @@ section.container {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: $white;
+  color: #fff;
 
   .carousel-btn {
     background: none;
@@ -351,69 +356,78 @@ section.container {
 
   .carousel-slide {
     display: flex;
+    align-items: stretch;
     gap: 20px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     padding: 20px;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
 
     .carousel-image {
-      flex: 1;
+      flex: 3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       img {
         max-width: 100%;
         border-radius: 5px;
+        object-fit: cover;
       }
     }
 
     .carousel-info {
-      flex: 1;
+      flex: 2;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      font-family: 'DemonSlayer', sans-serif;
-      font-size: 150%;
+      font-family: 'Playstation', sans-serif;
+      font-size: 120%;
 
-      h3, p, span {
+      h3 {
+        font-family: 'DICE', sans-serif;
+        font-size: 150%;
+      }
+
+      p,
+      span {
         margin: 0 0 10px;
       }
     }
   }
 }
 
-@keyframes slideOutLeft {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-100%);
-    opacity: 0;
+/* ============================================
+   Bullet-Indikatoren für das Carousel
+   ============================================ */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #666;
+    border-radius: 15%;
+    margin: 0 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &.active {
+      background-color: #ffffff;
+      transform: scale(1.2);
+    }
+
+    &:hover {
+      background-color: #aaa;
+    }
   }
 }
 
-@keyframes slideInRight {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.slide-out-left {
-  animation: slideOutLeft 0.5s forwards;
-}
-
-.slide-in-right {
-  animation: slideInRight 0.5s forwards;
-}
-
-
-// Navbar
+/* Navbar-Styling mit Glow-Effekt */
 .navbar {
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -455,7 +469,7 @@ section.container {
   }
 }
 
-// Anpassung der Navbar mit dauerhaftem Glow-Effekt beim aktiven Menüpunkt
+/* Erweiterte Navbar-Elemente */
 .navbar {
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -504,13 +518,13 @@ section.container {
   transform: scale(1.1);
 }
 
-// Optional: Sicherstellen, dass die .nav-link.active auch hervorgehoben wird
+/* Aktive Navigation hervorheben */
 .nav-link.active {
   text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
   border-bottom: 2px solid $glow_blue;
 }
 
-// Auth Page Box
+/* Auth-Box (z.B. für Login/Registration) */
 .auth-page-box {
   background-color: $background_color_dark;
   color: $white;
@@ -547,7 +561,7 @@ section.container {
   }
 }
 
-// Footer
+/* Footer */
 footer {
   background-color: $background_color_dark;
   color: $white;
@@ -561,14 +575,14 @@ footer {
   }
 }
 
-// Responsive Design (Auf mobilen Geräten)
+/* Responsives Design (kleinere Bildschirme) */
 @media (max-width: 768px) {
   .inner {
     width: 95%;
   }
 
   .hero-section h1 {
-    font-size: 2.5em;
+    font-size: 250%;
     color: $white;
     text-transform: uppercase;
     position: relative;
@@ -578,17 +592,14 @@ footer {
 
   section.container {
     h2 {
-      font-size: 2em;
+      font-size: 200%;
     }
   }
 }
 
-//                    SCSS Styling Infoseite
-// =============================================================
-//
-
+/* Infoseite mit Hero-Bereich */
 .info-page {
-  color: #fff;
+  color: $white;
   font-family: 'DICE', sans-serif;
 
   .info-hero {
@@ -696,7 +707,7 @@ footer {
   }
 }
 
-// Ladebildschirm
+/* Ladebildschirm */
 #page-loader {
   position: fixed;
   top: 0;
@@ -734,12 +745,15 @@ footer {
     span:nth-child(2) {
       animation-delay: 0.2s;
     }
+
     span:nth-child(3) {
       animation-delay: 0.4s;
     }
+
     span:nth-child(4) {
       animation-delay: 0.6s;
     }
+
     span:nth-child(5) {
       animation-delay: 0.8s;
     }
@@ -753,4 +767,73 @@ footer {
       transform: scaleY(2);
     }
   }
+}
+
+/* ============================================
+   KEYFRAMES FÜR ANIMATIONEN (Karussell)
+   ============================================ */
+
+/* Rechts raus/sliden */
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+/* Von rechts hinein sliden */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Links raus/sliden */
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Von links hinein sliden */
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Klassen, die diese Keyframes verwenden */
+.slide-out-left {
+  animation: slideOutLeft 0.7s forwards ease-in-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.7s forwards ease-in-out;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.7s forwards ease-in-out;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.7s forwards ease-in-out;
 }
