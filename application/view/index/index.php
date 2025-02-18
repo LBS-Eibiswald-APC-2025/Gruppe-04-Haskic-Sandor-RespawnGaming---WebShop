@@ -130,10 +130,8 @@ $featured_games = [
             </div>
 
             <button class="carousel-btn" id="carouselNext">&gt;</button>
-
-            <!-- Bullet-Indikatoren -->
-            <div class="carousel-indicators" id="carouselIndicators"></div>
         </section>
+        <div class="carousel-indicators-custom" id="carouselIndicators"></div>
 
         <!-- Übergabe der PHP-Array-Daten an dein JS-Karussell -->
         <script>
@@ -148,20 +146,13 @@ $featured_games = [
                     <?php foreach ($games as $game): ?>
                         <div class="col-md-3 mb-3">
                             <div class="card game-card">
-                                <img
-                                        src="<?php echo htmlspecialchars($game->image); ?>"
-                                        class="card-img-top"
-                                        alt="<?php echo htmlspecialchars($game->title); ?>"
-                                >
+                                <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
                                 <div class="card-body">
                                     <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
                                     <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
 
                                     <!-- Wenn url nicht gesetzt ist, verlinken wir zum Haupt-Games-Bereich -->
-                                    <a
-                                            href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>"
-                                            class="btn btn-outline-primary"
-                                    >
+                                    <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">
                                         Mehr erfahren
                                     </a>
                                 </div>
