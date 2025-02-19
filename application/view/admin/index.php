@@ -7,59 +7,49 @@ require APP . 'view/_templates/feedback.php';
 $user = Session::get('user_data');
 ?>
 
-<div class="container">
-    <h1>Admin/index</h1>
+<div class="admin-page">
+    <h1>Admin-Bereich</h1>
+    <div class="inner-content">
+        <h3>Alle Benutzer in der Datenbank:</h3>
 
-    <div class="box">
-
-        <!-- echo out the system feedback (error and success messages) -->
-        <h3>What happens here?</h3>
-
-        <div>
-            This controller/action/view shows a list of all users in the system. with the ability to soft delete a user
-            or suspend a user.
-        </div>
-        <div>
-            <table class="overview-table">
-                <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Avatar</td>
-                    <td>Username</td>
-                    <td>User's email</td>
-                    <td>Activated ?</td>
-                    <td>Link to user's profile</td>
-                    <td>suspension Time in days</td>
-                    <td>Soft delete</td>
-                    <td>Submit</td>
-                </tr>
-                </thead>
-                <?php foreach ($this->users as $user) { ?>
-                    <tr class="<?= ($user->user_active == 0 ? 'inactive' : 'active'); ?>">
-                        <td><?= $user->user_id; ?></td>
-                        <td class="avatar">
-                            <?php if (isset($user->user_avatar_link)) { ?>
-                                <img src="<?= $user->user_avatar_link; ?>"/>
-                            <?php } ?>
-                        </td>
-                        <td><?= $user->user_name; ?></td>
-                        <td><?= $user->user_email; ?></td>
-                        <td><?= ($user->user_active == 0 ? 'No' : 'Yes'); ?></td>
+        <table class="table table-dark table-striped">
+            <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Benutzername</th>
+                <th>Email</th>
+                <th>Aktiv?</th>
+                <th>Rolle</th>
+                <th>Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($this->data['users'])) : ?>
+                <?php foreach ($this->data['users'] as $user) : ?>
+                    <tr>
+                        <td><?= htmlentities($user->user_id); ?></td>
+                        <td><?= htmlentities($user->user_name); ?></td>
+                        <td><?= htmlentities($user->email); ?></td>
+                        <td><?= $user->user_active == 1 ? 'Ja' : 'Nein'; ?></td>
+                        <td><?= $user->role; ?></td>
                         <td>
-                            <a href="<?= Config::get('URL') . 'profile/showProfile/' . $user->user_id; ?>">Profile</a>
-                        </td>
-                        <form action="<?= config::get("URL"); ?>admin/actionAccountSettings" method="post">
-                            <td><input type="number" name="suspension" /></td>
-                            <td><input type="checkbox" name="softDelete" <?php if ($user->user_deleted) { ?> checked <?php } ?> /></td>
-                            <td>
+                            <!-- Beispiel-Formular zum Sperren oder SoftDelete -->
+                            <form action="<?= Config::get('URL'); ?>admin/actionAccountSettings" method="post" style="display:inline-block;">
                                 <input type="hidden" name="user_id" value="<?= $user->user_id; ?>" />
-                                <input type="submit" />
-                            </td>
-                        </form>
+                                <!-- z.B. 1 = sperren, 0 = nicht sperren -->
+                                <input type="hidden" name="deactivate" value="<?= $user->user_active ? '0' : '1'; ?>" />
+                                <button type="submit" class="btn <?= $user->user_active ? ' btn-warning' : ' btn-success'; ?>">
+                                    <?= $user->user_active ? 'Sperren' : 'Entsperren'; ?>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
-                <?php } ?>
-            </table>
-        </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr><td colspan="6">Keine Nutzer gefunden.</td></tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 

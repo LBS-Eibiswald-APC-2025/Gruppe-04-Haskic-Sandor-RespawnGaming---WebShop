@@ -11,6 +11,21 @@
     max-width: 1000px;
     overflow: hidden; // Damit überstehende Inhalte sauber beschnitten werden
 
+    .icon-edit {
+        display: inline-block;
+        position: relative;
+        top: 0;
+        float: right;
+        margin: 10px;
+        cursor: pointer;
+        transition: transform $transition-time ease-in-out;
+        padding: 10px;
+
+        &:hover {
+            transform: scale(1.5);
+        }
+    }
+
     // Headerbereich: Coverbild und Avatar
     .profile-header {
         position: relative;

@@ -1,0 +1,48 @@
+@import '../main/_variables.scss';
+
+/* application/view/admin/style.scss */
+/* ===========================================
+   Admin Styles
+   =========================================== */
+
+.admin-page {
+  background-color: $background_color_dark;
+  color: $white;
+  border-radius: $border-radius;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 80%;
+
+  h1 {
+    color: #66c0f4;
+    text-shadow: 0 0 5px #66c0f4;
+    margin-bottom: 20px;
+  }
+
+  .inner-content {
+    font-family: Playstation, sans-serif;
+
+    table {
+      background-color: rgba(0,0,0,0.8);
+      color: #fff;
+      th, td {
+        padding: 10px;
+      }
+      th {
+        background-color: #193244;
+      }
+      tr:nth-child(even) {
+        background-color: rgba(25, 50, 68, 0.7);
+      }
+    }
+    button.btn-warning {
+      background-color: #c35617;
+      border: none;
+      &:hover {
+        background-color: #e27b36;
+      }
+    }
+  }
+}

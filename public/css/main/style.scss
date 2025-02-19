@@ -29,12 +29,17 @@ body {
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: $white;
+  color: $white !important;
   font-family: $font-family !important;
   display: flex;
   flex-direction: column;
   scrollbar-color: $glow_blue $background_color_dark !important;
   scrollbar-width: thin !important;
+
+  p {
+    font-family: Playstation, sans-serif;
+    font-size: 150%;
+  }
 }
 
 /* ===========================================

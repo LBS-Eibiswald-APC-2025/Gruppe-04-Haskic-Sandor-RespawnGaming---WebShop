@@ -1,188 +1,99 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
-/**
- * LoginModel
- *
- * Handles login/logout functionalities securely.
- */
 class LoginModel
 {
-    /**
-     * Login process (for DEFAULT user accounts).
-     */
-    public static function login(string $user_name, string $user_password, int $set_remember_me_cookie = 0): bool
+    public static function login($user_name, $user_password, $set_remember_me_cookie = 0)
     {
-        // CSRF-Schutz prüfen
-        if (!isset($_POST['csrf_token']) || !hash_equals(Session::get('csrf_token'), $_POST['csrf_token'])) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_CSRF_FAILED'));
-            return false;
-        }
+        $database = DatabaseFactory::getFactory()->getConnection();
 
-        // Überprüfung auf leere Eingaben
-        if (empty($user_name) || empty($user_password)) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_EMAIL_OR_PASSWORD_FIELD_EMPTY'));
-            return false;
-        }
+        // Wir suchen in der DB nach einem Datensatz, der in der Spalte 'name' oder 'email' passt
+        // und holen uns 'user_role' (statt 'role'), 'name' (statt 'user_name'), usw.
+        $sql = "SELECT 
+                    user_id, 
+                    user_name,  -- per AS können wir das intern wieder 'user_name' nennen
+                    email, 
+                    password_hash, 
+                    user_active, 
+                    role,          -- wichtig!
+                    user_remember_me_token, 
+                    user_failed_logins, 
+                    user_last_failed_login
+                FROM users
+                WHERE (user_name = :user_name OR email = :user_name)
+                LIMIT 1";
+        $query = $database->prepare($sql);
+        $query->execute([':user_name' => $user_name]);
+        $user = $query->fetch();
 
-        // Nutzer validieren
-        $user = self::validateAndGetUser($user_name, $user_password);
         if (!$user) {
+            Session::add('feedback_negative', 'Benutzer existiert nicht.');
             return false;
         }
 
-        // Gesperrte oder gelöschte Konten blockieren
-        if ($user->user_active == 0) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_DELETED'));
+        if (!password_verify($user_password, $user->password_hash)) {
+            Session::add('feedback_negative', 'Passwort ist falsch.');
             return false;
         }
 
-//        if ($user->user_suspension_timestamp && $user->user_suspension_timestamp > time()) {
-//            $suspensionTime = round(($user->user_suspension_timestamp - time()) / 3600, 2);
-//            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_SUSPENDED') . " $suspensionTime hours left");
-//            return false;
-//        }
+        // Ist der Account aktiv? (user_active != 1 => gesperrt oder inaktiv)
+        if ($user->user_active != 1) {
+            Session::add('feedback_negative', 'Account ist nicht aktiviert oder gesperrt.');
+            return false;
+        }
 
-        // Login-Zeit speichern und Fehllogins zurücksetzen
-        self::resetFailedLoginCounterOfUser($user->user_name);
-//        self::saveTimestampOfLoginOfUser($user->user_name);
+        // Statt Zahlenwert (7) prüfen wir hier, ob user_role == 'Admin'
+        $account_type = ($user->role === 'Admin') ? 'Admin' : 'User';
 
-        // "Remember Me"-Funktion setzen
+        // Session setzen
+        Session::init();
+        Session::set('user_logged_in', true);
+        Session::set('user_id', $user->user_id);
+        Session::set('user_name', $user->user_name);
+        Session::set('user_email', $user->email);
+
+        // user_account_type => 'Admin' oder 'User'
+        Session::set('user_data', [
+            'user_id'           => $user->user_id,
+            'user_name'         => $user->user_name,
+            'user_account_type' => $account_type
+        ]);
+
+        // concurrency-check
+        Session::updateSessionId($user->user_id, session_id());
+
         if ($set_remember_me_cookie) {
-            self::setRememberMeInDatabaseAndCookie($user->user_id);
+            self::setRememberMe($user->user_id);
         }
 
-        // Erfolgreiches Login
-        self::setSuccessfulLoginIntoSession($user->user_id, $user->user_name, $user->email, $user->role);
+        Session::add('feedback_positive', 'Login erfolgreich.');
         return true;
     }
 
-    /**
-     * Validates user credentials and retrieves user data.
-     */
-    private static function validateAndGetUser(string $user_name, string $user_password): mixed
+    private static function setRememberMe($user_id)
     {
-        $db = DatabaseFactory::getFactory()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM users WHERE user_name = :user_name LIMIT 1");
-        $stmt->execute([':user_name' => $user_name]);
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
-
-        if (!$user) {
-            self::incrementFailedLoginCounterOfUser($user_name);
-            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_OR_PASSWORD_WRONG'));
-            return false;
-        }
-
-        // Sperrung prüfen
-        if ($user->user_failed_logins >= 5 && $user->user_last_failed_login > (time() - 600)) {
-            Session::add('feedback_negative', "Zu viele fehlgeschlagene Versuche. Bitte warte 10 Minuten.");
-            return false;
-        }
-
-        // Passwort prüfen
-        if (!password_verify($user_password, $user->password_hash)) {
-            self::incrementFailedLoginCounterOfUser($user_name);
-            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_OR_PASSWORD_WRONG'));
-            return false;
-        }
-
-        self::resetFailedLoginCounterOfUser($user_name);
-        return $user;
+        // ...
     }
 
-    /**
-     * Setzt die Session für eingeloggte Nutzer.
-     */
-    public static function setSuccessfulLoginIntoSession(int $user_id, string $user_name, string $user_email, string $user_account_type): void
+    public static function deleteCookie()
     {
-        Session::init();
-
-        $_SESSION = [];
-        $user = [
-            'user_id' => $user_id,
-            'user_name' => $user_name,
-            'user_email' => $user_email,
-            'user_account_type' => $user_account_type,
-            'user_logged_in' => true
-        ];
-        Session::set('user_data', $user);
-        Session::set('user_logged_in', true);
-
-        session_regenerate_id(true); // Sicherstellen, dass die Session nicht übernommen wird.
-
-        Session::updateSessionId($user_id, session_id());
-
-        setcookie(session_name(), session_id(), time() + Config::get('SESSION_RUNTIME'), Config::get('COOKIE_PATH'),
-            Config::get('COOKIE_DOMAIN'), Config::get('COOKIE_SECURE'), Config::get('COOKIE_HTTP'));
+        // ...
     }
 
-    /**
-     * Erhöht den Zähler für fehlerhafte Logins.
-     */
-    public static function incrementFailedLoginCounterOfUser(string $user_name): void
+    public static function logout()
     {
-        $db = DatabaseFactory::getFactory()->getConnection();
-        $sql = "UPDATE users SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :time WHERE user_name = :user_name";
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':user_name' => $user_name, ':time' => time()]);
-    }
-
-    /**
-     * Löscht das Remember-Me-Cookie und den Token in der Datenbank.
-     */
-    public static function deleteCookie(?int $user_id = null): void
-    {
-        if ($user_id) {
-            $db = DatabaseFactory::getFactory()->getConnection();
-            $sql = "UPDATE users SET user_remember_me_token = NULL WHERE user_id = :user_id";
-            $stmt = $db->prepare($sql);
-            $stmt->execute([':user_id' => $user_id]);
-        }
-
-        setcookie('remember_me', '', time() - 3600, Config::get('COOKIE_PATH'),
-            Config::get('COOKIE_DOMAIN'), Config::get('COOKIE_SECURE'), Config::get('COOKIE_HTTP'));
-    }
-
-    /**
-     * Loggt den Benutzer aus, löscht die Session und das Remember-Me-Cookie.
-     */
-    #[NoReturn] public static function logout(): void
-    {
-        Session::init();
-
-        // Nutzer-ID aus der Session holen
-        $user_id = Session::get('user_data');
-        $user_id = $user_id['user_id'];
-
-        // Falls ein Benutzer eingeloggt ist, das Remember-Me-Cookie entfernen
-        if ($user_id) {
-            self::deleteCookie($user_id);
-        }
-
-        // Sitzung sicher zerstören
+        self::deleteCookie();
+        Session::set('user_logged_in', false);
+        Session::remove('user_data');
         Session::destroy();
-
-        // Nutzer auf die Login-Seite weiterleiten
-        header("Location: " . Config::get('URL') . "login");
-        exit();
     }
 
-    /**
-     * Überprüft, ob der Benutzer eingeloggt ist.
-     *
-     * @return bool Gibt `true` zurück, wenn der Benutzer eingeloggt ist, sonst `false`.
-     */
-    public static function isUserLoggedIn(): bool
+    public static function loginWithCookie($cookie)
     {
-        return Session::get('user_logged_in') === true;
+        // ...
     }
 
-    public static function resetFailedLoginCounterOfUser(string $user_name): void
+    public static function isUserLoggedIn()
     {
-        $db = DatabaseFactory::getFactory()->getConnection();
-        $sql = "UPDATE users SET user_failed_logins = 0 WHERE user_name = :user_name";
-        $stmt = $db->prepare($sql);
-        $stmt->execute([':user_name' => $user_name]);
+        return Session::userIsLoggedIn();
     }
 }

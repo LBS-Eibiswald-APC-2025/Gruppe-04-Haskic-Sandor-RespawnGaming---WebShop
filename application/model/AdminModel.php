@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Handles all data manipulation of the admin part
  */
@@ -8,88 +7,70 @@ class AdminModel
     /**
      * Sets the deletion and suspension values
      *
-     * @param $suspensionInDays
-     * @param $softDelete
-     * @param $userId
+     * @param int $deactivate Checkbox-Wert ("on" bedeutet Soft-Delete aktiv)
+     * @param int $userId ID des zu bearbeitenden Nutzers
+     * @return bool
      */
-    public static function setAccountSuspensionAndDeletionStatus($suspensionInDays, $softDelete, $userId)
+    public static function setAccountSuspensionAndDeletionStatus(int $deactivate, int $userId): bool
     {
-
-        // Prevent to suspend or delete own account.
-        // If admin suspend or delete own account will not be able to do any action.
+        // Verhindern, dass der Admin sein eigenes Konto sperrt oder löscht
         if ($userId == Session::get('user_id')) {
             Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_CANT_DELETE_SUSPEND_OWN'));
             return false;
         }
 
-        if ($suspensionInDays > 0) {
-            $suspensionTime = time() + ($suspensionInDays * 60 * 60 * 24);
-        } else {
-            $suspensionTime = null;
-        }
-
-        // FYI "on" is what a checkbox delivers by default when submitted. Didn't know that for a long time :)
-        if ($softDelete == "on") {
-            $delete = 1;
-        } else {
-            $delete = 0;
-        }
-
-        // write the above info to the database
-        self::writeDeleteAndSuspensionInfoToDatabase($userId, $suspensionTime, $delete);
-
-        // if suspension or deletion should happen, then also kick user out of the application instantly by resetting
-        // the user's session :)
-        if ($suspensionTime != null OR $delete = 1) {
-            self::resetUserSession($userId);
-        }
+        // Schreibe die Informationen in die Datenbank
+        return self::writeDeleteAndSuspensionInfoToDatabase($userId, $deactivate);
     }
 
     /**
-     * Simply write the deletion and suspension info for the user into the database, also puts feedback into session
+     * Schreibt die Lösch- und Sperrinformationen in die Datenbank
      *
-     * @param $userId
-     * @param $suspensionTime
-     * @param $delete
+     * @param int $userId
+     * @param int $delete
      * @return bool
      */
-    private static function writeDeleteAndSuspensionInfoToDatabase($userId, $suspensionTime, $delete)
+    private static function writeDeleteAndSuspensionInfoToDatabase(int $userId, int $delete)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $query = $database->prepare("UPDATE users SET user_suspension_timestamp = :user_suspension_timestamp, user_deleted = :user_deleted  WHERE user_id = :user_id LIMIT 1");
+        $query = $database->prepare("UPDATE users 
+            SET user_active = :u_a  
+            WHERE user_id = :user_id LIMIT 1");
         $query->execute(array(
-                ':user_suspension_timestamp' => $suspensionTime,
-                ':user_deleted' => $delete,
-                ':user_id' => $userId
+            ':u_a'                       => $delete,
+            ':user_id'                   => $userId
         ));
 
         if ($query->rowCount() == 1) {
             Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUSPENSION_DELETION_STATUS'));
             return true;
         }
+        return false;
     }
 
     /**
-     * Kicks the selected user out of the system instantly by resetting the user's session.
-     * This means, the user will be "logged out".
+     * Setzt die Session des Nutzers zurück, sodass dieser sofort ausgeloggt wird.
      *
-     * @param $userId
+     * @param int $userId
      * @return bool
      */
     private static function resetUserSession($userId)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $query = $database->prepare("UPDATE users SET session_id = :session_id  WHERE user_id = :user_id LIMIT 1");
+        $query = $database->prepare("UPDATE users 
+            SET session_id = :session_id  
+            WHERE user_id = :user_id LIMIT 1");
         $query->execute(array(
-                ':session_id' => null,
-                ':user_id' => $userId
+            ':session_id' => null,
+            ':user_id'    => $userId
         ));
 
         if ($query->rowCount() == 1) {
             Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_USER_SUCCESSFULLY_KICKED'));
             return true;
         }
+        return false;
     }
 }

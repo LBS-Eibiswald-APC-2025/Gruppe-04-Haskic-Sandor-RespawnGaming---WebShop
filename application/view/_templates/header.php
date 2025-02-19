@@ -1,6 +1,7 @@
 <?php
 require_once APP . 'model/OnlineModel.php';
 OnlineModel::trackUser();
+
 $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = trim($uri, '/');
 $segments = explode('/', $uri);
@@ -9,7 +10,6 @@ if (empty($view)) {
     $view = 'index';
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -21,8 +21,11 @@ if (empty($view)) {
     <link rel="stylesheet" href="../../../public/css/main/style.css">
     <link rel="stylesheet" href="../../../public/css/<?= $view ?>/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="../../../public/js/main/carousel.js"></script>
+    <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
 <!-- Ladebildschirm -->
 <div id="page-loader">
@@ -61,7 +64,11 @@ if (empty($view)) {
                         <a class="nav-link <?php echo (str_contains($current_page, '/user/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a>
                     </li>
-                    <?php if (Auth::checkAdminAuthentication()) : ?>
+                    <?php
+                    // Prüfen, ob in der Session ein Admin gesetzt ist
+                    $userData = Session::get('user_data');
+                    if (isset($userData['user_account_type']) && $userData['user_account_type'] === 'Admin'):
+                        ?>
                         <li class="nav-item">
                             <a class="nav-link <?php echo (str_contains($current_page, '/admin/index')) ? 'active-link' : ''; ?>"
                                href="<?php echo Config::get('URL'); ?>admin/index">Admin</a>
@@ -89,15 +96,11 @@ if (empty($view)) {
     });
 
     // Nach dem Laden ausblenden
-    window.addEventListener('beforeunload', () => {
-        document.getElementById('page-loader').style.display = 'flex';
-    });
-
     window.addEventListener('load', () => {
         hideLoader();
     });
 
-    // Hier die neue pageshow-Behandlung
+    // Neue pageshow-Behandlung, um den Loader bei persistierten Seiten (Back-Button) auszublenden
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
             hideLoader();
@@ -124,5 +127,3 @@ if (empty($view)) {
         });
     });
 </script>
-</body>
-</html>
