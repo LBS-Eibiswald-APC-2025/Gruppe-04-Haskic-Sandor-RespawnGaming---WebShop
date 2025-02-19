@@ -1,11 +1,15 @@
 <?php
 
+use Random\RandomException;
+
 class RegistrationModel
 {
     /**
      * Registriert einen neuen Nutzer und speichert ihn in der Datenbank
      *
      * @return bool
+     * @throws RandomException
+     * @throws Exception
      */
     public static function registerNewUser(): bool
     {
@@ -14,17 +18,17 @@ class RegistrationModel
         $user_email = trim(filter_var(Request::post('user_email'), FILTER_VALIDATE_EMAIL));
         // $user_email_repeat = trim(filter_var(Request::post('user_email_repeat'), FILTER_VALIDATE_EMAIL));
         $user_password_new = Request::post('user_password_new');
-        $user_password_repeat = Request::post('user_password_repeat');
+        // $user_password_repeat = Request::post('user_password_repeat');
 
         // Validierung der Eingaben
-        if (!self::validateUserInputs($user_name, $user_email, $user_password_new, $user_password_repeat)) {
+        if (!self::validateUserInputs($user_name, $user_email, $user_password_new)) {
             return false;
         }
 
-        // Passwort hashen
+        // Passwort hashes
         $user_password_hash = password_hash($user_password_new, PASSWORD_DEFAULT);
 
-        // E-Mail Verifizierungs-Hash generieren
+        // E-Mail Verifizierung-Hash generieren
         $user_activation_hash = bin2hex(random_bytes(32));
 
         // Benutzer in die Datenbank schreiben
@@ -40,7 +44,7 @@ class RegistrationModel
             return false;
         }
 
-        // Bestätigungs-E-Mail senden
+        // Bestätigung-E-Mail senden
         if (self::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
             Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED'));
             return true;
@@ -55,7 +59,7 @@ class RegistrationModel
     /**
      * Validiert die Eingaben des Nutzers.
      */
-    private static function validateUserInputs(string $user_name, string $user_email, string $user_password_new, string $user_password_repeat): bool
+    private static function validateUserInputs(string $user_name, string $user_email, string $user_password_new): bool
     {
         if (empty($user_name) || empty($user_email) || empty($user_password_new)) {
             Session::add('feedback_negative', Text::get('FEEDBACK_MISSING_FIELDS'));
@@ -103,7 +107,7 @@ class RegistrationModel
     }
 
     /**
-     * Sendet die Bestätigungs-E-Mail.
+     * Sendet die Bestätigung-E-Mail.
      * @throws Exception
      */
     private static function sendVerificationEmail(int $user_id, string $user_email, string $user_activation_hash): bool
@@ -111,7 +115,7 @@ class RegistrationModel
         $verification_link = Config::get('URL') . "register/verify/" . urlencode($user_id) . "/" . urlencode($user_activation_hash);
 
         $body = '
-            <html>
+            <html lang="de">
                     <head>
                         <meta charset="utf-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,6 +141,7 @@ class RegistrationModel
                             .footer a { color: #2a5298; text-decoration: none; }
                             .footer a:hover { text-decoration: underline; }
                         </style>
+                        <title>Respawn Gaming</title>
                     </head>
                     <body>
                         <div class="container">
@@ -147,7 +152,7 @@ class RegistrationModel
                             <div class="content">
                                 <h1>E-Mail-Bestätigung</h1>
                                 <p>Hallo,</p>
-                                <p>vielen Dank für Ihre Registrierung bei Respawn Gaming. Bitte klicken Sie auf den folgenden Link, um Ihre E-Mail-Adresse zu bestätigen:</p>
+                                <p>Vielen Dank für Ihre Registrierung bei Respawn Gaming. Bitte klicken Sie auf den folgenden Link, um Ihre E-Mail-Adresse zu bestätigen:</p>
                                 <p><a href="' . $verification_link . '">Verify Mail</a></p>
                                 <div class="signature">
                                     <p>Freundliche Grüße</p>

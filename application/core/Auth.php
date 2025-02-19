@@ -45,7 +45,7 @@ class Auth
      * If user is not, then he will be redirected to login page and the application is hard-stopped via exit().
      * Using this method makes only sense in controllers that should only be used by admins.
      */
-    public static function checkAdminAuthentication()
+    public static function checkAdminAuthentication(): bool
     {
         // initialize the session (if not initialized yet)
         Session::init();
@@ -53,7 +53,7 @@ class Auth
         // self::checkSessionConcurrency();
 
         // if user is not logged in or is not an admin (= not role type 7)
-        if (!Session::userIsLoggedIn() || Session::get("user_account_type") != 7) {
+        if (!Session::userIsLoggedIn() || Session::get("user_data")['user_account_type'] != 'Admin') {
 
             // ... then treat user as "not logged in", destroy session, redirect to login page
             Session::destroy();
@@ -64,6 +64,8 @@ class Auth
             // this is not optimal and will be fixed in future releases
             exit();
         }
+
+        return true;
     }
 
     /**

@@ -1,4 +1,8 @@
-<?php require APP . 'view/_templates/header.php'; ?>
+<?php
+require APP . 'view/_templates/header.php';
+require APP . 'view/_templates/feedback.php';
+$token = Csrf::makeToken();
+?>
 
 <div class="auth-page-box">
     <h2 class="text-center">Anmelden</h2>
@@ -10,6 +14,7 @@
             <input type="password" class="form-control" name="user_password" placeholder="Passwort" required>
             <button type="submit" class="btn btn-primary w-100">Anmelden</button>
         </div>
+        <input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
     </form>
     <div class="text-center mt-3 link">
         <a href="<?php echo Config::get('URL'); ?>register/index">Noch keinen Account? Jetzt registrieren!</a>

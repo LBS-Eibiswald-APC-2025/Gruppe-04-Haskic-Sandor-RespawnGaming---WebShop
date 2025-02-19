@@ -61,6 +61,12 @@ if (empty($view)) {
                         <a class="nav-link <?php echo (str_contains($current_page, '/user/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a>
                     </li>
+                    <?php if (Auth::checkAdminAuthentication()) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?php echo (str_contains($current_page, '/admin/index')) ? 'active-link' : ''; ?>"
+                               href="<?php echo Config::get('URL'); ?>admin/index">Admin</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo Config::get('URL'); ?>login/logout">Logout</a>
                     </li>
@@ -74,9 +80,6 @@ if (empty($view)) {
         </div>
     </div>
 </nav>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Ladebildschirm-Skript -->
 <script>
@@ -121,9 +124,5 @@ if (empty($view)) {
         });
     });
 </script>
-
-<!--- Carousel JS -->
-<script src="/public/js/carousel.js"></script>
-
 </body>
 </html>

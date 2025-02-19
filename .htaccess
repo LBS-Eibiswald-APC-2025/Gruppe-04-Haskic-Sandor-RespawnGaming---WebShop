@@ -9,14 +9,9 @@ Order allow,deny
 Allow from env=noauth
 Satisfy any
 
-# This file is - if you set up HUGE correctly - not needed.
-# But, for fallback reasons (if you don't route your vhost to /public), it will stay here.
 RewriteEngine on
 RewriteRule ^(.*) public/$1 [L]
 
-# Everything from is for browser caching and is totally optional
-
-# Deflate Compression by FileType
 <IfModule mod_deflate.c>
  AddOutputFilterByType DEFLATE text/plain
  AddOutputFilterByType DEFLATE text/html
@@ -32,7 +27,6 @@ RewriteRule ^(.*) public/$1 [L]
  AddOutputFilterByType DEFLATE application/x-shockwave-flash
 </IfModule>
 
-# Set browser caching to 1 month
 <IfModule mod_expires.c>
  ExpiresActive On
  ExpiresByType text/css "access plus 1 month"
@@ -46,18 +40,13 @@ RewriteRule ^(.*) public/$1 [L]
 </IfModule>
 
 <ifmodule mod_headers.c>
-  # if you want to prevent your site from being embedded into other sites via an iframe (sometimes used for scam), then
-  # simply uncomment these lines below. you need to have apache rewrite headers activated, usually via
-  # "a2enmod rewrite headers" on the command line
-  #Header set X-Frame-Options Deny
-  #Header always append X-Frame-Options SAMEORIGIN
- <filesmatch "\\.(ico|jpe?g|png|gif|swf)$">
+ <filesmatch "\.(ico|jpe?g|png|gif|swf)$">
   Header set Cache-Control "max-age=2592000, public"
  </filesmatch>
- <filesmatch "\\.(css)$">
+ <filesmatch "\.(css)$">
   Header set Cache-Control "max-age=604800, public"
  </filesmatch>
- <filesmatch "\\.(js)$">
+ <filesmatch "\.(js)$">
   Header set Cache-Control "max-age=216000, private"
  </filesmatch>
 </ifmodule>

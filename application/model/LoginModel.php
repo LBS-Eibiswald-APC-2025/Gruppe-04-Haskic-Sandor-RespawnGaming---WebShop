@@ -12,7 +12,7 @@ class LoginModel
     /**
      * Login process (for DEFAULT user accounts).
      */
-    public static function login(string $user_name, string $user_password, ?string $user_email = null, int $set_remember_me_cookie = 0): bool
+    public static function login(string $user_name, string $user_password, int $set_remember_me_cookie = 0): bool
     {
         // CSRF-Schutz prüfen
         if (!isset($_POST['csrf_token']) || !hash_equals(Session::get('csrf_token'), $_POST['csrf_token'])) {
@@ -33,28 +33,28 @@ class LoginModel
         }
 
         // Gesperrte oder gelöschte Konten blockieren
-        if ($user->user_deleted == 1) {
+        if ($user->user_active == 0) {
             Session::add('feedback_negative', Text::get('FEEDBACK_DELETED'));
             return false;
         }
 
-        if ($user->user_suspension_timestamp && $user->user_suspension_timestamp > time()) {
-            $suspensionTime = round(($user->user_suspension_timestamp - time()) / 3600, 2);
-            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_SUSPENDED') . " $suspensionTime hours left");
-            return false;
-        }
+//        if ($user->user_suspension_timestamp && $user->user_suspension_timestamp > time()) {
+//            $suspensionTime = round(($user->user_suspension_timestamp - time()) / 3600, 2);
+//            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_SUSPENDED') . " $suspensionTime hours left");
+//            return false;
+//        }
 
         // Login-Zeit speichern und Fehllogins zurücksetzen
-        self::resetFailedLoginCounterOfUser($user->name);
-        self::saveTimestampOfLoginOfUser($user->name);
+        self::resetFailedLoginCounterOfUser($user->user_name);
+//        self::saveTimestampOfLoginOfUser($user->user_name);
 
         // "Remember Me"-Funktion setzen
         if ($set_remember_me_cookie) {
-            self::setRememberMeInDatabaseAndCookie($user->id);
+            self::setRememberMeInDatabaseAndCookie($user->user_id);
         }
 
         // Erfolgreiches Login
-        self::setSuccessfulLoginIntoSession($user->id, $user->name, $user->email, $user->role);
+        self::setSuccessfulLoginIntoSession($user->user_id, $user->user_name, $user->email, $user->role);
         return true;
     }
 
@@ -64,7 +64,7 @@ class LoginModel
     private static function validateAndGetUser(string $user_name, string $user_password): mixed
     {
         $db = DatabaseFactory::getFactory()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM users WHERE name = :user_name LIMIT 1");
+        $stmt = $db->prepare("SELECT * FROM users WHERE user_name = :user_name LIMIT 1");
         $stmt->execute([':user_name' => $user_name]);
         $user = $stmt->fetch(PDO::FETCH_OBJ);
 
@@ -99,10 +99,14 @@ class LoginModel
         Session::init();
 
         $_SESSION = [];
-        Session::set('user_id', $user_id);
-        Session::set('user_name', $user_name);
-        Session::set('user_email', $user_email);
-        Session::set('user_account_type', $user_account_type);
+        $user = [
+            'user_id' => $user_id,
+            'user_name' => $user_name,
+            'user_email' => $user_email,
+            'user_account_type' => $user_account_type,
+            'user_logged_in' => true
+        ];
+        Session::set('user_data', $user);
         Session::set('user_logged_in', true);
 
         session_regenerate_id(true); // Sicherstellen, dass die Session nicht übernommen wird.
@@ -119,7 +123,7 @@ class LoginModel
     public static function incrementFailedLoginCounterOfUser(string $user_name): void
     {
         $db = DatabaseFactory::getFactory()->getConnection();
-        $sql = "UPDATE users SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :time WHERE name = :user_name";
+        $sql = "UPDATE users SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :time WHERE user_name = :user_name";
         $stmt = $db->prepare($sql);
         $stmt->execute([':user_name' => $user_name, ':time' => time()]);
     }
@@ -131,7 +135,7 @@ class LoginModel
     {
         if ($user_id) {
             $db = DatabaseFactory::getFactory()->getConnection();
-            $sql = "UPDATE users SET user_remember_me_token = NULL WHERE id = :user_id";
+            $sql = "UPDATE users SET user_remember_me_token = NULL WHERE user_id = :user_id";
             $stmt = $db->prepare($sql);
             $stmt->execute([':user_id' => $user_id]);
         }
@@ -148,7 +152,8 @@ class LoginModel
         Session::init();
 
         // Nutzer-ID aus der Session holen
-        $user_id = Session::get('user_id');
+        $user_id = Session::get('user_data');
+        $user_id = $user_id['user_id'];
 
         // Falls ein Benutzer eingeloggt ist, das Remember-Me-Cookie entfernen
         if ($user_id) {
@@ -171,5 +176,13 @@ class LoginModel
     public static function isUserLoggedIn(): bool
     {
         return Session::get('user_logged_in') === true;
+    }
+
+    public static function resetFailedLoginCounterOfUser(string $user_name): void
+    {
+        $db = DatabaseFactory::getFactory()->getConnection();
+        $sql = "UPDATE users SET user_failed_logins = 0 WHERE user_name = :user_name";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':user_name' => $user_name]);
     }
 }

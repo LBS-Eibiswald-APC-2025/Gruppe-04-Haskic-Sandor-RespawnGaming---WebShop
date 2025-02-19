@@ -68,18 +68,21 @@ class LoginController extends Controller
         }
 
         // Login aufrufen
-        $login_successful = LoginModel::login($user_name, $user_password, null, $set_remember_me_cookie);
+        $login_successful = LoginModel::login($user_name, $user_password, $set_remember_me_cookie);
 
+        // Falls Admin-Login erfolgreich, weiterleiten
+        if ($login_successful && Auth::checkAdminAuthentication()) {
+            Redirect::to('admin/index');
+            exit();
+        }
         // Falls Login erfolgreich weiterleiten
         if ($login_successful) {
-            $redirect_url = Request::post('redirect') ? ltrim(urldecode(Request::post('redirect')), '/') : 'user/index';
-            Redirect::to($redirect_url);
+            Redirect::to('user/index');
             exit();
         }
 
         // Falls Login fehlschlägt, zur Login-Seite weiterleiten
-        $redirect_fail_url = Request::post('redirect') ? 'login?redirect=' . ltrim(urlencode(Request::post('redirect')), '/') : 'login/index';
-        Redirect::to($redirect_fail_url);
+        Redirect::to('login/index');
         exit();
     }
 

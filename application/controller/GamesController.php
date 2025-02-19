@@ -10,8 +10,8 @@ class GamesController extends Controller
     // Index-Methode für die Spiele-Seite
     public function index(): void
     {
-        require_once APP . 'model/Game.php';
-        $games = Game::getAllGames();
+        require_once APP . 'model/GameModel.php';
+        $games = GameModel::getAllGames();
         $this->View->render('games/index', ['games' => $games]);
     }
 }

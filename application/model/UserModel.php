@@ -19,7 +19,7 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted FROM users";
+        $sql = "SELECT user_id, user_name, email, user_active FROM users";
         $query = $database->prepare($sql);
         $query->execute();
 
@@ -35,10 +35,8 @@ class UserModel
             $all_users_profiles[$user->user_id] = new stdClass();
             $all_users_profiles[$user->user_id]->user_id = $user->user_id;
             $all_users_profiles[$user->user_id]->user_name = $user->user_name;
-            $all_users_profiles[$user->user_id]->user_email = $user->user_email;
+            $all_users_profiles[$user->user_id]->email = $user->email;
             $all_users_profiles[$user->user_id]->user_active = $user->user_active;
-            $all_users_profiles[$user->user_id]->user_deleted = $user->user_deleted;
-            $all_users_profiles[$user->user_id]->user_avatar_link = (Config::get('USE_GRAVATAR') ? AvatarModel::getGravatarLinkByEmail($user->user_email) : AvatarModel::getPublicAvatarFilePathOfUser($user->user_has_avatar, $user->user_id));
         }
 
         return $all_users_profiles;
@@ -53,7 +51,7 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT user_id, user_name, user_email, user_active, user_has_avatar, user_deleted
+        $sql = "SELECT user_id, user_name, email, user_active
                 FROM users WHERE user_id = :user_id LIMIT 1";
         $query = $database->prepare($sql);
         $query->execute(array(':user_id' => $user_id));
@@ -63,8 +61,6 @@ class UserModel
         if ($query->rowCount() == 1) {
             if (Config::get('USE_GRAVATAR')) {
                 $user->user_avatar_link = AvatarModel::getGravatarLinkByEmail($user->user_email);
-            } else {
-                $user->user_avatar_link = AvatarModel::getPublicAvatarFilePathOfUser($user->user_has_avatar, $user->user_id);
             }
         } else {
             Session::add('feedback_negative', Text::get('FEEDBACK_USER_DOES_NOT_EXIST'));
@@ -87,10 +83,10 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $query = $database->prepare("SELECT user_id, user_name, user_email FROM users
-                                     WHERE (user_name = :user_name_or_email OR user_email = :user_name_or_email)
-                                           AND user_provider_type = :provider_type LIMIT 1");
-        $query->execute(array(':user_name_or_email' => $user_name_or_email, ':provider_type' => 'DEFAULT'));
+        $query = $database->prepare("SELECT user_id, user_name, email FROM users
+                                     WHERE (user_name = :user_name_or_email OR email = :user_name_or_email)
+                                     LIMIT 1");
+        $query->execute(array(':user_name_or_email' => $user_name_or_email));
 
         return $query->fetch();
     }
@@ -125,7 +121,7 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $query = $database->prepare("SELECT user_id FROM users WHERE user_email = :user_email LIMIT 1");
+        $query = $database->prepare("SELECT user_id FROM users WHERE email = :user_email LIMIT 1");
         $query->execute(array(':user_email' => $user_email));
         if ($query->rowCount() == 0) {
             return false;
@@ -165,7 +161,7 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $query = $database->prepare("UPDATE users SET user_email = :user_email WHERE user_id = :user_id LIMIT 1");
+        $query = $database->prepare("UPDATE users SET email = :user_email WHERE user_id = :user_id LIMIT 1");
         $query->execute(array(':user_email' => $new_user_email, ':user_id' => $user_id));
         $count = $query->rowCount();
         if ($count == 1) {
@@ -299,11 +295,10 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT user_id, user_name, user_email, user_password_hash, user_active,user_deleted, user_suspension_timestamp, user_account_type,
+        $sql = "SELECT user_id, user_name, email, password_hash, user_active, role,
                        user_failed_logins, user_last_failed_login
                   FROM users
-                 WHERE (user_name = :user_name OR user_email = :user_name)
-                       AND user_provider_type = :provider_type
+                 WHERE (user_name = :user_name OR email = :user_name)
                  LIMIT 1";
         $query = $database->prepare($sql);
 
@@ -328,13 +323,13 @@ class UserModel
         $database = DatabaseFactory::getFactory()->getConnection();
 
         // get real token from database (and all other data)
-        $query = $database->prepare("SELECT user_id, user_name, user_email, user_password_hash, user_active,
-                                          user_account_type,  user_has_avatar, user_failed_logins, user_last_failed_login
+        $query = $database->prepare("SELECT user_id, user_name, email, password_hash, user_active,
+                                          role, user_failed_logins, user_last_failed_login
                                      FROM users
                                      WHERE user_id = :user_id
                                        AND user_remember_me_token = :user_remember_me_token
                                        AND user_remember_me_token IS NOT NULL
-                                       AND user_provider_type = :provider_type LIMIT 1");
+                                     LIMIT 1");
         $query->execute(array(':user_id' => $user_id, ':user_remember_me_token' => $token, ':provider_type' => 'DEFAULT'));
 
         // return one row (we only have one result or nothing)

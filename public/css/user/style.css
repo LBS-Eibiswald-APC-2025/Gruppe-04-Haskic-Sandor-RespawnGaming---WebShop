@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* GameModel Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+.profile-container {
+  background-color: #2A2D32;
+  color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1000px;
+  overflow: hidden;
+}
+.profile-container .profile-header {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-color: rgb(65.2826086957, 69.9456521739, 77.7173913043);
+}
+.profile-container .profile-header .cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-container .profile-header .avatar {
+  position: absolute;
+  bottom: -60px;
+  left: 30px;
+  width: 120px;
+  height: 120px;
+  border: 4px solid #2A2D32;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #FFFFFF;
+}
+.profile-container .profile-header .avatar img {
+  width: 100%;
+  height: auto;
+}
+.profile-container .profile-info {
+  padding: 80px 20px 20px;
+  text-align: left;
+}
+.profile-container .profile-info .username {
+  font-size: 28px;
+  margin: 0 0 10px 0;
+}
+.profile-container .profile-info .status,
+.profile-container .profile-info .location,
+.profile-container .profile-info .member-since {
+  font-size: 14px;
+  margin: 5px 0;
+}
+.profile-container .profile-info .about {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */

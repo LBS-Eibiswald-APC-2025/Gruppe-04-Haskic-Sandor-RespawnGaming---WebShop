@@ -1,12 +1,19 @@
+<?php
+// Einbinden von Header und Feedback
+require APP . 'view/_templates/header.php';
+require APP . 'view/_templates/feedback.php';
+
+// Nutzerdaten aus der Session laden
+$user = Session::get('user_data');
+?>
+
 <div class="container">
     <h1>Admin/index</h1>
 
     <div class="box">
 
         <!-- echo out the system feedback (error and success messages) -->
-        <?php $this->renderFeedbackMessages(); ?>
-
-        <h3>What happens here ?</h3>
+        <h3>What happens here?</h3>
 
         <div>
             This controller/action/view shows a list of all users in the system. with the ability to soft delete a user
@@ -55,3 +62,5 @@
         </div>
     </div>
 </div>
+
+<?php require APP . 'view/_templates/footer.php'; ?>

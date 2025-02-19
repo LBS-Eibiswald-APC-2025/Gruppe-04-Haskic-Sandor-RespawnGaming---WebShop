@@ -151,7 +151,8 @@ class Session
     {
         return (bool)self::get('user_logged_in');
     }
-        public static function validateCSRFToken(mixed $csrf_token): bool
+
+    public static function validateCSRFToken(mixed $csrf_token): bool
     {
         if (!isset($_SESSION['csrf_token']) || empty($csrf_token)) {
             return false;

@@ -1,0 +1,222 @@
+@import '../main/_variables.scss';
+
+/* ============================================
+   BEGRENZTE BREITE & PAGE WRAPPER
+============================================ */
+.games-page-wrapper {
+  background: $bg_blue1;
+  color: $white;
+  min-height: 100vh;
+  font-family: $font-family;
+}
+
+// Container für "Steam-like"-Liste, max. 1200px
+.steam-like-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   NAVBAR (optional)
+============================================ */
+.navbar {
+  background-color: $background_color_dark;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 20px !important;
+
+  .navbar-brand {
+    font-size: 1.7em;
+    text-shadow: 1px 1px 2px $glow_blue;
+  }
+}
+
+/* ============================================
+   GAMES NAV (Neu & angesagt, Topseller, etc.)
+============================================ */
+.games-nav {
+  display: flex;
+  background-color: $bg_blue2;
+  padding: 10px 15px;
+  gap: 15px;
+
+  a {
+    color: #ccc;
+    text-decoration: none;
+    font-family: 'Playstation', sans-serif;
+    font-size: 0.95rem;
+    transition: color 0.2s, text-shadow 0.2s;
+
+    &.active-link {
+      color: $white;
+      text-shadow: 0 0 5px $glow_blue;
+      font-weight: bold;
+    }
+
+    &:hover {
+      color: lighten($white, 20%);
+    }
+  }
+}
+
+/* ============================================
+   GAMES LISTE (Linke Spalte)
+============================================ */
+.games-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+
+  .game-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba($white, 0.1);
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba($white, 0.05);
+    }
+
+    .game-cover {
+      width: 60px;
+      height: 60px;
+      overflow: hidden;
+      flex-shrink: 0;
+      margin-right: 10px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .game-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .game-title {
+        font-size: 1.1rem;
+        font-family: 'DICE', sans-serif;
+        margin: 0;
+      }
+
+      .game-desc {
+        font-size: 0.9rem;
+        color: #aaa;
+        margin: 0;
+      }
+    }
+
+    .game-right-panel {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.9rem;
+
+      .discount {
+        color: #0f0; /* knalliges Grün bei Rabatten */
+        margin-bottom: 3px;
+        font-weight: bold;
+      }
+
+      .price {
+        color: $white;
+        margin-bottom: 3px;
+      }
+
+      .release-date {
+        color: #ccc;
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+.games-list-footer {
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.2);
+
+  .more-link {
+    color: $white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: $glow_blue;
+      text-shadow: 0 0 3px $glow_blue;
+    }
+
+    span {
+      font-weight: bold;
+    }
+  }
+}
+
+/* ============================================
+   DETAIL-PANEL (Rechte Spalte)
+============================================ */
+.detail-panel {
+  background: $bg_blue2;
+  border-left: 1px solid rgba($white, 0.1);
+  min-height: 80vh;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .detail-header {
+    font-size: 1.2rem;
+    font-family: 'DICE', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  .detail-screenshots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    img {
+      width: calc(50% - 5px);
+      border-radius: 3px;
+      object-fit: cover;
+      max-height: 120px;
+    }
+  }
+
+  .detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    .tag {
+      background: rgba($white, 0.1);
+      border-radius: 3px;
+      padding: 3px 6px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: $white;
+    }
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 992px) {
+  .steam-like-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .games-list,
+  .detail-panel {
+    width: 100%;
+  }
+}

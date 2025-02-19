@@ -1,5 +1,7 @@
 <?php
 
+use Random\RandomException;
+
 /**
  * RegisterController
  * Register new user
@@ -31,7 +33,8 @@ class RegisterController extends Controller
 
     /**
      * Register page action
-     * POST-request after form submit
+     * POST-request after form submitted
+     * @throws RandomException
      */
     public function register_action(): void
     {
@@ -62,9 +65,9 @@ class RegisterController extends Controller
     /**
      * Generate a captcha, write the characters into $_SESSION['captcha'] and returns a real image which will be used
      * like this: <img src="......./login/showCaptcha" />
-     * IMPORTANT: As this action is called via <img ...> AFTER the real application has finished executing (!), the
-     * SESSION["captcha"] has no content when the application is loaded. The SESSION["captcha"] gets filled at the
-     * moment the end-user requests the <img .. >
+     * IMPORTANT: As this action is called via <img ...> AFTER the real app has finished executing (!), the
+     * SESSION["captcha"] has no content when the app is loaded. The SESSION["captcha"] gets filled at the
+     * moment the end-user requests the <img. >
      * Maybe refactor this sometime.
      */
     public function showCaptcha(): void

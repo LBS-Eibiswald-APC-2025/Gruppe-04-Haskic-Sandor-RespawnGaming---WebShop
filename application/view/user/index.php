@@ -1,21 +1,37 @@
-<div class="container">
-    <h1>UserController/showProfile</h1>
+<?php
+// Einbinden von Header und Feedback
+require APP . 'view/_templates/header.php';
+require APP . 'view/_templates/feedback.php';
 
-    <div class="box">
-        <h2>Your profile</h2>
+// Nutzerdaten aus der Session laden
+$user = Session::get('user_data');
+?>
 
-        <!-- echo out the system feedback (error and success messages) -->
-        <?php $this->renderFeedbackMessages(); ?>
-
-        <div>Your username: <?= $this->user_name; ?></div>
-        <div>Your email: <?= $this->user_email; ?></div>
-        <div>Your avatar image:
-            <?php if (Config::get('USE_GRAVATAR')) { ?>
-                Your gravatar pic (on gravatar.com): <img src='<?= $this->user_gravatar_image_url; ?>' />
-            <?php } else { ?>
-                Your avatar pic (saved locally): <img src='<?= $this->user_avatar_file; ?>' />
-            <?php } ?>
+<!-- Profilcontainer -->
+<div class="profile-container">
+    <!-- Header-Bereich mit Cover-Bild und Avatar -->
+    <div class="profile-header">
+        <!-- Cover-Bild (falls kein eigenes Bild, wird ein Standardbild genutzt) -->
+        <img class="cover" src="<?= $user['cover_image'] ?? 'path/to/default_cover.jpg'; ?>" alt="Cover Image">
+        <!-- Avatar, der über den unteren Bereich des Covers ragt -->
+        <div class="avatar">
+            <img src="<?= $user['avatar'] ?? 'path/to/default_avatar.jpg'; ?>" alt="User Avatar">
         </div>
-        <div>Your account type is: <?= $this->user_account_type; ?></div>
+    </div>
+
+    <!-- Informationsbereich, der unterhalb des Headers positioniert ist -->
+    <div class="profile-info">
+        <h2 class="username"><?= $user['user_name']; ?></h2>
+        <p class="status">Status: <?= $user['status'] ?? 'Offline'; ?></p>
+        <p class="location"><?= !empty($user['location']) ? 'Location: ' . $user['location'] : ''; ?></p>
+        <p class="member-since">Member since: <?= $user['member_since'] ?? 'N/A'; ?></p>
+
+        <?php if (!empty($user['about'])): ?>
+            <div class="about">
+                <p><?= $user['about']; ?></p>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
+
+<?php require APP . 'view/_templates/footer.php'; ?>

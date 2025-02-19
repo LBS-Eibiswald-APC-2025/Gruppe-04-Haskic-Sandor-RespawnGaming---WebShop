@@ -1,0 +1,222 @@
+@charset "UTF-8";
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* GameModel Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+/* ============================================
+   BEGRENZTE BREITE & PAGE WRAPPER
+============================================ */
+.games-page-wrapper {
+  background: #1B2838;
+  color: #FFFFFF;
+  min-height: 100vh;
+  font-family: "Dice", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.steam-like-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   NAVBAR (optional)
+============================================ */
+.navbar {
+  background-color: #2A2D32;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 20px !important;
+}
+.navbar .navbar-brand {
+  font-size: 1.7em;
+  text-shadow: 1px 1px 2px #4a90d9;
+}
+
+/* ============================================
+   GAMES NAV (Neu & angesagt, Topseller, etc.)
+============================================ */
+.games-nav {
+  display: flex;
+  background-color: #2A475E;
+  padding: 10px 15px;
+  gap: 15px;
+}
+.games-nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-family: "Playstation", sans-serif;
+  font-size: 0.95rem;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+.games-nav a.active-link {
+  color: #FFFFFF;
+  text-shadow: 0 0 5px #4a90d9;
+  font-weight: bold;
+}
+.games-nav a:hover {
+  color: white;
+}
+
+/* ============================================
+   GAMES LISTE (Linke Spalte)
+============================================ */
+.games-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.games-list .game-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+.games-list .game-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.games-list .game-item .game-cover {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+.games-list .game-item .game-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.games-list .game-item .game-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.games-list .game-item .game-info .game-title {
+  font-size: 1.1rem;
+  font-family: "DICE", sans-serif;
+  margin: 0;
+}
+.games-list .game-item .game-info .game-desc {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin: 0;
+}
+.games-list .game-item .game-right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.9rem;
+}
+.games-list .game-item .game-right-panel .discount {
+  color: #0f0; /* knalliges Grün bei Rabatten */
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+.games-list .game-item .game-right-panel .price {
+  color: #FFFFFF;
+  margin-bottom: 3px;
+}
+.games-list .game-item .game-right-panel .release-date {
+  color: #ccc;
+  font-size: 0.8rem;
+}
+
+.games-list-footer {
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.games-list-footer .more-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.games-list-footer .more-link:hover {
+  color: #4a90d9;
+  text-shadow: 0 0 3px #4a90d9;
+}
+.games-list-footer .more-link span {
+  font-weight: bold;
+}
+
+/* ============================================
+   DETAIL-PANEL (Rechte Spalte)
+============================================ */
+.detail-panel {
+  background: #2A475E;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 80vh;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.detail-panel .detail-header {
+  font-size: 1.2rem;
+  font-family: "DICE", sans-serif;
+  margin-bottom: 10px;
+}
+.detail-panel .detail-screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.detail-panel .detail-screenshots img {
+  width: calc(50% - 5px);
+  border-radius: 3px;
+  object-fit: cover;
+  max-height: 120px;
+}
+.detail-panel .detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.detail-panel .detail-tags .tag {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 3px 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 992px) {
+  .steam-like-container {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+  .games-list,
+  .detail-panel {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

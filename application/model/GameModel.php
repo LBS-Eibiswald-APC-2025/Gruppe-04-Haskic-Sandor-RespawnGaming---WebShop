@@ -1,6 +1,6 @@
 <?php
 
-class Game
+class GameModel
 {
     /**
      * Holen Sie sich alle Spiele aus der Datenbank
