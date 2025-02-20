@@ -2,19 +2,19 @@
 
 class LoginModel
 {
-    public static function login($user_name, $user_password, $set_remember_me_cookie = 0)
+    public static function login($user_name, $user_password, $set_remember_me_cookie = 0): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
         // Wir suchen in der DB nach einem Datensatz, der in der Spalte 'name' oder 'email' passt
         // und holen uns 'user_role' (statt 'role'), 'name' (statt 'user_name'), usw.
         $sql = "SELECT 
-                    user_id, 
-                    user_name,  -- per AS können wir das intern wieder 'user_name' nennen
-                    email, 
-                    password_hash, 
+                    user_id,
+                    user_name,
+                    email,
+                    password_hash,
                     user_active, 
-                    role,          -- wichtig!
+                    role,
                     user_remember_me_token, 
                     user_failed_logins, 
                     user_last_failed_login
@@ -79,7 +79,7 @@ class LoginModel
         // ...
     }
 
-    public static function logout()
+    public static function logout(): void
     {
         self::deleteCookie();
         Session::set('user_logged_in', false);
@@ -92,7 +92,7 @@ class LoginModel
         // ...
     }
 
-    public static function isUserLoggedIn()
+    public static function isUserLoggedIn(): bool
     {
         return Session::userIsLoggedIn();
     }

@@ -167,4 +167,6 @@ $featured_games = [
     </div>
 </main>
 
+<script src="../../../public/js/main/carousel.js"></script>
+
 <?php require APP . 'view/_templates/footer.php'; ?>

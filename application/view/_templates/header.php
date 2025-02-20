@@ -23,7 +23,6 @@ if (empty($view)) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../../../public/js/main/carousel.js"></script>
     <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
 </head>
 <body>

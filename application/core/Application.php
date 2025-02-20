@@ -10,7 +10,7 @@ class Application
     private $controller;
 
     /** @var array URL parameters will be passed to used controller-method */
-    private $parameters = array();
+    private $parameters;
 
     /** @var string Just the name of the controller, useful for checks inside the view ("where am I ?") */
     private $controller_name;

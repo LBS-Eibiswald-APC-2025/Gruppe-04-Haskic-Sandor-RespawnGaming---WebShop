@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnused */
 
 class IndexController extends Controller
 {
