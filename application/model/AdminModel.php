@@ -73,4 +73,47 @@ class AdminModel
         }
         return false;
     }
+
+    /**
+     * Ändert die Rolle eines Nutzers
+     *
+     * @param int $userId
+     * @param string $newRole
+     * @return bool
+     */
+    public static function changeUserRole(int $userId, string $newRole): bool
+    {
+        if ($userId == Session::get('user_id')) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_YOU_ARE_NOW_ADMIN'));
+            return false;
+        }
+
+        // Schreibe die Informationen in die Datenbank
+        return self::writeNewUserRoleToDatabase($userId, $newRole);
+    }
+
+    /**
+     * Schreibt die neue Rolle in die Datenbank
+     *
+     * @param int $userId
+     * @param string $newRole
+     * @return bool
+     */
+    private static function writeNewUserRoleToDatabase(int $userId, string $newRole): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("UPDATE users 
+            SET role = :role  
+            WHERE user_id = :user_id LIMIT 1");
+        $query->execute(array(
+            ':role'    => $newRole,
+            ':user_id' => $userId
+        ));
+
+        if ($query->rowCount() == 1) {
+            return true;
+        }
+        return false;
+    }
 }

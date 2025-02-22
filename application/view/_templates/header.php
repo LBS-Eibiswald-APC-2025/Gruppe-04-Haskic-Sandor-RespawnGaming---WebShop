@@ -34,9 +34,7 @@ if (empty($view)) {
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="<?php echo Config::get('URL'); ?>">
-            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">
-            Respawn Gaming
-        </a>
+            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">Respawn Gaming</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -106,6 +104,7 @@ if (empty($view)) {
         }
     });
 
+    // Loader ausblenden
     function hideLoader() {
         const loader = document.getElementById('page-loader');
         if (!loader) return;
@@ -113,6 +112,7 @@ if (empty($view)) {
         setTimeout(() => loader.style.display = 'none', 500);
     }
 
+    // Links mit Loader versehen
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function (e) {
             if (this.href && this.target !== '_blank' && !this.href.startsWith('#')) {

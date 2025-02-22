@@ -44,5 +44,12 @@
         background-color: #e27b36;
       }
     }
+    select {
+        background-color: rgba(0,0,0,0.8);
+        color: #fff;
+        border: 1px solid #193244;
+        border-radius: 5px;
+        padding: 5px;
+    }
   }
 }

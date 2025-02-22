@@ -18,10 +18,10 @@ class RegistrationModel
         $user_email = trim(filter_var(Request::post('user_email'), FILTER_VALIDATE_EMAIL));
         // $user_email_repeat = trim(filter_var(Request::post('user_email_repeat'), FILTER_VALIDATE_EMAIL));
         $user_password_new = Request::post('user_password_new');
-        // $user_password_repeat = Request::post('user_password_repeat');
+        $user_password_repeat = Request::post('user_password_repeat');
 
         // Validierung der Eingaben
-        if (!self::validateUserInputs($user_name, $user_email, $user_password_new)) {
+        if (!self::validateUserInputs($user_name, $user_email, $user_password_new, $user_password_repeat)) {
             return false;
         }
 
@@ -59,7 +59,7 @@ class RegistrationModel
     /**
      * Validiert die Eingaben des Nutzers.
      */
-    private static function validateUserInputs(string $user_name, string $user_email, string $user_password_new): bool
+    private static function validateUserInputs(string $user_name, string $user_email, string $user_password_new, string $user_password_repeat): bool
     {
         if (empty($user_name) || empty($user_email) || empty($user_password_new)) {
             Session::add('feedback_negative', Text::get('FEEDBACK_MISSING_FIELDS'));
@@ -68,6 +68,21 @@ class RegistrationModel
 
         if (strlen($user_password_new) < 8) {
             Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_TOO_SHORT'));
+            return false;
+        }
+
+        if (UserModel::doesUsernameAlreadyExist($user_name)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_ALREADY_TAKEN'));
+            return false;
+        }
+
+        if (UserModel::doesEmailAlreadyExist($user_email)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_EMAIL_ALREADY_TAKEN'));
+            return false;
+        }
+
+                if ($user_password_new !== $user_password_repeat) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_REPEAT_WRONG'));
             return false;
         }
 
@@ -82,7 +97,7 @@ class RegistrationModel
         try {
             $db = DatabaseFactory::getFactory()->getConnection();
 
-            // KORRIGIERT: `user_activation_hash` entfernt, weil es in der DB nicht existiert.
+            // Benutzer in die Datenbank schreiben
             $sql = "INSERT INTO users (user_name, password_hash, email, created_at, role, user_active, user_activation_hash) 
                 VALUES (:name, :password_hash, :email, NOW(), 'Kunde', 0, :activation_hash)";
 

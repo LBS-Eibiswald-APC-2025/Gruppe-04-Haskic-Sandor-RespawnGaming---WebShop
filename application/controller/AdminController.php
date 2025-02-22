@@ -23,4 +23,15 @@ class AdminController extends Controller
 
         Redirect::to("admin");
     }
+
+    public function changeUserRole(): void
+    {
+        if (AdminModel::changeUserRole(Request::post('user_id'),Request::post('user_account_type'))) {
+            Session::add('feedback_positive', Text::get('FEEDBACK_ACCOUNT_TYPE_CHANGE_SUCCESSFUL'));
+            Redirect::to("admin");
+        } else {
+            Session::add('feedback_negative', Text::get('FEEDBACK_ACCOUNT_TYPE_CHANGE_FAILED'));
+            Redirect::to("admin");
+        }
+    }
 }

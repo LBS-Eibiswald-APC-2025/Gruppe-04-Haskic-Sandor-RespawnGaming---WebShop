@@ -15,6 +15,25 @@
   width: 90%;
   max-width: 500px;
 
+  .verify_box {
+    text-align: center;
+
+    .verification-button   {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: $auth-btn-bg;
+        color: $white;
+        border-radius: $auth-form-border-radius;
+        transition: transform $transition-time ease-in-out;
+
+        &:hover {
+          background-color: $b_green;
+          transform: scale(1.05);
+        }
+    }
+  }
+
   .form-control {
     font-family: 'Playstation', sans-serif;
     background-color: $auth_bg;

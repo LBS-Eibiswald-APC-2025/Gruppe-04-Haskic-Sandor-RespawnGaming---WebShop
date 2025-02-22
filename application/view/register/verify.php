@@ -1,12 +1,14 @@
-<div class="container">
+<?php require APP . 'view/_templates/header.php'; ?>
+<?php require APP . 'view/_templates/feedback.php'; ?>
 
-    <h1>Verification</h1>
-    <div class="box">
+<main>
+    <div class="auth-page-box">
+        <div class="verify_box">
+            <h1>Verifikation</h1>
 
-        <!-- echo out the system feedback (error and success messages) -->
-        <?php $this->renderFeedbackMessages(); ?>
-
-        <a href="<?php echo Config::get('URL'); ?>">Go back to home page</a>
+            <a href="<?php echo Config::get('URL'); ?>login" class="verification-button">Zum Login</a>
+        </div>
     </div>
+</main>
 
-</div>
+<?php require APP . 'view/_templates/footer.php'; ?>

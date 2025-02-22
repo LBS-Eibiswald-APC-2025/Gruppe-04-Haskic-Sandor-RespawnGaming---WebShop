@@ -271,6 +271,12 @@ footer p {
   border-radius: 10px !important;
 }
 
+.swal-text {
+  font-family: Playstation, sans-serif !important;
+  text-align: justify;
+  line-height: 1.5;
+}
+
 /* ===========================================
    Ladebildschirm
    =========================================== */

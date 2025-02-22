@@ -65,5 +65,12 @@
 .admin-page .inner-content button.btn-warning:hover {
   background-color: #e27b36;
 }
+.admin-page .inner-content select {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border: 1px solid #193244;
+  border-radius: 5px;
+  padding: 5px;
+}
 
 /*# sourceMappingURL=style.css.map */
