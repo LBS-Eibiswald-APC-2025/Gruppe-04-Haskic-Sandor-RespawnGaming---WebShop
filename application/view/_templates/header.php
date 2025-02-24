@@ -18,12 +18,14 @@ if (empty($view)) {
     <title>Respawn Gaming</title>
 
     <!-- Haupt-Styling -->
-    <link rel="stylesheet" href="../../../public/css/main/style.css">
-    <link rel="stylesheet" href="../../../public/css/<?= $view ?>/style.css">
+    <link rel="stylesheet" href="/public/css/main/style.css">
+    <link rel="stylesheet" href="/public/css/<?= $view ?>/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/google/style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <!-- Ladebildschirm -->
@@ -45,8 +47,8 @@ if (empty($view)) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (str_contains($current_page, '/games')) ? 'active-link' : ''; ?>"
-                       href="<?php echo Config::get('URL'); ?>games">Spiele</a>
+                    <a class="nav-link <?php echo (str_contains($current_page, '/game')) ? 'active-link' : ''; ?>"
+                       href="<?php echo Config::get('URL'); ?>game">Spiele</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/community')) ? 'active-link' : ''; ?>"

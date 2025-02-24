@@ -11,6 +11,6 @@ class IndexController extends Controller
     {
         require_once APP . 'model/GameModel.php';
         $games = GameModel::getAllGames();
-        $this->View->render('index/index', ['games' => $games]);
+        $this->View->render('index/index', ['game' => $games]);
     }
 }

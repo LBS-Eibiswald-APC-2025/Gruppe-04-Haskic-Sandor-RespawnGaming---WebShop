@@ -1,0 +1,13 @@
+@import '../main/_variables.scss';
+
+.d-container {
+  background-color: $background_color_dark;
+  color: $white;
+  border-radius: $border-radius;
+  padding: 30px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1000px;
+  font-family: Playstation, sans-serif;
+}

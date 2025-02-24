@@ -1,0 +1,35 @@
+@import '../main/_variables.scss';
+
+/*
+---------------------------------------------
+  Google Translate Dropdown Styling - Steam Style
+---------------------------------------------
+Dieses SCSS passt das Google Translate Dropdown an einen Steam-ähnlichen Look an.
+Man verwendet dunkle Töne, einen subtilen Farbverlauf, abgerundete Ecken und leichte Schatten,
+um einen modernen, fast gaming-inspirierten Look zu erzielen.
+*/
+
+.goog-te-gadget .goog-te-combo {
+  margin: 5px 0;
+  padding: 8px 12px; // Mehr Platz innen für bessere Lesbarkeit
+
+  // Gradient-Hintergrund im Steam-Stil: dunkel und blau
+  background: linear-gradient(145deg, $bg_dark, $bg_blue2) !important;
+  border: 1px solid $bg_dark !important; // Passender Rahmen
+  border-radius: 4px !important; // Abgerundete Ecken für einen modernen Look
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important; // Leichter Schatten für Tiefen effekt
+  color: $white !important;
+
+  // Option-Elemente im Dropdown stylen
+  option {
+    background: $bg_blue2 !important;
+    color: $white !important;
+    padding: 5px; // Extra Padding für bessere Lesbarkeit
+
+    // Hover-Zustand: Farbverlauf umkehren, um Interaktivität zu signalisieren
+    &:hover {
+      background: $bg_blue2 !important;
+      cursor: pointer;
+    }
+  }
+}

@@ -9,7 +9,7 @@ class GameModel
     public static function getAllGames(): ?array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT id, title, description, image FROM games";
+        $sql = "SELECT id, title, price, release_date, description, image FROM games LIMIT 10";
         $query = $database->prepare($sql);
         $query->execute();
         return $query->fetchAll();
@@ -67,5 +67,21 @@ class GameModel
         $parameters = [':game_id' => $game_id];
 
         return $query->execute($parameters);
+    }
+
+    /**
+     * Suchen Sie nach Spielen anhand des Titels
+     * @param string $search
+     * @return array|null
+     */
+    public static function searchGames(string $search): ?array
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT id, title, price, release_date, description, image FROM games WHERE title LIKE :search";
+        $query = $database->prepare($sql);
+        $query->execute([':search' => '%' . $search . '%']);
+
+        return $query->fetchAll();
     }
 }

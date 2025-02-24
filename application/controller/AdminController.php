@@ -11,6 +11,10 @@ class AdminController extends Controller
 
     public function index(): void
     {
+        if (!Auth::checkAdminAuthentication()) {
+            Redirect::to('user');
+        }
+
         $this->View->render('admin/index', ['users' => UserModel::getPublicProfilesOfAllUsers()]);
     }
 

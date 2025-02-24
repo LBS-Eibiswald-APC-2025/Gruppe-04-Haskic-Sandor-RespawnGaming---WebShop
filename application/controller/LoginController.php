@@ -80,7 +80,7 @@ class LoginController extends Controller
         $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
 
         if ($login_successful) {
-            Redirect::to('games/index');
+            Redirect::to('game/index');
         } else {
             LoginModel::deleteCookie();
             Redirect::to('login/index');

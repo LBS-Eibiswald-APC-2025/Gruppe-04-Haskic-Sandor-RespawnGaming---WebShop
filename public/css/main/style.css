@@ -161,9 +161,14 @@ section.container .row {
    =========================================== */
 /* Navbar mit Glow-Effekt */
 .navbar {
+  justify-content: space-between;
+  align-items: center;
   background-color: #2A2D32;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
 }
 .navbar .nav-link {
   position: relative;
@@ -336,7 +341,7 @@ footer p {
 /* ===========================================
    Animationen (Keyframes für Karussell)
    =========================================== */
-/* Rechts raus/sliden */
+/* Rechts raus/slide */
 @keyframes slideOutLeft {
   0% {
     transform: translateX(0);
@@ -347,7 +352,7 @@ footer p {
     opacity: 0;
   }
 }
-/* Von rechts herein sliden */
+/* Von rechts herein slide */
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
@@ -358,7 +363,7 @@ footer p {
     opacity: 1;
   }
 }
-/* Links raus/sliden */
+/* Links raus/slide */
 @keyframes slideOutRight {
   0% {
     transform: translateX(0);
@@ -369,7 +374,7 @@ footer p {
     opacity: 0;
   }
 }
-/* Von links herein sliden */
+/* Von links herein slide */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);

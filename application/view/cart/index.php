@@ -23,14 +23,14 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Respawn Gaming</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/public/css/cart/style.css">
 </head>
 <body>
 
 <header>
     <h1>Respawn Gaming Shop</h1>
     <nav>
-        <a href="cart.php">🛒 Warenkorb (<?= $cartCount ?>)</a>
+        <a href="public/css/cart">🛒 Warenkorb (<?= $cartCount ?>)</a>
     </nav>
 </header>
 

@@ -2,7 +2,7 @@
 
 class Auth
 {
-    public static function checkAuthentication()
+    public static function checkAuthentication(): void
     {
         Session::init();
 
@@ -25,9 +25,10 @@ class Auth
         return true;
     }
 
-    public static function checkSessionConcurrency(){
-        if(Session::userIsLoggedIn()){
-            if(Session::isConcurrentSessionExists()){
+    public static function checkSessionConcurrency(): void
+    {
+        if (Session::userIsLoggedIn()) {
+            if (Session::isConcurrentSessionExists()) {
                 LoginModel::logout();
                 Redirect::home();
                 exit();

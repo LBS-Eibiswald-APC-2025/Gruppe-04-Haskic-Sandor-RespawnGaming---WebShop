@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* GameModel Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+/*
+---------------------------------------------
+  Google Translate Dropdown Styling - Steam Style
+---------------------------------------------
+Dieses SCSS passt das Google Translate Dropdown an einen Steam-ähnlichen Look an.
+Man verwendet dunkle Töne, einen subtilen Farbverlauf, abgerundete Ecken und leichte Schatten,
+um einen modernen, fast gaming-inspirierten Look zu erzielen.
+*/
+.goog-te-gadget .goog-te-combo {
+  margin: 5px 0;
+  padding: 8px 12px;
+  background: linear-gradient(145deg, #1A1A1A, #2A475E) !important;
+  border: 1px solid #1A1A1A !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) !important;
+  color: #FFFFFF !important;
+}
+.goog-te-gadget .goog-te-combo option {
+  background: #2A475E !important;
+  color: #FFFFFF !important;
+  padding: 5px;
+}
+.goog-te-gadget .goog-te-combo option:hover {
+  background: #2A475E !important;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */

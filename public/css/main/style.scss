@@ -8,6 +8,7 @@
    =========================================== */
 
 /* Reset: Alle Elemente ohne Margin & Padding */
+
 * {
   margin: 0;
   padding: 0;
@@ -109,18 +110,19 @@ main {
 
 //feedback
 .feedback {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    background-color: $b_green;
-    &.error {
-        background-color: red;
-    }
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: $b_green;
+
+  &.error {
+    background-color: red;
+  }
 }
 
 /* Allgemeine Container-Sektionen */
@@ -148,9 +150,15 @@ section.container {
 
 /* Navbar mit Glow-Effekt */
 .navbar {
+  justify-content: space-between;
+  align-items: center;
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
+
 
   .nav-link {
     position: relative;
@@ -348,7 +356,7 @@ footer {
    Animationen (Keyframes für Karussell)
    =========================================== */
 
-/* Rechts raus/sliden */
+/* Rechts raus/slide */
 @keyframes slideOutLeft {
   0% {
     transform: translateX(0);
@@ -360,7 +368,7 @@ footer {
   }
 }
 
-/* Von rechts herein sliden */
+/* Von rechts herein slide */
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
@@ -372,7 +380,7 @@ footer {
   }
 }
 
-/* Links raus/sliden */
+/* Links raus/slide */
 @keyframes slideOutRight {
   0% {
     transform: translateX(0);
@@ -384,7 +392,7 @@ footer {
   }
 }
 
-/* Von links herein sliden */
+/* Von links herein slide */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);
