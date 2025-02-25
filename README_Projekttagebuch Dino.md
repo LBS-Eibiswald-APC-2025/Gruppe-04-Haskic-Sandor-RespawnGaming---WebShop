@@ -13,4 +13,4 @@
 | 11.02.2025 | -     | 10:00-12:20 | 2h20min | LBS | Gantt-Chart Fertigstellung/github Push-Pull Tests/Landing-Page Anpassungen            | ---                                 | [Projektmanagement] |
 | 13.02.2025 | -     | 09:25-12:50 | 3h25min | LBS | Anpassung Projekthandbuch/weitere Landing-Page Anpassungen                            | Projekthandbuch Einträge zu ungenau | [Projektmanagement] |
 | 14.02.2025 | -     | 07:30-10:15 | 2h45min | LBS | Projekthandbuch bearbeitet und für Abgabe richtiggestellt/CSS angepasst               | ---                                 | [Projektmanagement] |
-| 25.02.2025 | -     | 10:00-12:20 | 2h20min | LBS | Navbar eingebaut/Design angepasst/weitere Index.php zu den Seiten erstellt            | ---                                 | [Projektmanagement] |
+| 25.02.2025 | 1.4.2 | 10:00-12:20 | 2h20min | LBS | Navbar eingebaut/Design angepasst/weitere Index.php zu den Seiten erstellt            | ---                                 | [Projektmanagement] |
