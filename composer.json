@@ -15,6 +15,7 @@
         "psr-4": { "": ["application/core/", "application/model/"] }
     },
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "ext-gd": "*"
   }
 }

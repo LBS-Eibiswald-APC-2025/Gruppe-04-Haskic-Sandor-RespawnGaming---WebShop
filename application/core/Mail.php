@@ -58,7 +58,7 @@ class Mail
     public function sendMailWithPHPMailer($user_email, $from_email, $from_name, $subject, $body): bool
     {
         $mail = new PHPMailer(true);
-        
+
         // you should use UTF-8 to avoid encoding issues
         $mail->CharSet = 'UTF-8';
 
@@ -124,7 +124,7 @@ class Mail
      * @return bool the success status of the according mail sending method
      * @throws Exception
      */
-    public function sendMail($user_email, $from_email, $from_name, $subject, $body)
+    public function sendMail(string $user_email, string $from_email, string $from_name, string $subject, string $body): bool
     {
         if (Config::get('EMAIL_USED_MAILER') == "phpmailer") {
 
@@ -141,7 +141,8 @@ class Mail
         if (Config::get('EMAIL_USED_MAILER') == "native") {
             return $this->sendMailWithNativeMailFunction();
         }
-    }
+    return false;}
+
 
     /**
      * The different mail sending methods write errors to the error property $this->error,
@@ -149,7 +150,7 @@ class Mail
      *
      * @return mixed
      */
-    public function getError()
+    public function getError(): mixed
     {
         return $this->error;
     }

@@ -18,9 +18,9 @@ class AvatarModel
      * @param string $email The email address
      * @return string
      */
-    public static function getGravatarLinkByEmail($email)
+    public static function getGravatarLinkByEmail(string $email): string
     {
-        return 'http://www.gravatar.com/avatar/' .
+        return 'https://www.gravatar.com/avatar/' .
         md5(strtolower(trim($email))) .
         '?s=' . Config::get('AVATAR_SIZE') . '&d=' . Config::get('GRAVATAR_DEFAULT_IMAGESET') . '&r=' . Config::get('GRAVATAR_RATING');
     }
@@ -31,7 +31,7 @@ class AvatarModel
      * @param int $user_id User's id
      * @return string Avatar file path
      */
-    public static function getPublicAvatarFilePathOfUser($user_has_avatar, $user_id)
+    public static function getPublicAvatarFilePathOfUser(int $user_has_avatar, int $user_id): string
     {
         if ($user_has_avatar) {
             return Config::get('URL') . Config::get('PATH_AVATARS_PUBLIC') . $user_id . '.jpg';
@@ -45,7 +45,7 @@ class AvatarModel
      * @param $user_id integer The user's id
      * @return string avatar picture path
      */
-    public static function getPublicUserAvatarFilePathByUserId($user_id)
+    public static function getPublicUserAvatarFilePathByUserId(int $user_id): string
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -64,7 +64,7 @@ class AvatarModel
      * TODO decouple
      * TODO total rebuild
      */
-    public static function createAvatar()
+    public static function createAvatar(): void
     {
         // check avatar folder writing rights, check if upload fits all rules
         if (self::isAvatarFolderWritable() AND self::validateImageFile()) {
@@ -83,7 +83,7 @@ class AvatarModel
      *
      * @return bool success status
      */
-    public static function isAvatarFolderWritable()
+    public static function isAvatarFolderWritable(): bool
     {
         if (is_dir(Config::get('PATH_AVATARS')) AND is_writable(Config::get('PATH_AVATARS'))) {
             return true;
@@ -100,7 +100,7 @@ class AvatarModel
      *
      * @return bool
      */
-    public static function validateImageFile()
+    public static function validateImageFile(): bool
     {
         if (!isset($_FILES['avatar_file'])) {
             Session::add('feedback_negative', Text::get('FEEDBACK_AVATAR_IMAGE_UPLOAD_FAILED'));
@@ -136,7 +136,7 @@ class AvatarModel
      *
      * @param $user_id
      */
-    public static function writeAvatarToDatabase($user_id)
+    public static function writeAvatarToDatabase($user_id): void
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -158,7 +158,7 @@ class AvatarModel
      *
      * @return bool success state
      */
-    public static function resizeAvatarImage($source_image, $destination, $final_width = 44, $final_height = 44)
+    public static function resizeAvatarImage(string $source_image, string $destination, int $final_width = 44, int $final_height = 44): bool
     {
         $imageData = getimagesize($source_image);
         $width = $imageData[0];
@@ -207,7 +207,7 @@ class AvatarModel
      * @param int $userId
      * @return bool success
      */
-    public static function deleteAvatar($userId)
+    public static function deleteAvatar(int $userId): bool
     {
         if (!ctype_digit($userId)) {
             Session::add("feedback_negative", Text::get("FEEDBACK_AVATAR_IMAGE_DELETE_FAILED"));
@@ -239,7 +239,7 @@ class AvatarModel
      * @param integer $userId
      * @return bool
      */
-    public static function deleteAvatarImageFile($userId)
+    public static function deleteAvatarImageFile(int $userId): bool
     {
         // Check if file exists
         if (!file_exists(Config::get('PATH_AVATARS') . $userId . ".jpg")) {

@@ -30,7 +30,7 @@ class AdminModel
      * @param int $delete
      * @return bool
      */
-    private static function writeDeleteAndSuspensionInfoToDatabase(int $userId, int $delete)
+    private static function writeDeleteAndSuspensionInfoToDatabase(int $userId, int $delete): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -55,7 +55,7 @@ class AdminModel
      * @param int $userId
      * @return bool
      */
-    private static function resetUserSession($userId)
+    private static function resetUserSession(int $userId): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
