@@ -1,1 +1,13 @@
 @import '../main/_variables.scss';
+
+/* ============================================
+   BEGRENZTE BREITE & PAGE WRAPPER
+============================================ */
+
+.cart-page-wrapper {
+  background: $bg_blue1;
+  color: $white;
+  min-height: 100vh;
+  font-family: Playstation, sans-serif;
+}
+@import '../main/_variables.scss';

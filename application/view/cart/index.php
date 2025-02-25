@@ -1,22 +1,5 @@
-<?php
-session_start();
+<?php require APP . 'view/_templates/header.php'; ?>
 
-// Dummy-Produkte (Normalerweise aus einer Datenbank)
-$products = [
-    1 => ["name" => "Gaming-Maus", "price" => 49.99, "image" => "images/mouse.jpg"],
-    2 => ["name" => "Mechanische Tastatur", "price" => 89.99, "image" => "images/keyboard.jpg"],
-    3 => ["name" => "Gaming-Headset", "price" => 69.99, "image" => "images/headset.jpg"]
-];
-
-// Produkt in den Warenkorb legen
-if (isset($_POST['add_to_cart'])) {
-    $id = $_POST['product_id'];
-    $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
-}
-
-// Anzahl im Warenkorb
-$cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
-?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -51,5 +34,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </div>
 </main>
 
+<?php require APP . 'view/_templates/footer.php'; ?>
 </body>
 </html>
