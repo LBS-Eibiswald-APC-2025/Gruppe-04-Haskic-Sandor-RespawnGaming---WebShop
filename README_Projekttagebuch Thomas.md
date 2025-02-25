@@ -13,3 +13,4 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 11.02.2025|-|10:00-12:20|2h20min|LBS|UI leicht angepasst, Angefangen mit Functionen herauszusuchen und Login function zu bearbeiten, Github Push-Pull Tests durchgeführt|---|[Projektmanagement]
 13.02.2025|-|09:25-12:50|3h25min|LBS|Functionen bearbeiten, Backend bearbeitung angefangen|---|[Projektmanagement]
 14.02.2025|-|07:30-10:15|2h45min|LBS|Login Function und Registrierung funktioniern und daten werden in die Datenbank gespeichert.|---|[Projektmanagement]
+25.02.2025|-|10:00-12:20|2h20min|LBS|E-Mail verifikation eingebaut (noch in arbeit), Login und Registrierung angepasst|---|[Projektmanagement]
