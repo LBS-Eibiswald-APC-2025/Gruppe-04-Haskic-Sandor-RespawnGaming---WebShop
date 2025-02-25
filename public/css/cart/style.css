@@ -1,3 +1,27 @@
-
+@charset "UTF-8";
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Dice";
+  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* GameModel Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
 
 /*# sourceMappingURL=style.css.map */

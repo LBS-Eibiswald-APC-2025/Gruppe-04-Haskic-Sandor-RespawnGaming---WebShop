@@ -47,6 +47,13 @@ if (empty($view)) {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
+                    <a class="nav-link <?php echo (str_contains($current_page, '/cart')) ? 'active-link' : ''; ?>"
+                       href="<?php echo Config::get('URL'); ?>cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-count"><?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/game')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>game">Spiele</a>
                 </li>
