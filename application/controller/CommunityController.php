@@ -7,40 +7,72 @@ class CommunityController extends Controller
         parent::__construct();
     }
 
-    // Zeigt alle Community-Posts für ein bestimmtes Spiel
-    public function gamePosts(int $game_id): void
+    /**
+     * Diese Methode zeigt die Community-Startseite
+     * unter application/view/community/index.php an.
+     * Damit funktioniert der Aufruf /community oder /community/index
+     * ohne 404-Fehler.
+     */
+    public function index(): void
     {
-        $posts = CommunityModel::getPostsByGame($game_id);
-        $this->View->render('community/game_posts', ['posts' => $posts, 'game_id' => $game_id]);
+        // Lädt deine View-Datei community/index.php
+        // (Dort hast du z. B. dein "Willkommen im Community-Bereich"-HTML)
+        $this->View->render('community/index');
     }
 
-    // Fügt einen neuen Community-Post hinzu
+    /**
+     * Zeigt alle Community-Posts für ein bestimmtes Spiel (z.B. /community/gamePosts/15)
+     */
+    public function gamePosts(int $game_id): void
+    {
+        // Holt Beiträge aus dem Model
+        $posts = CommunityModel::getPostsByGame($game_id);
+        // Rendert die View community/game_posts.php mit den Posts
+        $this->View->render('community/game_posts', [
+            'posts' => $posts,
+            'game_id' => $game_id
+        ]);
+    }
+
+    /**
+     * Fügt einen neuen Community-Post hinzu (wird i. d. R. per POST angesprochen)
+     */
     public function addPost(): void
     {
+        // Session nur einmal global starten (wenn noch nicht geschehen)
         session_start();
+
+        // Prüfen, ob eingeloggt
         if (!isset($_SESSION['user_id'])) {
             header('Location: /login?error=not_logged_in');
             exit();
         }
 
+        // Nur bei POST-Anfragen
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $game_id = $_POST['game_id'];
-            $user_id = $_SESSION['user_id'];
+            // Daten aus dem POST-Formular
+            $game_id   = $_POST['game_id'];
+            $user_id   = $_SESSION['user_id'];
             $post_type = $_POST['post_type'];
-            $title = $_POST['title'];
-            $content = $_POST['content'];
+            $title     = $_POST['title'];
+            $content   = $_POST['content'];
 
+            // Model-Aufruf
             if (CommunityModel::addPost($game_id, $user_id, $post_type, $title, $content)) {
+                // Erfolgreich hinzugefügt => zurück zur Spiele-Seite /community/game/<ID>
                 header("Location: /community/game/$game_id");
                 exit();
             } else {
+                // Fehlerfall
                 header("Location: /community/game/$game_id?error=failed");
                 exit();
             }
         }
     }
 
-    // Löscht einen Community-Post
+    /**
+     * Löscht einen Community-Post (nur für den Besitzer/Moderator/Admin)
+     */
     public function deletePost(int $post_id): void
     {
         session_start();
@@ -49,9 +81,10 @@ class CommunityController extends Controller
             exit();
         }
 
-        $user_id = $_SESSION['user_id'];
-        $user_role = $_SESSION['role'];
+        $user_id  = $_SESSION['user_id'];
+        $user_role = $_SESSION['role'] ?? null;  // Falls du 'role' so speicherst
 
+        // Model-Aufruf zum Löschen
         if (CommunityModel::deletePost($post_id, $user_id, $user_role)) {
             header("Location: " . $_SERVER['HTTP_REFERER']);
             exit();
