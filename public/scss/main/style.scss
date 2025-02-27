@@ -108,6 +108,64 @@ main {
   }
 }
 
+// PHP Error-Feedback
+.php-error {
+  font-family: 'Playstation', sans-serif;
+  font-size: 14px !important;
+  line-height: 2.4 !important;
+  color: $white !important;
+  text-align: center !important;
+
+  background-color: $bg_blue2;
+  border: 2px solid $white;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 25px auto;
+  padding: 40px 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 2.4);
+
+  // ALLE Kinder übernehmen diese Font-Size
+  * {
+    font-size: inherit !important;
+    color: inherit !important;
+    text-align: inherit !important;
+    line-height: inherit !important;
+  }
+
+  table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    background-color: $white !important;
+  }
+
+  tr, td, th {
+    border: 1px solid $bg_blue2;
+    padding: 5px;
+  }
+
+  th {
+    font-weight: bold;
+    background-color: lighten($bg_blue2, 10%) !important;
+    color: $white !important;
+  }
+
+  td {
+    color: $bg_blue2 !important;
+    background-color: $white !important;
+  }
+
+  pre, code {
+    white-space: pre-wrap;
+    display: block;
+    margin: 20px auto;
+    color: $bg_blue2 !important;
+    background-color: $white !important;
+    padding: 10px;
+  }
+}
+
 //feedback
 .feedback {
   position: fixed;

@@ -23,7 +23,7 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-.a-container {
+.d-container {
   background-color: #2A2D32;
   color: #FFFFFF;
   border-radius: 10px;
@@ -35,4 +35,4 @@
   font-family: Playstation, sans-serif;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.scss.map */

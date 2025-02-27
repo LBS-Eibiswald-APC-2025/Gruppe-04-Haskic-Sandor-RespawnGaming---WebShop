@@ -124,6 +124,55 @@ main .inner {
   align-items: center;
 }
 
+.php-error {
+  font-family: "Playstation", sans-serif;
+  font-size: 14px !important;
+  line-height: 2.4 !important;
+  color: #FFFFFF !important;
+  text-align: center !important;
+  background-color: #2A475E;
+  border: 2px solid #FFFFFF;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 25px auto;
+  padding: 40px 25px;
+  box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+.php-error * {
+  font-size: inherit !important;
+  color: inherit !important;
+  text-align: inherit !important;
+  line-height: inherit !important;
+}
+.php-error table {
+  width: 100%;
+  margin: 25px auto;
+  border-collapse: collapse;
+  background-color: #FFFFFF !important;
+}
+.php-error tr, .php-error td, .php-error th {
+  border: 1px solid #2A475E;
+  padding: 5px;
+}
+.php-error th {
+  font-weight: bold;
+  background-color: rgb(57.75, 97.625, 129.25) !important;
+  color: #FFFFFF !important;
+}
+.php-error td {
+  color: #2A475E !important;
+  background-color: #FFFFFF !important;
+}
+.php-error pre, .php-error code {
+  white-space: pre-wrap;
+  display: block;
+  margin: 20px auto;
+  color: #2A475E !important;
+  background-color: #FFFFFF !important;
+  padding: 10px;
+}
+
 .feedback {
   position: fixed;
   top: 0;

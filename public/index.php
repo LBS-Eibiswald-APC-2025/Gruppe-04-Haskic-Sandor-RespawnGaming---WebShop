@@ -1,17 +1,11 @@
 <?php
 
-/**
- * A super-simple user-authentication solution, embedded into a small framework.
- *
- * HUGE
- *
- * @link https://github.com/panique/huge
- * @license http://opensource.org/licenses/MIT MIT License
- */
+ini_set('display_errors', 1);         // Nur während der Entwicklung
+ini_set('error_reporting', E_ALL);
+ini_set('error_prepend_string', '<div class="php-error">');
+ini_set('error_append_string', '</div>');
 
-// auto-loading the classes (currently only from application/libs) via Composer's PSR-4 auto-loader
-// later it might be useful to use a namespace here, but for now let's keep it as simple as possible
 require '../vendor/autoload.php';
 
-// start our application
+// start our app
 new Application();

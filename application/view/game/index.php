@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Respawn Gaming – Games</title>
-    <link rel="stylesheet" href="/public/css/games/style.css">
+    <link rel="stylesheet" href="/public/scss/games/style.css">
 </head>
 <body>
 

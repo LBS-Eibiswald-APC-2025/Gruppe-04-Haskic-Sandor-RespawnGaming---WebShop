@@ -137,7 +137,7 @@ class RegistrationModel
                         <style>
                             @font-face {
                                 font-family: "DICE";
-                                src: url("https://respawngaming.at/css/fonts/DICE/DICE.woff2") format("woff2");                            
+                                src: url("https://respawngaming.at/scss/fonts/DICE/DICE.woff2") format("woff2");                            
                             }
                             body { font-family: "DICE", sans-serif; margin: 0; padding: 0; background-color: #f2f4f8; }
                             .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }

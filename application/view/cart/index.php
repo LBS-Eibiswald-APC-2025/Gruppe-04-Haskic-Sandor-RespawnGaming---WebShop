@@ -1,5 +1,6 @@
+<?php require APP . 'view/_templates/header.php'; ?>
+
 <?php
-session_start();
 
 // Dummy-Produkte (Normalerweise aus einer Datenbank)
 $products = [
@@ -15,7 +16,6 @@ if (isset($_POST['add_to_cart'])) {
 }
 
 // Anzahl im Warenkorb
-$cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -23,15 +23,12 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - Respawn Gaming</title>
-    <link rel="stylesheet" href="/public/css/cart/style.css">
+    <link rel="stylesheet" href="/public/scss/cart/style.css">
 </head>
 <body>
 
 <header>
     <h1>Respawn Gaming Shop</h1>
-    <nav>
-        <a href="public/css/cart">🛒 Warenkorb (<?= $cartCount ?>)</a>
-    </nav>
 </header>
 
 <main>
@@ -51,5 +48,6 @@ $cartCount = isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0;
     </div>
 </main>
 
+<?php require APP . 'view/_templates/footer.php'; ?>
 </body>
 </html>
