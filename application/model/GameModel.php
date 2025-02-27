@@ -3,7 +3,8 @@
 class GameModel
 {
     /**
-     * Holen Sie sich alle Spiele aus der Datenbank
+     * Holt alle Spiele aus der Datenbank.
+     *
      * @return array|null
      */
     public static function getAllGames(): ?array
@@ -16,7 +17,8 @@ class GameModel
     }
 
     /**
-     * Holen Sie sich ein einzelnes Spiel anhand der ID
+     * Holt ein einzelnes Spiel anhand der ID.
+     *
      * @param int $game_id
      * @return object|null
      */
@@ -31,7 +33,7 @@ class GameModel
     }
 
     /**
-     * Fügen Sie ein neues Spiel hinzu
+     * Fügt ein neues Spiel hinzu.
      */
     public static function addGame(string $title, string $description, string $image, float $price, string $genre, string $release_date, ?int $developer_id, int $license_required = 0): bool
     {
@@ -52,7 +54,7 @@ class GameModel
     }
 
     /**
-     * Aktualisieren Sie ein Spiel
+     * Aktualisiert ein Spiel.
      */
     public static function updateGame(int $game_id, string $title, string $description, string $image, float $price, string $genre, string $release_date, ?int $developer_id, int $license_required): bool
     {
@@ -76,7 +78,7 @@ class GameModel
     }
 
     /**
-     * Löschen Sie ein Spiel
+     * Löscht ein Spiel.
      */
     public static function deleteGame(int $game_id): bool
     {
@@ -86,6 +88,12 @@ class GameModel
         return $query->execute([':game_id' => $game_id]);
     }
 
+    /**
+     * Sucht Spiele anhand eines Suchbegriffs.
+     *
+     * @param mixed $search
+     * @return array|null
+     */
     public static function searchGames(mixed $search): ?array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
@@ -100,5 +108,4 @@ class GameModel
 
         return $query->fetchAll();
     }
-
 }

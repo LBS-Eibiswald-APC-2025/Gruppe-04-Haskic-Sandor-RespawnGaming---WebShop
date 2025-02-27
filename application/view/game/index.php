@@ -32,7 +32,6 @@ if (!isset($this->data['games'])) {
                     <?php foreach ($this->data['games'] as $game): ?>
                         <li class="game-item d-flex justify-content-between align-items-center"
                             data-index="<?php echo htmlspecialchars($game->id); ?>">
-
                             <!-- Linke Seite: Cover + Info -->
                             <div class="d-flex">
                                 <div class="game-cover me-3">
@@ -60,9 +59,9 @@ if (!isset($this->data['games'])) {
                                     <?php echo htmlspecialchars($game->price); ?>
                                 </span>
 
-                                <!-- Kauf-Button (Form, die an CartController->addToCart($game->id) geht) -->
-                                <form action="<?php echo Config::get('URL'); ?>cart/addToCart/<?php echo (int)$game->id; ?>"
-                                      method="post" class="d-inline">
+                                <!-- Kauf-Button: Übergabe der Game-ID per POST -->
+                                <form action="<?php echo Config::get('URL'); ?>cart/addToCart" method="post" class="d-inline">
+                                    <input type="hidden" name="game_id" value="<?php echo (int)$game->id; ?>">
                                     <button type="submit" class="btn btn-success">
                                         In den Warenkorb
                                     </button>
@@ -97,7 +96,6 @@ if (!isset($this->data['games'])) {
 
 <!-- Bootstrap JS (falls benötigt) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <!-- Das ausgelagerte JS für die Hover-Logik -->
 <script src="/public/js/games/gameList.js"></script>
 

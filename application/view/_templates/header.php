@@ -7,14 +7,11 @@ $uri = trim($uri, '/');
 $segments = explode('/', $uri);
 $view = $segments[0] ?: 'index';
 
-// HIER: Warenkorb-Zähler aus DB holen (nur, wenn eingeloggt)
 $cartCount = 0;
-if (Session::userIsLoggedIn()) {
-    $userId = $_SESSION['user_id'];
-    $cartItems = CartModel::getCartItemsWithDetails($userId);
-    foreach ($cartItems as $item) {
-        $cartCount += (int)$item->quantity;
-    }
+$userId = Session::get('user_id');
+$cartItems = CartModel::getCartItemsWithDetails();
+foreach ($cartItems as $item) {
+    $cartCount += (int)$item->quantity;
 }
 ?>
 <!DOCTYPE html>

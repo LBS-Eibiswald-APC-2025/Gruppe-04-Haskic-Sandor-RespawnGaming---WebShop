@@ -2,19 +2,10 @@
 <?php require APP . 'view/_templates/feedback.php'; ?>
 
 <?php
-// Prüfen, ob User eingeloggt ist
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ' . Config::get('URL') . 'login?error=not_logged_in');
-    exit();
-}
-
-// Warenkorb-Daten aus der Datenbank holen
-$cartItems = CartModel::getCartItemsWithDetails($_SESSION['user_id']);
-
-// Gesamtsumme berechnen
+$cartItems = $this->data['cartItems'];
 $totalPrice = 0.0;
+// Gesamtpreis berechnen anhand der Artikelpreise und Mengen.
 foreach ($cartItems as $item) {
-    // $item ist ein stdClass-Objekt, darum -> statt []
     $totalPrice += $item->price * $item->quantity;
 }
 ?>
@@ -38,21 +29,20 @@ foreach ($cartItems as $item) {
             <?php foreach ($cartItems as $item): ?>
                 <tr>
                     <td>
-                        <!-- Titel des Spiels -->
+                        <!-- Spieltitel sicher ausgeben -->
                         <?php echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?>
                     </td>
                     <td>
-                        <!-- Preis formatieren -->
+                        <!-- Preis formatiert darstellen -->
                         €<?php echo number_format($item->price, 2, ',', '.'); ?>
                     </td>
                     <td>
-                        <!-- Anzahl -->
                         <?php echo (int)$item->quantity; ?>
                     </td>
                     <td>
-                        <!-- Button zum Entfernen -->
-                        <form action="<?php echo Config::get('URL'); ?>cart/removeFromCart/<?php echo (int)$item->id; ?>"
-                              method="post" class="d-inline">
+                        <!-- Formular zum Entfernen des Spiels aus dem Warenkorb -->
+                        <form action="<?php echo Config::get('URL'); ?>cart/removeFromCart" method="post" class="d-inline">
+                            <input type="hidden" name="game_id" value="<?php echo (int)$item->id; ?>">
                             <button type="submit" class="btn btn-danger">
                                 Entfernen
                             </button>
@@ -69,6 +59,7 @@ foreach ($cartItems as $item) {
         </div>
 
         <div class="mt-4 text-end">
+            <!-- Formular für den Checkout -->
             <form action="<?php echo Config::get('URL'); ?>cart/checkout" method="post">
                 <button type="submit" class="btn btn-primary">
                     Jetzt bestellen

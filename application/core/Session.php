@@ -1,49 +1,65 @@
 <?php
 
+use Random\RandomException;
+
 class Session
 {
-    public static function init()
+    public static function init(): void
     {
         if (session_id() == '') {
             session_start();
         }
     }
 
+    /**
+     * @throws RandomException
+     */
     public static function regenerateCSRFToken(): void
     {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
 
-    public static function set($key, $value)
+    public static function set($key, $value, $filter = null): void
     {
-        $_SESSION[$key] = $value;
+        if ($filter !== null) {
+            $_SESSION[$key][$filter] = $value;
+        } else {
+            $_SESSION[$key] = $value;
+        }
     }
 
-    public static function get($key)
+    public static function get($key, $filter = null)
     {
         if (isset($_SESSION[$key])) {
             $value = $_SESSION[$key];
+            if ($filter !== null && isset($value[$filter])) {
+                return Filter::XSSFilter($value[$filter]);
+            }
             return Filter::XSSFilter($value);
         }
         return null;
     }
 
-    public static function add($key, $value)
+    public static function add($key, $value): void
     {
         $_SESSION[$key][] = $value;
     }
 
-    public static function remove($key)
+    public static function remove($key, $filter = null): void
     {
-        unset($_SESSION[$key]);
+        if ($filter !== null) {
+            unset($_SESSION[$key][$filter]);
+        } else {
+            unset($_SESSION[$key]);
+        }
     }
 
-    public static function destroy()
+    public static function destroy(): void
     {
         session_destroy();
     }
 
-    public static function updateSessionId($userId, $sessionId = null)
+    public static function updateSessionId($userId, $sessionId = null): void
     {
         $database = DatabaseFactory::getFactory()->getConnection();
         $sql = "UPDATE users SET session_id = :session_id WHERE user_id = :user_id";
@@ -54,7 +70,7 @@ class Session
         ]);
     }
 
-    public static function isConcurrentSessionExists()
+    public static function isConcurrentSessionExists(): bool
     {
         $session_id = session_id();
         $userId     = self::get('user_id');

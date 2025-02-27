@@ -8,18 +8,19 @@
 /**
  * Instructions:
  *
- * At your form, before the submit button put:
- * <input type="hidden" name="csrf_token" value="<?= Csrf::makeToken(); ?>" />
+ * At your form, before the submitted button put:
+ * <input type="hidden" name="csrf_token" value="<?= Csrf::makeToken();>" />
  *
  * This validation needed in the controller action method to validate CSRF token submitted with the form:
  *
- * if (!Csrf::isTokenValid()) {
+ * If (.
+ * Csrf::isTokenValid()) {
  *     LoginModel::logout();
  *     Redirect::home();
  *     exit();
  * }
  *
- * To get simpler code it might be better to put the logout, redirect, exit into an own (static) method.
+ * To get simpler code, it might be better to put the logout, redirect, exit into an own (static) method.
  */
 class Csrf
 {
@@ -30,9 +31,9 @@ class Csrf
      * @static static method
      * @return string
      */
-    public static function makeToken()
+    public static function makeToken(): string
     {
-        // token is valid for 1 day
+        // the token is valid for 1 day
         $max_time    = 60 * 60 * 24;
         $stored_time = Session::get('csrf_token_time');
         $csrf_token  = Session::get('csrf_token');
@@ -52,7 +53,7 @@ class Csrf
      * @static static method
      * @return bool
      */
-    public static function isTokenValid()
+    public static function isTokenValid(): bool
     {
         $token = Request::post('csrf_token');
         return $token === Session::get('csrf_token') && !empty($token);

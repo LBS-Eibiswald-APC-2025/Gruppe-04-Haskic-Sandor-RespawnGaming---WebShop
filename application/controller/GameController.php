@@ -9,21 +9,21 @@ class GameController extends Controller
         parent::__construct();
     }
 
-    // Zeigt alle Spiele an
+    // Zeigt alle Spiele an.
     public function index(): void
     {
         $games = GameModel::getAllGames();
         $this->View->render('game/index', ['games' => $games]);
     }
 
-    // Suche nach Spielen
+    // Suche nach Spielen.
     public function search(): void
     {
         $games = GameModel::searchGames($_POST['search']);
         $this->View->render('game/index', ['games' => $games]);
     }
 
-    // Fügen Sie ein neues Spiel hinzu
+    // Fügt ein neues Spiel hinzu.
     public function add(): void
     {
         session_start();
@@ -33,14 +33,23 @@ class GameController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            GameModel::addGame($_POST['title'], $_POST['description'], $_POST['image'], $_POST['price'], $_POST['genre'], $_POST['release_date'], $_POST['developer_id'], $_POST['license_required']);
+            GameModel::addGame(
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['image'],
+                $_POST['price'],
+                $_POST['genre'],
+                $_POST['release_date'],
+                $_POST['developer_id'],
+                $_POST['license_required']
+            );
             header('Location: /admin/games');
             exit();
         }
         $this->View->render('admin/add_game');
     }
 
-    // Aktualisieren eines Spiels
+    // Aktualisiert ein Spiel.
     public function update(int $game_id): void
     {
         session_start();
@@ -50,7 +59,17 @@ class GameController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            GameModel::updateGame($game_id, $_POST['title'], $_POST['description'], $_POST['image'], $_POST['price'], $_POST['genre'], $_POST['release_date'], $_POST['developer_id'], $_POST['license_required']);
+            GameModel::updateGame(
+                $game_id,
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['image'],
+                $_POST['price'],
+                $_POST['genre'],
+                $_POST['release_date'],
+                $_POST['developer_id'],
+                $_POST['license_required']
+            );
             header('Location: /admin/games');
             exit();
         }
@@ -58,8 +77,9 @@ class GameController extends Controller
         $this->View->render('admin/edit_game', ['game' => $game]);
     }
 
-    // Löscht ein Spiel
-    #[NoReturn] public function delete(int $game_id): void
+    // Löscht ein Spiel.
+    #[NoReturn]
+    public function delete(int $game_id): void
     {
         session_start();
         if ($_SESSION['role'] !== 'Admin') {
