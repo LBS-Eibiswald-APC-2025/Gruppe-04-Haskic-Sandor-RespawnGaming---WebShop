@@ -98,7 +98,7 @@ $featured_games = [
             <div class="container">
                 <h1>Willkommen bei Respawn Gaming</h1>
                 <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
-                <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt loslegen</a>
+                <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt Loslegen!</a>
                 <div class="search-bar mt-4">
                     <form action="<?php echo Config::get('URL'); ?>game/search" method="post">
                         <div class="input-group">

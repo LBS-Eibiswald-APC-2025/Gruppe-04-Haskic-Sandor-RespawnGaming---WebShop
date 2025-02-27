@@ -29,6 +29,9 @@ if (isset($_POST['add_to_cart'])) {
 
 <header>
     <h1>Respawn Gaming Shop</h1>
+    <nav>
+        <a href="public/css/cart">🛒 Warenkorb (<?= $cartCount ?>)</a>
+    </nav>
 </header>
 
 <main>

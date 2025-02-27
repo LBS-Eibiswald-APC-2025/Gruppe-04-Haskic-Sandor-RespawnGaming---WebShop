@@ -54,6 +54,21 @@ if (empty($view)) {
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?php echo (str_contains($current_page, '/cart')) ? 'active-link' : ''; ?>"
+                       href="<?php echo Config::get('URL'); ?>cart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="cart-count">
+                            <?php
+                            if (isset($_SESSION['cart'])) {
+                                echo array_sum($_SESSION['cart']);
+                            } else {
+                                echo '0';
+                            }
+                            ?>
+       </span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/game')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>game">Spiele</a>
                 </li>
