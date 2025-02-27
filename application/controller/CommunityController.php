@@ -25,7 +25,6 @@ class CommunityController extends Controller
      */
     public function gamePosts(int $game_id): void
     {
-        // Holt Beiträge aus dem Model
         $posts = CommunityModel::getPostsByGame($game_id);
         // Rendert die View community/game_posts.php mit den Posts
         $this->View->render('community/game_posts', [
@@ -59,14 +58,13 @@ class CommunityController extends Controller
 
             // Model-Aufruf
             if (CommunityModel::addPost($game_id, $user_id, $post_type, $title, $content)) {
-                // Erfolgreich hinzugefügt => zurück zur Spiele-Seite /community/game/<ID>
+                // Erfolgreich hinzugefügt → zurück zur Spiele-Seite /community/game/<ID>
                 header("Location: /community/game/$game_id");
-                exit();
             } else {
                 // Fehlerfall
                 header("Location: /community/game/$game_id?error=failed");
-                exit();
             }
+            exit();
         }
     }
 
