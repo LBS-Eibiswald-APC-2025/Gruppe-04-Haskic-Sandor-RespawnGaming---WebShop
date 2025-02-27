@@ -12,5 +12,6 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 07.02.2025|-|07:30-11:05|3h35min|LBS|Strukturplan PSP,Projekthandbuch angefangen, Datenbank problem behoben|---|[Projektmanagement]
 11.02.2025|-|10:00-12:20|2h20min|LBS|UI leicht angepasst, Angefangen mit Functionen herauszusuchen und Login function zu bearbeiten, Github Push-Pull Tests durchgeführt|---|[Projektmanagement]
 13.02.2025|-|09:25-12:50|3h25min|LBS|Functionen bearbeiten, Backend bearbeitung angefangen|---|[Projektmanagement]
-14.02.2025|-|07:30-10:15|2h45min|LBS|Login Function und Registrierung funktioniern und daten werden in die Datenbank gespeichert.|---|[Projektmanagement]
-25.02.2025|-|10:00-12:20|2h20min|LBS|E-Mail verifikation eingebaut (noch in arbeit), Login und Registrierung angepasst|---|[Projektmanagement]
+14.02.2025|1.5.2|07:30-10:15|2h45min|LBS|Login Function und Registrierung funktioniern und daten werden in die Datenbank gespeichert.|---|[Projektmanagement]
+25.02.2025|1.5.3|10:00-12:20|2h20min|LBS|E-Mail verifikation eingebaut (noch in arbeit), Login und Registrierung angepasst|---|[Projektmanagement]
+27.02.2025|1.5.4|09:25-12:50|3h25min|LBS|Warenkorb Controller, Modul erstellt und bearbeitet, Mit Dino funktionen mal getestet|Community Page gab nur Error Page aus|[Projektmanagement]
