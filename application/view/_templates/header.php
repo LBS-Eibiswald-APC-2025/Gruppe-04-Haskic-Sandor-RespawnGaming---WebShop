@@ -5,30 +5,34 @@ OnlineModel::trackUser();
 $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = trim($uri, '/');
 $segments = explode('/', $uri);
-$view = $segments[0];
-if (empty($view)) {
-    $view = 'index';
+$view = $segments[0] ?: 'index';
+
+// HIER: Warenkorb-Zähler aus DB holen (nur, wenn eingeloggt)
+$cartCount = 0;
+if (Session::userIsLoggedIn()) {
+    $userId = $_SESSION['user_id'];
+    $cartItems = CartModel::getCartItemsWithDetails($userId);
+    foreach ($cartItems as $item) {
+        $cartCount += (int)$item->quantity;
+    }
 }
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Respawn Gaming</title>
 
-    <!-- Haupt-Styling -->
     <link rel="stylesheet" href="/public/scss/main/style.css">
     <link rel="stylesheet" href="/public/scss/<?= $view ?>/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/scss/google/style.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
-<!-- Ladebildschirm -->
 <div id="page-loader">
     <div class="loader"></div>
 </div>
@@ -36,8 +40,9 @@ if (empty($view)) {
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="<?php echo Config::get('URL'); ?>">
-            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">Respawn Gaming</a>
-
+            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">
+            Respawn Gaming
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,28 +51,17 @@ if (empty($view)) {
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link <?php echo (str_contains($current_page, '/cart')) ? 'active-link' : ''; ?>"
-                       href="<?php echo Config::get('URL'); ?>cart">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="cart-count"><?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0; ?></span>
-                    </a>
-                </li>
+                <!-- Warenkorb-Link mit DB-basiertem Zähler -->
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/cart')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>cart">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span class="cart-count">
-                            <?php
-                            if (isset($_SESSION['cart'])) {
-                                echo array_sum($_SESSION['cart']);
-                            } else {
-                                echo '0';
-                            }
-                            ?>
-       </span>
+                            <?php echo $cartCount; ?>
+                        </span>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/game')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>game">Spiele</a>
@@ -80,13 +74,13 @@ if (empty($view)) {
                     <a class="nav-link <?php echo (str_contains($current_page, '/info')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>info">Info</a>
                 </li>
+
                 <?php if (Session::userIsLoggedIn()) : ?>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (str_contains($current_page, '/user/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>user/index">Mein Konto</a>
                     </li>
                     <?php
-                    // Prüfen, ob in der Session ein Admin gesetzt ist
                     $userData = Session::get('user_data');
                     if (isset($userData['user_account_type']) && $userData['user_account_type'] === 'Admin'):
                         ?>
@@ -98,7 +92,7 @@ if (empty($view)) {
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo Config::get('URL'); ?>login/logout">Logout</a>
                     </li>
-                <?php else : ?>
+                <?php else: ?>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (str_contains($current_page, '/login/index')) ? 'active-link' : ''; ?>"
                            href="<?php echo Config::get('URL'); ?>login/index">Login</a>
@@ -111,24 +105,20 @@ if (empty($view)) {
 
 <!-- Ladebildschirm-Skript -->
 <script>
-    // Beim Seitenwechsel anzeigen
     window.addEventListener('beforeunload', () => {
         document.getElementById('page-loader').style.display = 'flex';
     });
 
-    // Nach dem Laden ausblenden
     window.addEventListener('load', () => {
         hideLoader();
     });
 
-    // Neue pageshow-Behandlung, um den Loader bei persistierten Seiten (Back-Button) auszublenden
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
             hideLoader();
         }
     });
 
-    // Loader ausblenden
     function hideLoader() {
         const loader = document.getElementById('page-loader');
         if (!loader) return;
@@ -136,7 +126,6 @@ if (empty($view)) {
         setTimeout(() => loader.style.display = 'none', 500);
     }
 
-    // Links mit Loader versehen
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function (e) {
             if (this.href && this.target !== '_blank' && !this.href.startsWith('#')) {

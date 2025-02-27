@@ -1,56 +1,80 @@
 <?php require APP . 'view/_templates/header.php'; ?>
 
 <?php
-
-// Dummy-Produkte (Normalerweise aus einer Datenbank)
-$products = [
-    1 => ["name" => "Gaming-Maus", "price" => 49.99, "image" => "images/mouse.jpg"],
-    2 => ["name" => "Mechanische Tastatur", "price" => 89.99, "image" => "images/keyboard.jpg"],
-    3 => ["name" => "Gaming-Headset", "price" => 69.99, "image" => "images/headset.jpg"]
-];
-
-// Produkt in den Warenkorb legen
-if (isset($_POST['add_to_cart'])) {
-    $id = $_POST['product_id'];
-    $_SESSION['cart'][$id] = ($_SESSION['cart'][$id] ?? 0) + 1;
+// Prüfen, ob User eingeloggt ist
+if (!isset($_SESSION['user_id'])) {
+    header('Location: ' . Config::get('URL') . 'login?error=not_logged_in');
+    exit();
 }
 
-// Anzahl im Warenkorb
+// Warenkorb-Daten aus der Datenbank holen
+$cartItems = CartModel::getCartItemsWithDetails($_SESSION['user_id']);
+
+// Gesamtsumme berechnen
+$totalPrice = 0.0;
+foreach ($cartItems as $item) {
+    // $item ist ein stdClass-Objekt, darum -> statt []
+    $totalPrice += $item->price * $item->quantity;
+}
 ?>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Respawn Gaming</title>
-    <link rel="stylesheet" href="/public/scss/cart/style.css">
-</head>
-<body>
 
-<header>
-    <h1>Respawn Gaming Shop</h1>
-    <nav>
-        <a href="public/css/cart">🛒 Warenkorb (<?= $cartCount ?>)</a>
-    </nav>
-</header>
+<main class="container my-5">
+    <h1>Mein Warenkorb</h1>
 
-<main>
-    <h2>Produkte</h2>
-    <div class="products">
-        <?php foreach ($products as $id => $product): ?>
-            <div class="product">
-                <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
-                <h3><?= $product['name'] ?></h3>
-                <p>Preis: €<?= number_format($product['price'], 2) ?></p>
-                <form method="post">
-                    <input type="hidden" name="product_id" value="<?= $id ?>">
-                    <button type="submit" name="add_to_cart">In den Warenkorb</button>
-                </form>
-            </div>
-        <?php endforeach; ?>
-    </div>
+    <?php if (empty($cartItems)): ?>
+        <p>Dein Warenkorb ist leer.</p>
+    <?php else: ?>
+        <table class="table table-bordered align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>Spiel</th>
+                <th>Preis</th>
+                <th>Menge</th>
+                <th>Aktion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($cartItems as $item): ?>
+                <tr>
+                    <td>
+                        <!-- Titel des Spiels -->
+                        <?php echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?>
+                    </td>
+                    <td>
+                        <!-- Preis formatieren -->
+                        €<?php echo number_format($item->price, 2, ',', '.'); ?>
+                    </td>
+                    <td>
+                        <!-- Anzahl -->
+                        <?php echo (int)$item->quantity; ?>
+                    </td>
+                    <td>
+                        <!-- Button zum Entfernen -->
+                        <form action="<?php echo Config::get('URL'); ?>cart/removeFromCart/<?php echo (int)$item->id; ?>"
+                              method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">
+                                Entfernen
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <div class="text-end fs-5 mt-3">
+            <strong>Gesamt:</strong>
+            €<?php echo number_format($totalPrice, 2, ',', '.'); ?>
+        </div>
+
+        <div class="mt-4 text-end">
+            <form action="<?php echo Config::get('URL'); ?>cart/checkout" method="post">
+                <button type="submit" class="btn btn-primary">
+                    Jetzt bestellen
+                </button>
+            </form>
+        </div>
+    <?php endif; ?>
 </main>
 
 <?php require APP . 'view/_templates/footer.php'; ?>
-</body>
-</html>

@@ -1,9 +1,10 @@
 <?php require APP . 'view/_templates/header.php'; ?>
 
 <?php
-    if (!isset($this->data['games'])) {
-        $this->data['games'] = [];
-    }
+// Falls "games" nicht übergeben wurde, ein leeres Array setzen
+if (!isset($this->data['games'])) {
+    $this->data['games'] = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +15,6 @@
     <link rel="stylesheet" href="/public/scss/games/style.css">
 </head>
 <body>
-
 <main class="games-page-wrapper">
     <div class="container steam-like-container my-4">
         <div class="row">
@@ -30,20 +30,47 @@
 
                 <ul class="games-list">
                     <?php foreach ($this->data['games'] as $game): ?>
-                        <li class="game-item" data-index="<?php echo htmlspecialchars($game->id); ?>">
-                            <div class="game-cover">
-                                <img src="<?php echo htmlspecialchars($game->image); ?>" alt="Game Cover">
+                        <li class="game-item d-flex justify-content-between align-items-center"
+                            data-index="<?php echo htmlspecialchars($game->id); ?>">
+
+                            <!-- Linke Seite: Cover + Info -->
+                            <div class="d-flex">
+                                <div class="game-cover me-3">
+                                    <img src="<?php echo htmlspecialchars($game->image); ?>" alt="Game Cover">
+                                </div>
+                                <div class="game-info">
+                                    <h3 class="game-title">
+                                        <?php echo htmlspecialchars($game->title); ?>
+                                    </h3>
+                                    <p class="game-desc">
+                                        <?php echo htmlspecialchars($game->description); ?>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="game-info">
-                                <h3 class="game-title"><?php echo htmlspecialchars($game->title); ?></h3>
-                                <p class="game-desc"><?php echo htmlspecialchars($game->description); ?></p>
-                            </div>
-                            <div class="game-right-panel">
+
+                            <!-- Rechte Seite: Preis + Discount + Kauf-Button -->
+                            <div class="game-right-panel text-end">
                                 <?php if (!empty($game->discount)): ?>
-                                    <span class="discount"><?php echo htmlspecialchars($game->discount); ?></span>
+                                    <span class="discount me-2">
+                                        <?php echo htmlspecialchars($game->discount); ?>
+                                    </span>
                                 <?php endif; ?>
-                                <span class="price"><?php echo htmlspecialchars($game->price); ?></span>
-                                <p class="release-date"><?php echo htmlspecialchars($game->release_date); ?></p>
+
+                                <span class="price me-3">
+                                    <?php echo htmlspecialchars($game->price); ?>
+                                </span>
+
+                                <!-- Kauf-Button (Form, die an CartController->addToCart($game->id) geht) -->
+                                <form action="<?php echo Config::get('URL'); ?>cart/addToCart/<?php echo (int)$game->id; ?>"
+                                      method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-success">
+                                        In den Warenkorb
+                                    </button>
+                                </form>
+
+                                <p class="release-date mt-2">
+                                    <?php echo htmlspecialchars($game->release_date); ?>
+                                </p>
                             </div>
                         </li>
                     <?php endforeach; ?>
@@ -51,11 +78,14 @@
 
                 <!-- Mehr ansehen -->
                 <div class="games-list-footer">
-                    <a href="#" class="more-link">Mehr ansehen: <span>Neuerscheinungen</span></a>
+                    <a href="#" class="more-link">
+                        Mehr ansehen:
+                        <span>Neuerscheinungen</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Rechte Spalte: Detail-Bereich -->
+            <!-- Rechte Spalte: Detail-Bereich (wird per Hover gefüllt, siehe gameList.js) -->
             <div class="col-lg-4 col-md-5 px-0 detail-panel" id="detailPanel">
                 <div class="detail-header" id="detailHeader">Bitte mit der Maus über ein Spiel fahren</div>
                 <div class="detail-screenshots" id="detailScreenshots"></div>
