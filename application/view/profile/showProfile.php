@@ -5,7 +5,7 @@
         <!-- echo out the system feedback (error and success messages) -->
         <?php $this->renderFeedbackMessages(); ?>
 
-        <h3>What happens here ?</h3>
+        <h3>What happens here?</h3>
         <div>This controller/action/view shows all public information about a certain user.</div>
 
         <?php if ($this->user) { ?>

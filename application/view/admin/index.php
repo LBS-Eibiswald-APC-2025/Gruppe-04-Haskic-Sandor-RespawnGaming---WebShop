@@ -34,11 +34,13 @@ $user = Session::get('user_data');
                             <td>
                                 <form action="<?= Config::get('URL'); ?>admin/changeUserRole" method="post" style="display:inline-block;">
                                     <input type="hidden" name="user_id" value="<?= $user->user_id; ?>"/>
-                                    <select name="user_account_type">
-                                        <option value="Kunde" <?= $user->role == 'Kunde' ? 'selected' : ''; ?>>Kunde</option>
-                                        <option value="Entwickler" <?= $user->role == 'Entwickler' ? 'selected' : ''; ?>>Entwickler</option>
-                                        <option value="Admin" <?= $user->role == 'Admin' ? 'selected' : ''; ?>>Admin</option>
-                                    </select>
+                                    <label>
+                                        <select name="user_account_type">
+                                            <option value="Kunde" <?= $user->role == 'Kunde' ? 'selected' : ''; ?>>Kunde</option>
+                                            <option value="Entwickler" <?= $user->role == 'Entwickler' ? 'selected' : ''; ?>>Entwickler</option>
+                                            <option value="Admin" <?= $user->role == 'Admin' ? 'selected' : ''; ?>>Admin</option>
+                                        </select>
+                                    </label>
                                     <button type="submit" class="btn btn-primary">Rolle ändern</button>
                                 </form>
                             </td>

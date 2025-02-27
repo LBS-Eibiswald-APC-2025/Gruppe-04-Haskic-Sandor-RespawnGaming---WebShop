@@ -23,6 +23,7 @@ class CartController extends Controller
      * Fügt ein Spiel zum Warenkorb hinzu.
      * Das Spiel wird per POST übermittelt.
      */
+    #[NoReturn]
     public function addToCart(): void
     {
         // Spiel-ID aus den POST-Daten auslesen.
@@ -51,6 +52,7 @@ class CartController extends Controller
      * Entfernt ein Spiel aus dem Warenkorb.
      * Die Spiel-ID wird per POST übermittelt.
      */
+    #[NoReturn]
     public function removeFromCart(): void
     {
         if (!isset($_POST['game_id'])) {
@@ -75,20 +77,20 @@ class CartController extends Controller
     }
 
     /**
-     * Führt den Checkout durch und leitet nach erfolgreicher Bestellung weiter.
+     * Führt den Check-out durch und leitet nach erfolgreicher Bestellung weiter.
      */
     #[NoReturn]
     public function checkout(): void
     {
         $userid = Session::get('user_id') ?? null;
         if (!$userid) {
-            Session::add('feedback_negative', 'Bitte melde dich an.');
+            Session::add('feedback_info', 'Bitte melde dich an, um zu bestellen.');
             header('Location: /login');
             exit();
         }
 
         if (!CartModel::hasItems()) {
-            Session::add('feedback_negative', 'Dein Warenkorb ist leer.');
+            Session::add('feedback_info', 'Dein Warenkorb ist leer.');
             header('Location: /cart');
             exit();
         }
