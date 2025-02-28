@@ -14,11 +14,12 @@
   background-size: cover;
   background: rgba(0, 0, 0, .30) url("../../image/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
   h1 {
     font-size: $hero-h1-font-size;
     text-transform: uppercase;
-    background-color: $glow_blue;
+    background-color: $bg_glow_blue;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
@@ -44,7 +45,7 @@
     transition: transform $transition-time ease-in-out;
 
     &:hover {
-      background: $b_green;
+      background: $bg_green;
       transform: scale(1.05);
     }
   }
@@ -61,7 +62,7 @@
     transition: transform $transition-time ease-in-out;
 
     &:hover {
-      background: $b_green;
+      background: $bg_green;
     }
   }
 
@@ -106,7 +107,7 @@
         cursor: pointer;
 
         &:hover {
-          background: $b_green;
+          background: $bg_green;
         }
       }
     }
@@ -148,15 +149,15 @@
 
     .btn.btn-outline-primary {
       background: transparent;
-      border: 1px solid #66c0f4;
-      color: #66c0f4;
+      border: 1px solid $bg_glow_blue;
+      color: $bg_glow_blue;
       padding: 8px 15px;
       transition: background $transition-time, color $transition-time;
       cursor: pointer;
       text-decoration: none;
 
       &:hover {
-        background: #66c0f4;
+        background: $bg_glow_blue;
         color: $white;
       }
     }
@@ -169,7 +170,7 @@
 
 /* Carousel-Container mit Pfeilen und Slide */
 .custom-carousel-title {
-  font-family: 'DICE', sans-serif;
+  font-family: 'Ghost', sans-serif;
   font-size: 250%;
   color: $white;
   text-align: center;
@@ -192,7 +193,7 @@
     cursor: pointer;
 
     &:hover {
-      color: #66c0f4;
+      color: $bg_glow_blue;
     }
   }
 
@@ -228,7 +229,7 @@
       font-size: 120%;
 
       h3 {
-        font-family: 'DICE', sans-serif;
+        font-family: 'Ghost', sans-serif;
         font-size: 150%;
       }
 
@@ -249,19 +250,19 @@
   .indicator {
     width: 12px;
     height: 12px;
-    background-color: #666;
+    background-color: $white;
     border-radius: 15%;
     margin: 0 7px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
     &.active {
-      background-color: #ffffff;
+      background-color: $white;
       transform: scale(1.2);
     }
 
     &:hover {
-      background-color: #aaa;
+      background-color: $white;
     }
   }
 }

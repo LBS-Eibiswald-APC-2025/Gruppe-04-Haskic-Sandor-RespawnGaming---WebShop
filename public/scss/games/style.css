@@ -5,13 +5,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -30,7 +30,7 @@
   background: #1B2838;
   color: #FFFFFF;
   min-height: 100vh;
-  font-family: "Dice", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Ghost", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .steam-like-container {
@@ -117,7 +117,7 @@
 }
 .games-list .game-item .game-info .game-title {
   font-size: 1.1rem;
-  font-family: "DICE", sans-serif;
+  font-family: "Ghost", sans-serif;
   margin: 0;
 }
 .games-list .game-item .game-info .game-desc {
@@ -177,7 +177,7 @@
 }
 .detail-panel .detail-header {
   font-size: 1.2rem;
-  font-family: "DICE", sans-serif;
+  font-family: "Ghost", sans-serif;
   margin-bottom: 10px;
 }
 .detail-panel .detail-screenshots {
@@ -219,4 +219,4 @@
   }
 }
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

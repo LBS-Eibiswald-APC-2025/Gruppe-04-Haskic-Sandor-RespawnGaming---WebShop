@@ -34,7 +34,7 @@ body {
   font-family: $font-family !important;
   display: flex;
   flex-direction: column;
-  scrollbar-color: $glow_blue $background_color_dark !important;
+  scrollbar-color: $bg_glow_blue $background_color_dark !important;
   scrollbar-width: thin !important;
 
   p {
@@ -58,14 +58,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, $glow_blue, darken($glow_blue, 10%)) !important;
+  background: linear-gradient(135deg, $bg_glow_blue, darken($bg_glow_blue, 10%)) !important;
   border-radius: $border-radius !important;
   border: 3px solid transparent !important;
   background-clip: padding-box !important;
   transition: background $transition-time, transform $transition-time !important;
 
   &:hover {
-    background: linear-gradient(135deg, lighten($glow_blue, 10%), $glow_blue) !important;
+    background: linear-gradient(135deg, lighten($bg_glow_blue, 10%), $bg_glow_blue) !important;
     transform: scale(1.2) !important;
   }
 }
@@ -176,10 +176,10 @@ main {
   width: 100%;
   padding: 10px;
   text-align: center;
-  background-color: $b_green;
+  background-color: $bg_green;
 
   &.error {
-    background-color: red;
+    background-color: $red;
   }
 }
 
@@ -210,6 +210,7 @@ section.container {
 .navbar {
   justify-content: space-between;
   align-items: center;
+  font-size: 1.25em;
   background-color: $background_color_dark;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px !important;
@@ -240,17 +241,17 @@ section.container {
 
     &:hover,
     &.active-link {
-      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
 
       &::after {
         transform: scaleX(1);
-        box-shadow: 0 0 8px 4px $glow_blue;
+        box-shadow: 0 0 8px 4px $bg_glow_blue;
       }
     }
 
     &:active {
-      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
-      border-bottom: 2px solid $glow_blue;
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+      border-bottom: 2px solid $bg_glow_blue;
     }
   }
 
@@ -263,7 +264,7 @@ section.container {
 
     &.navbar-brand {
       font-size: 1.7em;
-      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue !important;
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue !important;
     }
 
     &:after {
@@ -280,11 +281,11 @@ section.container {
     }
 
     &:hover {
-      text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
 
       &:after {
         transform: scaleX(1);
-        box-shadow: 0 0 8px 4px $glow_blue;
+        box-shadow: 0 0 8px 4px $bg_glow_blue;
       }
     }
   }
@@ -326,7 +327,7 @@ footer {
 .footer-nav {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
 
     a {
         color: $white;
@@ -334,7 +335,7 @@ footer {
         transition: text-shadow $transition-time ease;
 
         &:hover {
-        text-shadow: 1px 1px 2px $glow_blue, 0 0 1em $glow_blue, 0 0 0.2em $glow_blue;
+        text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
         }
     }
 }
@@ -509,7 +510,7 @@ footer {
     text-transform: uppercase;
     position: relative;
     animation: glowingText 4s linear infinite;
-    text-shadow: 0 0 5px $glow_blue, 0 0 10px $glow_blue, 0 0 20px $glow_blue;
+    text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
   }
 
   section.container {

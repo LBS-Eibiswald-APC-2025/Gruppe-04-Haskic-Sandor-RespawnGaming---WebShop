@@ -8,13 +8,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -33,12 +33,15 @@
   height: 90vh;
   text-align: center;
   margin: 20px 0;
-  color: #ffffff;
+  color: #FFFFFF;
   background-blend-mode: darken;
   background-size: cover;
   background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration.png") no-repeat center;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.info-page .info-logo {
+  font-family: Ghost, sans-serif;
 }
 .info-page .info-content {
   max-width: 600px;
@@ -49,11 +52,11 @@
   margin-bottom: 20px;
 }
 .info-page .info-title {
-  font-family: "DICE", sans-serif;
+  font-family: "Ghost", sans-serif;
   font-size: 2.5em;
   margin-bottom: 20px;
-  color: #00aaff;
-  text-shadow: 0 0 10px #00aaff;
+  color: #4a90d9;
+  text-shadow: 0 0 10px #4a90d9;
 }
 .info-page .info-text {
   font-family: "Playstation", sans-serif;
@@ -64,12 +67,19 @@
 .info-page .online-status {
   font-size: 1em;
   margin-bottom: 20px;
-  color: #39ff14;
+  color: #8ed529;
+}
+.info-page .online-status p {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 25px;
+  transition: transform 0.3s;
 }
 .info-page .info-btn {
   padding: 15px 30px;
-  background-color: #007BFF;
-  color: #fff;
+  background-color: #4a90d9;
+  color: #FFFFFF;
   text-decoration: none;
   font-weight: bold;
   border-radius: 10px;
@@ -81,4 +91,4 @@
   background: #8ed529;
 }
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

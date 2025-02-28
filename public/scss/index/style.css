@@ -8,13 +8,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -36,6 +36,7 @@
   background-size: cover;
   background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 .hero-section h1 {
   font-size: 3em;
@@ -154,15 +155,15 @@
 }
 .game-card .card-body .btn.btn-outline-primary {
   background: transparent;
-  border: 1px solid #66c0f4;
-  color: #66c0f4;
+  border: 1px solid #4a90d9;
+  color: #4a90d9;
   padding: 8px 15px;
   transition: background 0.3s, color 0.3s;
   cursor: pointer;
   text-decoration: none;
 }
 .game-card .card-body .btn.btn-outline-primary:hover {
-  background: #66c0f4;
+  background: #4a90d9;
   color: #FFFFFF;
 }
 .game-card:hover {
@@ -171,7 +172,7 @@
 
 /* Carousel-Container mit Pfeilen und Slide */
 .custom-carousel-title {
-  font-family: "DICE", sans-serif;
+  font-family: "Ghost", sans-serif;
   font-size: 250%;
   color: #FFFFFF;
   text-align: center;
@@ -193,7 +194,7 @@
   cursor: pointer;
 }
 .custom-carousel-container .carousel-btn:hover {
-  color: #66c0f4;
+  color: #4a90d9;
 }
 .custom-carousel-container .carousel-slide {
   display: flex;
@@ -225,7 +226,7 @@
   font-size: 120%;
 }
 .custom-carousel-container .carousel-slide .carousel-info h3 {
-  font-family: "DICE", sans-serif;
+  font-family: "Ghost", sans-serif;
   font-size: 150%;
 }
 .custom-carousel-container .carousel-slide .carousel-info p,
@@ -242,18 +243,18 @@
 .carousel-indicators-custom .indicator {
   width: 12px;
   height: 12px;
-  background-color: #666;
+  background-color: #FFFFFF;
   border-radius: 15%;
   margin: 0 7px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .carousel-indicators-custom .indicator.active {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   transform: scale(1.2);
 }
 .carousel-indicators-custom .indicator:hover {
-  background-color: #aaa;
+  background-color: #FFFFFF;
 }
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

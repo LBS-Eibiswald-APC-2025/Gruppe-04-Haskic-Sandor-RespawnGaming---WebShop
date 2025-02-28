@@ -17,7 +17,7 @@
 
   .form-control {
     font-family: 'Playstation', sans-serif;
-    background-color: $auth_bg;
+    background-color: $bg_auth;
     border: none;
     padding: $auth-form-padding;
     margin-bottom: $auth-form-margin-bottom;
@@ -43,14 +43,14 @@
   }
 
   .btn.btn-primary {
-    background-color: $auth-btn-bg;
+    background-color: $bg-auth-btn;
     border: none;
     padding: $btn-padding;
     cursor: pointer;
     transition: transform $transition-time ease-in-out;
 
     &:hover {
-      background-color: $b_green;
+      background-color: $bg_green;
       transform: scale(1.05);
     }
   }

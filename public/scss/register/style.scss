@@ -22,13 +22,13 @@
         display: inline-block;
         padding: 10px 20px;
         margin-top: 20px;
-        background-color: $auth-btn-bg;
+        background-color: $bg-auth-btn;
         color: $white;
         border-radius: $auth-form-border-radius;
         transition: transform $transition-time ease-in-out;
 
         &:hover {
-          background-color: $b_green;
+          background-color: $bg_green;
           transform: scale(1.05);
         }
     }
@@ -62,14 +62,14 @@
   }
 
   .btn.btn-primary {
-    background-color: $auth-btn-bg;
+    background-color: $bg-auth-btn;
     border: none;
     padding: $btn-padding;
     cursor: pointer;
     transition: transform $transition-time ease-in-out;
 
     &:hover {
-      background-color: $b_green;
+      background-color: $bg_green;
       transform: scale(1.05);
     }
   }

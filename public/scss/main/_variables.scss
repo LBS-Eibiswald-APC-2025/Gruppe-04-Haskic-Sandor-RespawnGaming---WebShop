@@ -5,25 +5,27 @@
 
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: 'Dice';
-  src: url('../fonts/DICE/DICE.woff2') format('woff2');
+  font-family: 'Ghost';
+  src: url('/public/fonts/Ghost/Ghost.woff2') format('woff2');
 }
 
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: 'Playstation';
-  src: url('../fonts/Playstation/playstation.woff2') format('woff2');
+  src: url('/public/fonts/Playstation/Playstation.woff2') format('woff2');
 }
 
 /* Farbliche Grundwerte und URL-Hintergrund */
 $background_color_dark: #2A2D32;
 $white: #FFFFFF;
-$glow_blue: #4a90d9;
+$red: #F15147;
+$bg_glow_blue: #4a90d9;
 $bg_blue1: #1B2838;
 $bg_blue2: #2A475E;
 $bg_dark: #1A1A1A;
-$auth_bg: #3a3f44;
-$b_green: #8ed529;
+$bg_auth: #3a3f44;
+$bg_green: #8ed529;
+
 $background_url: "https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943";
 
 /* Größen, Abstände und Übergänge */
@@ -31,7 +33,7 @@ $scrollbar-size: 12px;
 $border-radius: 10px;
 $transition-time: 0.3s;
 $base-font-size: 16px;
-$font-family: 'Dice', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+$font-family: 'Ghost', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 /* Hintergründe für Buttons */
 $btn-primary-gradient: linear-gradient(135deg, #66c0f4, #4a90d9);
@@ -66,8 +68,8 @@ $navbar-link-margin-right: 15px;
 $auth-form-padding: 10px;
 $auth-form-margin-bottom: 15px;
 $auth-form-border-radius: 5px;
-$auth-btn-bg: #66c0f4;
-$auth-btn-bg-hover: #1B75BC;
+$bg-auth-btn: #66c0f4;
+$bg-auth-btn-hover: #1B75BC;
 
 /* Scrollbar-Farbe */
 $scrollbar-track-border: darken($background_color_dark, 10%);

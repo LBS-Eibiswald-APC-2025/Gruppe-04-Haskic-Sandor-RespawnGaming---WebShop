@@ -5,13 +5,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -23,14 +23,115 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-/* ============================================
-   BEGRENZTE BREITE & PAGE WRAPPER
-============================================ */
-.cart-page-wrapper {
-  background: #1B2838;
+/*
+   Großer Bereich mit Hintergrundbild + zentriertem, abgerundeten Panel.
+*/
+.cart-hero-section {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-hero-section .cart-hero-background {
+  /*
+     Vollflächiges Hintergrundbild.
+     Du kannst hier dein Hero-Bild wie in der Info-Seite verwenden.
+  */
+  position: relative;
+  width: 100%;
+  min-height: 90vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url("../../image/Hero_Illustration.png") no-repeat center center;
+  background-size: cover;
+  /*
+     Inhalt zentrieren
+  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-hero-section .cart-hero-background .cart-hero-content {
+  /*
+     Halbtransparentes Panel
+  */
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 30px 40px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+.cart-hero-section .cart-hero-background .cart-hero-content h1 {
+  font-family: "Ghost", sans-serif;
+  font-size: 2rem;
   color: #FFFFFF;
-  min-height: 100vh;
-  font-family: Playstation, sans-serif;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/*
+   Tabelle im dunklen Steam-Look
+   Du kannst hier die Klassen beibehalten,
+   oder anpassen, falls du "table" + Bootstrap-Klassen nutzt.
+*/
+.steam-cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+.steam-cart-table th, .steam-cart-table td {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 15px;
+  color: #FFFFFF;
+}
+.steam-cart-table th {
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.steam-cart-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/*
+   Buttons für Entfernen & Checkout
+*/
+.remove-btn,
+.checkout-btn {
+  background-color: #F15147;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.checkout-btn {
+  background-color: #3498db;
+  margin-top: 15px;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+}
+
+.checkout-btn:hover {
+  background-color: #2980b9;
+}
+
+/*
+   Gesamtpreis
+*/
+.cart-total {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.cart-total strong {
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

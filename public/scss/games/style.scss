@@ -26,7 +26,7 @@
 
   .navbar-brand {
     font-size: 2.7em;
-    text-shadow: 1px 1px 2px $glow_blue;
+    text-shadow: 1px 1px 2px $bg_glow_blue;
   }
 }
 
@@ -48,7 +48,7 @@
 
     &.active-link {
       color: $white;
-      text-shadow: 0 0 5px $glow_blue;
+      text-shadow: 0 0 5px $bg_glow_blue;
       font-weight: bold;
     }
 
@@ -102,7 +102,7 @@
 
       .game-title {
         font-size: 1.1rem;
-        font-family: 'DICE', sans-serif;
+        font-family: 'Ghost', sans-serif;
         margin: 0;
       }
 
@@ -149,8 +149,8 @@
     transition: color 0.2s;
 
     &:hover {
-      color: $glow_blue;
-      text-shadow: 0 0 3px $glow_blue;
+      color: $bg_glow_blue;
+      text-shadow: 0 0 3px $bg_glow_blue;
     }
 
     span {
@@ -173,7 +173,7 @@
 
   .detail-header {
     font-size: 1.2rem;
-    font-family: 'DICE', sans-serif;
+    font-family: 'Ghost', sans-serif;
     margin-bottom: 10px;
   }
 

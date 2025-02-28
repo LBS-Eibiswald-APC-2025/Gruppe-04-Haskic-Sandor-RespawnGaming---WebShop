@@ -6,7 +6,7 @@
     <style>
         @font-face {
             font-family: 'Dice';
-            src: url('../../../public/scss/fonts/DICE/DICE.woff2') format('woff2');
+            src: url('../../../public/fonts/DICE/DICE.woff2') format('woff2');
         }
         * {margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Dice', 'Segoe UI', Tahoma, sans-serif !important;}

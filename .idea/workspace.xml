@@ -4,18 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Erster detaillierter Style-Entwurf">
+    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/cart/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/cart/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/error/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/error/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/info/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/info/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/admin/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/admin/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/admin/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/admin/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/agb/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/agb/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/agb/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/agb/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/datenschutz/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/datenschutz/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/datenschutz/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/datenschutz/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/fonts/DICE/DICE.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/DICE/DICE.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/fonts/Playstation/playstation.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Playstation/Playstation.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/games/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/games/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/games/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/google/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/google/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/google/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/google/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/impressum/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/impressum/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/impressum/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/impressum/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/index/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/index/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/index/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/info/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/info/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/info/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/login/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/login/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/main/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/register/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/register/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/register/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/user/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/user/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/scss/user/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.scss" afterDir="false" />
     </list>
-    <list id="1a533c21-c651-45d3-b678-9d92725869c6" name="Changes by Psy" comment="">
-      <change beforePath="$PROJECT_DIR$/application/view/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.scss" afterDir="false" />
-    </list>
-    <list id="f138c906-b485-4f61-b065-2e502eda2772" name="Ignore" comment="ignore changes">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list id="f138c906-b485-4f61-b065-2e502eda2772" name="Ignore" comment="ignore changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +71,7 @@
       </GitPushTagMode>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -45,88 +79,83 @@
     &quot;assignee&quot;: &quot;Sandorthomas&quot;
   }
 }</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/LBS-Eibiswald-APC-2025/Gruppe-04-Haskic-Sandor-RespawnGaming---WebShop.git&quot;,
     &quot;accountId&quot;: &quot;ef37ff47-c98e-4b10-ac22-e2ef05ab34b7&quot;
   }
 }</component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="6" end1="14" start2="6" end2="7" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="15" end1="24" start2="8" end2="8" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="25" end1="28" start2="9" end2="10" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="29" end1="29" start2="11" end2="16" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="45" end1="45" start2="32" end2="38" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="60" end1="69" start2="53" end2="54" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="70" end1="74" start2="55" end2="69" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="117" end1="117" start2="112" end2="113" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="123" end1="124" start2="119" end2="120" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="154" end1="154" start2="150" end2="151" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="162" end1="163" start2="159" end2="160" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="180" end1="181" start2="177" end2="218" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-        <range start1="191" end1="192" start2="228" end2="241" changelist="f138c906-b485-4f61-b065-2e502eda2772" />
-        <range start1="200" end1="201" start2="249" end2="256" changelist="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" />
-      </ranges>
-    </file>
-  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="D:\Laragon\bin\php\php-8.4.1-Win32-vs17-x64\php.exe">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/gregwar/captcha" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
-      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
-      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
-      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
       <path value="$PROJECT_DIR$/vendor/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/finder" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/gregwar/captcha" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2szGpQxtCgIhzI8v4JgfHvDWW1F" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Laragon/www/respawngaming",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Errors",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Laragon/www/respawngaming&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql_aurora"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Laragon\www\respawngaming\public" />
+    </key>
+  </component>
   <component name="RunManager" selected="PHPUnit.Main">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/tests/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
@@ -159,6 +188,17 @@
       <workItem from="1739453333590" duration="920000" />
       <workItem from="1739635226911" duration="230000" />
       <workItem from="1739635550451" duration="18682000" />
+      <workItem from="1740487804067" duration="3110000" />
+      <workItem from="1740559513172" duration="743000" />
+      <workItem from="1740566700900" duration="4000" />
+      <workItem from="1740594528050" duration="939000" />
+      <workItem from="1740644850474" duration="11624000" />
+      <workItem from="1740656569818" duration="2434000" />
+      <workItem from="1740668289438" duration="4000" />
+      <workItem from="1740683128642" duration="7180000" />
+      <workItem from="1740724654551" duration="110000" />
+      <workItem from="1740725910489" duration="8684000" />
+      <workItem from="1740741818604" duration="7576000" />
     </task>
     <task id="LOCAL-00001" summary="Test ide entfernt">
       <option name="closed" value="true" />
@@ -216,7 +256,71 @@
       <option name="project" value="LOCAL" />
       <updated>1739657087991</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Push kleine Anpassung style.scss">
+      <option name="closed" value="true" />
+      <created>1740487316725</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740487316725</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Weitere Bearbeitung des Warenkorbs und Entfernung von Fehlermeldungen im Frontend.">
+      <option name="closed" value="true" />
+      <created>1740652495330</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740652495330</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Weitere Bearbeitung des Warenkorbs und Entfernung von Fehlermeldungen im Frontend.">
+      <option name="closed" value="true" />
+      <created>1740652833140</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740652833140</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Warenkorb-Funktionen (Counter) greifen nun über Datenbank.&#10;SCSS Anpassungen folgen.">
+      <option name="closed" value="true" />
+      <created>1740655184640</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740655184640</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fehlerbehebung CommunityController.php">
+      <option name="closed" value="true" />
+      <created>1740656366873</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740656366873</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Anpassungen am Warenkorb mit Sweetalert vor Login">
+      <option name="closed" value="true" />
+      <created>1740688516909</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740688516909</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Kleine Anpassungen an mehreren index.php Files.">
+      <option name="closed" value="true" />
+      <created>1740690381268</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740690381268</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben.">
+      <option name="closed" value="true" />
+      <created>1740733882007</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740733882007</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +346,15 @@
     <MESSAGE value="adding css.map" />
     <MESSAGE value="ignore changes" />
     <MESSAGE value="Erster detaillierter Style-Entwurf" />
-    <option name="LAST_COMMIT_MESSAGE" value="Erster detaillierter Style-Entwurf" />
+    <MESSAGE value="Größere Anpassungen: Impressum, Datenschutz und AGB erstellt;&#10;Spiele-Seite auf Datenbank angepasst;&#10;Administrator Überprüfung fertiggestellt;&#10;Google Translate Styling;" />
+    <MESSAGE value="Push kleine Anpassung style.scss" />
+    <MESSAGE value="Weitere Bearbeitung des Warenkorbs und Entfernung von Fehlermeldungen im Frontend." />
+    <MESSAGE value="Warenkorb-Funktionen (Counter) greifen nun über Datenbank.&#10;SCSS Anpassungen folgen." />
+    <MESSAGE value="Fehlerbehebung CommunityController.php" />
+    <MESSAGE value="Anpassungen am Warenkorb mit Sweetalert vor Login" />
+    <MESSAGE value="Kleine Anpassungen an mehreren index.php Files." />
+    <MESSAGE value="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben." />
+    <option name="LAST_COMMIT_MESSAGE" value="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

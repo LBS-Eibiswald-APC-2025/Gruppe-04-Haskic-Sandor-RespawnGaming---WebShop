@@ -22,7 +22,7 @@
 
             <!-- Online-Status -->
             <div class="online-status">
-                🟢 Online: <span class="stat-value"><?php echo OnlineModel::getCurrentUsers(); ?></span>
+                <p>Aktuelle Nutzer</p> 🟢 Online: <span class="stat-value"><?php echo OnlineModel::getCurrentUsers(); ?></span>
             </div>
 
             <!-- Call-to-Action-Button -->

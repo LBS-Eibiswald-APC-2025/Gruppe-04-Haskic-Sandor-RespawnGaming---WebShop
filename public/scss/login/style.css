@@ -8,13 +8,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -70,4 +70,4 @@
   transform: scale(1.05);
 }
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

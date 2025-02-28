@@ -26,14 +26,14 @@
         }
     }
 
-    // Headerbereich: Coverbild und Avatar
+    // Header-Bereich: Coverbild und Avatar
     .profile-header {
         position: relative;
         width: 100%;
         height: 300px; // Höhe des Coverbildes
         background-color: lighten($background_color_dark, 10%);
 
-        // Coverbild füllt den gesamten Headerbereich aus
+        // Coverbild füllt den gesamten Header-Bereich aus
         .cover {
             width: 100%;
             height: 100%;

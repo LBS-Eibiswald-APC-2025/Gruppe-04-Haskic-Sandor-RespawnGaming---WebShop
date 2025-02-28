@@ -14,12 +14,16 @@
     height: 90vh;
     text-align: center;
     margin: 20px 0;
-    color: #ffffff;
+    color: $white;
     background-blend-mode: darken;
     background-size: cover;
     background: rgba(0, 0, 0, .30) url("../../image/Hero_Illustration.png") no-repeat center;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  }
+
+  .info-logo {
+    font-family: Ghost, sans-serif;
   }
 
   .info-content {
@@ -33,11 +37,11 @@
   }
 
   .info-title {
-    font-family: 'DICE', sans-serif;
+    font-family: 'Ghost', sans-serif;
     font-size: 2.5em;
     margin-bottom: 20px;
-    color: #00aaff;
-    text-shadow: 0 0 10px #00aaff;
+    color: $bg_glow_blue;
+    text-shadow: 0 0 10px $bg_glow_blue;
   }
 
   .info-text {
@@ -47,16 +51,25 @@
     line-height: 1.5;
   }
 
+  // Online Status und <p> Styling
   .online-status {
     font-size: 1em;
     margin-bottom: 20px;
-    color: #39ff14;
+    color: $bg_green;
+
+    p {
+      color: $white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 25px;
+      transition: transform 0.3s;
+    }
   }
 
   .info-btn {
     padding: 15px 30px;
-    background-color: #007BFF;
-    color: #fff;
+    background-color: $bg_glow_blue;
+    color: $white;
     text-decoration: none;
     font-weight: bold;
     border-radius: 10px;
@@ -66,6 +79,6 @@
 
   .info-btn:hover {
     transform: scale(1.05);
-    background: $b_green;
+    background: $bg_green;
   }
 }

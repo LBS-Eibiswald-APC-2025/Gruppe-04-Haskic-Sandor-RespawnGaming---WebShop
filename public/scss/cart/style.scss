@@ -1,12 +1,124 @@
 @import '../main/_variables.scss';
 
-/* ============================================
-   BEGRENZTE BREITE & PAGE WRAPPER
-============================================ */
+/*
+   Großer Bereich mit Hintergrundbild + zentriertem, abgerundeten Panel.
+*/
 
-.cart-page-wrapper {
-  background: $bg_blue1;
+.cart-hero-section {
+  width: 100%;
+  min-height: 90vh; // passt sich dem Bildschirm an
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .cart-hero-background {
+    /*
+       Vollflächiges Hintergrundbild.
+       Du kannst hier dein Hero-Bild wie in der Info-Seite verwenden.
+    */
+    position: relative;
+    width: 100%;
+    min-height: 90vh;
+    background:
+            linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+            url("../../image/Hero_Illustration.png") no-repeat center center;
+    background-size: cover;
+
+    /*
+       Inhalt zentrieren
+    */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .cart-hero-content {
+      /*
+         Halbtransparentes Panel
+      */
+      background: rgba(0,0,0,0.4);
+      border: 2px solid rgba(255,255,255,0.1);
+      border-radius: 25px;
+      padding: 30px 40px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.7);
+
+      h1 {
+        font-family: 'Ghost', sans-serif; // oder was du magst
+        font-size: 2rem;
+        color: $white;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+/*
+   Tabelle im dunklen Steam-Look
+   Du kannst hier die Klassen beibehalten,
+   oder anpassen, falls du "table" + Bootstrap-Klassen nutzt.
+*/
+.steam-cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+
+  th, td {
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 15px;
+    color: $white;
+  }
+
+  th {
+    text-transform: uppercase;
+    background-color: rgba(255,255,255,0.1);
+  }
+
+  tr {
+    &:hover {
+      background-color: rgba(255,255,255,0.05);
+    }
+  }
+}
+
+/*
+   Buttons für Entfernen & Checkout
+*/
+.remove-btn,
+.checkout-btn {
+  background-color: $red;
   color: $white;
-  min-height: 100vh;
-  font-family: Playstation, sans-serif;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.checkout-btn {
+  background-color: #3498db; // Blauton
+  margin-top: 15px;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+}
+.checkout-btn:hover {
+  background-color: #2980b9;
+}
+
+/*
+   Gesamtpreis
+*/
+.cart-total {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 20px;
+
+  strong {
+    margin-right: 5px;
+  }
 }

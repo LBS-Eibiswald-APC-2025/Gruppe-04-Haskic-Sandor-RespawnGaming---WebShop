@@ -8,13 +8,13 @@
    =========================== */
 /* Einbinden spezieller Schriftart 'Dice' */
 @font-face {
-  font-family: "Dice";
-  src: url("../fonts/DICE/DICE.woff2") format("woff2");
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
 /* Einbinden spezieller Schriftart 'Playstation' */
 @font-face {
   font-family: "Playstation";
-  src: url("../fonts/Playstation/playstation.woff2") format("woff2");
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 /* Farbliche Grundwerte und URL-Hintergrund */
 /* Größen, Abstände und Übergänge */
@@ -52,7 +52,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   color: #FFFFFF !important;
-  font-family: "Dice", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  font-family: "Ghost", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
   display: flex;
   flex-direction: column;
   scrollbar-color: #4a90d9 #2A2D32 !important;
@@ -185,7 +185,7 @@ main .inner {
   background-color: #8ed529;
 }
 .feedback.error {
-  background-color: red;
+  background-color: #F15147;
 }
 
 /* Allgemeine Container-Sektionen */
@@ -212,6 +212,7 @@ section.container .row {
 .navbar {
   justify-content: space-between;
   align-items: center;
+  font-size: 1.25em;
   background-color: #2A2D32;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   padding: 20px !important;
@@ -313,7 +314,7 @@ footer p {
 .footer-nav {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
 }
 .footer-nav a {
   color: #FFFFFF;
