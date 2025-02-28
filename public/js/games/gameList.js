@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // kannst du es so weiterverarbeiten.
     // Im Code hier beziehen wir uns auf den HTML code -> 'data-index'.
 
-    const listItems = document.querySelectorAll('.game-item');
+    const listItems = document.querySelectorAll('.games-item');
 
     // Hardcodiertes Array, falls du willst:
     // const gamesData = [

@@ -13,14 +13,14 @@ class GameController extends Controller
     public function index(): void
     {
         $games = GameModel::getAllGames();
-        $this->View->render('game/index', ['games' => $games]);
+        $this->View->render('games/index', ['games' => $games]);
     }
 
     // Suche nach Spielen.
     public function search(): void
     {
         $games = GameModel::searchGames($_POST['search']);
-        $this->View->render('game/index', ['games' => $games]);
+        $this->View->render('games/index', ['games' => $games]);
     }
 
     // Fügt ein neues Spiel hinzu.
@@ -74,7 +74,7 @@ class GameController extends Controller
             exit();
         }
         $game = GameModel::getGameById($game_id);
-        $this->View->render('admin/edit_game', ['game' => $game]);
+        $this->View->render('admin/edit_game', ['games' => $game]);
     }
 
     // Löscht ein Spiel.

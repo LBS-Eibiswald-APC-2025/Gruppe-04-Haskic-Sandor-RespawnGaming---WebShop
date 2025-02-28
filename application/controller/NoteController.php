@@ -30,7 +30,7 @@ class NoteController extends Controller
     }
 
     /**
-     * This method controls what happens when you move to /game/create in your app.
+     * This method controls what happens when you move to /games/create in your app.
      * Creates a new note. This is usually the target of form submit actions.
      * POST request.
      */

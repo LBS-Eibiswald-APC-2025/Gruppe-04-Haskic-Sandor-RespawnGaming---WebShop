@@ -61,7 +61,7 @@
   gap: 15px;
 }
 .games-nav a {
-  color: #ccc;
+  color: #FFFFFF;
   text-decoration: none;
   font-family: "Playstation", sans-serif;
   font-size: 0.95rem;
@@ -132,7 +132,7 @@
   font-size: 0.9rem;
 }
 .games-list .game-item .game-right-panel .discount {
-  color: #0f0; /* knalliges Grün bei Rabatten */
+  color: #8ed529; /* knalliges Grün bei Rabatten */
   margin-bottom: 3px;
   font-weight: bold;
 }
@@ -141,7 +141,7 @@
   margin-bottom: 3px;
 }
 .games-list .game-item .game-right-panel .release-date {
-  color: #ccc;
+  color: #FFFFFF;
   font-size: 0.8rem;
 }
 
@@ -208,7 +208,7 @@
 /* ============================================
    RESPONSIVE
 ============================================ */
-@media (max-width: 992px) {
+@media (max-width: 1000px) {
   .steam-like-container {
     max-width: 100%;
     padding: 0 10px;

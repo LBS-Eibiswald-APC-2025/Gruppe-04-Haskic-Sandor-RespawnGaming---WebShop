@@ -26,7 +26,7 @@
             </div>
 
             <!-- Call-to-Action-Button -->
-            <a href="<?php echo Config::get('URL'); ?>games" class="info-btn">Jetzt Spiele entdecken</a>
+            <a href="<?php echo Config::get('URL'); ?>register" class="info-btn">Registrieren</a>
         </div>
     </div>
 </main>

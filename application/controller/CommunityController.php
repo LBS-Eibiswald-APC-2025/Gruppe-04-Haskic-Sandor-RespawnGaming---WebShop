@@ -58,11 +58,11 @@ class CommunityController extends Controller
 
             // Model-Aufruf
             if (CommunityModel::addPost($game_id, $user_id, $post_type, $title, $content)) {
-                // Erfolgreich hinzugefügt → zurück zur Spiele-Seite /community/game/<ID>
-                header("Location: /community/game/$game_id");
+                // Erfolgreich hinzugefügt → zurück zur Spiele-Seite /community/games/<ID>
+                header("Location: /community/games/$game_id");
             } else {
                 // Fehlerfall
-                header("Location: /community/game/$game_id?error=failed");
+                header("Location: /community/games/$game_id?error=failed");
             }
             exit();
         }

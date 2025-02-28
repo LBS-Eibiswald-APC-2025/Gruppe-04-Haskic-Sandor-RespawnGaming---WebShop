@@ -59,7 +59,7 @@ foreach ($cartItems as $item) {
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (str_contains($current_page, '/game')) ? 'active-link' : ''; ?>"
+                    <a class="nav-link <?php echo (str_contains($current_page, '/games')) ? 'active-link' : ''; ?>"
                        href="<?php echo Config::get('URL'); ?>game">Spiele</a>
                 </li>
                 <li class="nav-item">

@@ -4,49 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben.">
+    <list default="true" id="362a0c3f-ffde-4713-9b29-e5b9a30cdf4e" name="Changes" comment="Weitere SCSS Anpassungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/CommunityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/CommunityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/DashboardController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controller/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controller/NoteController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/_templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/_templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/cart/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/cart/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/view/error/404.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/error/404.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/game/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/games/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/view/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/index/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/view/info/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/view/info/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/admin/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/admin/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/admin/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/admin/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/agb/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/agb/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/agb/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/agb/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/cart/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/cart/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/datenschutz/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/datenschutz/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/datenschutz/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/datenschutz/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/fonts/DICE/DICE.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/DICE/DICE.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/fonts/Playstation/playstation.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/Playstation/Playstation.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/games/gameList.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/games/gameList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/games/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/games/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/games/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/games/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/google/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/google/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/google/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/google/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/impressum/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/impressum/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/impressum/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/impressum/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/index/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/index/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/info/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/info/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/info/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/info/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/login/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/login/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/login/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/login/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/main/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/main/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/register/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/register/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/scss/register/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/register/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/user/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/user/style.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/scss/user/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/public/scss/user/style.scss" afterDir="false" />
     </list>
     <list id="f138c906-b485-4f61-b065-2e502eda2772" name="Ignore" comment="ignore changes" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,7 +177,7 @@
       <workItem from="1740683128642" duration="7180000" />
       <workItem from="1740724654551" duration="110000" />
       <workItem from="1740725910489" duration="8684000" />
-      <workItem from="1740741818604" duration="7576000" />
+      <workItem from="1740741818604" duration="8413000" />
     </task>
     <task id="LOCAL-00001" summary="Test ide entfernt">
       <option name="closed" value="true" />
@@ -320,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740733882007</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Weitere SCSS Anpassungen">
+      <option name="closed" value="true" />
+      <created>1740754635808</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740754635808</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +341,8 @@
     <MESSAGE value="Anpassungen am Warenkorb mit Sweetalert vor Login" />
     <MESSAGE value="Kleine Anpassungen an mehreren index.php Files." />
     <MESSAGE value="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben." />
-    <option name="LAST_COMMIT_MESSAGE" value="Anpassung an der &quot;Passwort vergessen&quot; Seite und Impressum, Datenschutz und AGB.&#10;Sperrung der Seite durch FTP aufgehoben." />
+    <MESSAGE value="Weitere SCSS Anpassungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Weitere SCSS Anpassungen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
