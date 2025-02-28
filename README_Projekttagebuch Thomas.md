@@ -15,3 +15,4 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 14.02.2025|1.5.2|07:30-10:15|2h45min|LBS|Login Function und Registrierung funktioniern und daten werden in die Datenbank gespeichert.|---|[Github]
 25.02.2025|1.5.3|10:00-12:20|2h20min|LBS|E-Mail verifikation eingebaut (noch in arbeit), Login und Registrierung angepasst|---|[Github]
 27.02.2025|1.5.4|09:25-12:50|3h25min|LBS|Warenkorb Controller, Modul erstellt und bearbeitet, Mit Dino funktionen mal getestet|Community Page gab nur Error Page aus|[Github]
+28.02.2025|1.5.3|07:30-10:15|2h45min|LBS|Passwort Rücksetzung (noch in arbeit), Login und Warenkorb function angepasst|Bei mir gab es leider zum Schluss ein paar Probleme mit PHP Storm wegen der Lizenz|[Github]
