@@ -1,3 +1,5 @@
+<?php require APP . 'view/_templates/header.php'; ?>
+
 <div class="container">
     <h1>Password zurücksetzung</h1>
     <div class="box">
@@ -33,3 +35,5 @@
         die DIESE Seite generiert, abgeschlossen ist.
     </p>
 </div>
+
+<?php require APP . 'view/_templates/footer.php'; ?>

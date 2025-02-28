@@ -6,8 +6,20 @@
   border-radius: $border-radius;
   padding: 30px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
+  margin: 25px auto;
   width: 90%;
   max-width: 1000px;
   font-family: Playstation, sans-serif;
+
+  // Einheitlicher Abstand für alle Überschriften
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 50px;
+    margin-bottom: 5px;
+  }
+
+  // Absätze mit genügend Abstand und angenehmer Zeilenhöhe
+  p {
+    margin-bottom: 25px;
+    line-height: 1;
+  }
 }

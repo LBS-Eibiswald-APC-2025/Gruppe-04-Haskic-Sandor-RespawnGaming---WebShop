@@ -10,4 +10,16 @@
   width: 90%;
   max-width: 1000px;
   font-family: Playstation, sans-serif;
+
+  // Überschrift für das Impressum
+  h1 {
+    font-size: 2em;
+    margin-bottom: 70px;
+  }
+
+  // Absätze mit Abstand
+  p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
 }

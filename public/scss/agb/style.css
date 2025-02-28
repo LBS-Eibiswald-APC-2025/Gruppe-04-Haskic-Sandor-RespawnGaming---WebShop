@@ -29,10 +29,18 @@
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
+  margin: 25px auto;
   width: 90%;
   max-width: 1000px;
   font-family: Playstation, sans-serif;
 }
+.a-container h1, .a-container h2, .a-container h3, .a-container h4, .a-container h5, .a-container h6 {
+  margin-top: 50px;
+  margin-bottom: 5px;
+}
+.a-container p {
+  margin-bottom: 25px;
+  line-height: 1;
+}
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

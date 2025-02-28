@@ -133,6 +133,11 @@ require APP . 'view/_templates/feedback.php';
             Die Nutzung erfolgt auf alleiniges Risiko – der Service und alle damit verbundenen Produkte werden „wie besehen“ und „wie verfügbar“ bereitgestellt,
             ohne jegliche ausdrückliche oder stillschweigende Garantien.
         </p>
+
+        <!-- Hinweis zum Schulprojekt -->
+        <p class="schulprojekt-hinweis">
+            Hinweis: Diese Website ist ein Schulprojekt der LBS Eibiswald und stellt keine echten Dienstleistungen oder Produkte dar.
+        </p>
     </div>
 </main>
 

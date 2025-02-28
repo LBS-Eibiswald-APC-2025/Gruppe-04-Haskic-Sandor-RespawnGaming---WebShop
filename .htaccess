@@ -1,13 +1,13 @@
 SetEnvIf Request_URI "/image/" noauth=1
 SetEnvIf Request_URI "/css/fonts/" noauth=1
 
-AuthType Basic
-AuthName "Restricted Area"
-AuthUserFile "/usr/www/users/respaw/.htpasswd"
-Require valid-user
-Order allow,deny
-Allow from env=noauth
-Satisfy any
+# AuthType Basic
+# AuthName "Restricted Area"
+# AuthUserFile "/usr/www/users/respaw/.htpasswd"
+# Require valid-user
+# Order allow,deny
+# Allow from env=noauth
+# Satisfy any
 
 RewriteEngine on
 RewriteRule ^(.*) public/$1 [L]

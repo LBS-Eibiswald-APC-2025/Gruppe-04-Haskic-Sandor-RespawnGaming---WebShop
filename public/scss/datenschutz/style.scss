@@ -10,4 +10,27 @@
   width: 90%;
   max-width: 1000px;
   font-family: Playstation, sans-serif;
+
+  // Überschriften in der Datenschutzerklärung
+  h3 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  h5 {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+  }
+
+  // Einheitlicher Abstand und Standardtextgröße
+  p {
+    font-size: 1em;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  // Listen ebenfalls mit Abstand
+  ul {
+    margin-bottom: 70px;
+  }
 }

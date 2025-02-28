@@ -34,5 +34,13 @@
   max-width: 1000px;
   font-family: Playstation, sans-serif;
 }
+.i-container h1 {
+  font-size: 2em;
+  margin-bottom: 70px;
+}
+.i-container p {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */

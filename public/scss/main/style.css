@@ -310,6 +310,20 @@ footer p {
   font-size: 0.9em;
 }
 
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.footer-nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
+.footer-nav a:hover {
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+}
+
 /* Formular-Steuerung */
 .form-control {
   background: #2A475E !important;

@@ -17,6 +17,9 @@ $token = Csrf::makeToken();
         <input type="hidden" name="csrf_token" value="<?php echo $token; ?>">
     </form>
     <div class="text-center mt-3 link">
+        <a href="<?php echo Config::get('URL'); ?>login/requestPasswordReset">Passwort vergessen?</a>
+    </div>
+    <div class="text-center mt-3 link">
         <a href="<?php echo Config::get('URL'); ?>register/index">Noch keinen Account? Jetzt registrieren!</a>
     </div>
 </div>

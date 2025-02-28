@@ -34,5 +34,21 @@
   max-width: 1000px;
   font-family: Playstation, sans-serif;
 }
+.d-container h3 {
+  font-size: 1.8em;
+  margin-bottom: 25px;
+}
+.d-container h5 {
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+.d-container p {
+  font-size: 1em;
+  margin-bottom: 25px;
+  line-height: 1.5;
+}
+.d-container ul {
+  margin-bottom: 70px;
+}
 
-/*# sourceMappingURL=style.scss.map */
+/*# sourceMappingURL=style.css.map */
