@@ -25,6 +25,7 @@ foreach ($cartItems as $item) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/scss/google/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
@@ -60,7 +61,7 @@ foreach ($cartItems as $item) {
 
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/games')) ? 'active-link' : ''; ?>"
-                       href="<?php echo Config::get('URL'); ?>game">Spiele</a>
+                       href="<?php echo Config::get('URL'); ?>games">Spiele</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/community')) ? 'active-link' : ''; ?>"

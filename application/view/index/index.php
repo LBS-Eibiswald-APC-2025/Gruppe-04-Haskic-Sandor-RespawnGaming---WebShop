@@ -63,28 +63,28 @@ $featured_games = [
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg',
         'title' => 'Forza Horizon 5',
-        'description' => 'Erkunde eine offene Welt voller Rennen und Abenteuer.',
+        'description' => 'Bald verfügbar',
         'price' => '59,99€',
         'url' => Config::get('URL') . 'games'
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
         'title' => 'Death Stranding',
-        'description' => 'Erlebe epische Schlachten im Halo-Universum.',
+        'description' => 'Bald verfügbar',
         'price' => '39,99€',
         'url' => Config::get('URL') . 'games'
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg',
         'title' => 'GTA V',
-        'description' => 'Der Klassiker unter den Open-World-Spielen.',
+        'description' => 'Bald verfügbar',
         'price' => '29,99€',
         'url' => Config::get('URL') . 'games'
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg',
         'title' => 'Rocket League',
-        'description' => 'Autos und Fußball kombiniert zu einer actiongeladenen Erfahrung.',
+        'description' => 'Nicht mehr verfügbar',
         'price' => 'Gratis',
         'url' => Config::get('URL') . 'games'
     ]
@@ -100,7 +100,7 @@ $featured_games = [
                 <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
                 <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt Loslegen!</a>
                 <div class="search-bar mt-4">
-                    <form action="<?php echo Config::get('URL'); ?>game/search" method="post">
+                    <form action="<?php echo Config::get('URL'); ?>games/search" method="post">
                         <div class="input-group">
                             <label>
                                 <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
@@ -114,7 +114,7 @@ $featured_games = [
 
         <!-- Game Carousel -->
         <h2 class="text-center mb-4 custom-carousel-title">Angesagt und Beliebt</h2>
-        <section class="custom-carousel-container container my-5">
+        <section class="custom-carousel-container container">
             <!-- Vor-/Zurück-Buttons -->
             <button class="carousel-btn" id="carouselPrev">&lt;</button>
 
@@ -124,6 +124,10 @@ $featured_games = [
                 </div>
                 <div class="carousel-info">
                     <h3 id="carouselTitle"></h3>
+
+                    <!-- NEU: 2x2 Thumbnails -->
+                    <div class="carousel-thumbnails" id="carouselThumbnails"></div>
+
                     <p id="carouselDescription"></p>
                     <span id="carouselPrice"></span>
                 </div>
@@ -131,7 +135,12 @@ $featured_games = [
 
             <button class="carousel-btn" id="carouselNext">&gt;</button>
         </section>
+
+        <!-- Indikatoren (Punkte) -->
         <div class="carousel-indicators-custom" id="carouselIndicators"></div>
+
+        <!-- NEU: Zusätzlicher Status (z. B. "1 / 4") -->
+        <div class="carousel-status" id="carouselStatus"></div>
 
         <!-- Übergabe der PHP-Array-Daten an dein JS-Karussell -->
         <script>
@@ -152,9 +161,7 @@ $featured_games = [
                                     <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
 
                                     <!-- Wenn url nicht gesetzt ist, verlinken wir zum Haupt-Games-Bereich -->
-                                    <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">
-                                        Mehr erfahren
-                                    </a>
+                                    <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">Mehr erfahren</a>
                                 </div>
                             </div>
                         </div>
@@ -167,6 +174,6 @@ $featured_games = [
     </div>
 </main>
 
-<script src="../../../public/js/main/carousel.js"></script>
+<script src="/public/js/main/carousel.js"></script>
 
 <?php require APP . 'view/_templates/footer.php'; ?>

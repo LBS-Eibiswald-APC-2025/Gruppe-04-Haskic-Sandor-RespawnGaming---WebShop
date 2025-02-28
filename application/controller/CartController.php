@@ -36,7 +36,7 @@ class CartController extends Controller
         $game_id = (int)$_POST['game_id'];
 
         // Vorab prüfen, ob das Spiel existiert.
-        if (!GameModel::getGameById($game_id)) {
+        if (!GamesModel::getGameById($game_id)) {
             Session::add('feedback_negative', 'Spiel nicht gefunden.');
             header('Location: ' . $_SERVER['HTTP_REFERER']);
             exit();

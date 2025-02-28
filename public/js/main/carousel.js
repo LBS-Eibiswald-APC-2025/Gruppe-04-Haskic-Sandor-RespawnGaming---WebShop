@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const featuredGames = window.featuredGames || [];
+    const featuredGames       = window.featuredGames || [];
 
     // Selektoren
     const slideEl            = document.getElementById('carouselSlide');
@@ -10,11 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const carouselPrev       = document.getElementById('carouselPrev');
     const carouselNext       = document.getElementById('carouselNext');
     const carouselIndicators = document.getElementById('carouselIndicators');
+    const carouselThumbnails = document.getElementById('carouselThumbnails');
 
-    let currentIndex = 0;
+    let currentIndex       = 0;
     let autoSwitchInterval;
+    let isAnimating        = false; // verhindert parallele Animationen
 
-    // 1) Indikatoren erzeugen
+    // Erzeugt die Indikatoren (Punkte)
     function createIndicators() {
         carouselIndicators.innerHTML = '';
         featuredGames.forEach((game, index) => {
@@ -23,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (index === currentIndex) dot.classList.add('active');
 
             dot.addEventListener('click', (e) => {
-                // Verhindern, dass der Klick auf den Slider durchgeht
                 e.stopPropagation();
+                if (isAnimating || index === currentIndex) return;
                 const direction = (index > currentIndex) ? 'right' : 'left';
                 goToSlide(index, direction);
                 startAutoSwitch();
@@ -33,25 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2) Carousel aktualisieren
+    // Aktualisiert das Carousel (Bild, Titel, Beschreibung, Preis)
     function updateCarousel() {
         const game = featuredGames[currentIndex];
         if (!game) return;
 
-        // Bild & Infos setzen
         carouselImg.src = game.image;
         carouselImg.alt = game.title;
         carouselTitle.textContent = game.title;
-        carouselDesc.textContent = game.description;
+        carouselDesc.textContent  = game.description;
         carouselPrice.textContent = game.price;
 
-        // Indikatoren aktualisieren
+        // Aktualisiere die aktiven Indikatoren
         const dots = carouselIndicators.querySelectorAll('.indicator');
         dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === currentIndex);
         });
 
-        // KLICK-LOGIK: Falls eine URL existiert, bei Klick auf die Slide weiterleiten
+        // Klick-Logik: Bei vorhandener URL, bei Klick auf das Slide weiterleiten
         if (game.url) {
             slideEl.style.cursor = 'pointer';
             slideEl.onclick = () => {
@@ -61,16 +62,33 @@ document.addEventListener('DOMContentLoaded', () => {
             slideEl.style.cursor = 'default';
             slideEl.onclick = null;
         }
+
+        // Aktualisiere die 2×2 Thumbnails (hier: 4× das Hauptbild als Beispiel)
+        updateThumbnails(game);
     }
 
-    // 3) Weiche Animation
+    // Aktualisiert die Thumbnails (2×2 Grid)
+    function updateThumbnails(game) {
+        carouselThumbnails.innerHTML = '';
+        const thumbUrls = [game.image, game.image, game.image, game.image];
+        thumbUrls.forEach((url) => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = game.title + ' Screenshot';
+            carouselThumbnails.appendChild(img);
+        });
+    }
+
+    // Wechselt zu einem neuen Slide – mit Height-Fix, um Flackern zu vermeiden
     function goToSlide(newIndex, direction = 'right') {
-        slideEl.classList.remove(
-            'slide-in-right',
-            'slide-out-left',
-            'slide-in-left',
-            'slide-out-right'
-        );
+        if (isAnimating) return;
+        isAnimating = true;
+
+        // Fixiere die momentane Höhe des Slides, um Layout-Verschiebungen zu vermeiden
+        const currentHeight = slideEl.offsetHeight;
+        slideEl.style.height = currentHeight + 'px';
+
+        slideEl.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
 
         if (direction === 'right') {
             slideEl.classList.add('slide-out-left');
@@ -79,6 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCarousel();
                 slideEl.classList.remove('slide-out-left');
                 slideEl.classList.add('slide-in-right');
+                setTimeout(() => {
+                    slideEl.classList.remove('slide-in-right');
+                    slideEl.style.height = ''; // Höhe wieder freigeben
+                    isAnimating = false;
+                }, 700);
             }, 700);
         } else {
             slideEl.classList.add('slide-out-right');
@@ -87,11 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCarousel();
                 slideEl.classList.remove('slide-out-right');
                 slideEl.classList.add('slide-in-left');
+                setTimeout(() => {
+                    slideEl.classList.remove('slide-in-left');
+                    slideEl.style.height = '';
+                    isAnimating = false;
+                }, 700);
             }, 700);
         }
     }
 
-    // 4) Automatischer Wechsel
+    // Automatischer Wechsel alle 7 Sekunden
     function startAutoSwitch() {
         if (autoSwitchInterval) clearInterval(autoSwitchInterval);
         autoSwitchInterval = setInterval(() => {
@@ -99,10 +127,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 7000);
     }
 
-    // 5) Button-Events
+    // Pfeil-Buttons
     carouselPrev.addEventListener('click', (e) => {
-        // Verhindern, dass Klick aufs Slide-Element durchgeht
         e.stopPropagation();
+        if (isAnimating) return;
         const newIndex = (currentIndex - 1 + featuredGames.length) % featuredGames.length;
         goToSlide(newIndex, 'left');
         startAutoSwitch();
@@ -110,12 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carouselNext.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (isAnimating) return;
         const newIndex = (currentIndex + 1) % featuredGames.length;
         goToSlide(newIndex, 'right');
         startAutoSwitch();
     });
 
-    // 6) Init
+    // Initialisierung
     if (featuredGames.length > 0) {
         createIndicators();
         updateCarousel();

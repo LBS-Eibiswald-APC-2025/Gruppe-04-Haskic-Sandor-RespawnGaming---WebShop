@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* ===========================================
-              SCSS Integrations
+   SCSS Integrations
    =========================================== */
 /* scss */
 /* ===========================
@@ -22,7 +22,7 @@
 /* Button- und Input-Parameter */
 /* Hero-Section-Größen */
 /* Allgemeine Sektionseinstellungen */
-/* GameModel Card */
+/* GamesModel Card */
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
@@ -170,31 +170,48 @@
   transform: scale(1.05);
 }
 
-/* Carousel-Container mit Pfeilen und Slide */
+/* Carousel-Container */
 .custom-carousel-title {
   font-family: "Ghost", sans-serif;
   font-size: 250%;
   color: #FFFFFF;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 120px;
 }
 
+/* Container um Slide, Pfeile und Info-Bereich */
 .custom-carousel-container {
+  position: relative; /* Wichtig für Pfeile mit absolute Position */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  color: #fff;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  /* Linker Pfeil */
+  /* Rechter Pfeil */
 }
 .custom-carousel-container .carousel-btn {
   background: none;
   border: none;
-  color: #fff;
-  font-size: 2rem;
+  color: #FFFFFF;
+  font-size: 3rem;
   cursor: pointer;
+  z-index: 5; /* Über dem Slide liegen */
+  transition: color 0.3s ease;
+  /* Pfeile über dem Slide platzieren */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .custom-carousel-container .carousel-btn:hover {
-  color: #4a90d9;
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+}
+.custom-carousel-container #carouselPrev {
+  left: 0;
+}
+.custom-carousel-container #carouselNext {
+  right: 0;
 }
 .custom-carousel-container .carousel-slide {
   display: flex;
@@ -221,29 +238,56 @@
   flex: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   font-family: "Playstation", sans-serif;
   font-size: 120%;
+  /*
+     NEU: 2×2 Grid für Thumbnails
+     --------------------------------
+     - Werden per JS gefüllt
+  */
 }
 .custom-carousel-container .carousel-slide .carousel-info h3 {
   font-family: "Ghost", sans-serif;
   font-size: 150%;
 }
-.custom-carousel-container .carousel-slide .carousel-info p,
+.custom-carousel-container .carousel-slide .carousel-info p {
+  font-size: 100%;
+  margin: 0 !important;
+}
 .custom-carousel-container .carousel-slide .carousel-info span {
-  margin: 0 0 10px;
+  margin: 0;
+  font-size: 90%;
+}
+.custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails img:hover {
+  transform: scale(1.03);
 }
 
+/* Indikatoren (kleine Punkte) */
 .carousel-indicators-custom {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 .carousel-indicators-custom .indicator {
   width: 12px;
   height: 12px;
-  background-color: #FFFFFF;
+  background-color: #666666;
   border-radius: 15%;
   margin: 0 7px;
   cursor: pointer;
@@ -255,6 +299,77 @@
 }
 .carousel-indicators-custom .indicator:hover {
   background-color: #FFFFFF;
+}
+
+/*
+   NEU: Status-Anzeige unter den Punkten
+   Beispiel: "1 / 4"
+*/
+.carousel-status {
+  text-align: center;
+  color: #FFFFFF;
+  font-family: "Playstation", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+/* Animationsklassen für Slide-Wechsel */
+.slide-in-right {
+  animation: slideInRight 0.7s forwards;
+}
+
+.slide-out-left {
+  animation: slideOutLeft 0.7s forwards;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.7s forwards;
+}
+
+.slide-out-right {
+  animation: slideOutRight 0.7s forwards;
+}
+
+/* Keyframes für Slide-Animationen */
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -108,6 +108,10 @@ main {
   }
 }
 
+.container {
+  max-width: 1500px !important;
+}
+
 // PHP Error-Feedback
 .php-error {
   font-family: 'Playstation', sans-serif;

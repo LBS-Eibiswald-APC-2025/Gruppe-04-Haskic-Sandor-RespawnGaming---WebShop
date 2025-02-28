@@ -41,7 +41,7 @@ class CartModel
     /**
      * Holt alle Warenkorbeinträge mitsamt Spieldetails.
      * Hierzu werden die Spiel-IDs aus der Session gelesen und
-     * die Details per GameModel::getGameById geholt.
+     * die Details per GamesModel::getGameById geholt.
      *
      * @return array Enthält Objekte mit Spielinformationen und der Menge.
      */
@@ -54,7 +54,7 @@ class CartModel
 
         // Über jeden Eintrag im Session-Warenkorb iterieren.
         foreach (Session::get('cart') as $game_id => $quantity) {
-            $game = GameModel::getGameById($game_id);
+            $game = GamesModel::getGameById($game_id);
             if ($game) {
                 // Menge als Eigenschaft hinzufügen, sodass die View sie nutzen kann.
                 $game->quantity = $quantity;

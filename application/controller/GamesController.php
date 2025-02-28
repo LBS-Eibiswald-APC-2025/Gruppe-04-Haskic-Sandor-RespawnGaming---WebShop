@@ -2,7 +2,7 @@
 
 use JetBrains\PhpStorm\NoReturn;
 
-class GameController extends Controller
+class GamesController extends Controller
 {
     public function __construct()
     {
@@ -12,14 +12,14 @@ class GameController extends Controller
     // Zeigt alle Spiele an.
     public function index(): void
     {
-        $games = GameModel::getAllGames();
+        $games = GamesModel::getAllGames();
         $this->View->render('games/index', ['games' => $games]);
     }
 
     // Suche nach Spielen.
     public function search(): void
     {
-        $games = GameModel::searchGames($_POST['search']);
+        $games = GamesModel::searchGames($_POST['search']);
         $this->View->render('games/index', ['games' => $games]);
     }
 
@@ -33,7 +33,7 @@ class GameController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            GameModel::addGame(
+            GamesModel::addGame(
                 $_POST['title'],
                 $_POST['description'],
                 $_POST['image'],
@@ -59,7 +59,7 @@ class GameController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            GameModel::updateGame(
+            GamesModel::updateGame(
                 $game_id,
                 $_POST['title'],
                 $_POST['description'],
@@ -73,7 +73,7 @@ class GameController extends Controller
             header('Location: /admin/games');
             exit();
         }
-        $game = GameModel::getGameById($game_id);
+        $game = GamesModel::getGameById($game_id);
         $this->View->render('admin/edit_game', ['games' => $game]);
     }
 
@@ -87,7 +87,7 @@ class GameController extends Controller
             exit();
         }
 
-        GameModel::deleteGame($game_id);
+        GamesModel::deleteGame($game_id);
         header('Location: /admin/games');
         exit();
     }
