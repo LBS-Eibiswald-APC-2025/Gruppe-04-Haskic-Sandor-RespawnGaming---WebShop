@@ -371,5 +371,47 @@
     transform: translateX(100%);
   }
 }
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5em;
+  }
+  .hero-section p {
+    font-size: 1.2em;
+  }
+  .hero-section .search-bar .input-group input.form-control {
+    font-size: 1em;
+  }
+  .hero-section .search-bar .input-group button.btn-primary {
+    font-size: 1em;
+  }
+  .game-card .card-body .card-title {
+    font-size: 1.2em;
+  }
+  .game-card .card-body .card-text {
+    font-size: 100%;
+  }
+  .game-card .card-body .btn.btn-outline-primary {
+    font-size: 0.8em;
+  }
+  .custom-carousel-title {
+    font-size: 200%;
+  }
+  .custom-carousel-container .carousel-slide .carousel-info h3 {
+    font-size: 130%;
+  }
+  .custom-carousel-container .carousel-slide .carousel-info p {
+    font-size: 90%;
+  }
+  .custom-carousel-container .carousel-slide .carousel-info span {
+    font-size: 80%;
+  }
+  .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails img {
+    width: 100%;
+    height: auto;
+  }
+  .carousel-status {
+    font-size: 1rem;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

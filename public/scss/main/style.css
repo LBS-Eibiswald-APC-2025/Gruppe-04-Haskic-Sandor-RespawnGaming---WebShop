@@ -469,9 +469,6 @@ footer p {
   animation: slideInLeft 0.7s forwards ease-in-out;
 }
 
-/* ===========================================
-   Responsives Design (kleinere Bildschirme)
-   =========================================== */
 @media (max-width: 768px) {
   .inner {
     width: 95%;
