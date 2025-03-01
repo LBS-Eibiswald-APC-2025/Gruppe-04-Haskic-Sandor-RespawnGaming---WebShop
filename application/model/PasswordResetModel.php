@@ -14,8 +14,9 @@ class PasswordResetModel
      * @param $captcha string Captcha string
      *
      * @return bool success status
+     * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function requestPasswordReset($user_name_or_email, $captcha)
+    public static function requestPasswordReset(string $user_name_or_email, string $captcha): bool
     {
         if (!CaptchaModel::checkCaptcha($captcha)) {
             Session::add('feedback_negative', Text::get('FEEDBACK_CAPTCHA_WRONG'));
@@ -64,7 +65,7 @@ class PasswordResetModel
      *
      * @return bool success status
      */
-    public static function setPasswordResetDatabaseToken($user_name, $user_password_reset_hash, $temporary_timestamp)
+    public static function setPasswordResetDatabaseToken(string $user_name, string $user_password_reset_hash, int $temporary_timestamp): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -95,8 +96,9 @@ class PasswordResetModel
      * @param string $user_email user email
      *
      * @return bool success status
+     * @throws \PHPMailer\PHPMailer\Exception
      */
-    public static function sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)
+    public static function sendPasswordResetMail(string $user_name, string $user_password_reset_hash, string $user_email): bool
     {
         // create email body
         $body = Config::get('EMAIL_PASSWORD_RESET_CONTENT') . ' ' . Config::get('URL') .
@@ -123,7 +125,7 @@ class PasswordResetModel
      * @param string $verification_code Hash token
      * @return bool Success status
      */
-    public static function verifyPasswordReset($user_name, $verification_code)
+    public static function verifyPasswordReset(string $user_name, string $verification_code): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -173,11 +175,11 @@ class PasswordResetModel
      *
      * @return bool
      */
-    public static function saveNewUserPassword($user_name, $user_password_hash, $user_password_reset_hash)
+    public static function saveNewUserPassword(string $user_name, string $user_password_hash, string $user_password_reset_hash): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "UPDATE users SET user_password_hash = :user_password_hash, user_password_reset_hash = NULL,
+        $sql = "UPDATE users SET password_hash = :user_password_hash, user_password_reset_hash = NULL,
                        user_password_reset_timestamp = NULL
                  WHERE user_name = :user_name AND user_password_reset_hash = :user_password_reset_hash
                        AND user_provider_type = :user_provider_type LIMIT 1";
@@ -188,7 +190,7 @@ class PasswordResetModel
         ));
 
         // if one result exists, return true, else false. Could be written even shorter btw.
-        return ($query->rowCount() == 1 ? true : false);
+        return $query->rowCount() == 1;
     }
 
     /**
@@ -204,7 +206,7 @@ class PasswordResetModel
      *
      * @return bool success state of the password reset
      */
-    public static function setNewPassword($user_name, $user_password_reset_hash, $user_password_new, $user_password_repeat)
+    public static function setNewPassword(string $user_name, string $user_password_reset_hash, string $user_password_new, string $user_password_repeat): bool
     {
         // validate the password
         if (!self::validateResetPassword($user_name, $user_password_reset_hash, $user_password_new, $user_password_repeat)) {
@@ -234,7 +236,7 @@ class PasswordResetModel
      *
      * @return bool
      */
-    public static function validateResetPassword($user_name, $user_password_reset_hash, $user_password_new, $user_password_repeat)
+    public static function validateResetPassword($user_name, $user_password_reset_hash, $user_password_new, $user_password_repeat): bool
     {
         if (empty($user_name)) {
             Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_FIELD_EMPTY'));
@@ -265,11 +267,11 @@ class PasswordResetModel
      *
      * @return bool
      */
-    public static function saveChangedPassword($user_name, $user_password_hash)
+    public static function saveChangedPassword(string $user_name, string $user_password_hash): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "UPDATE users SET user_password_hash = :user_password_hash
+        $sql = "UPDATE users SET password_hash = :user_password_hash
                  WHERE user_name = :user_name
                  AND user_provider_type = :user_provider_type LIMIT 1";
         $query = $database->prepare($sql);
@@ -279,7 +281,7 @@ class PasswordResetModel
         ));
 
         // if one result exists, return true, else false. Could be written even shorter btw.
-        return ($query->rowCount() == 1 ? true : false);
+        return $query->rowCount() == 1;
     }
 
 
@@ -293,7 +295,7 @@ class PasswordResetModel
      *
      * @return bool
      */
-    public static function changePassword($user_name, $user_password_current, $user_password_new, $user_password_repeat)
+    public static function changePassword(string $user_name, string $user_password_current, string $user_password_new, string $user_password_repeat): bool
     {
         // validate the passwords
         if (!self::validatePasswordChange($user_name, $user_password_current, $user_password_new, $user_password_repeat)) {
@@ -324,11 +326,11 @@ class PasswordResetModel
      *
      * @return bool
      */
-    public static function validatePasswordChange($user_name, $user_password_current, $user_password_new, $user_password_repeat)
+    public static function validatePasswordChange(string $user_name, string $user_password_current, string $user_password_new, string $user_password_repeat): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT user_password_hash, user_failed_logins FROM users WHERE user_name = :user_name LIMIT 1;";
+        $sql = "SELECT password_hash, user_failed_logins FROM users WHERE user_name = :user_name LIMIT 1;";
         $query = $database->prepare($sql);
         $query->execute(array(
             ':user_name' => $user_name
@@ -362,4 +364,21 @@ class PasswordResetModel
 
         return true;
     }
+
+    public static function updatePassword($user_id, string $hashedPassword): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "UPDATE users SET password_hash = :user_password_hash WHERE user_id = :user_id LIMIT 1";
+        $query = $database->prepare($sql);
+        $query->execute([
+            ':user_password_hash' => $hashedPassword,
+            ':user_id' => $user_id
+        ]);
+        return ($query->rowCount() == 1);
+    }
+
+    public static function clearResetToken($user_id)
+    {
+    }
+
 }

@@ -136,10 +136,10 @@ class RegistrationModel
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <style>
                             @font-face {
-                                font-family: "DICE";
-                                src: url("https://respawngaming.at/scss/fonts/DICE/DICE.woff2") format("woff2");                            
+                                font-family: "Ghost";
+                                src: url("https://respawngaming.at/fonts/Ghost/Ghost.woff2") format("woff2");                            
                             }
-                            body { font-family: "DICE", sans-serif; margin: 0; padding: 0; background-color: #f2f4f8; }
+                            body { font-family: "Ghost", sans-serif; margin: 0; padding: 0; background-color: #f2f4f8; }
                             .container { max-width: 600px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
                             .header { background: linear-gradient(135deg, #1e3c72, #2a5298); padding: 20px; text-align: center; }
                             .header img { max-width: 150px; margin-bottom: 10px; border-radius: 50%; }

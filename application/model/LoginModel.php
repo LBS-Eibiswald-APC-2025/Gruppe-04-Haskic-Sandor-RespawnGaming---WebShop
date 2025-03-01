@@ -17,7 +17,10 @@ class LoginModel
                     role,
                     user_remember_me_token, 
                     user_failed_logins, 
-                    user_last_failed_login
+                    user_last_failed_login,
+                    created_at,
+                    location,
+                    about
                 FROM users
                 WHERE (user_name = :user_name OR email = :user_name)
                 LIMIT 1";
@@ -41,9 +44,6 @@ class LoginModel
             return false;
         }
 
-        // Statt Zahlenwert (7) prüfen wir hier, ob user_role == 'Admin'
-        $account_type = ($user->role === 'Admin') ? 'Admin' : 'User';
-
         // Session setzen
         Session::init();
         Session::set('user_logged_in', true);
@@ -55,7 +55,11 @@ class LoginModel
         Session::set('user_data', [
             'user_id'           => $user->user_id,
             'user_name'         => $user->user_name,
-            'user_account_type' => $account_type
+            'user_account_type' => $user->role,
+            'user_email'        => $user->email,
+            'user_location'     => $user->location,
+            'user_member_since' => $user->created_at,
+            'about'             => $user->about
         ]);
 
         // concurrency-check

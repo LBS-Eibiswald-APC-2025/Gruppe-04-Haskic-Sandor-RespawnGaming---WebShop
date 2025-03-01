@@ -35,7 +35,7 @@ class Application
             // load this file and create this controller
             // example: if controller would be "car", then this line would translate into: $this->car = new car();
             require Config::get('PATH_CONTROLLER') . $this->controller_name . '.php';
-            $this->controller = new $this->controller_name();
+            $this->controller = new $this->controller_name($this->parameters);
 
             // check are controller and method existing and callable?
             if (is_callable(array($this->controller, $this->action_name))) {

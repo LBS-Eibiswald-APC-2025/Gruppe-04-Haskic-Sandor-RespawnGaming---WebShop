@@ -4,9 +4,9 @@ use JetBrains\PhpStorm\NoReturn;
 
 class GamesController extends Controller
 {
-    public function __construct()
+    public function __construct($parameters = [])
     {
-        parent::__construct();
+        parent::__construct($parameters);
     }
 
     // Zeigt alle Spiele an.
@@ -14,6 +14,19 @@ class GamesController extends Controller
     {
         $games = GamesModel::getAllGames();
         $this->View->render('games/index', ['games' => $games]);
+    }
+
+    public function detail(): void {
+        $game_id = $this->parameters[0];
+
+        if (empty($game_id)) {
+            Session::add('feedback_negative', 'Game not found');
+            Redirect::to('games/index');
+            exit;
+        }
+
+        $game = GamesModel::getGameById($game_id);
+        $this->View->render('games/detail', ['game' => $game]);
     }
 
     // Suche nach Spielen.
@@ -90,5 +103,21 @@ class GamesController extends Controller
         GamesModel::deleteGame($game_id);
         header('Location: /admin/games');
         exit();
+    }
+
+    public function getGameById($game_id)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        // Beispiel: Hol dir alle Daten zum Spiel, inkl. Video-URL, Publisher, Preis usw.
+        $sql = "SELECT id, title, price, cover_image, trailer_url, description, developer, publisher,
+                       release_date, screenshots, is_free
+                FROM games
+                WHERE id = :id
+                LIMIT 1";
+
+        $query = $database->prepare($sql);
+        $query->execute([':id' => $game_id]);
+        return $query->fetch(); // gibt stdClass-Objekt zurück oder false
     }
 }
