@@ -27,7 +27,7 @@ $user = Session::get('user_data');
     <!-- Informationsbereich, der unterhalb des Headers positioniert ist -->
     <div class="profile-info">
         <h2 class="username"><?= $user['user_name']; ?></h2>
-        <p class="location"><?= !empty($user['user_location']) ? 'Location: ' . $user['user_location'] : 'Location: N/A'; ?></p>
+        <p class="location"><?= !empty($user['user_location']) ? 'Standort: ' . $user['user_location'] : 'Location: N/A'; ?></p>
         <p class="member-since">Member since: <?= date('d.m.Y', strtotime($user['user_member_since'])) ?? ''; ?></p>
 
         <hr>
