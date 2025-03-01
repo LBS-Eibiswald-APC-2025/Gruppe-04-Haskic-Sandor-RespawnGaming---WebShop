@@ -22,20 +22,34 @@ $user = Session::get('user_data');
 
     <span class="icon-edit"><i class="fa-solid fa-pencil"></i></span>
 
+    <span class="icon-library"><i class="fa-solid fa-bookmark"></i></span>
 
     <!-- Informationsbereich, der unterhalb des Headers positioniert ist -->
     <div class="profile-info">
         <h2 class="username"><?= $user['user_name']; ?></h2>
-        <p class="status">Status: <?= $user['status'] ?? 'Offline'; ?></p>
-        <p class="location"><?= !empty($user['location']) ? 'Location: ' . $user['location'] : ''; ?></p>
-        <p class="member-since">Member since: <?= $user['member_since'] ?? 'N/A'; ?></p>
+        <p class="location"><?= !empty($user['user_location']) ? 'Location: ' . $user['user_location'] : 'Location: N/A'; ?></p>
+        <p class="member-since">Member since: <?= date('d.m.Y', strtotime($user['user_member_since'])) ?? ''; ?></p>
 
-        <?php if (!empty($user['about'])): ?>
-            <div class="about">
-                <p><?= $user['about']; ?></p>
+        <hr>
+
+        <div class="about">
+            <p><?= $user['about'] ?? ''; ?></p>
+        </div>
+
+        <hr>
+
+        <div class="library" id="library">
+            <h3>Meine Bibliothek</h3>
+            <div class="games">
+                <p>Comming soon</p>
             </div>
-        <?php endif; ?>
+        </div>
+
+        <hr>
+
     </div>
 </div>
+
+<script src="/public/js/user/index.js"></script>
 
 <?php require APP . 'view/_templates/footer.php'; ?>

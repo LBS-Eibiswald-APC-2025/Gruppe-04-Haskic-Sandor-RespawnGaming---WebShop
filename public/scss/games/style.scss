@@ -11,7 +11,8 @@
 }
 
 // Container für "Steam-like"-Liste, max. 1200px
-.steam-like-container {
+.steam-like-container,
+.game-detail-wrapper {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -120,41 +121,15 @@
       font-size: 0.9rem;
 
       .discount {
-        color: $bg_green; /* knalliges Grün bei Rabatten */
+        color: $bg_green;
         margin-bottom: 3px;
         font-weight: bold;
       }
 
-      .price {
-        color: $white;
-        margin-bottom: 3px;
-      }
-
+      .price,
       .release-date {
         color: $white;
-        font-size: 0.8rem;
       }
-    }
-  }
-}
-
-.games-list-footer {
-  padding: 10px 15px;
-  background: rgba(0, 0, 0, 0.2);
-
-  .more-link {
-    color: $white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.2s;
-
-    &:hover {
-      color: $bg_glow_blue;
-      text-shadow: 0 0 3px $bg_glow_blue;
-    }
-
-    span {
-      font-weight: bold;
     }
   }
 }
@@ -162,52 +137,174 @@
 /* ============================================
    DETAIL-PANEL (Rechte Spalte)
 ============================================ */
-.detail-panel {
+.detail-panel,
+.game-detail-wrapper {
   background: $bg_blue2;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.detail-panel {
   border-left: 1px solid rgba($white, 0.1);
   min-height: 80vh;
-  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
 
-  .detail-header {
-    font-size: 1.2rem;
-    font-family: 'Ghost', sans-serif;
-    margin-bottom: 10px;
-  }
+/* ============================================
+   GAME DETAIL PAGE
+============================================ */
+.breadcrumb {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
 
-  .detail-screenshots {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  a {
+    color: $bg_glow_blue;
+    text-decoration: none;
+    transition: color 0.2s;
 
-    img {
-      width: calc(50% - 5px);
-      border-radius: 3px;
-      object-fit: cover;
-      max-height: 120px;
-    }
-  }
-
-  .detail-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-
-    .tag {
-      background: rgba($white, 0.1);
-      border-radius: 3px;
-      padding: 3px 6px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: $white;
+    &:hover {
+      color: lighten($bg_glow_blue, 20%);
     }
   }
 }
 
 /* ============================================
-   RESPONSIVE
+   OBERER BEREICH (Cover, Trailer & Infos)
+============================================ */
+.top-section {
+  display: flex;
+  gap: 20px;
+
+  .left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .cover-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .trailer-container {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 5px;
+      overflow: hidden;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .screenshot-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+
+      img {
+        width: calc(33.33% - 5px);
+        max-height: 120px;
+        object-fit: cover;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .right-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+/* ============================================
+   PREIS & KAUF-SECTION
+============================================ */
+.buy-section,
+.play-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background: rgba($white, 0.05);
+  border-radius: 5px;
+
+  .price-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.1s;
+
+    &.cta-buy {
+      background: $bg_green;
+      color: $white;
+
+      &:hover {
+        background: lighten($bg_green, 10%);
+        transform: scale(1.05);
+      }
+    }
+
+    &.cta-free {
+      background: $bg_glow_blue;
+      color: $white;
+
+      &:hover {
+        background: lighten($bg_glow_blue, 10%);
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+/* ============================================
+   WEITERE INFOS (Beschreibung)
+============================================ */
+.bottom-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba($white, 0.05);
+  border-radius: 5px;
+
+  h2 {
+    font-size: 1.5rem;
+    font-family: 'Ghost', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #ccc;
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
 ============================================ */
 @media (max-width: 1000px) {
   .steam-like-container {
@@ -216,7 +313,18 @@
   }
 
   .games-list,
-  .detail-panel {
+  .detail-panel,
+  .top-section {
+    flex-direction: column;
+  }
+
+  .screenshot-gallery img {
+    width: calc(50% - 5px);
+  }
+}
+
+@media (max-width: 600px) {
+  .screenshot-gallery img {
     width: 100%;
   }
 }

@@ -65,14 +65,14 @@ $featured_games = [
         'title' => 'Forza Horizon 5',
         'description' => 'Bald verfügbar',
         'price' => '59,99€',
-        'url' => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games/detail/1'
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
         'title' => 'Death Stranding',
         'description' => 'Bald verfügbar',
         'price' => '39,99€',
-        'url' => Config::get('URL') . 'games'
+        'url' => Config::get('URL') . 'games/detail/2'
     ],
     (object)[
         'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg',

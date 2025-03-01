@@ -9,8 +9,8 @@
     margin: 50px auto;
     width: 90%;
     max-width: 1000px;
-    overflow: hidden; // Damit überstehende Inhalte sauber beschnitten werden
 
+    .icon-library,
     .icon-edit {
         display: inline-block;
         position: relative;
@@ -32,6 +32,7 @@
         width: 100%;
         height: 300px; // Höhe des Coverbildes
         background-color: lighten($background_color_dark, 10%);
+        border-radius: $border-radius;
 
         // Coverbild füllt den gesamten Header-Bereich aus
         .cover {
@@ -39,6 +40,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            border-radius: $border-radius;
         }
 
         // Avatar, der über das Cover-Bild hinausragt
@@ -46,8 +48,8 @@
             position: absolute;
             bottom: -60px; // Ragt 60px unterhalb des Headers heraus
             left: 30px; // Linksbündig positioniert
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border: 4px solid $background_color_dark; // Rahmen passt sich der Hintergrundfarbe an
             border-radius: 50%;
             overflow: hidden; // Rundes Zuschneiden
@@ -68,7 +70,7 @@
 
         // Benutzername in größerer Schrift
         .username {
-            font-size: 28px;
+            font-size: 68px;
             margin: 0 0 10px 0;
         }
 
@@ -76,14 +78,25 @@
         .status,
         .location,
         .member-since {
-            font-size: 14px;
             margin: 5px 0;
+            font-size: 20px;
         }
 
         // Bereich für eine eventuelle Profilbeschreibung
         .about {
             margin-top: 15px;
-            font-size: 16px;
+            font-size: 12px;
         }
     }
+}
+
+.container-ue {
+    background-color: $background_color_dark;
+    color: $white;
+    border-radius: $border-radius;
+    padding: 30px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+    margin: 50px auto;
+    width: 90%;
+    max-width: 500px;
 }
