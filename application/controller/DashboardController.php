@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This controller shows an area that's only visible for logged in users (because of Auth::checkAuthentication(); in line 16)
+ * This controller shows an area that's only visible for logged-in users (because of Auth::checkAuthentication(); in line 16)
  */
 class DashboardController extends Controller
 {
@@ -19,7 +19,7 @@ class DashboardController extends Controller
     /**
      * This method controls what happens when you move to /games/index in your app.
      */
-    public function index()
+    public function index(): void
     {
         $this->View->render('games/index');
     }

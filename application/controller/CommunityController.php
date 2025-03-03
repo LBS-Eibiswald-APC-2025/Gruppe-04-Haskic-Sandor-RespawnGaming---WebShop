@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 class CommunityController extends Controller
 {
     public function __construct()
@@ -71,7 +73,7 @@ class CommunityController extends Controller
     /**
      * Löscht einen Community-Post (nur für den Besitzer/Moderator/Admin)
      */
-    public function deletePost(int $post_id): void
+    #[NoReturn] public function deletePost(int $post_id): void
     {
         session_start();
         if (!isset($_SESSION['user_id'])) {

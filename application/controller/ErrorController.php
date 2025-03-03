@@ -16,11 +16,11 @@ class ErrorController extends Controller
     }
 
     /**
-     * Use this when something is not found. Gives back a proper 404 header response plus a normal page (where you could
-     * show a well-designed error message or something more useful for your users).
-     * You can see this in action in action in /core/Application.php -> __construct
+     * Verwenden Sie dies, wenn etwas nicht gefunden wird. Es liefert eine korrekte 404-Header-Antwort sowie eine
+     * normale Seite zurück (auf der Sie eine gut gestaltete Fehlermeldung oder etwas anderes, das für Ihre Benutzer nützlicher ist,
+     * anzeigen können). Dies können Sie in Aktion in /core/Application.php → __construct sehen.
      */
-    public function error404()
+    public function error404(): void
     {
         header('HTTP/1.0 404 Not Found', true, 404);
         $this->View->render('error/404');

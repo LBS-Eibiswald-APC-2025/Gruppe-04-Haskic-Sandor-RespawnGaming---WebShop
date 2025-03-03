@@ -157,7 +157,7 @@ class UserModel
         return false;
     }
 
-    public static function editUserEmail($new_user_email)
+    public static function editUserEmail($new_user_email): bool
     {
         if (empty($new_user_email)) {
             Session::add('feedback_negative', Text::get('FEEDBACK_EMAIL_FIELD_EMPTY'));

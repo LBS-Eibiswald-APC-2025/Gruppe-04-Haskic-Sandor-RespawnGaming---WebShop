@@ -14,7 +14,7 @@ class ProfileController extends Controller
      * This method controls what happens when you move to /overview/index in your app.
      * Shows a list of all users.
      */
-    public function index()
+    public function index(): void
     {
         $this->View->render('profile/index', array(
             'users' => UserModel::getPublicProfilesOfAllUsers())
@@ -26,7 +26,7 @@ class ProfileController extends Controller
      * Shows the (public) details of the selected user.
      * @param $user_id int id the the user
      */
-    public function showProfile($user_id)
+    public function showProfile($user_id): void
     {
         if (isset($user_id)) {
             $this->View->render('profile/showProfile', array(

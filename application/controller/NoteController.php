@@ -34,7 +34,7 @@ class NoteController extends Controller
      * Creates a new note. This is usually the target of form submit actions.
      * POST request.
      */
-    public function create()
+    public function create(): void
     {
         NoteModel::createNote(Request::post('note_text'));
         Redirect::to('note');
@@ -45,7 +45,7 @@ class NoteController extends Controller
      * Shows the current content of the note and an editing form.
      * @param $note_id int id of the note
      */
-    public function edit($note_id)
+    public function edit(int $note_id): void
     {
         $this->View->render('note/edit', array(
             'note' => NoteModel::getNote($note_id)
@@ -57,7 +57,7 @@ class NoteController extends Controller
      * Edits a note (performs the editing after form submit).
      * POST request.
      */
-    public function editSave()
+    public function editSave(): void
     {
         NoteModel::updateNote(Request::post('note_id'), Request::post('note_text'));
         Redirect::to('note');
@@ -69,7 +69,7 @@ class NoteController extends Controller
      * totally okay.
      * @param int $note_id id of the note
      */
-    public function delete($note_id)
+    public function delete(int $note_id): void
     {
         NoteModel::deleteNote($note_id);
         Redirect::to('note');
