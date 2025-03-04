@@ -1,14 +1,11 @@
-<?php global $view;
-require APP . 'view/_templates/header.php'; ?>
+<?php require APP . 'view/_templates/header.php'; ?>
 <?php require APP . 'view/_templates/feedback.php'; ?>
-
-<link rel="stylesheet" href="/public/scss/login/passwordReset.css">
 
 <div class="password-reset-page">
     <div class="password-reset-box">
         <h2>Passwort zurücksetzen</h2>
 
-        <form method="post" action="<?php echo Config::get('URL'); ?>login/requestPasswordReset_action">
+        <form method="post" action="<?php echo Config::get('URL'); ?>login/submitPasswordReset">
             <!-- Eingabefeld: Benutzername oder E-Mail -->
             <div class="mb-3">
                 <label for="user_name_or_email" class="pw-label">
@@ -25,13 +22,11 @@ require APP . 'view/_templates/header.php'; ?>
 
                 <div class="captcha-reload-container">
                     <button type="button" class="pw-captcha-btn"
-                            onclick="document.getElementById('captcha').src = '<?php echo Config::get('URL'); ?>register/showCaptcha?' + Math.random(); return false;">
-                        Neues Captcha laden
+                            onclick="document.getElementById('captcha').src = '<?php echo Config::get('URL'); ?>register/showCaptcha?' + Math.random(); return false;">Neues Captcha laden
                     </button>
                 </div>
 
-                <input type="text" name="captcha" class="pw-input mt-2"
-                       placeholder="Captcha eingeben" required>
+                <input type="text" name="captcha" class="pw-input mt-2" placeholder="Captcha eingeben" required>
             </div>
 
             <!-- Absenden -->

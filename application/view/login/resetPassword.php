@@ -1,27 +1,38 @@
-<div class="container">
-    <h1>LoginController/resetPassword</h1>
+<?php require APP . 'view/_templates/header.php'; ?>
+<?php require APP . 'view/_templates/feedback.php'; ?>
 
-    <!-- echo out the system feedback (error and success messages) -->
-    <?php $this->renderFeedbackMessages(); ?>
+<div class="password-change-page">
+    <div class="password-change-box">
+        <h2>Neues Passwort festlegen</h2>
 
-    <div class="box">
-        <h2>Set new password</h2>
+        <form method="post" action="<?php echo Config::get('URL'); ?>login/setNewPassword">
 
-        <p>FYI: ... Idenfitication process works via password-reset-token (hidden input field)</p>
+            <input type="hidden" name="hash" value="<?php echo $this->data['user_password_reset_hash']; ?>">
 
-        <!-- new password form box -->
-        <form method="post" action="<?php echo Config::get('URL'); ?>login/setNewPassword" name="new_password_form">
-            <input type='hidden' name='user_name' value='<?php echo $this->user_name; ?>' />
-            <input type='hidden' name='user_password_reset_hash' value='<?php echo $this->user_password_reset_hash; ?>' />
-            <label for="reset_input_password_new">New password (min. 6 characters)</label>
-            <input id="reset_input_password_new" class="reset_input" type="password"
-                   name="user_password_new" pattern=".{6,}" required autocomplete="off" />
-            <label for="reset_input_password_repeat">Repeat new password</label>
-            <input id="reset_input_password_repeat" class="reset_input" type="password"
-                   name="user_password_repeat" pattern=".{6,}" required autocomplete="off" />
-            <input type="submit"  name="submit_new_password" value="Submit new password" />
+            <div class="mb-3">
+                <label for="password" class="pw-change-label">Neues Passwort</label>
+                <input type="password" name="password" class="pw-change-input"
+                       placeholder="Neues Passwort" required>
+            </div>
+
+            <!-- Eingabefeld: Passwort wiederholen -->
+            <div class="mb-3">
+                <label for="password_repeat" class="pw-change-label">Passwort wiederholen</label>
+                <input type="password" name="password_repeat" class="pw-change-input"
+                       placeholder="Passwort bestätigen" required>
+            </div>
+
+            <!-- Absenden -->
+            <button type="submit" class="pw-change-submit-btn">
+                Passwort ändern
+            </button>
         </form>
 
-        <a href="<?php echo Config::get('URL'); ?>login/index">Back to Login Page</a>
+        <!-- Link zurück zum Login -->
+        <div class="back-to-login">
+            <a href="<?php echo Config::get('URL'); ?>login/index">Zurück zum Login</a>
+        </div>
     </div>
 </div>
+
+<?php require APP . 'view/_templates/footer.php'; ?>
