@@ -16,3 +16,4 @@
 | 25.02.2025 | 1.4.2 | 10:00-12:20 | 2h20min | LBS | Navbar eingebaut/Design angepasst/weitere Index.php zu den Seiten erstellt                                     | ---                                  | [GitHub]            |
 | 27.02.2025 | 1.4.3 | 09:25-12:50 | 3h25min | LBS | Warenkorb Fertigstellung/Community-Seite Fehlerbehebung/Feedbackmeldungen-Styling                              | Warenkorb-Counter | [Github]         | [GitHub]            |
 | 28.02.2025 | 1.4.2 | 07:30-10:15 | 2h45min | LBS | Anpassung "Passwort vergessen" Seite und Impressum, DS und AGB. Sperrung Webseite durch FTP aufgehoben.        | ---                                  | [GitHub]            |
+| 04.03.2025 | 1.4.5 | 10:00-12:20 | 2h20min | LBS | Gesamtüberarbeitung Warenkorb-Frontend - Index und style.scss                                                  | ---                                  | [GitHub]            |
