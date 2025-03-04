@@ -1,61 +1,80 @@
 <?php require APP . 'view/_templates/header.php'; ?>
 <?php require APP . 'view/_templates/feedback.php'; ?>
 
-<main class="cart-hero-section">
-    <!-- Ganzseitiger Hero-Hintergrund -->
-    <div class="cart-hero-background">
+<main class="cart-page">
+    <div class="cart-container">
+        <h2 class="cart-title">Dein Warenkorb</h2>
 
-        <!-- Zentriertes Panel mit abgerundeten Ecken -->
-        <div class="cart-hero-content">
-            <h1>Mein Warenkorb</h1>
+        <?php
+        // Controller-Daten
+        $cartItems  = $this->data['cartItems'] ?? [];
+        $totalPrice = 0.0;
+        foreach ($cartItems as $item) {
+            $totalPrice += $item->price * $item->quantity;
+        }
+        ?>
 
-            <?php
-            $cartItems = $this->data['cartItems'] ?? [];
-            $totalPrice = 0.0;
-            foreach ($cartItems as $item) {
-                $totalPrice += $item->price * $item->quantity;
-            }
-            ?>
-
-            <?php if (empty($cartItems)): ?>
+        <?php if (empty($cartItems)): ?>
+            <div class="cart-empty">
                 <p>Dein Warenkorb ist leer.</p>
-            <?php else: ?>
-                <table class="steam-cart-table">
+            </div>
+        <?php else: ?>
+            <div class="cart-table-container">
+                <table class="cart-table">
                     <thead>
                     <tr>
-                        <th>Spiel</th>
-                        <th>Preis</th>
-                        <th>Menge</th>
-                        <th>Aktion</th>
+                        <th class="cart-col-game">Artikel</th>
+                        <th class="cart-col-price">Preis</th>
+                        <th class="cart-col-qty">Menge</th>
+                        <th class="cart-col-action">Aktion</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($cartItems as $item): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td>€<?php echo number_format($item->price, 2, ',', '.'); ?></td>
-                            <td><?php echo (int)$item->quantity; ?></td>
-                            <td>
-                                <form action="<?php echo Config::get('URL'); ?>cart/removeFromCart" method="post">
-                                    <input type="hidden" name="game_id" value="<?php echo (int)$item->id; ?>">
-                                    <button type="submit" class="remove-btn">Entfernen</button>
+                        <tr class="cart-item">
+                            <td class="cart-game">
+                                <div class="cart-gameinfo">
+                                    <?php if (!empty($item->cover_image)): ?>
+                                        <img src="<?= htmlspecialchars($item->cover_image); ?>"
+                                             alt="<?= htmlspecialchars($item->title); ?>"
+                                             class="cart-cover">
+                                    <?php endif; ?>
+
+                                    <div class="cart-gametitle">
+                                        <?= htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cart-price">
+                                €<?= number_format($item->price, 2, ',', '.'); ?>
+                            </td>
+                            <td class="cart-quantity">
+                                <?= (int)$item->quantity; ?>
+                            </td>
+                            <td class="cart-remove">
+                                <form action="<?= Config::get('URL'); ?>cart/removeFromCart" method="post">
+                                    <input type="hidden" name="game_id" value="<?= (int)$item->id; ?>">
+                                    <button type="submit" class="cart-remove-btn">Entfernen</button>
                                 </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
 
+            <div class="cart-footer">
                 <div class="cart-total">
-                    <strong>Gesamt: </strong>
-                    €<?php echo number_format($totalPrice, 2, ',', '.'); ?>
+                    <span class="cart-total-label">GESAMT:</span>
+                    <span class="cart-total-value">
+                        €<?= number_format($totalPrice, 2, ',', '.'); ?>
+                    </span>
                 </div>
-
-                <form action="<?php echo Config::get('URL'); ?>cart/checkout" method="post">
-                    <button type="submit" class="checkout-btn">Jetzt bestellen</button>
+                <form action="<?= Config::get('URL'); ?>cart/checkout" method="post">
+                    <button type="submit" class="cart-checkout-btn">Jetzt bestellen</button>
                 </form>
-            <?php endif; ?>
-        </div>
+            </div>
+        <?php endif; ?>
     </div>
 </main>
 

@@ -1,124 +1,174 @@
 @import '../main/_variables.scss';
 
 /*
-   Großer Bereich mit Hintergrundbild + zentriertem, abgerundeten Panel.
+   ==========================
+   Warenkorb im dunklen Stil
+   ==========================
 */
 
-.cart-hero-section {
-  width: 100%;
-  min-height: 90vh; // passt sich dem Bildschirm an
+/* Der Hauptbereich */
+.cart-page {
+  min-height: 10vh;
+  margin-top: 10px !important;
+  color: $white;
   display: flex;
-  align-items: center;
   justify-content: center;
-
-  .cart-hero-background {
-    /*
-       Vollflächiges Hintergrundbild.
-       Du kannst hier dein Hero-Bild wie in der Info-Seite verwenden.
-    */
-    position: relative;
-    width: 100%;
-    min-height: 90vh;
-    background:
-            linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
-            url("../../image/Hero_Illustration.png") no-repeat center center;
-    background-size: cover;
-
-    /*
-       Inhalt zentrieren
-    */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .cart-hero-content {
-      /*
-         Halbtransparentes Panel
-      */
-      background: rgba(0,0,0,0.4);
-      border: 2px solid rgba(255,255,255,0.1);
-      border-radius: 25px;
-      padding: 30px 40px;
-      max-width: 600px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.7);
-
-      h1 {
-        font-family: 'Ghost', sans-serif; // oder was du magst
-        font-size: 2rem;
-        color: $white;
-        margin-bottom: 20px;
-        text-transform: uppercase;
-      }
-    }
-  }
+  align-items: flex-start;
 }
 
-/*
-   Tabelle im dunklen Steam-Look
-   Du kannst hier die Klassen beibehalten,
-   oder anpassen, falls du "table" + Bootstrap-Klassen nutzt.
-*/
-.steam-cart-table {
+/* Das umschließende Panel */
+.cart-container {
+  max-width: 900px;
+  width: 95%;
+  margin: 0 auto;
+  background-color: $bg_blue2;
+  border-radius: $border-radius;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+/* Überschrift in Ghost-Font */
+.cart-title {
+  font-family: 'Ghost', sans-serif;
+  text-transform: uppercase;
+  color: $white;
+  text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+/* Wenn der Warenkorb leer ist */
+.cart-empty {
+  text-align: center;
+  font-family: 'Playstation', sans-serif;
+  font-size: 1.2rem;
+}
+
+/* Tabellen-Wrapper */
+.cart-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+/* Haupt-Tabelle */
+.cart-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  color: $white;
 
   th, td {
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 12px 15px;
-    color: $white;
+    border: 1px solid $gray;
+    padding: 15px;
+    text-align: left;
+    font-family: 'Playstation', sans-serif;
+    font-weight: normal;
   }
 
   th {
+    background-color: darken($bg_blue1, 5%);
     text-transform: uppercase;
-    background-color: rgba(255,255,255,0.1);
+    font-size: 0.9rem;
   }
 
-  tr {
-    &:hover {
-      background-color: rgba(255,255,255,0.05);
-    }
+  /* Hover-Effekt auf Tabellenreihen */
+  tr:hover {
+    background-color: rgba(255,255,255,0.05);
   }
 }
 
-/*
-   Buttons für Entfernen & Checkout
-*/
-.remove-btn,
-.checkout-btn {
+/* Spaltenbreiten */
+.cart-col-game    { width: 45%; }
+.cart-col-price   { width: 20%; }
+.cart-col-qty     { width: 10%; }
+.cart-col-action  { width: 25%; }
+
+/* Spielinfo-Zelle: Cover + Titel nebeneinander */
+.cart-gameinfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-cover {
+  width: 70px;
+  height: auto;
+  border: 1px solid $gray;
+  border-radius: 5px;
+}
+
+/* Spieltitel in Playstation-Font */
+.cart-gametitle {
+  font-family: 'Playstation', sans-serif;
+  font-size: 1rem;
+  color: $white;
+}
+
+/* Preis + Menge in Playstation-Font (ohne bold) */
+.cart-price,
+.cart-quantity {
+  font-family: 'Playstation', sans-serif;
+  font-size: 1rem;
+}
+
+/* Footer-Bereich (Gesamt + Checkout) */
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+/* Gesamt-Block */
+.cart-total {
+  font-family: 'Playstation', sans-serif;
+  font-size: 1.2rem;
+  .cart-total-label {
+    margin-right: 10px;
+    color: lighten($white, 10%);
+  }
+  .cart-total-value {
+    color: $white;
+  }
+}
+
+/* Button Entfernen */
+.cart-remove-btn {
   background-color: $red;
   color: $white;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Playstation', sans-serif;
+  font-weight: normal;
+  font-size: 0.95rem;
+  transition: background-color $transition-time;
+}
+
+.cart-remove-btn:hover {
+  background-color: $red_dark;
+}
+
+/* Checkout-Button */
+.cart-checkout-btn {
+  background-color: $bg_glow_blue;
+  color: $white;
+  text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
   border: none;
   border-radius: 4px;
-  padding: 10px 15px;
+  padding: $btn-padding;
   cursor: pointer;
-  font-weight: bold;
   text-transform: uppercase;
+  font-family: 'Playstation', sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  transition: $transition-time;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.checkout-btn {
-  background-color: #3498db; // Blauton
-  margin-top: 15px;
-}
-
-.remove-btn:hover {
-  background-color: #c0392b;
-}
-.checkout-btn:hover {
-  background-color: #2980b9;
-}
-
-/*
-   Gesamtpreis
-*/
-.cart-total {
-  font-size: 1.25rem;
-  color: #fff;
-  margin-bottom: 20px;
-
-  strong {
-    margin-right: 5px;
-  }
+.cart-checkout-btn:hover {
+  transform: scale(1.05);
+  background: $bg_green;
 }

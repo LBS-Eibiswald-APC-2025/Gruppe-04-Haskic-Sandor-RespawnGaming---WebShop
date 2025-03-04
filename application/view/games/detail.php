@@ -66,8 +66,6 @@
     <!-- OPTIONAL: WEITERE INFOS -->
     <section class="bottom-section">
         <h2>Über dieses Spiel</h2>
-        <p>Hier könnte nicht deine Werbung stehen.</p>
-        <iframe src="https://media.tenor.com/X-cdTIjltDEAAAAM/meme-ads.gif" style="height: 30vh"></iframe>
     </section>
 </div>
 
