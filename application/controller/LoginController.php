@@ -87,6 +87,7 @@ class LoginController extends Controller
         }
     }
 
+
     public function requestPasswordReset(): void
     {
         $this->View->render('login/requestPasswordReset');
@@ -94,8 +95,36 @@ class LoginController extends Controller
 
     public function requestPasswordReset_action(): void
     {
-        PasswordResetModel::requestPasswordReset(Request::post('user_name_or_email'), Request::post('captcha'));
-        Redirect::to('login/index');
+        // Holen der Benutzereingabe und Captcha (falls vorhanden)
+        $user_input = Request::post('user_name_or_email') ?? '';
+        $captcha = Request::post('captcha') ?? '';
+
+        $success = PasswordResetModel::requestPasswordReset($user_input, $captcha);
+
+        // Falls erfolgreich, zur Bestätigungsseite weiterleiten
+        if ($success) {
+            Redirect::to('login/resetRequestConfirmation');
+        } else {
+            Redirect::to('login/requestPasswordReset');
+        }
+    }
+
+    #[NoReturn] public function sendResetRequest(): void
+    {
+        // POST-Eingaben auswerten, z. B.:
+        $user_input = $_POST['user_input'] ?? '';
+        $captcha    = $_POST['captcha'] ?? '';
+
+        // Aufruf des Models
+        $success = PasswordResetModel::requestPasswordReset($user_input, $captcha);
+
+        // Weiterleitung je nach Erfolg
+        if ($success) {
+            header('Location: ' . Config::get('URL') . 'login/resetRequestConfirmation');
+        } else {
+            header('Location: ' . Config::get('URL') . 'login/requestPasswordReset');
+        }
+        exit();
     }
 
     public function verifyPasswordReset($user_name, $verification_code): void
@@ -120,4 +149,5 @@ class LoginController extends Controller
         );
         Redirect::to('login/index');
     }
+
 }

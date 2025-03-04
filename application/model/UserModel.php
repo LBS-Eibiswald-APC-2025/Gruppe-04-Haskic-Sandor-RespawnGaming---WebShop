@@ -76,7 +76,7 @@ class UserModel
         return $query->fetch();
     }
 
-    public static function doesUsernameAlreadyExist($user_name)
+    public static function doesUsernameAlreadyExist($user_name): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -87,7 +87,7 @@ class UserModel
         return ($query->rowCount() !== 0);
     }
 
-    public static function doesEmailAlreadyExist($user_email)
+    public static function doesEmailAlreadyExist($user_email): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -98,7 +98,7 @@ class UserModel
         return ($query->rowCount() !== 0);
     }
 
-    public static function saveNewUserName($user_id, $new_user_name)
+    public static function saveNewUserName($user_id, $new_user_name): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -113,7 +113,7 @@ class UserModel
         return ($query->rowCount() === 1);
     }
 
-    public static function saveNewEmailAddress($user_id, $new_user_email)
+    public static function saveNewEmailAddress($user_id, $new_user_email): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -128,7 +128,7 @@ class UserModel
         return ($query->rowCount() === 1);
     }
 
-    public static function editUserName($new_user_name)
+    public static function editUserName($new_user_name): bool
     {
         if ($new_user_name == Session::get('user_name')) {
             Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_SAME_AS_OLD_ONE'));
@@ -370,4 +370,23 @@ class UserModel
         $mail = new Mail();
         return $mail->sendMail($user_email, "no-reply@respawngaming.at", "No-Reply", "(WICHTIG) Konto Änderungen", $body);
     }
+
+    public static function updatePassword($user_id, string $newPasswordHash): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "UPDATE users 
+            SET password_hash = :newPasswordHash
+            WHERE user_id = :user_id
+            LIMIT 1";
+        $query = $database->prepare($sql);
+        $query->execute([
+            ':newPasswordHash' => $newPasswordHash,
+            ':user_id' => $user_id
+        ]);
+
+        // Wenn genau eine Zeile geändert wurde, war es erfolgreich
+        return ($query->rowCount() === 1);
+    }
+
 }
