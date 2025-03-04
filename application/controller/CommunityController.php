@@ -11,7 +11,7 @@ class CommunityController extends Controller
 
     /**
      * Diese Methode zeigt die Community-Startseite
-     * unter application/view/community/index.php an.
+     * unter app/view/community/index.php an.
      * Damit funktioniert der Aufruf /community oder /community/index
      * ohne 404-Fehler.
      */
