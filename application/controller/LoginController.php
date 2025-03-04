@@ -1,6 +1,7 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
+use Random\RandomException;
 
 class LoginController extends Controller
 {
@@ -50,13 +51,13 @@ class LoginController extends Controller
 
         $login_successful = LoginModel::login($user_name, $user_password, $set_remember_me_cookie);
 
-        // Wenn Login erfolgreich und user = Admin -> Admin-Dashboard
+        // Wenn Login erfolgreich und user = Admin → Admin-Dashboard
         if ($login_successful && Auth::checkAdminAuthentication()) {
             Redirect::to('admin/index');
             exit();
         }
 
-        // Wenn Login erfolgreich (aber kein Admin) -> user/index
+        // Wenn Login erfolgreich (aber kein Admin) → user/index
         if ($login_successful) {
             Redirect::to('user/index');
             exit();
@@ -93,8 +94,11 @@ class LoginController extends Controller
         $this->View->render('login/requestPasswordReset');
     }
 
+    /**
+     */
     public function requestPasswordReset_action(): void
     {
+
         // Holen der Benutzereingabe und Captcha (falls vorhanden)
         $user_input = Request::post('user_name_or_email') ?? '';
         $captcha = Request::post('captcha') ?? '';
@@ -109,22 +113,45 @@ class LoginController extends Controller
         }
     }
 
-    #[NoReturn] public function sendResetRequest(): void
+    /**
+     */
+    public function sendResetRequest(): void
     {
-        // POST-Eingaben auswerten, z. B.:
-        $user_input = $_POST['user_input'] ?? '';
-        $captcha    = $_POST['captcha'] ?? '';
+        $user_input = trim(Request::post('user_input'));
 
-        // Aufruf des Models
-        $success = PasswordResetModel::requestPasswordReset($user_input, $captcha);
-
-        // Weiterleitung je nach Erfolg
-        if ($success) {
-            header('Location: ' . Config::get('URL') . 'login/resetRequestConfirmation');
-        } else {
-            header('Location: ' . Config::get('URL') . 'login/requestPasswordReset');
+        if (empty($user_input)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_EMAIL_FIELD_EMPTY'));
+            Redirect::to('login/requestPasswordReset');
+            return;
         }
-        exit();
+
+        $user = PasswordResetModel::getUserByUserNameOrEmail($user_input);
+        if (!$user) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_USER_DOES_NOT_EXIST'));
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        $token = sha1(uniqid(mt_rand(), true));
+        $timestamp = time();
+
+        if (!PasswordResetModel::storeResetToken($user->user_id, $token, $timestamp)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_RESET_TOKEN_FAIL'));
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        if (!PasswordResetModel::sendPasswordResetMail($user->user_name, $token, $user->email)) {
+            Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_RESET_MAIL_SENDING_ERROR'));
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        // SweetAlert Feedback setzen
+        Session::add('feedback_sweetalert', Text::get('FEEDBACK_PASSWORD_RESET_CONFIRMATION'));
+
+        // Weiterleitung zur `requestPasswordReset`
+        Redirect::to('login/requestPasswordReset');
     }
 
     public function verifyPasswordReset($user_name, $verification_code): void

@@ -2,70 +2,40 @@
 
 class PasswordResetModel
 {
-    /**
-     * Holt einen Benutzer anhand von Benutzername oder E-Mail.
-     * Achtung: Die Spalte in der Datenbank heißt `email`, nicht `user_email`!
-     */
     public static function getUserByUserNameOrEmail(string $input): ?object
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT user_id, user_name, email FROM users WHERE user_name = :input OR email = :input LIMIT 1";
+        $sql = "SELECT user_id, user_name, email, user_password_reset_hash FROM users WHERE user_name = :input OR email = :input LIMIT 1";
         $query = $database->prepare($sql);
         $query->execute([':input' => $input]);
-
-        $user = $query->fetch();
-        if (!$user || empty($user->email)) {
-            return null; // Falls kein gültiger Nutzer mit E-Mail existiert.
-        }
-        return $user;
+        return $query->fetch();
     }
 
-    public static function requestPasswordReset(string $user_input, string $captcha): bool
+    public static function storeResetToken(int $user_id, string $token, int $timestamp): bool
     {
-        if (!CaptchaModel::checkCaptcha($captcha)) {
-            Session::add('feedback_negative', 'Ungültiges Captcha.');
-            return false;
-        }
-
-        $user = self::getUserByUserNameOrEmail($user_input);
-        if (!$user) {
-            Session::add('feedback_negative', 'Kein Benutzer mit dieser E-Mail oder diesem Benutzernamen gefunden.');
-            return false;
-        }
-
-        // Token generieren
-        $token = bin2hex(random_bytes(32));
-        $timestamp = time();
-
-        // Speichert den Token in der Datenbank
-        if (!self::storeResetToken($user->user_id, $token, $timestamp)) {
-            Session::add('feedback_negative', 'Fehler beim Speichern des Tokens.');
-            return false;
-        }
-
-        // Sende die E-Mail mit Reset-Link
-        if (!self::sendPasswordResetMail($user->user_name, $token, $user->email)) {
-            Session::add('feedback_negative', 'Fehler beim Versenden der E-Mail.');
-            return false;
-        }
-
-        Session::add('feedback_positive', 'Falls dein Konto existiert, wurde eine E-Mail gesendet.');
-        return true;
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "UPDATE users SET user_password_reset_hash = :token, user_password_reset_timestamp = :timestamp WHERE user_id = :user_id";
+        $query = $database->prepare($sql);
+        return $query->execute([':token' => $token, ':timestamp' => $timestamp, ':user_id' => $user_id]);
     }
 
     public static function sendPasswordResetMail(string $user_name, string $token, string $email): bool
     {
-        $resetLink = Config::get('URL') . "passwordReset/reset?user=" . urlencode($user_name) . "&token=" . urlencode($token);
-        $body = "Hallo $user_name,\n\nKlicke auf diesen Link, um dein Passwort zurückzusetzen:\n$resetLink\n\nFalls du dies nicht angefordert hast, ignoriere diese Nachricht.";
-        $subject = "Passwort zurücksetzen";
-        $headers = "From: " . Config::get('EMAIL_PASSWORD_RESET_FROM_EMAIL');
+        $resetLink = Config::get('URL') . "resetPassword?user=" . urlencode($user_name) . "&token=" . urlencode($token);
+        $body = "Hier ist dein Passwort-Reset-Link: $resetLink";
 
-        if (mail($email, $subject, $body, $headers)) {
-            Session::add('feedback_positive', 'E-Mail mit Passwort-Reset-Link wurde gesendet.');
-            return true;
-        }
+        return mail($email, "Passwort zurücksetzen", $body, "From: no-reply@respawngaming.at");
+    }
 
-        Session::add('feedback_negative', 'Fehler beim Versenden der E-Mail.');
-        return false;
+    public static function updatePassword(int $user_id, string $hashedPassword): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "UPDATE users SET password_hash = :password_hash, user_password_reset_hash = NULL, user_password_reset_timestamp = NULL WHERE user_id = :user_id";
+        $query = $database->prepare($sql);
+        return $query->execute([':password_hash' => $hashedPassword, ':user_id' => $user_id]);
+    }
+
+    public static function requestPasswordReset(mixed $user_input, mixed $captcha)
+    {
     }
 }

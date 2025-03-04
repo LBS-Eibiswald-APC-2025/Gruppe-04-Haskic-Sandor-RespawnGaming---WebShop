@@ -78,4 +78,5 @@ return array(
     "FEEDBACK_LOGIN_ATTEMPT_NEW_DEVICE" => "Anmeldeversuch von einem unbekannten Gerät erkannt. Bitte überprüfen.",
     "FEEDBACK_PROFILE_UPDATE_SUCCESSFUL" => "Das Profil wurde erfolgreich aktualisiert.",
     "FEEDBACK_PROFILE_UPDATE_FAILED" => "Die Aktualisierung des Profils ist fehlgeschlagen.",
+    "FEEDBACK_PASSWORD_RESET_CONFIRMATION" => "Eine Mail mit der Passwort Rücksetzung wurde ihnen zugestellt",
 );
