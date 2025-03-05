@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* ===========================================
+   community.scss
+   (wird zu community.css kompiliert)
+   =========================================== */
+/* scss */
+/* ===========================
+   SCSS Variablen und Fonts
+   =========================== */
+/* Einbinden spezieller Schriftart 'Dice' */
+@font-face {
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
+}
+/* Einbinden spezieller Schriftart 'Playstation' */
+@font-face {
+  font-family: "Playstation";
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
+}
+/* Farbliche Grundwerte und URL-Hintergrund */
+/* Größen, Abstände und Übergänge */
+/* Hintergründe für Buttons */
+/* Button- und Input-Parameter */
+/* Hero-Section-Größen */
+/* Allgemeine Sektionseinstellungen */
+/* GamesModel Card */
+/* Navbar */
+/* Auth-Box (z.B. für Login) */
+/* Scrollbar-Farbe */
+.community-page {
+  background-color: #2A2D32;
+  padding-bottom: 50px;
+  min-height: 100vh;
+  font-family: "Playstation", sans-serif;
+}
+.community-page .container {
+  padding-top: 25px;
+}
+
+.forum-categories {
+  margin-bottom: 20px;
+}
+.forum-categories ul.nav-tabs {
+  border-bottom: 2px solid rgb(65.2826086957, 69.9456521739, 77.7173913043);
+}
+.forum-categories ul.nav-tabs li.nav-item a.nav-link {
+  color: #FFFFFF;
+  background: transparent;
+  padding: 10px 15px;
+  font-family: "Playstation", sans-serif;
+}
+.forum-categories ul.nav-tabs li.nav-item a.nav-link:hover, .forum-categories ul.nav-tabs li.nav-item a.nav-link.active {
+  background-color: #4a90d9;
+  color: #FFFFFF;
+}
+
+.forum-threads .thread-list .thread-item {
+  background-color: #3a3f44;
+  border: 1px solid #4a90d9;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: background-color 0.3s;
+  display: block;
+}
+.forum-threads .thread-list .thread-item:hover {
+  background-color: rgb(69.7380952381, 75.75, 81.7619047619);
+}
+.forum-threads .thread-list .thread-title {
+  font-family: "Playstation", sans-serif;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+.forum-threads .thread-list .thread-title a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.forum-threads .thread-list .thread-title a:hover {
+  text-decoration: underline;
+}
+.forum-threads .thread-list .thread-meta {
+  font-size: 0.9em;
+  color: white;
+  margin-bottom: 10px;
+}
+.forum-threads .thread-list .thread-meta span {
+  margin-right: 10px;
+}
+.forum-threads .thread-list .thread-snippet {
+  font-size: 1em;
+  color: #FFFFFF;
+}
+
+.pagination-container .pagination li.page-item a.page-link {
+  background-color: #3a3f44;
+  border: 1px solid #4a90d9;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  font-family: "Playstation", sans-serif;
+}
+.pagination-container .pagination li.page-item a.page-link:hover {
+  background-color: #4a90d9;
+}
+.pagination-container .pagination li.page-item.active a.page-link {
+  background-color: #4a90d9;
+  border-color: #4a90d9;
+}
+
+/* New Thread Button */
+#newThreadBtn {
+  font-family: "Ghost", sans-serif;
+  background-color: #66c0f4;
+  border: none;
+  padding: 10px 20px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+#newThreadBtn:hover {
+  background-color: #8ed529;
+  transform: scale(1.05);
+}
+
+/* Modal-Anpassungen */
+.modal .modal-content {
+  background-color: #2A2D32;
+  border-radius: 10px;
+}
+
+.modal .modal-header, .modal .modal-footer {
+  border: none;
+}
+
+.modal .modal-title {
+  font-family: "Ghost", sans-serif;
+  color: #FFFFFF;
+}
+
+.modal .form-label {
+  color: #FFFFFF;
+  font-family: "Playstation", sans-serif;
+}
+
+.modal .form-control {
+  font-family: "Playstation", sans-serif;
+  background-color: #2A475E;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal .btn-primary {
+  font-family: "Ghost", sans-serif;
+  background-color: #66c0f4;
+  border: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #FFFFFF !important;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -85,11 +85,9 @@ class CommunityModel
     public static function getAllThreads(): array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT cp.*, u.user_name 
-                FROM community_posts cp
+        $sql = "SELECT cp.*, u.user_name AS author FROM community_posts cp
                 JOIN users u ON cp.user_id = u.user_id
-                WHERE cp.post_type = 'thread'
-                ORDER BY cp.created_at DESC";
+                ORDER BY created_at DESC";
         $query = $database->prepare($sql);
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
@@ -105,17 +103,19 @@ class CommunityModel
      * @param int $game_id  (0, wenn global)
      * @return bool
      */
-    public static function createThread(int $user_id, string $title, string $content, string $category = '', int $game_id = 0): bool
+    public static function createThread(int $user_id, string $title, string $content, string $category, int $game_id = 0): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "INSERT INTO community_posts (game_id, user_id, post_type, title, content)
-                VALUES (:game_id, :user_id, 'thread', :title, :content)";
+        // Hier wird nun post_type = : category gesetzt (statt 'thread')
+        $sql = "INSERT INTO community_posts (game_id, user_id, category, title, content)
+            VALUES (:game_id, :user_id, :category, :title, :content)";
         $query = $database->prepare($sql);
         return $query->execute([
-            ':game_id' => $game_id,
-            ':user_id' => $user_id,
-            ':title'   => $title,
-            ':content' => $content
+            ':game_id'   => $game_id,
+            ':user_id'   => $user_id,
+            ':category' => $category,   // z. B. 'announcements' oder 'support'
+            ':title'     => $title,
+            ':content'   => $content
         ]);
     }
 
@@ -187,10 +187,22 @@ class CommunityModel
         $sql = "INSERT INTO community_posts (game_id, user_id, post_type, title, content, parent_id)
                 VALUES (0, :user_id, 'reply', '', :content, :parent_id)";
         $query = $database->prepare($sql);
-        return $query->execute([
+        $result = $query->execute([
             ':user_id'   => $user_id,
             ':content'   => $content,
             ':parent_id' => $thread_id
         ]);
+        return $result;
+    }
+
+    public static function getPostById($post_id)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT cp.*, u.user_name AS author FROM community_posts cp
+                JOIN users u ON cp.user_id = u.user_id
+                WHERE id = :post_id";
+        $query = $database->prepare($sql);
+        $query->execute([':post_id' => $post_id]);
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 }

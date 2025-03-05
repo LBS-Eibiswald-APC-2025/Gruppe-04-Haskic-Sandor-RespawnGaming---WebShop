@@ -26,6 +26,11 @@ foreach ($cartItems as $item) {
         foreach ($scssFiles as $scssFile) {
             echo '<link rel="stylesheet" href="/public/scss/' . $view . '/' . basename($scssFile, '.scss') . '.css">';
         }
+
+        $jsFiles = glob(__DIR__ . '/../../../public/js/' . $view . '/*.js');
+        foreach ($jsFiles as $jsFile) {
+            echo '<script src="/public/js/' . $view . '/' . basename($jsFile, '.js') . '.js"></script>';
+        }
     ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/scss/google/style.css">
