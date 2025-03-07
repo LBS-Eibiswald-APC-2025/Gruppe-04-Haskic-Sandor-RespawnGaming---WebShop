@@ -23,41 +23,31 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-/* ============================================
-   BEGRENZTE BREITE & PAGE WRAPPER
-============================================ */
+@font-face {
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Playstation";
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
+}
 .games-page-wrapper {
   background: #1B2838;
   color: #FFFFFF;
   min-height: 100vh;
-  font-family: "Ghost", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Ghost", sans-serif;
 }
 
 .steam-like-container,
 .game-detail-wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
-/* ============================================
-   NAVBAR (optional)
-============================================ */
-.navbar {
-  background-color: #2A2D32;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  padding: 25px !important;
-}
-.navbar .navbar-brand {
-  font-size: 2.7em;
-  text-shadow: 1px 1px 2px #4a90d9;
-}
-
-/* ============================================
-   GAMES NAV (Neu & angesagt, Topseller, etc.)
-============================================ */
 .games-nav {
   display: flex;
-  background-color: #2A475E;
+  background-color: rgb(49.875, 84.3125, 111.625);
   padding: 10px 15px;
   gap: 15px;
 }
@@ -69,17 +59,13 @@
   transition: color 0.2s, text-shadow 0.2s;
 }
 .games-nav a.active-link {
-  color: #FFFFFF;
   text-shadow: 0 0 5px #4a90d9;
   font-weight: bold;
 }
 .games-nav a:hover {
-  color: white;
+  color: #4a90d9;
 }
 
-/* ============================================
-   GAMES LISTE (Linke Spalte)
-============================================ */
 .games-list {
   list-style: none;
   margin: 0;
@@ -88,7 +74,6 @@
 }
 .games-list .game-item {
   display: flex;
-  flex-direction: row;
   align-items: center;
   padding: 10px 15px;
   cursor: pointer;
@@ -102,7 +87,6 @@
   width: 60px;
   height: 60px;
   overflow: hidden;
-  flex-shrink: 0;
   margin-right: 10px;
 }
 .games-list .game-item .game-cover img {
@@ -114,7 +98,6 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .games-list .game-item .game-info .game-title {
   font-size: 1.1rem;
@@ -123,95 +106,92 @@
 }
 .games-list .game-item .game-info .game-desc {
   font-size: 0.9rem;
-  color: #aaa;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
   margin: 0;
 }
 .games-list .game-item .game-right-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  text-align: right;
   font-size: 0.9rem;
 }
 .games-list .game-item .game-right-panel .discount {
   color: #8ed529;
-  margin-bottom: 3px;
   font-weight: bold;
+  margin-bottom: 3px;
 }
 .games-list .game-item .game-right-panel .price,
 .games-list .game-item .game-right-panel .release-date {
   color: #FFFFFF;
 }
 
-/* ============================================
-   DETAIL-PANEL (Rechte Spalte)
-============================================ */
-.detail-panel,
-.game-detail-wrapper {
+.detail-panel {
   background: #2A475E;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.detail-panel {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
+.detail-panel .detail-header {
+  font-size: 1.2rem;
+  font-family: "Ghost", sans-serif;
+}
+.detail-panel .detail-screenshots img.mini-screenshot {
+  max-width: 100%;
+  border: 1px solid rgb(26.25, 44.375, 58.75);
+  border-radius: 3px;
+}
+.detail-panel .detail-tags span.tag {
+  display: inline-block;
+  background: #4a90d9;
+  padding: 3px 6px;
+  margin-right: 5px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+.detail-panel .detail-rating {
+  font-size: 0.9rem;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
+}
 
-/* ============================================
-   GAME DETAIL PAGE
-============================================ */
-.breadcrumb {
+.game-detail-wrapper {
+  background: #2A475E;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.game-detail-wrapper .breadcrumb {
   font-size: 0.9rem;
   margin-bottom: 15px;
 }
-.breadcrumb a {
+.game-detail-wrapper .breadcrumb a {
   color: #4a90d9;
   text-decoration: none;
-  transition: color 0.2s;
 }
-.breadcrumb a:hover {
-  color: rgb(158.301369863, 195.698630137, 234.698630137);
+.game-detail-wrapper .breadcrumb a:hover {
+  color: rgb(116.1506849315, 169.8493150685, 225.8493150685);
 }
-
-/* ============================================
-   OBERER BEREICH (Cover, Trailer & Infos)
-============================================ */
-.top-section {
+.game-detail-wrapper .top-section {
   display: flex;
   gap: 20px;
 }
-.top-section .left-column {
+.game-detail-wrapper .top-section .left-column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
-.top-section .left-column .cover-image {
+.game-detail-wrapper .top-section .left-column .cover-image {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
   border-radius: 5px;
 }
-.top-section .left-column .trailer-container {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 5px;
-  overflow: hidden;
-}
-.top-section .left-column .trailer-container iframe {
-  width: 100%;
-  height: 100%;
-}
-.top-section .left-column .screenshot-gallery {
+.game-detail-wrapper .top-section .left-column .screenshot-gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
-.top-section .left-column .screenshot-gallery img {
+.game-detail-wrapper .top-section .left-column .screenshot-gallery img {
   width: calc(33.33% - 5px);
   max-height: 120px;
   object-fit: cover;
@@ -219,97 +199,94 @@
   cursor: pointer;
   transition: transform 0.2s;
 }
-.top-section .left-column .screenshot-gallery img:hover {
+.game-detail-wrapper .top-section .left-column .screenshot-gallery img:hover {
   transform: scale(1.05);
 }
-.top-section .right-column {
+.game-detail-wrapper .top-section .right-column {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
-
-/* ============================================
-   PREIS & KAUF-SECTION
-============================================ */
-.buy-section,
-.play-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
+.game-detail-wrapper .top-section .right-column h1 {
+  font-size: 2rem;
+  margin: 0 0 10px;
+}
+.game-detail-wrapper .top-section .right-column .short-desc {
+  font-size: 1rem;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
+}
+.game-detail-wrapper .top-section .right-column .game-meta {
+  list-style: none;
+  padding: 0;
+}
+.game-detail-wrapper .top-section .right-column .game-meta li {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+.game-detail-wrapper .top-section .right-column .buy-section,
+.game-detail-wrapper .top-section .right-column .play-section {
   background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
   border-radius: 5px;
+  margin-top: 15px;
 }
-.buy-section .price-label,
-.play-section .price-label {
+.game-detail-wrapper .top-section .right-column .buy-section .price-label,
+.game-detail-wrapper .top-section .right-column .play-section .price-label {
   font-size: 1.2rem;
   font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
 }
-.buy-section .cta-button,
-.play-section .cta-button {
-  display: inline-block;
+.game-detail-wrapper .top-section .right-column .buy-section .cta-button,
+.game-detail-wrapper .top-section .right-column .play-section .cta-button {
   padding: 10px 15px;
-  font-size: 1rem;
-  font-weight: bold;
   border: none;
-  cursor: pointer;
   border-radius: 3px;
+  font-weight: bold;
   text-transform: uppercase;
+  cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
-.buy-section .cta-button.cta-buy,
-.play-section .cta-button.cta-buy {
+.game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-buy,
+.game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-buy {
   background: #8ed529;
   color: #FFFFFF;
 }
-.buy-section .cta-button.cta-buy:hover,
-.play-section .cta-button.cta-buy:hover {
-  background: rgb(164.6062992126, 221.9094488189, 83.0905511811);
+.game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-buy:hover,
+.game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-buy:hover {
+  background: rgb(113.4881889764, 170.2322834646, 32.7677165354);
   transform: scale(1.05);
 }
-.buy-section .cta-button.cta-free,
-.play-section .cta-button.cta-free {
+.game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-free,
+.game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-free {
   background: #4a90d9;
   color: #FFFFFF;
 }
-.buy-section .cta-button.cta-free:hover,
-.play-section .cta-button.cta-free:hover {
-  background: rgb(116.1506849315, 169.8493150685, 225.8493150685);
+.game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-free:hover,
+.game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-free:hover {
+  background: rgb(41.6438356164, 118.3561643836, 198.3561643836);
   transform: scale(1.05);
 }
-
-/* ============================================
-   WEITERE INFOS (Beschreibung)
-============================================ */
-.bottom-section {
+.game-detail-wrapper .bottom-section {
   margin-top: 30px;
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 5px;
 }
-.bottom-section h2 {
+.game-detail-wrapper .bottom-section h2 {
   font-size: 1.5rem;
-  font-family: "Ghost", sans-serif;
   margin-bottom: 10px;
+  font-family: "Ghost", sans-serif;
 }
-.bottom-section p {
+.game-detail-wrapper .bottom-section p {
   font-size: 1rem;
-  color: #ccc;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
 }
 
-/* ============================================
-   RESPONSIVE DESIGN
-============================================ */
 @media (max-width: 1000px) {
   .steam-like-container {
     max-width: 100%;
     padding: 0 10px;
   }
-  .games-list,
-  .detail-panel,
-  .top-section {
+  .games-list, .detail-panel, .top-section {
     flex-direction: column;
   }
   .screenshot-gallery img {

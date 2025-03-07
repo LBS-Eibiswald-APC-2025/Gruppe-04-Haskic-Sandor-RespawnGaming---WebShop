@@ -17,7 +17,7 @@
             </ul>
         </div>
 
-        <!-- Button: Neues Thema erstellen -->
+        <!-- Button: Thema erstellen -->
         <div class="text-center mb-4">
             <button id="newThreadBtn" class="btn btn-primary">Neues Thema erstellen</button>
         </div>
@@ -27,13 +27,8 @@
             <div class="thread-list">
                 <?php if (!empty($this->data['threads'])): ?>
                     <?php foreach ($this->data['threads'] as $thread): ?>
-                        <?php
-//                            echo '<pre>';
-//                            var_dump($thread);
-//                            echo '</pre>';
+                        <?php $thread = (array)$thread; ?>
 
-                            $thread = (array) $thread;
-                        ?>
                         <div class="thread-item" data-category="<?php echo htmlspecialchars($thread['category']); ?>">
                             <div class="thread-title">
                                 <a href="<?php echo Config::get('URL'); ?>community/detail/<?php echo $thread['id']; ?>">
@@ -42,9 +37,9 @@
                             </div>
                             <div class="thread-meta">
                                 <span class="author">Von: <?php echo htmlspecialchars($thread['author']); ?></span>
-<!--                                <span class="replies">--><?php //echo $thread['replies']; ?><!-- Antworten</span>-->
+                                <!-- <span class="replies">--><?php //echo $thread['replies']; ?><!-- Antworten</span> -->
                                 <span class="views"><?php echo $thread['views']; ?> Aufrufe</span>
-<!--                                <span class="last-reply">Letzte Antwort: --><?php //echo $thread['last_reply']; ?><!--</span>-->
+                                <!--  <span class="last-reply">Letzte Antwort: --> <?php //echo $thread['last_reply']; ?><!--</span> -->
                             </div>
                             <div class="thread-snippet">
                                 <?php echo nl2br(htmlspecialchars($thread['content'])); ?>
@@ -57,7 +52,6 @@
             </div>
         </div>
 
-        <!-- Pagination (falls du das nutzt) -->
         <div class="pagination-container mt-4">
             <?php if (isset($pagination)) {
                 echo $pagination->createLinks();
@@ -66,7 +60,7 @@
     </div>
 </div>
 
-<!-- Modal: Neues Thema erstellen -->
+<!-- Modal: Thema erstellen -->
 <div class="modal" id="newThreadModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -84,7 +78,7 @@
                         <label for="threadCategory" class="form-label">Kategorie</label>
                         <select class="form-select" id="threadCategory" name="threadCategory" required>
                             <option value="announcements">Ankündigungen</option>
-                            <option value="support">Support</option>
+                            <option value="support">Diskussionen</option>
                         </select>
                     </div>
                     <div class="mb-3">

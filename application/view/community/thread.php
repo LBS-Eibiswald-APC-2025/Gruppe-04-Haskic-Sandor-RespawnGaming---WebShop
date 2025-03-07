@@ -4,7 +4,7 @@
 
 <div class="community-page">
     <div class="container mt-5">
-        <?php if ($thread): ?>
+        <?php if (isset($thread) && $thread): ?>
 
             <!-- NEU: Hier den thread-item-Container mit data-category öffnen -->
             <div class="thread-item" data-category="<?php echo htmlspecialchars($thread->category); ?>">

@@ -16,8 +16,10 @@ class GamesController extends Controller
         $this->View->render('games/index', ['games' => $games]);
     }
 
-    public function detail(): void {
-        $game_id = $this->parameters[0];
+    // Detailansicht eines Spiels
+    public function detail(): void
+    {
+        $game_id = $this->parameters[0] ?? null;
 
         if (empty($game_id)) {
             Session::add('feedback_negative', 'Game not found');
@@ -25,48 +27,62 @@ class GamesController extends Controller
             exit;
         }
 
-        $game = GamesModel::getGameById($game_id);
+        $game = GamesModel::getGameById((int)$game_id);
+        if (!$game) {
+            Session::add('feedback_negative', 'Game not found');
+            Redirect::to('games/index');
+            exit;
+        }
+
         $this->View->render('games/detail', ['game' => $game]);
     }
 
-    // Suche nach Spielen.
+    // Suche nach Spielen
     public function search(): void
     {
-        $games = GamesModel::searchGames($_POST['search']);
+        $searchTerm = $_POST['search'] ?? '';
+        $games = GamesModel::searchGames($searchTerm);
         $this->View->render('games/index', ['games' => $games]);
     }
 
-    // Fügt ein neues Spiel hinzu.
+    // Fügt ein neues Spiel hinzu (Admin)
     public function add(): void
     {
         session_start();
-        if ($_SESSION['role'] !== 'Admin') {
+        if (($_SESSION['role'] ?? '') !== 'Admin') {
             header('Location: /login?error=no_permission');
             exit();
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Falls du discount, snippet, category, video_url etc. abfragen willst:
+            // $_POST['discount'] ?? '', $_POST['snippet'] ?? '', ...
             GamesModel::addGame(
                 $_POST['title'],
                 $_POST['description'],
                 $_POST['image'],
-                $_POST['price'],
+                (float)$_POST['price'],
                 $_POST['genre'],
                 $_POST['release_date'],
-                $_POST['developer_id'],
-                $_POST['license_required']
+                isset($_POST['developer_id']) ? (int)$_POST['developer_id'] : null,
+                isset($_POST['license_required']) ? (int)$_POST['license_required'] : 0,
+                $_POST['discount'] ?? '',
+                $_POST['snippet'] ?? '',
+                $_POST['category'] ?? '',
+                $_POST['video_url'] ?? ''
             );
             header('Location: /admin/games');
             exit();
         }
+
         $this->View->render('admin/add_game');
     }
 
-    // Aktualisiert ein Spiel.
+    // Aktualisiert ein Spiel (Admin)
     public function update(int $game_id): void
     {
         session_start();
-        if ($_SESSION['role'] !== 'Admin') {
+        if (($_SESSION['role'] ?? '') !== 'Admin') {
             header('Location: /login?error=no_permission');
             exit();
         }
@@ -77,25 +93,30 @@ class GamesController extends Controller
                 $_POST['title'],
                 $_POST['description'],
                 $_POST['image'],
-                $_POST['price'],
+                (float)$_POST['price'],
                 $_POST['genre'],
                 $_POST['release_date'],
-                $_POST['developer_id'],
-                $_POST['license_required']
+                isset($_POST['developer_id']) ? (int)$_POST['developer_id'] : null,
+                isset($_POST['license_required']) ? (int)$_POST['license_required'] : 0,
+                $_POST['discount'] ?? '',
+                $_POST['snippet'] ?? '',
+                $_POST['category'] ?? '',
+                $_POST['video_url'] ?? ''
             );
             header('Location: /admin/games');
             exit();
         }
+
         $game = GamesModel::getGameById($game_id);
         $this->View->render('admin/edit_game', ['games' => $game]);
     }
 
-    // Löscht ein Spiel.
+    // Löscht ein Spiel (Admin)
     #[NoReturn]
     public function delete(int $game_id): void
     {
         session_start();
-        if ($_SESSION['role'] !== 'Admin') {
+        if (($_SESSION['role'] ?? '') !== 'Admin') {
             header('Location: /login?error=no_permission');
             exit();
         }
@@ -103,21 +124,5 @@ class GamesController extends Controller
         GamesModel::deleteGame($game_id);
         header('Location: /admin/games');
         exit();
-    }
-
-    public function getGameById($game_id)
-    {
-        $database = DatabaseFactory::getFactory()->getConnection();
-
-        // Beispiel: Hol dir alle Daten zum Spiel, inkl. Video-URL, Publisher, Preis usw.
-        $sql = "SELECT id, title, price, cover_image, trailer_url, description, developer, publisher,
-                       release_date, screenshots, is_free
-                FROM games
-                WHERE id = :id
-                LIMIT 1";
-
-        $query = $database->prepare($sql);
-        $query->execute([':id' => $game_id]);
-        return $query->fetch(); // gibt stdClass-Objekt zurück oder false
     }
 }

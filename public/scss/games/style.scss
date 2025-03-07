@@ -1,67 +1,57 @@
 @import '../main/_variables.scss';
 
-/* ============================================
-   BEGRENZTE BREITE & PAGE WRAPPER
-============================================ */
+// Schriftarten einbinden
+@font-face {
+  font-family: "Ghost";
+  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Playstation";
+  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
+}
+
+// Grundlayout
 .games-page-wrapper {
   background: $bg_blue1;
   color: $white;
   min-height: 100vh;
-  font-family: $font-family;
+  font-family: $font-ghost;
 }
 
-// Container für "Steam-like"-Liste, max. 1200px
+// Container & Wrapper
 .steam-like-container,
 .game-detail-wrapper {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
-/* ============================================
-   NAVBAR (optional)
-============================================ */
-.navbar {
-  background-color: $background_color_dark;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  padding: 25px !important;
-
-  .navbar-brand {
-    font-size: 2.7em;
-    text-shadow: 1px 1px 2px $bg_glow_blue;
-  }
-}
-
-/* ============================================
-   GAMES NAV (Neu & angesagt, Topseller, etc.)
-============================================ */
+// Navigation
 .games-nav {
   display: flex;
-  background-color: $bg_blue2;
+  background-color: lighten($bg_blue2, 5%);
   padding: 10px 15px;
   gap: 15px;
 
   a {
     color: $white;
     text-decoration: none;
-    font-family: 'Playstation', sans-serif;
+    font-family: $font-ps;
     font-size: 0.95rem;
     transition: color 0.2s, text-shadow 0.2s;
 
     &.active-link {
-      color: $white;
       text-shadow: 0 0 5px $bg_glow_blue;
       font-weight: bold;
     }
 
     &:hover {
-      color: lighten($white, 20%);
+      color: $bg_glow_blue;
     }
   }
 }
 
-/* ============================================
-   GAMES LISTE (Linke Spalte)
-============================================ */
+// Spieleliste
 .games-list {
   list-style: none;
   margin: 0;
@@ -70,7 +60,6 @@
 
   .game-item {
     display: flex;
-    flex-direction: row;
     align-items: center;
     padding: 10px 15px;
     cursor: pointer;
@@ -85,7 +74,6 @@
       width: 60px;
       height: 60px;
       overflow: hidden;
-      flex-shrink: 0;
       margin-right: 10px;
 
       img {
@@ -99,31 +87,28 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      justify-content: center;
 
       .game-title {
         font-size: 1.1rem;
-        font-family: 'Ghost', sans-serif;
+        font-family: $font-ghost;
         margin: 0;
       }
 
       .game-desc {
         font-size: 0.9rem;
-        color: #aaa;
+        color: lighten($bg_blue1, 40%);
         margin: 0;
       }
     }
 
     .game-right-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
+      text-align: right;
       font-size: 0.9rem;
 
       .discount {
         color: $bg_green;
-        margin-bottom: 3px;
         font-weight: bold;
+        margin-bottom: 3px;
       }
 
       .price,
@@ -134,187 +119,199 @@
   }
 }
 
-/* ============================================
-   DETAIL-PANEL (Rechte Spalte)
-============================================ */
-.detail-panel,
-.game-detail-wrapper {
+// Detail-Panel
+.detail-panel {
   background: $bg_blue2;
   border-radius: 5px;
   padding: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.detail-panel {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   border-left: 1px solid rgba($white, 0.1);
   min-height: 80vh;
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
 
-/* ============================================
-   GAME DETAIL PAGE
-============================================ */
-.breadcrumb {
-  font-size: 0.9rem;
-  margin-bottom: 15px;
+  .detail-header {
+    font-size: 1.2rem;
+    font-family: $font-ghost;
+  }
 
-  a {
-    color: $bg_glow_blue;
-    text-decoration: none;
-    transition: color 0.2s;
-
-    &:hover {
-      color: lighten($bg_glow_blue, 20%);
+  .detail-screenshots {
+    img.mini-screenshot {
+      max-width: 100%;
+      border: 1px solid darken($bg_blue2, 10%);
+      border-radius: 3px;
     }
+  }
+
+  .detail-tags {
+    span.tag {
+      display: inline-block;
+      background: $bg_glow_blue;
+      padding: 3px 6px;
+      margin-right: 5px;
+      border-radius: 3px;
+      font-size: 0.8rem;
+    }
+  }
+
+  .detail-rating {
+    font-size: 0.9rem;
+    color: lighten($bg_blue1, 40%);
   }
 }
 
-/* ============================================
-   OBERER BEREICH (Cover, Trailer & Infos)
-============================================ */
-.top-section {
-  display: flex;
-  gap: 20px;
+// Game Detail Page
+.game-detail-wrapper {
+  background: $bg_blue2;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 
-  .left-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  .breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
 
-    .cover-image {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 5px;
+    a {
+      color: $bg_glow_blue;
+      text-decoration: none;
+
+      &:hover {
+        color: lighten($bg_glow_blue, 10%);
+      }
     }
+  }
 
-    .trailer-container {
-      width: 100%;
-      aspect-ratio: 16/9;
-      border-radius: 5px;
-      overflow: hidden;
+  .top-section {
+    display: flex;
+    gap: 20px;
 
-      iframe {
+    .left-column {
+      flex: 1;
+
+      .cover-image {
         width: 100%;
-        height: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .screenshot-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+
+        img {
+          width: calc(33.33% - 5px);
+          max-height: 120px;
+          object-fit: cover;
+          border-radius: 3px;
+          cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
       }
     }
 
-    .screenshot-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
+    .right-column {
+      flex: 1;
 
-      img {
-        width: calc(33.33% - 5px);
-        max-height: 120px;
-        object-fit: cover;
-        border-radius: 3px;
-        cursor: pointer;
-        transition: transform 0.2s;
+      h1 {
+        font-size: 2rem;
+        margin: 0 0 10px;
+      }
 
-        &:hover {
-          transform: scale(1.05);
+      .short-desc {
+        font-size: 1rem;
+        color: lighten($bg_blue1, 40%);
+      }
+
+      .game-meta {
+        list-style: none;
+        padding: 0;
+        li {
+          font-size: 0.9rem;
+          margin-bottom: 5px;
+        }
+      }
+
+      .buy-section,
+      .play-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 15px;
+
+        .price-label {
+          font-size: 1.2rem;
+          font-weight: bold;
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .cta-button {
+          padding: 10px 15px;
+          border: none;
+          border-radius: 3px;
+          font-weight: bold;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+
+          &.cta-buy {
+            background: $bg_green;
+            color: $white;
+
+            &:hover {
+              background: darken($bg_green, 10%);
+              transform: scale(1.05);
+            }
+          }
+
+          &.cta-free {
+            background: $bg_glow_blue;
+            color: $white;
+
+            &:hover {
+              background: darken($bg_glow_blue, 10%);
+              transform: scale(1.05);
+            }
+          }
         }
       }
     }
   }
 
-  .right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-}
+  .bottom-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
 
-/* ============================================
-   PREIS & KAUF-SECTION
-============================================ */
-.buy-section,
-.play-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 10px;
-  background: rgba($white, 0.05);
-  border-radius: 5px;
-
-  .price-label {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-
-  .cta-button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 3px;
-    text-transform: uppercase;
-    transition: background 0.2s, transform 0.1s;
-
-    &.cta-buy {
-      background: $bg_green;
-      color: $white;
-
-      &:hover {
-        background: lighten($bg_green, 10%);
-        transform: scale(1.05);
-      }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      font-family: $font-ghost;
     }
 
-    &.cta-free {
-      background: $bg_glow_blue;
-      color: $white;
-
-      &:hover {
-        background: lighten($bg_glow_blue, 10%);
-        transform: scale(1.05);
-      }
+    p {
+      font-size: 1rem;
+      color: lighten($bg_blue1, 40%);
     }
   }
 }
 
-/* ============================================
-   WEITERE INFOS (Beschreibung)
-============================================ */
-.bottom-section {
-  margin-top: 30px;
-  padding: 20px;
-  background: rgba($white, 0.05);
-  border-radius: 5px;
-
-  h2 {
-    font-size: 1.5rem;
-    font-family: 'Ghost', sans-serif;
-    margin-bottom: 10px;
-  }
-
-  p {
-    font-size: 1rem;
-    color: #ccc;
-  }
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-============================================ */
+// Responsives Design
 @media (max-width: 1000px) {
   .steam-like-container {
     max-width: 100%;
     padding: 0 10px;
   }
 
-  .games-list,
-  .detail-panel,
-  .top-section {
+  .games-list, .detail-panel, .top-section {
     flex-direction: column;
   }
 
