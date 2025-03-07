@@ -18,3 +18,4 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 28.02.2025|1.5.3|07:30-10:15|2h45min|LBS|Passwort Rücksetzung (noch in arbeit), Login und Warenkorb function angepasst|Bei mir gab es leider zum Schluss ein paar Probleme mit PHP Storm wegen der Lizenz|[Github]
 04.03.2025|1.5.3|10:00-12:20|2h20min|LBS|Passwort Rücksetzung (noch in arbeit)|Gibt mir immer den selben Fehler aus|[Github]
 06.03.2025|1.5.3|09:25-12:50|3h25min|LBS|Passwort Rücksetzung (fast fertig, Keine Fehlerausgabe mehr schickt nur die mail noch nicht an den User)||[Github]
+07.03.2025|1.7.2|07:30-10:15|2h45min|LBS|Dokumentation anpassen, Besprechung mit Dino wegen Kostenberechnung||[Github]
