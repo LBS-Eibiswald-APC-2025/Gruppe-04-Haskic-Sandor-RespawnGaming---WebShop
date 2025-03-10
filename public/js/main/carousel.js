@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const featuredGames       = window.featuredGames || [];
+    document.addEventListener('DOMContentLoaded', () => {
+    const featuredGames       = window.allgames || [];
 
     // Selektoren
     const slideEl            = document.getElementById('carouselSlide');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselImg.src = game.image;
         carouselImg.alt = game.title;
         carouselTitle.textContent = game.title;
-        carouselDesc.textContent  = game.description;
+        carouselDesc.textContent  = 'Bald Verfügbar';
         carouselPrice.textContent = game.price;
 
         // Aktualisiere die aktiven Indikatoren
@@ -70,7 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Aktualisiert die Thumbnails (2×2 Grid)
     function updateThumbnails(game) {
         carouselThumbnails.innerHTML = '';
-        const thumbUrls = [game.image, game.image, game.image, game.image];
+        let thumbUrlsArr = game.tinyImageArray;
+
+        let thumbUrls = thumbUrlsArr.split("; ");
+
         thumbUrls.forEach((url) => {
             const img = document.createElement('img');
             img.src = url;

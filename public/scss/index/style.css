@@ -34,7 +34,7 @@
   border-radius: 0 0 15px 15px;
   background-blend-mode: darken;
   background-size: cover;
-  background: rgba(0, 0, 0, 0.3) url("../../image/Hero_Illustration2.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.3) url("../../image/main/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }

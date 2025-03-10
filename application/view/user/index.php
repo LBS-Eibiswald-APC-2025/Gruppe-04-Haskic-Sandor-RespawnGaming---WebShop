@@ -13,7 +13,7 @@ $user = Session::get('user_data');
     <div class="profile-header">
         <!-- Cover-Bild (falls kein eigenes Bild, wird ein Standardbild genutzt) -->
         <?php $random = rand(1, 3); ?>
-        <img class="cover" src="<?= $user['cover_image'] ?? '/image/cover_'.$random.'.webp'; ?>" alt="Cover Image">
+        <img class="cover" src="<?= $user['cover_image'] ?? '/image/main/cover_'.$random.'.webp'; ?>" alt="Cover Image">
         <!-- Avatar, der über den unteren Bereich des Covers ragt -->
         <div class="avatar">
             <img src="<?= $user['avatar'] ?? 'https://avatar.iran.liara.run/public'; ?>" alt="User Avatar">
@@ -41,7 +41,7 @@ $user = Session::get('user_data');
         <div class="library" id="library">
             <h3>Meine Bibliothek</h3>
             <div class="games">
-                <p>Comming soon</p>
+                <p>Coming soon</p>
             </div>
         </div>
 

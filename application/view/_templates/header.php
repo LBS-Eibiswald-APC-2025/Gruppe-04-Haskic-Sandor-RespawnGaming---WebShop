@@ -6,12 +6,13 @@ $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = trim($uri, '/');
 $segments = explode('/', $uri);
 $view = $segments[0] ?: 'index';
+$quantity = 0;
 
 $cartCount = 0;
 $userId = Session::get('user_id');
 $cartItems = CartModel::getCartItemsWithDetails();
 foreach ($cartItems as $item) {
-    $cartCount += (int)$item->quantity;
+    $cartCount += (int)$item['quantity'];
 }
 ?>
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ foreach ($cartItems as $item) {
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="<?php echo Config::get('URL'); ?>">
-            <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">Respawn Gaming</a>
+            <img src="../../../public/image/main/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo me-2">Respawn Gaming</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>

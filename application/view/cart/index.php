@@ -10,7 +10,7 @@
         $cartItems  = $this->data['cartItems'] ?? [];
         $totalPrice = 0.0;
         foreach ($cartItems as $item) {
-            $totalPrice += $item->price * $item->quantity;
+            $totalPrice += $item['price'] * $item['quantity'];
         }
         ?>
 
@@ -41,19 +41,19 @@
                                     <?php endif; ?>
 
                                     <div class="cart-gametitle">
-                                        <?= htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8'); ?>
+                                        <?= htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8'); ?>
                                     </div>
                                 </div>
                             </td>
                             <td class="cart-price">
-                                €<?= number_format($item->price, 2, ',', '.'); ?>
+                                €<?= number_format($item['price'], 2, ',', '.'); ?>
                             </td>
                             <td class="cart-quantity">
-                                <?= (int)$item->quantity; ?>
+                                <?= (int)$item['quantity']; ?>
                             </td>
                             <td class="cart-remove">
                                 <form action="<?= Config::get('URL'); ?>cart/removeFromCart" method="post">
-                                    <input type="hidden" name="game_id" value="<?= (int)$item->id; ?>">
+                                    <input type="hidden" name="game_id" value="<?= (int)$item['id']; ?>">
                                     <button type="submit" class="cart-remove-btn">Entfernen</button>
                                 </form>
                             </td>

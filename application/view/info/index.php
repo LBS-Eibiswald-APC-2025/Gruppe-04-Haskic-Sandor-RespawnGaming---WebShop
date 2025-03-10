@@ -5,7 +5,7 @@
         <div class="info-content">
             <!-- Logo und Titel -->
             <div class="info-logo">
-                <img src="/public/image/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo">
+                <img src="../../../public/image/main/RG_MainLogo.png" alt="Respawn Gaming Logo" class="logo">
                 <h1 class="info-title">Respawn Gaming</h1>
             </div>
 
