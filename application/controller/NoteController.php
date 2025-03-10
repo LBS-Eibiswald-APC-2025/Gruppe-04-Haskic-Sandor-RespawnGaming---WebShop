@@ -22,7 +22,7 @@ class NoteController extends Controller
      * This method controls what happens when you move to /note/index in your app.
      * Gets all notes (of the user).
      */
-    public function index()
+    public function index(): void
     {
         $this->View->render('note/index', array(
             'notes' => NoteModel::getAllNotes()

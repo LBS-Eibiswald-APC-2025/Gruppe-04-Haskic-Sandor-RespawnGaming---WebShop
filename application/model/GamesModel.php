@@ -6,7 +6,7 @@ class GamesModel
      * Holt alle Spiele als assoziative Arrays.
      * Passt zu deinen 15 Spalten in der Tabelle "games".
      */
-    public static function getAllGames(): ?array
+    public static function getAllGames(?int $limit = 20): ?array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
         $sql = "SELECT
@@ -21,13 +21,15 @@ class GamesModel
                     file_path,
                     created_at,
                     image,
+                    tinyImageArray,
                     discount,
                     snippet,
                     category,
+                    game_url,
                     video_url
                 FROM games
                 ORDER BY release_date DESC
-                LIMIT 20";
+                LIMIT " . $limit;
 
         $query = $database->prepare($sql);
         $query->execute();
@@ -55,10 +57,12 @@ class GamesModel
                     file_path,
                     created_at,
                     image,
+                    tinyImageArray,
                     discount,
                     snippet,
                     category,
-                    video_url
+                    video_url,
+                    game_url
                 FROM games
                 WHERE id = :game_id
                 LIMIT 1";

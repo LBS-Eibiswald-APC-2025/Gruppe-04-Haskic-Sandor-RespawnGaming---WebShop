@@ -13,7 +13,11 @@ use PHPMailer\PHPMailer\Exception;
 class Mail
 {
     /** @var mixed variable to collect errors */
-    private $error;
+    public mixed $error {
+        get {
+            return $this->error;
+        }
+    }
 
     /**
      * Try to send a mail by using PHP's native mail() function.
@@ -23,7 +27,7 @@ class Mail
      * @see http://stackoverflow.com/a/24644450/1114320
      * @see http://www.php.net/manual/en/function.mail.php
      */
-    public function sendMailWithNativeMailFunction()
+    public function sendMailWithNativeMailFunction(): false
     {
         // no code yet, so we just return something to make IDEs and code analyzer tools happy
         return false;
@@ -35,7 +39,7 @@ class Mail
      *
      * @return bool
      */
-    public function sendMailWithSwiftMailer()
+    public function sendMailWithSwiftMailer(): bool
     {
         // no code yet, so we just return something to make IDEs and code analyzer tools happy
         return false;
@@ -144,14 +148,4 @@ class Mail
     return false;}
 
 
-    /**
-     * The different mail sending methods write errors to the error property $this->error,
-     * this method simply returns this error / error array.
-     *
-     * @return mixed
-     */
-    public function getError(): mixed
-    {
-        return $this->error;
-    }
 }

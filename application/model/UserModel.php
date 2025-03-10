@@ -389,4 +389,56 @@ class UserModel
         return ($query->rowCount() === 1);
     }
 
+    public function findByResetToken(mixed $token)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        // Hier prüfen wir, ob der Token existiert und noch nicht abgelaufen ist.
+        // Da user_password_reset_timestamp als UNIX-Timestamp gespeichert wird, vergleichen wir ihn mit UNIX_TIMESTAMP().
+        $sql = "SELECT * FROM users 
+            WHERE password_reset_token = :token 
+              AND user_password_reset_timestamp > UNIX_TIMESTAMP()
+            LIMIT 1";
+        $stmt = $database->prepare($sql);
+        $stmt->execute([':token' => $token]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function removeResetToken($id): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        // Setzt den Token und das Ablaufdatum zurück, damit er nicht erneut verwendet werden kann.
+        $sql = "UPDATE users 
+            SET password_reset_token = NULL, 
+                user_password_reset_timestamp = NULL 
+            WHERE user_id = :id";
+        $stmt = $database->prepare($sql);
+        return $stmt->execute([':id' => $id]);
+    }
+
+
+    public function findByEmail(mixed $email)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
+        $stmt = $database->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function saveResetToken($id, string $token, int $expiry)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        // Hier wird der Token in der Spalte "password_reset_token" und das Ablaufdatum
+        // (als UNIX-Timestamp) in "user_password_reset_timestamp" gespeichert.
+        $sql = "UPDATE users SET password_reset_token = :token, user_password_reset_timestamp = :expiry WHERE user_id = :id";
+        $stmt = $this->$database->prepare($sql);
+        return $stmt->execute([
+            ':token'  => $token,
+            ':expiry' => $expiry,
+            ':id'     => $id,
+        ]);
+    }
+
+
+
 }

@@ -1,10 +1,17 @@
 <?php
 
+use Random\RandomException;
+
+
 class PasswordResetController extends Controller
 {
+    private UserModel $userModel;
+
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct(); // Ruft den Konstruktor der Elternklasse auf
+        // weitere Initialisierungen, z.B. Model laden:
+        $this->userModel = new UserModel();
     }
 
     /**
@@ -17,6 +24,7 @@ class PasswordResetController extends Controller
 
     /**
      * Verarbeitet die Anfrage für den Passwort-Reset
+     * @throws RandomException
      */
     public function sendResetRequest(): void
     {
@@ -35,7 +43,7 @@ class PasswordResetController extends Controller
             return;
         }
 
-        $token = sha1(uniqid(mt_rand(), true));
+        $token = bin2hex(random_bytes(32)); // Sichere Methode zur Token-Erstellung (kryptografisch)
         $timestamp = time();
 
         if (!PasswordResetModel::storeResetToken($user->user_id, $token, $timestamp)) {
@@ -60,26 +68,28 @@ class PasswordResetController extends Controller
      */
     public function resetPassword(): void
     {
-        $user_name = Request::get('user');
-        $token = Request::get('token');
+        // Annahme: der Token wird als GET-Parameter übergeben
+        $token = $_GET['token'] ?? '';
 
-        if (empty($user_name) || empty($token)) {
-            Session::add('feedback_negative', 'Ungültiger Passwort-Reset-Link.');
-            Redirect::to('login/index');
-            return;
+        // Token validieren (sowie die Ablaufzeit prüfen)
+        $user = $this->userModel->findByResetToken($token);
+        if ($user && $user['token_expiry'] > time()) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $newPassword = $_POST['password'];
+                // Validierung und Passwort-Hashing
+                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                // Passwort aktualisieren und Token entfernen
+                $this->userModel->updatePassword($user['id'], $hashedPassword);
+                $this->userModel->removeResetToken($user['id']);
+
+                echo "Dein Passwort wurde erfolgreich zurückgesetzt.";
+            } else {
+                // Zeige das Formular (evtl. über eine View einbinden)
+                include "application/view/login/resetPassword.php";
+            }
+        } else {
+            echo "Ungültiger oder abgelaufener Token.";
         }
-
-        $user = PasswordResetModel::getUserByUserNameOrEmail($user_name);
-        if (!$user || $user->user_password_reset_hash !== $token) {
-            Session::add('feedback_negative', 'Ungültiger oder abgelaufener Passwort-Reset-Link.');
-            Redirect::to('login/index');
-            return;
-        }
-
-        $this->View->render('login/resetPassword', [
-            'user_name' => $user_name,
-            'token' => $token
-        ]);
     }
 
     /**

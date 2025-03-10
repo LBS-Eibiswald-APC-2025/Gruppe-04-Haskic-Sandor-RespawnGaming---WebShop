@@ -45,6 +45,7 @@ class CartModel
      *
      * @return array Enthält Objekte mit Spielinformationen und der Menge.
      */
+
     public static function getCartItemsWithDetails(): array
     {
         $cartItems = [];
@@ -54,10 +55,11 @@ class CartModel
 
         // Über jeden Eintrag im Session-Warenkorb iterieren.
         foreach (Session::get('cart') as $game_id => $quantity) {
+            // Spiel anhand der ID holen.
             $game = GamesModel::getGameById($game_id);
             if ($game) {
                 // Menge als Eigenschaft hinzufügen, sodass die View sie nutzen kann.
-                $game->quantity = $quantity;
+                $game['quantity'] = $quantity;
                 $cartItems[] = $game;
             }
         }
@@ -65,7 +67,7 @@ class CartModel
     }
 
     /**
-     * Führt den Checkout durch:
+     * Führt den Check-out durch:
      * - Berechnet den Gesamtpreis
      * - Legt die Bestellung in der Datenbank an
      * - Fügt die Bestellpositionen hinzu

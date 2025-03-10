@@ -1,7 +1,6 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
-use Random\RandomException;
 
 class LoginController extends Controller
 {
@@ -76,7 +75,7 @@ class LoginController extends Controller
         exit();
     }
 
-    public function loginWithCookie(): void
+    public function loginWithCookie(): bool
     {
         $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
 
@@ -85,25 +84,51 @@ class LoginController extends Controller
         } else {
             LoginModel::deleteCookie();
             Redirect::to('login/index');
-        }
+        }return true;
     }
 
 
-    public function requestPasswordReset(): void
+    public function requestPasswordReset(string $user_input, string $captcha): bool
     {
-        $this->View->render('login/requestPasswordReset');
+        // Hier kannst du z.B. noch die Captcha-Eingabe prüfen
+        // if (!self::verifyCaptcha($captcha)) {
+        //     return false;
+        // }
+
+        // Suche den Benutzer anhand des eingegebenen Benutzernamens oder der E-Mail
+        $user = self::getUserByUserNameOrEmail($user_input);
+        if (!$user) {
+            return false;
+        }
+
+        // Generiere einen sicheren Token und setze einen Zeitstempel (z.B. 1 Stunde Gültigkeit)
+        $token = sha1(uniqid(mt_rand(), true));
+        $timestamp = time() + 3600; // Token gültig für 1 Stunde
+
+        // Speichere den Reset-Token in der Datenbank
+        if (!self::storeResetToken($user->user_id, $token, $timestamp)) {
+            return false;
+        }
+
+        // Sende die Reset-Mail an den Benutzer
+        if (!self::sendPasswordResetMail($user->user_name, $token, $user->email)) {
+            return false;
+        }
+
+        return true;
     }
+
 
     /**
      */
-    public function requestPasswordReset_action(): void
+    public function requestPasswordReset_action()
     {
 
         // Holen der Benutzereingabe und Captcha (falls vorhanden)
         $user_input = Request::post('user_name_or_email') ?? '';
         $captcha = Request::post('captcha') ?? '';
 
-        $success = PasswordResetModel::requestPasswordReset($user_input, $captcha);
+        $success = (new PasswordResetModel(new UserModel()))->requestPasswordReset($user_input, $captcha);
 
         // Falls erfolgreich, zur Bestätigungsseite weiterleiten
         if ($success) {
@@ -147,12 +172,10 @@ class LoginController extends Controller
             return;
         }
 
-        // SweetAlert Feedback setzen
         Session::add('feedback_sweetalert', Text::get('FEEDBACK_PASSWORD_RESET_CONFIRMATION'));
-
-        // Weiterleitung zur `requestPasswordReset`
         Redirect::to('login/requestPasswordReset');
     }
+
 
     public function verifyPasswordReset($user_name, $verification_code): void
     {
