@@ -222,6 +222,7 @@
   padding: 20px;
   max-width: 900px;
   width: 100%;
+  height: 390px;
 }
 .custom-carousel-container .carousel-slide .carousel-image {
   flex: 3;

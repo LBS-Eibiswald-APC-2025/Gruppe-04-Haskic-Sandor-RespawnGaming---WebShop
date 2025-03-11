@@ -87,7 +87,7 @@ $AllGames = GamesModel::getAllGames(5);
         <!-- Hero-Section -->
         <header class="hero-section text-center">
             <div class="container">
-                <h1>Willkommen bei Respawn Gaming</h1>
+                <h1>Respawn Gaming</h1>
                 <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
                 <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt Loslegen!</a>
                 <div class="search-bar mt-4">

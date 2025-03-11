@@ -22,11 +22,11 @@ if (!$game) {
             <!-- Cover-Bild -->
             <img src="<?php echo htmlspecialchars($game['image']); ?>" alt="Cover" class="cover-image">
 
-            <!-- Video (optional) -->
+            <!-- Video (optional, startet automatisch) -->
             <?php if (!empty($game['video_url'])): ?>
                 <div class="video-section mt-3">
-                    <!-- Beispiel: Lokales MP4 -->
-                    <video width="100%" controls>
+                    <!-- Video mit autoplay, muted und playsinline -->
+                    <video width="100%" controls autoplay muted playsinline>
                         <source src="<?php echo htmlspecialchars($game['video_url']); ?>" type="video/mp4">
                         Dein Browser unterstützt kein HTML5-Video.
                     </video>
@@ -64,7 +64,8 @@ if (!$game) {
                     <span class="price-label">
                         Preis: <?php echo htmlspecialchars($game['price']); ?>
                     </span>
-                    <form action="<?php echo Config::get('URL'); ?>cart/addToCart/<?php echo (int)$game['id']; ?>" method="post">
+                    <form action="<?php echo Config::get('URL'); ?>cart/addToCart" method="post">
+                        <input type="hidden" name="game_id" value="<?php echo (int)$game['id']; ?>">
                         <button type="submit" class="cta-button cta-buy">Kaufen</button>
                     </form>
                 </div>

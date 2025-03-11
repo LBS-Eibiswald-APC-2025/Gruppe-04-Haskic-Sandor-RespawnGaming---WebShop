@@ -1,32 +1,40 @@
 @import '../main/_variables.scss';
 
+// -------------------------------
 // Schriftarten einbinden
+// -------------------------------
 @font-face {
   font-family: "Ghost";
   src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
 }
+
 @font-face {
   font-family: "Playstation";
   src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
 }
 
-// Grundlayout
+// -------------------------------
+// Grundlayout & Container
+// -------------------------------
 .games-page-wrapper {
+  position: relative;
   background: $bg_blue1;
   color: $white;
   min-height: 100vh;
   font-family: $font-ghost;
 }
 
-// Container & Wrapper
-.steam-like-container,
+.container-tab,
 .game-detail-wrapper {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 25px;
+  background: $bg_blue1;
 }
 
+// -------------------------------
 // Navigation
+// -------------------------------
 .games-nav {
   display: flex;
   background-color: lighten($bg_blue2, 5%);
@@ -36,8 +44,9 @@
   a {
     color: $white;
     text-decoration: none;
-    font-family: $font-ps;
-    font-size: 0.95rem;
+    // Falls $font-ps in deinen Variablen definiert ist, kann das auch genutzt werden – hier wird explizit 'Playstation' verwendet:
+    font-family: 'Playstation', sans-serif;
+    font-size: 1.10rem;
     transition: color 0.2s, text-shadow 0.2s;
 
     &.active-link {
@@ -47,11 +56,14 @@
 
     &:hover {
       color: $bg_glow_blue;
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
     }
   }
 }
 
-// Spieleliste
+// -------------------------------
+// Spieleliste (Homepage)
+// -------------------------------
 .games-list {
   list-style: none;
   margin: 0;
@@ -71,14 +83,14 @@
     }
 
     .game-cover {
-      width: 60px;
-      height: 60px;
+      width: 120px; // alte Abmessung für Homepage
+      height: auto;
       overflow: hidden;
       margin-right: 10px;
 
       img {
-        width: 100%;
-        height: 100%;
+        width: 120px;
+        height: auto;
         object-fit: cover;
       }
     }
@@ -89,15 +101,15 @@
       flex-direction: column;
 
       .game-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         font-family: $font-ghost;
         margin: 0;
       }
 
       .game-desc {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         color: lighten($bg_blue1, 40%);
-        margin: 0;
+        margin-right: 50px;
       }
     }
 
@@ -111,62 +123,117 @@
         margin-bottom: 3px;
       }
 
-      .price,
-      .release-date {
-        color: $white;
-      }
+      // Falls auf der Homepage ein Warenkorb-Button existiert:
+      //.cart-btn {
+      //  background: $bg_green;
+      //  color: $white;
+      //  padding: 5px 10px;
+      //  border: none;
+      //  border-radius: 5px;
+      //  width: 120px;
+      //  cursor: pointer;
+      //  transition: background 0.2s;
+      //
+      //  &:hover {
+      //    background: lighten($bg_green_dark, 10%);
+      //  }
+      //}
     }
+  }
+
+  .game-price {
+    text-align: center;
+    width: 100px;
+    height: auto;
+    color: $white;
+    font-family: 'Playstation', sans-serif;
+    font-size: 1.0rem;
   }
 }
 
-// Detail-Panel
+// -------------------------------
+// Detail-Panel (Hover-Infos auf der Homepage)
+// -------------------------------
 .detail-panel {
+  position: absolute;  /* Innerhalb deines Containers (.steam-like-container) */
+  top: 0;
+  right: 0;
+  width: 70%;
+  margin-right: 50px;
   background: $bg_blue2;
   border-radius: 5px;
-  padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-left: 1px solid rgba($white, 0.1);
-  min-height: 80vh;
+
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;;
+
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
+  z-index: 999;
 
-  .detail-header {
-    font-size: 1.2rem;
-    font-family: $font-ghost;
+  &.rg-panel-active {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .detail-screenshots {
-    img.mini-screenshot {
-      max-width: 100%;
+  .detail-header {
+    font-family: 'Ghost', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  #detailScreenshots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+
+    .mini-screenshot {
+      width: 200px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 4px;
       border: 1px solid darken($bg_blue2, 10%);
-      border-radius: 3px;
+      transition: $transition-time;
+
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 
   .detail-tags {
     span.tag {
+      font-family: 'Playstation', sans-serif;
       display: inline-block;
       background: $bg_glow_blue;
-      padding: 3px 6px;
+      padding: 2px 5px;
       margin-right: 5px;
       border-radius: 3px;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
   }
 
-  .detail-rating {
-    font-size: 0.9rem;
+  .detail-rating,
+  #detailMisc {
+    font-family: 'Playstation', sans-serif;
+    font-size: 1.0rem;
     color: lighten($bg_blue1, 40%);
   }
 }
 
+// -------------------------------
 // Game Detail Page
+// -------------------------------
 .game-detail-wrapper {
   background: $bg_blue2;
   border-radius: 5px;
   padding: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   .breadcrumb {
     font-size: 0.9rem;
@@ -232,6 +299,7 @@
       .game-meta {
         list-style: none;
         padding: 0;
+
         li {
           font-size: 0.9rem;
           margin-bottom: 5px;
@@ -304,14 +372,17 @@
   }
 }
 
+// -------------------------------
 // Responsives Design
+// -------------------------------
 @media (max-width: 1000px) {
-  .steam-like-container {
+  .container-tab {
     max-width: 100%;
     padding: 0 10px;
   }
 
-  .games-list, .detail-panel, .top-section {
+  .games-list,
+  .top-section {
     flex-direction: column;
   }
 

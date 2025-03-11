@@ -1,0 +1,136 @@
+@import '../main/_variables.scss';
+
+#carouselSlide {
+  position: relative;
+  width: 100%;
+  /* Feste (oder zumindest minimale) Höhe, damit nichts springt */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: $bg_blue1;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+  .carousel-image {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .carousel-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+
+    /* Feste Höhe, damit sich die Box nicht ausdehnt */
+    /* Falls gewünscht, kann man hier min-height + max-height definieren */
+    min-height: 100%;
+
+    #carouselTitle {
+      /* Maximal zwei Zeilen, dann "..." */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* Style */
+      font-size: 1.5rem;
+      color: $white;
+      margin-bottom: 10px;
+      line-height: 1.2; /* Anpassen je nach Wunsch */
+      max-width: 100%;
+    }
+
+    #carouselDescription {
+      font-size: 1rem;
+      color: lighten($bg_blue1, 40%);
+    }
+
+    #carouselPrice {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: $bg_green;
+      margin-top: 10px;
+    }
+
+    .carousel-thumbnails {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px;
+      margin: 10px 0;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border: 1px solid $white;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+/* Vor- und Zurück-Buttons */
+#carouselPrev,
+#carouselNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: $white;
+  border: none;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 3px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(0,0,0,0.7);
+  }
+}
+
+#carouselPrev {
+  left: 10px;
+}
+
+#carouselNext {
+  right: 10px;
+}
+
+/* Indikatoren (Punkte) */
+#carouselIndicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  .indicator {
+    width: 12px;
+    height: 12px;
+    background: $gray;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &.active {
+      background: $bg_glow_blue;
+    }
+
+    &:hover {
+      background: lighten($bg_glow_blue, 10%);
+    }
+  }
+}
