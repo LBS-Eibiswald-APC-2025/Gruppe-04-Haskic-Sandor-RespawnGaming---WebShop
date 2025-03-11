@@ -79,4 +79,8 @@ return array(
     "FEEDBACK_PROFILE_UPDATE_SUCCESSFUL" => "Das Profil wurde erfolgreich aktualisiert.",
     "FEEDBACK_PROFILE_UPDATE_FAILED" => "Die Aktualisierung des Profils ist fehlgeschlagen.",
     "FEEDBACK_PASSWORD_RESET_CONFIRMATION" => "Eine Mail mit der Passwort Rücksetzung wurde ihnen zugestellt",
+    "FEEDBACK_PAYMENT_SUCCESS_TITLE" => "Erfolg!",
+    "FEEDBACK_PAYMENT_SUCCESS_TEXT"  => "Die Zahlung war erfolgreich.",
+    "FEEDBACK_PAYMENT_ERROR_TITLE"   => "Fehler!",
+    "FEEDBACK_PAYMENT_ERROR_TEXT" => "Es gab ein Problem bei der Zahlung.",
 );
