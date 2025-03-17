@@ -16,7 +16,7 @@
                     Dieses Projekt ist ein Schulprojekt der LBS Eibiswald und dient ausschließlich zu Übungszwecken. Es werden keine echten Inhalte angeboten, verkauft oder vermarktet.
                 </p>
                 <p>
-                    Alle dargestellten Informationen sind fiktiv und demonstrieren lediglich Webtechnologien.
+                    Alle dargestellten Informationen sind fiktiv und demonstrieren lediglich Webtechnologien wie PHP, MySQL, HTML, CSS und JavaScript.
                 </p>
             </div>
 

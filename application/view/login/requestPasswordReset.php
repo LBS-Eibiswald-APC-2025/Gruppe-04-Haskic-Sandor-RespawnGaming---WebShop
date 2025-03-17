@@ -5,7 +5,7 @@
     <div class="password-reset-box">
         <h2>Passwort zurücksetzen</h2>
 
-        <form method="post" action="<?php echo Config::get('URL'); ?>login/submitPasswordReset">
+        <form method="post" action="<?php echo Config::get('URL'); ?>login/requestPasswordReset">
             <!-- Eingabefeld: Benutzername oder E-Mail -->
             <div class="mb-3">
                 <label for="user_name_or_email" class="pw-label">

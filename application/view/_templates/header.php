@@ -77,8 +77,8 @@ foreach ($cartItems as $item) {
                        href="<?php echo Config::get('URL'); ?>games">Spiele</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (str_contains($current_page, '/community')) ? 'active-link' : ''; ?>"
-                       href="<?php echo Config::get('URL'); ?>community">Community</a>
+                    <a class="nav-link <?php echo (str_contains($current_page, '/community/forum')) ? 'active-link' : ''; ?>"
+                       href="<?php echo Config::get('URL'); ?>community/forum">Community</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/info')) ? 'active-link' : ''; ?>"

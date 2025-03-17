@@ -1,4 +1,5 @@
 <?php
+
 require APP . 'view/_templates/header.php';
 require APP . 'view/_templates/feedback.php';
 $token = Csrf::makeToken();

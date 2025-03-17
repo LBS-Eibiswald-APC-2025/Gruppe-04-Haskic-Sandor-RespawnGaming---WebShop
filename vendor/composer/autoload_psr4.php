@@ -6,11 +6,21 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'apimatic\\jsonmapper\\' => array($vendorDir . '/apimatic/jsonmapper/src'),
+    'Unirest\\' => array($vendorDir . '/apimatic/unirest-php/src'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
+    'Sample\\' => array($vendorDir . '/paypal/paypal-checkout-sdk/samples'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
+    'PaypalServerSdkLib\\' => array($vendorDir . '/paypal/paypal-server-sdk/src'),
+    'PayPalHttp\\' => array($vendorDir . '/paypal/paypalhttp/lib/PayPalHttp'),
+    'PayPalCheckoutSdk\\' => array($vendorDir . '/paypal/paypal-checkout-sdk/lib/PayPalCheckoutSdk'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Gregwar\\' => array($vendorDir . '/gregwar/captcha/src/Gregwar'),
+    'Fpdf\\' => array($vendorDir . '/fpdf/fpdf/src/Fpdf'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
+    'Core\\' => array($vendorDir . '/apimatic/core/src'),
+    'CoreInterfaces\\' => array($vendorDir . '/apimatic/core-interfaces/src'),
     '' => array($baseDir . '/application/core', $baseDir . '/application/model'),
 );

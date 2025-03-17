@@ -40,6 +40,16 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
       <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/php-jsonpointer/php-jsonpointer" />
+      <path value="$PROJECT_DIR$/vendor/paypal/paypal-server-sdk" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/unirest-php" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/core" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/jsonmapper" />
+      <path value="$PROJECT_DIR$/vendor/apimatic/core-interfaces" />
+      <path value="$PROJECT_DIR$/vendor/paypal/paypalhttp" />
+      <path value="$PROJECT_DIR$/vendor/paypal/paypal-checkout-sdk" />
+      <path value="$PROJECT_DIR$/vendor/fpdf/fpdf" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.4">

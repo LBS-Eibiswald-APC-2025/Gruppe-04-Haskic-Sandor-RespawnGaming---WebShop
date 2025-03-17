@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'Rs\\Json' => array($vendorDir . '/php-jsonpointer/php-jsonpointer/src'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
 );

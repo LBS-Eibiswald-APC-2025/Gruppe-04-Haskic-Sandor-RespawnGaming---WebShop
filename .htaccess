@@ -1,5 +1,6 @@
 SetEnvIf Request_URI "/image/" noauth=1
 SetEnvIf Request_URI "/fonts/" noauth=1
+SetEnvIf Request_URI "/invoices/" noauth=1
 
 # AuthType Basic
 # AuthName "Restricted Area"

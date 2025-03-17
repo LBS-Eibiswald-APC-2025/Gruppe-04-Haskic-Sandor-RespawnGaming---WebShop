@@ -3,6 +3,16 @@
    =========================================== */
 @import '../main/_variables.scss';
 
+// Globale Keyframes für den Schimmer-Effekt
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
 /* Hero-Section (Titelbereich) */
 .hero-section {
   width: 100%;
@@ -11,16 +21,18 @@
   border-radius: 0 0 15px 15px;
   background-blend-mode: darken;
   background-size: cover;
-  background: rgba(0, 0, 0, .30) url("../../image/main/Hero_Illustration2.png") no-repeat center;
+  background: rgba(0, 0, 0, 0.30) url("../../image/main/Hero_Illustration2.png") no-repeat center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
   h1 {
     font-size: $hero-h1-font-size;
     text-transform: uppercase;
-    background-color: $bg_glow_blue;
+    background: linear-gradient(90deg, $white, $bg_glow_blue, $white, $bg_glow_blue, $white);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shimmer 15s linear infinite;
     margin: 0;
     padding-bottom: $hero-h1-padding-bottom;
   }

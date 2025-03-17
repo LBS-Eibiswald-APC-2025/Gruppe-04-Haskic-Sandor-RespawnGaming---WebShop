@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/application/core" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/application/model" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/core" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gregwar/captcha" />
@@ -28,6 +30,16 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/finder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/core" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/core-interfaces" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/jsonmapper" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/apimatic/unirest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fpdf/fpdf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/paypal-checkout-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/paypal-server-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paypal/paypalhttp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/php-jsonpointer/php-jsonpointer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

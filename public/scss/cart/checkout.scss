@@ -1,0 +1,435 @@
+@import '../main/_variables.scss';
+
+/* Haupt-Checkout-Seite */
+.checkout-page {
+  margin: 10px !important;
+  color: $white;
+  font-family: Playstation, sans-serif;
+}
+
+/* Container */
+.checkout-container {
+  max-width: 1100px;
+  width: 95%;
+  background-color: rgba($bg_blue2, 0.9);
+  border-radius: $border-radius;
+  padding: 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), 0 0 8px rgba($bg_glow_blue, 0.4);
+  border: 1px solid rgba($white, 0.08);
+}
+
+/* Titel */
+.checkout-title {
+  font-family: 'Ghost', sans-serif;
+  text-transform: uppercase;
+  color: $white;
+  text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, transparent, $bg_glow_blue, transparent);
+  }
+}
+
+/* Section-Titel */
+.section-title {
+  font-family: 'Ghost', sans-serif;
+  color: $white;
+  text-shadow: 0 0 5px rgba($bg_glow_blue, 0.6);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  position: relative;
+  padding-left: 15px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, $bg_glow_blue, transparent);
+    border-radius: 4px;
+  }
+}
+
+/* Flex-Layout */
+.checkout-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+/* Linke Spalte */
+.checkout-left {
+  flex: 0 0 38%;
+  max-width: 420px;
+}
+
+/* Rechte Spalte */
+.checkout-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Bestellübersicht & Zahlungsbereich */
+.checkout-summary,
+.checkout-payment {
+  background-color: rgba(lighten($bg_blue2, 4%), 0.7);
+  border: 1px solid rgba($white, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Überschriften in den Boxen */
+.summary-heading,
+.payment-heading {
+  font-family: 'Ghost', sans-serif;
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $white;
+  text-shadow: 0 0 3px rgba($bg_glow_blue, 0.6);
+  position: relative;
+  padding-bottom: 10px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: $bg_glow_blue;
+    border-radius: 2px;
+  }
+}
+
+/* Bestellliste */
+.summary-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba($white, 0.1);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba($bg_glow_blue, 0.05);
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .item-title {
+      font-size: 1rem;
+      flex: 1;
+      font-weight: 500;
+    }
+
+    .item-quantity {
+      width: 50px;
+      text-align: right;
+      color: rgba($white, 0.8);
+    }
+
+    .item-price {
+      width: 90px;
+      text-align: right;
+      font-weight: 600;
+      color: $white;
+    }
+  }
+}
+
+/* Gesamtübersicht */
+.summary-total {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 1.2rem;
+  padding-top: 15px;
+  border-top: 2px solid rgba($white, 0.15);
+
+  .summary-total-value {
+    font-weight: bold;
+    margin-left: 15px;
+    color: $white;
+    text-shadow: 0 0 2px rgba($bg_glow_blue, 0.8);
+  }
+}
+
+/* Zahlungsbereich */
+.paypal-only {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+
+  p {
+    margin-bottom: 15px;
+    color: rgba($white, 0.9);
+    text-align: center;
+  }
+
+  .payment-note {
+    font-size: 0.9rem;
+    color: rgba($white, 0.7);
+    margin-top: 15px;
+    text-align: center;
+    font-style: italic;
+    max-width: 90%;
+  }
+
+  .paypal-logo {
+    max-width: 170px;
+    margin: 15px 0;
+    filter: drop-shadow(0 0 5px rgba($bg_glow_blue, 0.2));
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+      filter: drop-shadow(0 0 8px rgba($bg_glow_blue, 0.4));
+    }
+  }
+}
+
+/* Checkout-Form */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    position: relative;
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: lighten($white, 10%);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    input {
+      padding: 12px 14px;
+      border: 1px solid rgba($white, 0.1);
+      border-radius: 6px;
+      background-color: rgba(lighten($bg_blue1, 8%), 0.4);
+      color: $white;
+      font-family: 'Playstation', sans-serif;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      &:focus {
+        outline: none;
+        border-color: $bg_glow_blue;
+        background-color: rgba(lighten($bg_blue1, 10%), 0.5);
+        box-shadow: 0 0 0 3px rgba($bg_glow_blue, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      &::placeholder {
+        color: rgba($white, 0.4);
+      }
+
+      &:hover:not(:focus) {
+        border-color: rgba($white, 0.2);
+      }
+    }
+
+    &:hover label {
+      color: $white;
+    }
+  }
+
+  .form-info {
+    margin-top: 10px;
+    background-color: rgba($bg_blue1, 0.3);
+    border-left: 3px solid $bg_glow_blue;
+    padding: 12px 15px;
+    border-radius: 0 6px 6px 0;
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba($white, 0.8);
+      line-height: 1.4;
+    }
+  }
+}
+
+/* Finaler Checkout-Button */
+.checkout-final {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+
+  .checkout-submit-btn {
+    background: linear-gradient(135deg, $bg_glow_blue, darken($bg_glow_blue, 15%));
+    color: $white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    border: none;
+    border-radius: 6px;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Playstation', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 10px rgba($bg_glow_blue, 0.4);
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: linear-gradient(135deg, lighten($bg_green, 5%), $bg_green);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25), 0 0 15px rgba($bg_green, 0.5);
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.1);
+      transform: rotate(45deg);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      animation: shine 1.5s ease;
+    }
+  }
+}
+
+@keyframes shine {
+  from { left: -150%; opacity: 0; }
+  50% { opacity: 0.4; }
+  to { left: 100%; opacity: 0; }
+}
+
+/* Fake PayPal Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  transition: opacity 0.3s ease;
+}
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.4s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close:hover {
+  color: #333;
+}
+.modal-content h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Ghost', sans-serif;
+  color: #333;
+}
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+.modal-content form .modal-form-group {
+  margin-bottom: 15px;
+}
+.modal-content form .modal-form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #555;
+}
+.modal-content form .modal-form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.modal-content form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #0070ba;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.modal-content form button:hover {
+  background-color: #005a9c;
+}

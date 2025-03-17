@@ -1,29 +1,3 @@
-<?php if (Session::get('feedback_sweetalert_success')): ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        /* global Swal */
-        Swal({
-            icon: 'success',
-            title: '<?= Text::get("FEEDBACK_PAYMENT_SUCCESS_TITLE") ?>',
-            text: '<?= Text::get("FEEDBACK_PAYMENT_SUCCESS_TEXT") ?>'
-        });
-    </script>
-    <?php Session::set('feedback_sweetalert_success', null); ?>
-<?php endif; ?>
-
-<?php if (Session::get('feedback_sweetalert_error')): ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        /* global Swal */
-        Swal({
-            icon: 'error',
-            title: '<?= Text::get("FEEDBACK_PAYMENT_ERROR_TITLE") ?>',
-            text: '<?= Text::get("FEEDBACK_PAYMENT_ERROR_TEXT") ?>'
-        });
-    </script>
-    <?php Session::set('feedback_sweetalert_error', null); ?>
-<?php endif; ?>
-
 <?php
 // Feedback-Nachrichten aus der Session abrufen
 $feedback_positive = Session::get('feedback_positive');
