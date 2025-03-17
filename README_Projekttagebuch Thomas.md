@@ -19,3 +19,6 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 04.03.2025|1.5.3|10:00-12:20|2h20min|LBS|Passwort Rücksetzung (noch in arbeit)|Gibt mir immer den selben Fehler aus|[Github]
 06.03.2025|1.5.3|09:25-12:50|3h25min|LBS|Passwort Rücksetzung (fast fertig, Keine Fehlerausgabe mehr schickt nur die mail noch nicht an den User)||[Github]
 07.03.2025|1.7.2|07:30-10:15|2h45min|LBS|Dokumentation anpassen, Besprechung mit Dino wegen Kostenberechnung||[Github]
+11.03.2025|1.5.5|10:00-12:20|2h20min|LBS|Zahlung und Bestellabwicklung begonnen (noch in Arbeit), CartController angepasst||[Github]
+13.03.2025|1.5.3, 1.7.2|09:25-12:50|3h25min|LBS|Passwort Rücksetzung (Fehler behoben, noch nicht fertig), Inhaltsverzeichnis angepasst, Zahlungsfunktion wird noch getestet||[Github]
+14.03.2025|1.7.2, 1.5.5|07:30-10:15|2h45min|LBS|Dokumentation (Inhaltsverzeichnis abgegeben), Frontend für die Zahlungsabwicklung ist fast fertig und ich muss noch schaffen das wir mal eine gefälschte PayPal zahlung bekommen|#|[Github]
