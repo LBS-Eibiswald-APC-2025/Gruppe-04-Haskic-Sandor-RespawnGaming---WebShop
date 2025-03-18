@@ -7,8 +7,7 @@ class Auth
         Session::init();
 
         if (!Session::userIsLoggedIn()) {
-            Session::destroy();
-            header('location: ' . Config::get('URL') . 'login?redirect=' . urlencode($_SERVER['REQUEST_URI']));
+            header('location: ' . Config::get('URL') . 'login');
             exit();
         }
     }
