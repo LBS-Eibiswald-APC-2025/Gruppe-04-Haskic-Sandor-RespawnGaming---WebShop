@@ -23,3 +23,4 @@
 | 13.03.2025 | 1.4.5 | 09:25-12:50 | 3h25min | LBS | Warenkorb-CheckOut Seite begonnen Index und SCSS / Bezahlmethode steht noch aus                                |                                      | [GitHub]            |
 | 14.03.2025 | 1.4.5 | 07:30-10:15 | 2h45min | LBS | Dokumentation Inhaltsverzeichnis Abgabe und Weiterbearbeitung der Bezahlmethode FE                             | ---                                  | [GitHub]            |
 | 18.03.2025 | 1.4.5 | 10:00-12:20 | 2h20min | LBS | Krank                                                                                                          | ---                                  | [GitHub]            |
+| 20.03.2025 | 1.4.5 | 09:25-12:50 | 3h25min | LBS | Warenkorb-CheckOut Seite fast fertig / Zentrierung der Anzahl gekaufter Artikel / Anpassungen an Textgrößen    |                                      | [GitHub]            |
