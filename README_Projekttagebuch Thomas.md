@@ -22,3 +22,4 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 11.03.2025|1.5.5|10:00-12:20|2h20min|LBS|Zahlung und Bestellabwicklung begonnen (noch in Arbeit), CartController angepasst||[Github]
 13.03.2025|1.5.3, 1.7.2|09:25-12:50|3h25min|LBS|Passwort Rücksetzung (Fehler behoben, noch nicht fertig), Inhaltsverzeichnis angepasst, Zahlungsfunktion wird noch getestet||[Github]
 14.03.2025|1.7.2, 1.5.5|07:30-10:15|2h45min|LBS|Dokumentation (Inhaltsverzeichnis abgegeben), Frontend für die Zahlungsabwicklung ist fast fertig und ich muss noch schaffen das wir mal eine gefälschte PayPal zahlung bekommen|#|[Github]
+18.03.2025|1.7.2, 1.5.5|10:00-12:20|2h20min|LBS|Dokumentation (besprechung und anpassung), Paypal Sandbox funktioniert und eine Rechnung wird mit ausgeschickt nach der Zahlungsabwicklung, PDF Rechnung wird noch aqngepasst|#|[Github]
