@@ -1,82 +1,175 @@
 @import '../main/_variables.scss';
 
-/* Erfolgsseite Styling */
 .success-page {
-  padding: 2rem 0;
+  padding: 1.5rem 0; // Weniger Abstand nach oben/unten
   font-family: Playstation, sans-serif !important;
-}
 
-.success-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  background-color: $bg_blue1;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
+  // Container für den Inhalt
+  .success-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: $bg_blue1;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
-.success-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  color: $white;
-  text-align: center;
-}
+    // Haupt-Überschrift "Bestellung erfolgreich"
+    .success-title {
+      font-size: 1.6rem; // kleiner als vorher (z.B. 2rem -> 1.6rem)
+      margin-bottom: 1rem; // etwas weniger Abstand
+      color: $white;
+      text-align: center;
+      font-family: 'Ghost', sans-serif; // z.B. Ghost oder Playstation
+      text-transform: uppercase; // falls gewünscht
+      letter-spacing: 1px; // leichte Spreizung
+    }
 
-.success-message {
-  display: flex;
-  align-items: center;
-  background-color: $bg_blue2;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-}
+    // Bereich für die Bestätigungsnachricht
+    .success-message {
+      display: flex;
+      align-items: center;
+      background-color: $bg_blue2;
+      padding: 1rem; // weniger Padding
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
 
-.success-icon {
-  margin-right: 1rem;
-  color: $bg_green;
-  flex-shrink: 0;
-}
+      .success-icon {
+        margin-right: 0.75rem;
+        color: $bg_green;
+        flex-shrink: 0;
+      }
 
-.order-details {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background-color: $bg_blue1;
-  border-radius: 8px;
-}
+      p {
+        color: $white;
+        font-size: 1rem; // kleinerer Font
+        line-height: 1.4;
+      }
+    }
 
-.order-items {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0;
-}
+    // Block mit den Bestelldetails
+    .order-details {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: $bg_blue1;
+      border-radius: 8px;
 
-.order-items li {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e2e8f0;
-}
+      h3 {
+        font-size: 1.3rem; // Überschrift z.B. "Bestelldetails"
+        color: $white;
+        margin-bottom: 0.75rem;
+      }
 
-.order-total {
-  margin-top: 1rem;
-  text-align: right;
-  font-size: 1.2rem;
-}
+      p {
+        font-size: 0.95rem; // z.B. "Bestellnummer: 73"
+        color: rgba($white, 0.9);
+        margin-bottom: 0.5rem;
+      }
 
-.next-steps {
-  padding: 1.5rem;
-  background-color: $bg_blue2;
-  border-radius: 8px;
-}
+      // Liste aller gekauften Artikel
+      .order-items {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
 
-.action-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.5rem 0;
+          border-bottom: 1px solid rgba($white, 0.2);
 
-@media (max-width: 768px) {
-  .action-buttons {
-    flex-direction: column;
+          .item-title {
+            flex: 1;
+            text-align: left;
+            color: $white;
+            font-size: 1rem;
+          }
+
+          .item-quantity {
+            width: 80px;
+            text-align: center;
+            color: rgba($white, 0.8);
+            font-size: 1rem;
+          }
+
+          .item-price {
+            width: 90px;
+            text-align: right;
+            font-weight: 600;
+            color: $white;
+            font-size: 1rem;
+          }
+        }
+      }
+
+      // Gesamtbetrag
+      .order-total {
+        margin-top: 1rem;
+        text-align: right;
+        font-size: 1.1rem;
+        color: $white;
+        font-weight: 600;
+      }
+    }
+
+    // Bereich "Nächste Schritte"
+    .next-steps {
+      padding: 1rem;
+      background-color: $bg_blue2;
+      border-radius: 8px;
+
+      h3 {
+        font-size: 1.3rem;
+        color: $white;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: rgba($white, 0.9);
+        margin-bottom: 1rem;
+        line-height: 1.4;
+      }
+
+      .action-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
+
+        .btn {
+          background: linear-gradient(135deg, $bg_glow_blue, darken($bg_glow_blue, 15%));
+          color: $white;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          border: none;
+          border-radius: 6px;
+          padding: 14px 28px;
+          cursor: pointer;
+          text-transform: uppercase;
+          font-family: 'Playstation', sans-serif;
+          font-weight: 600;
+          font-size: 1.05rem;
+          letter-spacing: 1px;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 0 0 10px rgba($bg_glow_blue, 0.4);
+          position: relative;
+          overflow: hidden;
+
+          &:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(135deg, lighten($bg_green, 5%), $bg_green);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 15px rgba($bg_green, 0.5);
+          }
+
+          &:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+          }
+        }
+      }
+    }
   }
 }

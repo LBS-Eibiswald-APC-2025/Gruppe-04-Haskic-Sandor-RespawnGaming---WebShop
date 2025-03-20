@@ -24,7 +24,12 @@
   background-color: $bg_blue2;
   border-radius: $border-radius;
   padding: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  box-shadow: darken($bg_blue2, 25%) 0 0 15px, $bg_glow_blue 0 0 6px;
+
+  & p {
+    font-family: 'Playstation', sans-serif;
+    font-size: 1.2rem;
+  }
 }
 
 /* Überschrift in Ghost-Font */
@@ -107,7 +112,8 @@
 /* Preis + Menge in Playstation-Font (ohne bold) */
 .cart-price,
 .cart-quantity {
-  font-family: 'Playstation', sans-serif;
+  font-family: 'Playstation', sans-serif !important;
+  text-align: center !important;
   font-size: 1rem;
 }
 

@@ -7,32 +7,11 @@
 
         <!-- Flex-Container: linke Spalte für persönliche Daten, rechte für Bestellübersicht & Fake-PayPal -->
         <div class="checkout-content">
-
-            <!-- Linke Spalte: Persönliche Daten -->
-            <div class="checkout-left">
-                <h3 class="section-title">Persönliche Daten</h3>
-                <form action="<?= Config::get('URL'); ?>checkout/complete" method="post" class="checkout-form">
-                    <div class="form-group">
-                        <label for="firstname">Vorname</label>
-                        <input type="text" id="firstname" name="firstname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Nachname</label>
-                        <input type="text" id="lastname" name="lastname" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail-Adresse</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-info">
-                        <p>Deine Rechnung wird nach Zahlung an diese E-Mail-Adresse gesendet.</p>
-                    </div>
-                </form>
-            </div>
-
             <!-- Rechte Spalte: Bestellübersicht und Fake-PayPal -->
-            <div class="checkout-right">
+            <div class="checkout-block">
                 <div class="checkout-summary">
+                    <h3 class="checkout-heading">Zahlungsmethode</h3>
+                    <p>Derzeit ist nur PayPal als Zahlungsmethode verfügbar. Eine Rechnung wird an deine E-Mail-Adresse gesendet.</p>
                     <h3 class="summary-heading">Bestellübersicht</h3>
                     <?php if (!empty($this->data['cartItems'])): ?>
                         <ul class="summary-list">
@@ -58,11 +37,12 @@
                 </div>
 
                 <div class="paypal-only">
+
+                    <p class="payment-note">Bitte logge dich mit diesen Sandbox-Zugangsdaten ein, um deinen Testkauf abzuschließen.</p>
                     <p class="sandbox-info">
                         <strong>PayPal Sandbox:</strong>
                     <p>E-Mail: berndvonbrot@respawngaming.at</p>
                     <p>Passwort: 12345678</p>
-                    <p class="payment-note">Bitte logge dich mit den angegebenen Sandbox-Zugangsdaten ein!</p>
                 </div>
 
                 <!-- Button, um den Kauf abzuschließen -->

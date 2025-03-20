@@ -13,8 +13,8 @@
   width: 95%;
   background-color: rgba($bg_blue2, 0.9);
   border-radius: $border-radius;
-  padding: 30px;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7), 0 0 8px rgba($bg_glow_blue, 0.4);
+  padding: 1.5rem; // Weniger Padding
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
   border: 1px solid rgba($white, 0.08);
 }
 
@@ -23,44 +23,22 @@
   font-family: 'Ghost', sans-serif;
   text-transform: uppercase;
   color: $white;
-  text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
-  margin-bottom: 30px;
+  text-shadow: 0 0 3px $bg_glow_blue, 0 0 6px $bg_glow_blue;
+  margin-bottom: 1rem;      // Weniger Abstand nach unten
   text-align: center;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
+  font-size: 1.6rem;        // Kleinere Schrift
+  letter-spacing: 1px;
   position: relative;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -6px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
+    width: 50px;
+    height: 2px;
     background: linear-gradient(to right, transparent, $bg_glow_blue, transparent);
-  }
-}
-
-/* Section-Titel */
-.section-title {
-  font-family: 'Ghost', sans-serif;
-  color: $white;
-  text-shadow: 0 0 5px rgba($bg_glow_blue, 0.6);
-  margin-bottom: 20px;
-  font-size: 1.4rem;
-  position: relative;
-  padding-left: 15px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, $bg_glow_blue, transparent);
-    border-radius: 4px;
   }
 }
 
@@ -69,7 +47,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 30px;
+  gap: 1.5rem;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -83,11 +61,11 @@
 }
 
 /* Rechte Spalte */
-.checkout-right {
+.checkout-block {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 1.5rem;
 }
 
 /* Bestellübersicht & Zahlungsbereich */
@@ -96,29 +74,37 @@
   background-color: rgba(lighten($bg_blue2, 4%), 0.7);
   border: 1px solid rgba($white, 0.1);
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 1rem;  // Weniger Padding
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+  & p {
+    font-size: 0.95rem;  // Etwas kleinere Schrift
+    font-family: Playstation, sans-serif;
+    text-align: center;
+    color: rgba($white, 0.8);
+    margin-bottom: 0.75rem;
+  }
 }
 
 /* Überschriften in den Boxen */
+.checkout-heading,
 .summary-heading,
 .payment-heading {
   font-family: 'Ghost', sans-serif;
-  font-size: 1.3rem;
-  margin-bottom: 18px;
-  text-transform: uppercase;
+  font-size: 1.3rem; // kleiner
+  margin-bottom: 0.75rem;
   letter-spacing: 1px;
   color: $white;
-  text-shadow: 0 0 3px rgba($bg_glow_blue, 0.6);
+  text-shadow: 0 0 2px rgba($bg_glow_blue, 0.6);
   position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 6px;
 
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 40px;
+    width: 35px;
     height: 2px;
     background: $bg_glow_blue;
     border-radius: 2px;
@@ -135,7 +121,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid rgba($white, 0.1);
     transition: all 0.2s ease;
 
@@ -150,39 +136,42 @@
     }
 
     .item-title {
-      font-size: 1rem;
+      font-size: 0.95rem;
       flex: 1;
       font-weight: 500;
+      color: $white;
     }
 
     .item-quantity {
       width: 50px;
       text-align: right;
       color: rgba($white, 0.8);
+      font-size: 0.95rem;
     }
 
     .item-price {
-      width: 90px;
+      width: 80px;
       text-align: right;
       font-weight: 600;
       color: $white;
+      font-size: 0.95rem;
     }
   }
 }
 
 /* Gesamtübersicht */
 .summary-total {
-  margin-top: 20px;
+  margin-top: 1rem;
   text-align: right;
-  font-size: 1.2rem;
-  padding-top: 15px;
+  font-size: 1rem;
+  padding-top: 0.5rem;
   border-top: 2px solid rgba($white, 0.15);
 
   .summary-total-value {
     font-weight: bold;
-    margin-left: 15px;
+    margin-left: 0.5rem;
     color: $white;
-    text-shadow: 0 0 2px rgba($bg_glow_blue, 0.8);
+    text-shadow: 0 0 1px rgba($bg_glow_blue, 0.8);
   }
 }
 
@@ -191,33 +180,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0;
+  padding: 1rem 0;
 
   p {
-    margin-bottom: 15px;
+    margin-bottom: 0.75rem;
     color: rgba($white, 0.9);
     text-align: center;
+    font-size: 1.25rem;
   }
 
   .payment-note {
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     color: $red;
-    margin-top: 15px;
+    margin-top: 0.5rem;
     text-align: center;
     font-style: italic;
     max-width: 90%;
-  }
-
-  .paypal-logo {
-    max-width: 170px;
-    margin: 15px 0;
-    filter: drop-shadow(0 0 5px rgba($bg_glow_blue, 0.2));
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: scale(1.03);
-      filter: drop-shadow(0 0 8px rgba($bg_glow_blue, 0.4));
-    }
   }
 }
 
@@ -225,30 +203,30 @@
 .checkout-form {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 1rem;
 
   .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     position: relative;
 
     label {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
       color: lighten($white, 10%);
       font-weight: 500;
       transition: all 0.2s ease;
     }
 
     input {
-      padding: 12px 14px;
+      padding: 10px 12px;
       border: 1px solid rgba($white, 0.1);
       border-radius: 6px;
       background-color: rgba(lighten($bg_blue1, 8%), 0.4);
       color: $white;
       font-family: 'Playstation', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.3s ease;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
 
@@ -256,7 +234,7 @@
         outline: none;
         border-color: $bg_glow_blue;
         background-color: rgba(lighten($bg_blue1, 10%), 0.5);
-        box-shadow: 0 0 0 3px rgba($bg_glow_blue, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 0 2px rgba($bg_glow_blue, 0.2), inset 0 2px 5px rgba(0, 0, 0, 0.05);
       }
 
       &::placeholder {
@@ -274,15 +252,15 @@
   }
 
   .form-info {
-    margin-top: 10px;
+    margin-top: 0.5rem;
     background-color: rgba($bg_blue1, 0.3);
     border-left: 3px solid $bg_glow_blue;
-    padding: 12px 15px;
+    padding: 0.75rem;
     border-radius: 0 6px 6px 0;
 
     p {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: rgba($white, 0.8);
       line-height: 1.4;
     }
@@ -293,7 +271,7 @@
 .checkout-final {
   display: flex;
   justify-content: flex-end;
-  margin-top: 15px;
+  margin-top: 1rem;
 
   .checkout-submit-btn {
     background: linear-gradient(135deg, $bg_glow_blue, darken($bg_glow_blue, 15%));
@@ -301,27 +279,27 @@
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     border: none;
     border-radius: 6px;
-    padding: 14px 28px;
+    padding: 10px 20px; // Weniger Padding
     cursor: pointer;
     text-transform: uppercase;
     font-family: 'Playstation', sans-serif;
     font-weight: 600;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 10px rgba($bg_glow_blue, 0.4);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2), 0 0 8px rgba($bg_glow_blue, 0.4);
     position: relative;
     overflow: hidden;
 
     &:hover {
       transform: translateY(-2px) scale(1.02);
       background: linear-gradient(135deg, lighten($bg_green, 5%), $bg_green);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25), 0 0 15px rgba($bg_green, 0.5);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25), 0 0 12px rgba($bg_green, 0.5);
     }
 
     &:active {
       transform: translateY(1px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
     &::before {
@@ -362,14 +340,16 @@
   background-color: rgba(0,0,0,0.5);
   transition: opacity 0.3s ease;
 }
+
 .modal.show {
   display: block;
   opacity: 1;
 }
+
 .modal-content {
-  background-color: #fff;
+  background-color: darken($white, 50%);
   margin: 10% auto;
-  padding: 30px;
+  padding: 1.5rem;  // Weniger Padding
   border-radius: 8px;
   max-width: 400px;
   width: 90%;
@@ -377,59 +357,70 @@
   position: relative;
   animation: fadeIn 0.4s;
 }
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10%); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 .close {
   position: absolute;
   right: 15px;
   top: 15px;
-  font-size: 28px;
-  color: #888;
+  font-size: 1.5rem;
+  color: darken(grey, 50%);
   cursor: pointer;
   transition: color 0.2s;
 }
+
 .close:hover {
-  color: #333;
+  color: darken(grey, 50%);
 }
+
 .modal-content h2 {
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   text-align: center;
   font-family: 'Ghost', sans-serif;
-  color: #333;
+  font-size: 1.2rem;
+  color: darken(grey, 50%);
 }
+
 .modal-content form {
   display: flex;
   flex-direction: column;
 }
+
 .modal-content form .modal-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 0.75rem;
 }
+
 .modal-content form .modal-form-group label {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-  color: #555;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: darken(grey, 50%);
 }
+
 .modal-content form .modal-form-group input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border: 1px solid darken($white, 50%);
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 1rem;
 }
+
 .modal-content form button {
   width: 100%;
-  padding: 12px;
-  background-color: #0070ba;
-  color: #fff;
+  padding: 0.75rem;
+  background-color: $bg_glow_blue;
+  color: $white;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
+
 .modal-content form button:hover {
-  background-color: #005a9c;
+  background-color: darken($bg_glow_blue, 30%);
 }

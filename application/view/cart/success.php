@@ -37,7 +37,7 @@
 
             <div class="next-steps">
                 <h3>Nächste Schritte</h3>
-                <p>Deine digitalen Artikel wurden an deine E-Mail-Adresse gesendet. Falls du Fragen zu deiner Bestellung hast, kontaktiere bitte unseren Kundenservice.</p>
+                <p>Deine digital erworbenen Artikel findest du in deinem Konto. Falls du Fragen zu deiner Bestellung hast, kontaktiere bitte unseren Kundenservice.</p>
 
                 <div class="action-buttons">
                     <a href="<?= Config::get('URL'); ?>games/index" class="btn btn-primary">Weitere Spiele entdecken</a>
