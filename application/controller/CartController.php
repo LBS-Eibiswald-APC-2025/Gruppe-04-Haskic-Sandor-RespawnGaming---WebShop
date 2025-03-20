@@ -1,5 +1,7 @@
 <?php
 
+
+
 use JetBrains\PhpStorm\NoReturn;
 
 class CartController extends Controller
@@ -16,6 +18,7 @@ class CartController extends Controller
     {
         // Warenkorbeinträge via Session abrufen.
         $cartItems = CartModel::getCartItemsWithDetails();
+
         $this->View->render('cart/index', ['cartItems' => $cartItems]);
     }
 
@@ -79,6 +82,13 @@ class CartController extends Controller
     // Zeigt die Checkout-Seite an
     public function checkout(): void
     {
+        if (!Session::userIsLoggedIn()) {
+            Session::add('feedback_negative', 'Bitte loggen Sie sich ein, um fortzufahren.');
+            Redirect::to('login/index');
+            exit();
+        }
+
+
         $cartItems = CartModel::getCartItemsWithDetails();
         $totalPrice = 0;
         foreach ($cartItems as $item) {
@@ -93,54 +103,143 @@ class CartController extends Controller
         ]);
     }
 
-    // Verarbeitet den Zahlungsvorgang
-    public function processPayment(): void
+    /**
+     * Verarbeitet die Bestellung und leitet zur PayPal-Zahlung weiter
+     */
+    #[NoReturn] public function process(): void
     {
-        // 1. Zahlungsdaten aus dem Formular auslesen
-        $paymentEmail = Request::post('payment_email');
-
-        // 2. Fiktive Zahlung simulieren:
-        // Hier könntest du eine einfache Logik einbauen, z.B.
-        // wenn die E-Mail gültig ist, gilt die Zahlung als erfolgreich.
-        $paymentSuccess = filter_var($paymentEmail, FILTER_VALIDATE_EMAIL);
-
-        // 3. Falls die Zahlung erfolgreich war:
-        if ($paymentSuccess) {
-            // Bestellung in der Datenbank anlegen, Warenkorb leeren
-            $orderId = CartModel::checkout(Session::get('user_id'));
-
-            if ($orderId) {
-                // 4. PDF-Rechnung generieren (z.B. OrderModel::createInvoicePdf($orderId))
-                // Hier wird vorausgesetzt, dass du eine OrderModel-Klasse erstellst.
-                $pdfFilePath = OrderModel::createInvoicePdf($orderId);
-
-                // 5. PDF per Mail an den Kunden senden
-                OrderModel::sendInvoiceByEmail($pdfFilePath, $paymentEmail);
-
-                // 6. SweetAlert-Feedback (über Session oder direkt via Redirect)
-                Session::add('feedback_sweetalert_success', 'Zahlung erfolgreich! Deine Rechnung wurde per E-Mail verschickt.');
-
-                // Weiterleitung (z. B. zu einer Erfolgsseite)
-                Redirect::to('cart/checkoutSuccess');
-                return;
-            } else {
-                // Wenn Bestellung fehlschlägt
-                Session::add('feedback_sweetalert_error', 'Bestellung fehlgeschlagen. Bitte versuche es erneut.');
-            }
-        } else {
-            Session::add('feedback_sweetalert_error', 'Zahlung fehlgeschlagen. Bitte überprüfe deine Zahlungsdaten.');
+        // Prüfen, ob der Benutzer eingeloggt ist
+        if (!Session::userIsLoggedIn()) {
+            Session::add('feedback_negative', 'Bitte loggen Sie sich ein, um fortzufahren.');
+            Redirect::to('login/index');
+            exit();
         }
 
-        // Bei Fehler: Zurück zur Checkout-Seite
+        // Prüfen, ob Warenkorb leer ist
+        if (!CartModel::hasItems()) {
+            Session::add('feedback_negative', 'Ihr Warenkorb ist leer.');
+            Redirect::to('cart/index');
+            exit();
+        }
+
+        // PayPal API initialisierten
+        $paypal = new PayPalService();
+
+        // Warenkorbdaten abrufen
+        $cartItems = CartModel::getCartItemsWithDetails();
+        $totalPrice = 0;
+        foreach ($cartItems as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+        }
+
+        // Bestellungsdetails
+        $orderDetails = [
+            'user_id' => Session::get('user_id'),
+            'items' => $cartItems,
+            'total' => $totalPrice
+        ];
+
+        // In Session speichern für späteren Zugriff
+        Session::set('pending_order', $orderDetails);
+
+        // PayPal Zahlung erstellen und Benutzer zur PayPal-Seite weiterleiten
+        $response = $paypal->createPayment($totalPrice, Config::get('URL') . 'cart/complete', Config::get('URL') . 'cart/cancel');
+
+        if ($response) {
+            // Zu PayPal weiterleiten
+            header('Location: ' . $response);
+            exit(); // Wichtig: Nach der Weiterleitung sofort beenden
+        } else {
+            // Fehler bei PayPal
+            Session::add('feedback_negative', 'Es gab ein Problem bei der Verbindung mit PayPal. Bitte versuchen Sie es später erneut.');
+            ob_end_clean(); // Leere den Puffer
+            Redirect::to('cart/checkout');
+            exit(); // Sofort beenden
+        }
+    }
+
+    /**
+     * Wird aufgerufen, wenn die PayPal-Zahlung erfolgreich war
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
+    public function complete(): void
+    {
+        error_reporting(0);
+
+        // Prüfen, ob der Benutzer eingeloggt ist
+        if (!Session::userIsLoggedIn()) {
+            Session::add('feedback_negative', 'Bitte loggen Sie sich ein, um fortzufahren.');
+            Redirect::to('login/index');
+            exit();
+        }
+
+        // PayPal-Parameter prüfen
+        $token = $_GET['token'] ?? null;
+        $payerId = $_GET['PayerID'] ?? null;
+
+        if (!$token || !$payerId) {
+            Session::add('feedback_negative', 'Ungültige Zahlungsdetails erhalten.');
+            Redirect::to('cart/checkout');
+            exit();
+        }
+
+        // Bestelldetails aus der Session holen
+        $orderDetails = Session::get('pending_order');
+
+        if (!$orderDetails) {
+            Session::add('feedback_negative', 'Bestelldetails nicht gefunden.');
+            Redirect::to('cart/index');
+            exit();
+        }
+
+        // PayPal API initialisieren und Zahlung ausführen
+        $paypal = new PayPalService();
+        $result = $paypal->executePayment($token, $payerId);
+
+        if ($result) {
+            // Bestellung in Datenbank speichern
+            $orderId = CartModel::checkout((int)$orderDetails['user_id']);
+
+            if ($orderId) {
+                // PDF-Rechnung erstellen
+                $pdfPath = CartModel::createInvoicePdf($orderId);
+
+                // Rechnung per E-Mail senden
+                $user = UserModel::getUserDataByUserID(Session::get('user_id'));
+
+                // var_dump($user);
+
+                if ($user && isset($user->email)) {
+                    CartModel::sendInvoiceByEmail($orderId, $pdfPath, $user->email);
+                }
+
+                // Bestellung aus der Session entfernen
+                Session::remove('pending_order');
+
+                // Erfolgsseite anzeigen
+                Session::add('feedback_positive', 'Vielen Dank für Ihre Bestellung! Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.');
+                $this->View->render('cart/success', [
+                    'orderId' => $orderId,
+                    'orderDetails' => $orderDetails
+                ]);
+            } else {
+                Session::add('feedback_negative', 'Fehler beim Speichern der Bestellung.');
+                Redirect::to('cart/checkout');
+            }
+        } else {
+            Session::add('feedback_negative', 'Fehler bei der Verarbeitung der Zahlung.');
+            Redirect::to('cart/checkout');
+        }
+    }
+
+    /**
+     * Wird aufgerufen, wenn die PayPal-Zahlung abgebrochen wurde
+     */
+    public function cancel(): void
+    {
+        Session::add('feedback_negative', 'Die Zahlung wurde abgebrochen.');
         Redirect::to('cart/checkout');
     }
-
-    // Erfolgsseite nach dem Check-out
-    public function checkoutSuccess(): void
-    {
-        $this->View->render('cart/checkoutSuccess');
-    }
-
 
     /**
      * Ruft die Methode zum Bereinigen alter Warenkörbe auf.
@@ -149,6 +248,4 @@ class CartController extends Controller
     {
         CartModel::clearOldCarts();
     }
-
-
 }

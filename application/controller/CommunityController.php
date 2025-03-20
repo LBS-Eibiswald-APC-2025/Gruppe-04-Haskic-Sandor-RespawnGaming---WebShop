@@ -178,4 +178,10 @@ class CommunityController extends Controller
             exit();
         }
     }
+
+    public function forum(): void
+    {
+        require APP . 'view/community/forum.php';
+        $this->View->render('community/forum');
+    }
 }

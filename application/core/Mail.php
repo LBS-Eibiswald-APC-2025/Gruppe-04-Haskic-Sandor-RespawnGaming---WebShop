@@ -2,7 +2,6 @@
 
 /* Using PHPMailer's namespace */
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
@@ -10,14 +9,8 @@ use PHPMailer\PHPMailer\Exception;
  *
  * Handles everything regarding mail-sending.
  */
-class Mail
+#[AllowDynamicProperties] class Mail
 {
-    /** @var mixed variable to collect errors */
-    public mixed $error {
-        get {
-            return $this->error;
-        }
-    }
 
     /**
      * Try to send a mail by using PHP's native mail() function.
@@ -55,11 +48,11 @@ class Mail
      * @param $from_name
      * @param $subject
      * @param $body
-     *
+     * @param null $attachement
      * @return bool
      * @throws Exception
      */
-    public function sendMailWithPHPMailer($user_email, $from_email, $from_name, $subject, $body): bool
+    public function sendMailWithPHPMailer($user_email, $from_email, $from_name, $subject, $body, $attachement = null): bool
     {
         $mail = new PHPMailer(true);
 
@@ -101,8 +94,12 @@ class Mail
         $mail->Subject = $subject;
         $mail->Body = $body;
 
+        if (isset($attachement) && $attachement != null) {
+            $mail->addAttachment($attachement);
+        }
+
         // try to send mail, put result status (true/false into $wasSendingSuccessful)
-        // I'm unsure if mail->send really returns true or false every time, tis method in PHPMailer is quite complex
+        // I'm unsure if mail->send really returns true or false every time, this method in PHPMailer is quite complex
         $wasSendingSuccessful = $mail->Send();
 
         if ($wasSendingSuccessful) {
@@ -111,8 +108,7 @@ class Mail
         } else {
 
             // if not successful, copy errors into Mail's error property
-            $this->error = $mail->ErrorInfo;
-            return false;
+            return $mail->ErrorInfo;
         }
     }
 
@@ -128,13 +124,13 @@ class Mail
      * @return bool the success status of the according mail sending method
      * @throws Exception
      */
-    public function sendMail(string $user_email, string $from_email, string $from_name, string $subject, string $body): bool
+    public function sendMail(string $user_email, string $from_email, string $from_name, string $subject, string $body, ?string $attachement = null): bool
     {
         if (Config::get('EMAIL_USED_MAILER') == "phpmailer") {
 
             // returns true if successful, false if not
             return $this->sendMailWithPHPMailer(
-                $user_email, $from_email, $from_name, $subject, $body
+                $user_email, $from_email, $from_name, $subject, $body, $attachement
             );
         }
 

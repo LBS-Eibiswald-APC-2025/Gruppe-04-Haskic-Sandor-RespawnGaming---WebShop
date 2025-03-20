@@ -25,7 +25,7 @@
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-info">
-                        <p>Deine digitalen Inhalte werden nach Zahlung an diese E-Mail-Adresse gesendet.</p>
+                        <p>Deine Rechnung wird nach Zahlung an diese E-Mail-Adresse gesendet.</p>
                     </div>
                 </form>
             </div>
@@ -57,18 +57,12 @@
                     <?php endif; ?>
                 </div>
 
-                <div class="checkout-payment">
-                    <h3 class="payment-heading">Zahlungsmethode</h3>
-                    <div class="paypal-only">
-                        <p>Einfache und sichere Bezahlung mit PayPal.</p>
-                        <p>sb-1f5by38768555@personal.example.com</p>
-                        <p>pTo^qil5</p>
-                        <!-- Klick auf das Logo öffnet den Fake-PayPal-Modal -->
-                        <a href="#" id="fakePaypalTrigger" title="Fake PayPal">
-                            <img src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-150px.png" alt="Fake PayPal Logo" class="paypal-logo">
-                        </a>
-                        <p class="payment-note">Nach Abschluss der Zahlung erhältst du sofortigen Zugriff auf deine digitalen Inhalte.</p>
-                    </div>
+                <div class="paypal-only">
+                    <p class="sandbox-info">
+                        <strong>PayPal Sandbox:</strong>
+                    <p>E-Mail: berndvonbrot@respawngaming.at</p>
+                    <p>Passwort: 12345678</p>
+                    <p class="payment-note">Bitte logge dich mit den angegebenen Sandbox-Zugangsdaten ein!</p>
                 </div>
 
                 <!-- Button, um den Kauf abzuschließen -->
@@ -106,28 +100,28 @@
 
 <!-- Inline JavaScript für Modal-Funktionalität -->
 <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function () {
         const modal = document.getElementById('fakePaypalModal');
         const trigger = document.getElementById('fakePaypalTrigger');
         const closeBtn = modal.querySelector('.close');
 
-        trigger.addEventListener('click', function(e){
+        trigger.addEventListener('click', function (e) {
             e.preventDefault();
             modal.style.display = 'block';
         });
-        closeBtn.addEventListener('click', function(){
+        closeBtn.addEventListener('click', function () {
             modal.style.display = 'none';
         });
-        window.addEventListener('click', function(e){
-            if(e.target === modal) {
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
                 modal.style.display = 'none';
             }
         });
 
-        document.getElementById('fakePaypalForm').addEventListener('submit', function(e){
+        document.getElementById('fakePaypalForm').addEventListener('submit', function (e) {
             e.preventDefault();
             // Simuliere eine kurze Ladezeit und fake Zahlung
-            setTimeout(function(){
+            setTimeout(function () {
                 alert("Fake Zahlung erfolgreich. Danke für deine Bestellung!");
                 modal.style.display = 'none';
                 // Optional: Weiterleitung zur Erfolgsseite, z.B.

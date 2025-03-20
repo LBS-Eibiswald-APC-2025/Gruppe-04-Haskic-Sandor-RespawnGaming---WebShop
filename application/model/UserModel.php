@@ -221,6 +221,18 @@ class UserModel
         return $query->fetch();
     }
 
+    public static function getUserDataByUserID(int $id) {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT user_id, user_name, email, password_hash, user_active, role,
+                       user_failed_logins, user_last_failed_login
+                  FROM users
+                 WHERE user_id = :user_id
+                 LIMIT 1";
+        $query = $database->prepare($sql);
+        $query->execute([':user_id' => $id]);
+        return $query->fetch();
+    }
+
     public static function getUserDataByUserIdAndToken($user_id, $token)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
