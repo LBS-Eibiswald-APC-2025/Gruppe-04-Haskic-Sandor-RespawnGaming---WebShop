@@ -20,7 +20,8 @@ class PasswordResetModel
         $sql = "SELECT user_id, user_name, email, user_password_reset_hash FROM users WHERE user_name = :input OR email = :input LIMIT 1";
         $query = $database->prepare($sql);
         $query->execute([':input' => $input]);
-        return $query->fetch() ?: null; //Erzwingen das null zurückgegeben wird, wenn kein Nutzer gefunden wird
+        return $query->fetch(PDO::FETCH_OBJ) ?: null;
+        //Erzwingen das null zurückgegeben wird, wenn kein Nutzer gefunden wird
     }
 
     public static function storeResetToken(int $user_id, string $token, int $timestamp): bool
@@ -109,6 +110,45 @@ class PasswordResetModel
         // Falls ein Datensatz gefunden wurde, ist der Reset gültig
         return $stmt->fetch(PDO::FETCH_ASSOC) !== false;
     }
+    public function sendResetRequest(): void
+    {
+        $user_input = trim(Request::post('user_name_or_email') ?? '');
+        $captcha = trim(Request::post('captcha') ?? '');
+
+        // Hier kannst du optional die Captcha-Eingabe prüfen.
+        if (empty($user_input)) {
+            Session::add('feedback_negative', 'Bitte Benutzername oder E-Mail angeben.');
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        // Suche den Benutzer (verwende deine Model-Methode)
+        $user = PasswordResetModel::getUserByUserNameOrEmail($user_input);
+        if (!$user) {
+            Session::add('feedback_negative', 'Benutzer nicht gefunden.');
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        // Token generieren und Ablauf setzen (z. B. 1 Stunde gültig)
+        $token = bin2hex(random_bytes(32));
+        $timestamp = time() + 3600;
+
+        if (!PasswordResetModel::storeResetToken($user->user_id, $token, $timestamp)) {
+            Session::add('feedback_negative', 'Fehler beim Speichern des Tokens.');
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        if (!PasswordResetModel::sendPasswordResetMail($user->user_name, $token, $user->email)) {
+            Session::add('feedback_negative', 'Fehler beim Versenden der E-Mail.');
+            Redirect::to('login/requestPasswordReset');
+            return;
+        }
+
+        Session::add('feedback_positive', 'Eine E-Mail mit dem Passwort-Reset-Link wurde gesendet.');
+        Redirect::to('login/requestPasswordReset');
+    }
 
 
     /**
@@ -144,6 +184,8 @@ class PasswordResetModel
             } else {
                 echo "Kein Benutzer mit dieser E-Mail gefunden.";
             }
+
         }
     }
+
 }

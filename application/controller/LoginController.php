@@ -1,6 +1,7 @@
 <?php
 
 use JetBrains\PhpStorm\NoReturn;
+use Random\RandomException;
 
 class LoginController extends Controller
 {
@@ -9,13 +10,15 @@ class LoginController extends Controller
         parent::__construct();
     }
 
+    /* ----------------- Authentifizierungs-Funktionen ----------------- */
+
     public function index(): void
     {
-        // wenn eingeloggt, dann weiter zur Startseite
+        // Wenn eingeloggt, dann weiter zur Startseite
         if (LoginModel::isUserLoggedIn()) {
             Redirect::home();
         } else {
-            $data = array('redirect' => Request::get('redirect') ? Request::get('redirect') : NULL);
+            $data = ['redirect' => Request::get('redirect') ? Request::get('redirect') : null];
             $this->View->render('login/index', $data);
         }
     }
@@ -26,7 +29,6 @@ class LoginController extends Controller
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             die("Fehler: Dies ist keine POST-Anfrage.");
         }
-
         if (empty($_POST)) {
             die("⚠ Fehler: Keine POST-Daten empfangen.");
         }
@@ -50,19 +52,16 @@ class LoginController extends Controller
 
         $login_successful = LoginModel::login($user_name, $user_password, $set_remember_me_cookie);
 
-        // Wenn Login erfolgreich und user = Admin → Admin-Dashboard
         if ($login_successful && Auth::checkAdminAuthentication()) {
             Redirect::to('admin/index');
             exit();
         }
 
-        // Wenn Login erfolgreich (aber kein Admin) → user/index
         if ($login_successful) {
             Redirect::to('user/index');
             exit();
         }
 
-        // Falls Login fehlschlägt
         Redirect::to('login/index');
         exit();
     }
@@ -84,120 +83,146 @@ class LoginController extends Controller
         } else {
             LoginModel::deleteCookie();
             Redirect::to('login/index');
-        }return true;
-    }
-
-
-    public function requestPasswordReset(string $user_input, string $captcha): bool
-    {
-        // Hier kannst du z.B. noch die Captcha-Eingabe prüfen
-        // if (!self::verifyCaptcha($captcha)) {
-        //     return false;
-        // }
-
-        // Suche den Benutzer anhand des eingegebenen Benutzernamens oder der E-Mail
-        $user = self::getUserByUserNameOrEmail($user_input);
-        if (!$user) {
-            return false;
         }
-
-        // Generiere einen sicheren Token und setze einen Zeitstempel (z.B. 1 Stunde Gültigkeit)
-        $token = sha1(uniqid(mt_rand(), true));
-        $timestamp = time() + 3600; // Token gültig für 1 Stunde
-
-        // Speichere den Reset-Token in der Datenbank
-        if (!self::storeResetToken($user->user_id, $token, $timestamp)) {
-            return false;
-        }
-
-        // Sende die Reset-Mail an den Benutzer
-        if (!self::sendPasswordResetMail($user->user_name, $token, $user->email)) {
-            return false;
-        }
-
         return true;
     }
 
+    /* ----------------- Passwort-Reset-Funktionalität ----------------- */
 
     /**
+     * Zeigt das Formular für die Passwort-Reset-Anfrage an.
      */
-    public function requestPasswordReset_action()
+    public function requestPasswordResetForm(): void
     {
-
-        // Holen der Benutzereingabe und Captcha (falls vorhanden)
-        $user_input = Request::post('user_name_or_email') ?? '';
-        $captcha = Request::post('captcha') ?? '';
-
-        $success = (new PasswordResetModel(new UserModel()))->requestPasswordReset($user_input, $captcha);
-
-        // Falls erfolgreich, zur Bestätigungsseite weiterleiten
-        if ($success) {
-            Redirect::to('login/resetRequestConfirmation');
-        } else {
-            Redirect::to('login/requestPasswordReset');
-        }
+        $this->View->render('login/requestPasswordReset');
     }
 
     /**
+     * Verarbeitet die Passwort-Reset-Anfrage.
+     * Liest POST-Daten, sucht den Benutzer, generiert Token, speichert ihn und versendet die Reset-Mail.
+     *
+     * @throws RandomException
      */
     public function sendResetRequest(): void
     {
-        $user_input = trim(Request::post('user_input'));
+        $user_input = trim(Request::post('user_name_or_email') ?? '');
+        $captcha = trim(Request::post('captcha') ?? '');  // Falls Captcha validiert werden soll
 
         if (empty($user_input)) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_USERNAME_EMAIL_FIELD_EMPTY'));
-            Redirect::to('login/requestPasswordReset');
+            Session::add('feedback_negative', 'Bitte Benutzername oder E-Mail angeben.');
+            Redirect::to('login/requestPasswordResetForm');
             return;
         }
 
+        // Nutzer suchen (hier nutzen wir die statische Methode im Model)
         $user = PasswordResetModel::getUserByUserNameOrEmail($user_input);
         if (!$user) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_USER_DOES_NOT_EXIST'));
-            Redirect::to('login/requestPasswordReset');
+            Session::add('feedback_negative', 'Benutzer nicht gefunden.');
+            Redirect::to('login/requestPasswordResetForm');
             return;
         }
 
-        $token = sha1(uniqid(mt_rand(), true));
-        $timestamp = time();
+        // Token generieren und Ablaufzeit (1 Stunde gültig)
+        $token = bin2hex(random_bytes(32));
+        $timestamp = time() + 3600;
 
         if (!PasswordResetModel::storeResetToken($user->user_id, $token, $timestamp)) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_RESET_TOKEN_FAIL'));
-            Redirect::to('login/requestPasswordReset');
+            Session::add('feedback_negative', 'Fehler beim Speichern des Tokens.');
+            Redirect::to('login/requestPasswordResetForm');
             return;
         }
 
         if (!PasswordResetModel::sendPasswordResetMail($user->user_name, $token, $user->email)) {
-            Session::add('feedback_negative', Text::get('FEEDBACK_PASSWORD_RESET_MAIL_SENDING_ERROR'));
-            Redirect::to('login/requestPasswordReset');
+            Session::add('feedback_negative', 'Fehler beim Versenden der E-Mail.');
+            Redirect::to('login/requestPasswordResetForm');
             return;
         }
 
-        Session::add('feedback_sweetalert', Text::get('FEEDBACK_PASSWORD_RESET_CONFIRMATION'));
-        Redirect::to('login/requestPasswordReset');
+        Session::add('feedback_positive', 'Eine E-Mail mit dem Passwort-Reset-Link wurde gesendet.');
+        Redirect::to('login/requestPasswordResetForm');
     }
 
-
-    public function verifyPasswordReset($user_name, $verification_code): void
+    /**
+     * Zeigt das Formular zum Zurücksetzen des Passworts an.
+     * Der Reset-Link enthält den Token als GET-Parameter.
+     */
+    public function resetPassword(): void
     {
-        if (PasswordResetModel::verifyPasswordReset($user_name, $verification_code)) {
-            $this->View->render('login/resetPassword', [
-                'user_name' => $user_name,
-                'user_password_reset_hash' => $verification_code
-            ]);
-        } else {
+        $token = $_GET['token'] ?? '';
+        if (empty($token)) {
+            Session::add('feedback_negative', 'Kein Token angegeben.');
             Redirect::to('login/index');
+            return;
         }
+
+        // Benutzer anhand des Tokens finden
+        $user = $this->getUserByResetToken($token);
+        if (!$user || $user->user_password_reset_timestamp < time()) {
+            Session::add('feedback_negative', 'Ungültiger oder abgelaufener Token.');
+            Redirect::to('login/index');
+            return;
+        }
+
+        // Formular zum Setzen eines neuen Passworts anzeigen
+        $this->View->render('login/resetPassword', [
+            'user_name' => $user->user_name,
+            'token'     => $token
+        ]);
     }
 
-    public function setNewPassword(): void
+    /**
+     * Aktualisiert das Passwort nach Eingabe im Reset-Formular.
+     */
+    public function updatePassword(): void
     {
-        PasswordResetModel::setNewPassword(
-            Request::post('user_name'),
-            Request::post('user_password_reset_hash'),
-            Request::post('user_password_new'),
-            Request::post('user_password_repeat')
-        );
+        $user_name = Request::post('user_name');
+        $token = Request::post('token');
+        $newPassword = Request::post('new_password');
+        $repeatPassword = Request::post('repeat_password');
+
+        if (empty($user_name) || empty($token) || empty($newPassword) || empty($repeatPassword)) {
+            Session::add('feedback_negative', 'Bitte alle Felder ausfüllen.');
+            Redirect::to('login/resetPassword?token=' . urlencode($token));
+            return;
+        }
+
+        if ($newPassword !== $repeatPassword) {
+            Session::add('feedback_negative', 'Die Passwörter stimmen nicht überein.');
+            Redirect::to('login/resetPassword?token=' . urlencode($token));
+            return;
+        }
+
+        // Benutzer suchen, um den Token zu überprüfen
+        $user = PasswordResetModel::getUserByUserNameOrEmail($user_name);
+        if (!$user || $user->user_password_reset_hash !== $token) {
+            Session::add('feedback_negative', 'Ungültiger oder abgelaufener Passwort-Reset-Link.');
+            Redirect::to('login/index');
+            return;
+        }
+
+        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        if (!PasswordResetModel::updatePassword($user->user_id, $hashedPassword)) {
+            Session::add('feedback_negative', 'Fehler beim Speichern des neuen Passworts.');
+            Redirect::to('login/resetPassword?token=' . urlencode($token));
+            return;
+        }
+
+        Session::add('feedback_positive', 'Passwort erfolgreich geändert.');
         Redirect::to('login/index');
     }
 
+    /**
+     * Hilfsmethode, um einen Benutzer anhand des Reset-Tokens zu finden.
+     */
+    private function getUserByResetToken(string $token): ?object
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT * FROM users WHERE user_password_reset_hash = :token LIMIT 1";
+        $stmt = $database->prepare($sql);
+        $stmt->execute([':token' => $token]);
+        return $stmt->fetch(PDO::FETCH_OBJ) ?: null;
+    }
+
+
+    // --- Restliche Login-Funktionen (login, logout, loginWithCookie, etc.) bleiben unverändert ---
 }
