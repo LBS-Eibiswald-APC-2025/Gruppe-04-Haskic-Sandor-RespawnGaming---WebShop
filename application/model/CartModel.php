@@ -101,13 +101,14 @@ class CartModel
 
         // Für jedes Spiel einen Eintrag in der Bestellpositionen-Tabelle anlegen.
         foreach ($cartItems as $item) {
-            $sql = "INSERT INTO order_items (order_id, game_id, price_at_purchase) 
-                    VALUES (:order_id, :game_id, :price)";
+            $sql = "INSERT INTO order_items (order_id, game_id, price_at_purchase, quantity) 
+                VALUES (:order_id, :game_id, :price, :qty)";
             $query = $database->prepare($sql);
             $query->execute([
                 ':order_id' => $orderId,
                 ':game_id' => $item['id'],
-                ':price' => $item['price']
+                ':price' => $item['price'],
+                ':qty'      => $item['quantity']  // <-- wichtige Zeile
             ]);
         }
 
@@ -191,7 +192,12 @@ class CartModel
         // Tabellenkopf
         $pdf->SetFillColor(200, 200, 200);
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(190, 8, 'Spiel', 1, 1, 'L', true);
+
+// 4 Spalten nebeneinander
+        $pdf->Cell(100, 8, 'Spiel', 1, 0, 'L', true);
+        $pdf->Cell(30, 8, 'Anzahl', 1, 0, 'C', true);
+        $pdf->Cell(30, 8, 'Preis', 1, 0, 'R', true);
+        $pdf->Cell(30, 8, 'Summe', 1, 1, 'R', true);
 
         // Artikel auflisten
         $pdf->SetFont('Arial', '', 10);
@@ -202,23 +208,22 @@ class CartModel
         foreach ($orderItems as $item) {
             if (!isset($groupedItems[$item->title])) {
                 $groupedItems[$item->title] = [
-                    'count' => 1,
+                    'count' => $item->quantity,
                     'price' => $item->price,
-                    'total' => $item->price
+                    'total' => $item->price_at_purchase * $item->quantity  // Gesamtsumme für diesen Artikel
                 ];
             } else {
-                $groupedItems[$item->title]['count']++;
-                $groupedItems[$item->title]['total'] += $item->price;
+                $groupedItems[$item->title]['count'] += $item->quantity;;
+                $groupedItems[$item->title]['total'] += $item->price_at_purchase * $item->quantity;
             }
         }
 
         // Gruppierte Artikel anzeigen
         foreach ($groupedItems as $title => $details) {
-            // Falls zu wenig Platz auf Seite, neue Seite anfangen
+            // Falls neue Seite nötig ...
             if ($pdf->GetY() > 250) {
                 $pdf->AddPage();
-
-                // Tabellenkopf auf neuer Seite wiederholen
+                // Tabellenkopf erneut ausgeben (wie oben)
                 $pdf->SetFillColor(200, 200, 200);
                 $pdf->SetFont('Arial', 'B', 10);
                 $pdf->Cell(100, 8, 'Spiel', 1, 0, 'L', true);
@@ -228,7 +233,7 @@ class CartModel
                 $pdf->SetFont('Arial', '', 10);
             }
 
-            // Produkte mit Anzahl, Einzelpreis und Summe anzeigen
+            // Spalten: Spiel, Anzahl, Preis, Summe
             $pdf->Cell(100, 8, $title, 1, 0, 'L');
             $pdf->Cell(30, 8, $details['count'], 1, 0, 'C');
             $pdf->Cell(30, 8, number_format($details['price'], 2, ',', '.') . ' EUR', 1, 0, 'R');
@@ -351,7 +356,7 @@ class CartModel
         $sql = "SELECT oi.*, g.*
                 FROM order_items oi
                 JOIN games g ON oi.game_id = g.id
-                WHERE order_id = :order_id";
+                WHERE oi.order_id = :order_id";
         $stmt = $database->prepare($sql);
         $stmt->execute([':order_id' => $orderId]);
         // Alle Positionen als Array von Objekten zurückgeben

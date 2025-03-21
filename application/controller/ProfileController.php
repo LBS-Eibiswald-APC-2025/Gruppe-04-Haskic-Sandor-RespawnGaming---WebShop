@@ -24,7 +24,7 @@ class ProfileController extends Controller
     /**
      * This method controls what happens when you move to /overview/showProfile in your app.
      * Shows the (public) details of the selected user.
-     * @param $user_id int id the the user
+     * @param $user_id int id the user
      */
     public function showProfile($user_id): void
     {

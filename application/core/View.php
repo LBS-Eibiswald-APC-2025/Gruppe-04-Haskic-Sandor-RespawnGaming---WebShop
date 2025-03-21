@@ -16,7 +16,7 @@ class View
      */
     protected array $data = [];
 
-    public function render(string $filename, $data = null)
+    public function render(string $filename, $data = null): void
     {
         if ($data) {
             foreach ($data as $key => $value) {
@@ -32,15 +32,11 @@ class View
      * Similar to render, but accepts an array of separate views to render between the header and footer. Use like
      * the following: $this->view->renderMulti(array('help/index', 'help/banner'));
      * @param array $filenames Array of the paths of the to-be-rendered view, usually folder/file(.php) for each
-     * @param array $data Data to be used in the view
+     * @param array|null $data Data to be used in the view
      * @return bool
      */
-    public function renderMulti($filenames, $data = null)
+    public function renderMulti(array $filenames, array $data = null): bool
     {
-        if (!is_array($filenames)) {
-            self::render($filenames, $data);
-            return false;
-        }
 
         if ($data) {
             foreach ($data as $key => $value) {
@@ -64,7 +60,7 @@ class View
      * @param string $filename Path of the to-be-rendered view, usually folder/file(.php)
      * @param mixed $data Data to be used in the view
      */
-    public function renderWithoutHeaderAndFooter($filename, $data = null)
+    public function renderWithoutHeaderAndFooter($filename, $data = null): void
     {
         if ($data) {
             foreach ($data as $key => $value) {
@@ -79,7 +75,7 @@ class View
      * Renders pure JSON to the browser, useful for API construction
      * @param $data
      */
-    public function renderJSON($data)
+    public function renderJSON($data): void
     {
         header("Content-Type: application/json");
         echo json_encode($data);
@@ -88,7 +84,7 @@ class View
     /**
      * renders the feedback messages into the view
      */
-    public function renderFeedbackMessages()
+    public function renderFeedbackMessages(): void
     {
         // echo out the feedback messages (errors and success messages etc.),
         // they are in $_SESSION["feedback_positive"] and $_SESSION["feedback_negative"]
@@ -109,7 +105,7 @@ class View
      *
      * @return bool Shows if the controller is used or not
      */
-    public static function checkForActiveController($filename, $navigation_controller)
+    public static function checkForActiveController(string $filename, string $navigation_controller): bool
     {
         $split_filename = explode("/", $filename);
         $active_controller = $split_filename[0];
@@ -130,7 +126,7 @@ class View
      *
      * @return bool Shows if the action/method is used or not
      */
-    public static function checkForActiveAction($filename, $navigation_action)
+    public static function checkForActiveAction(string $filename, string $navigation_action): bool
     {
         $split_filename = explode("/", $filename);
         $active_action = $split_filename[1];
@@ -151,7 +147,7 @@ class View
      *
      * @return bool
      */
-    public static function checkForActiveControllerAndAction($filename, $navigation_controller_and_action)
+    public static function checkForActiveControllerAndAction(string $filename, string $navigation_controller_and_action): bool
     {
         $split_filename = explode("/", $filename);
         $active_controller = $split_filename[0];
@@ -175,7 +171,7 @@ class View
      * @param  string $str The string.
      * @return string
      */
-    public function encodeHTML($str)
+    public function encodeHTML($str): string
     {
         return htmlentities($str, ENT_QUOTES, 'UTF-8');
     }

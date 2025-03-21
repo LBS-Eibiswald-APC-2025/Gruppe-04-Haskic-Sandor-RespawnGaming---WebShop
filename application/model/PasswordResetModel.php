@@ -53,7 +53,7 @@ class PasswordResetModel
         return $request;
     }
 
-    public static function sendPasswordResetMail($user_name, $token, $user_email)
+    public static function sendPasswordResetMail($user_name, $token, $user_email): bool
     {
         try {
             $body = '
@@ -142,7 +142,7 @@ class PasswordResetModel
         }
     }
 
-    public static function verifyPasswordReset($verification_code)
+    public static function verifyPasswordReset($verification_code): bool
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -159,7 +159,7 @@ class PasswordResetModel
         return true;
     }
 
-    public static function setNewPassword(mixed $hash, mixed $password, mixed $password_repeat)
+    public static function setNewPassword(mixed $hash, mixed $password, mixed $password_repeat): bool
     {
         if (empty($hash) || empty($password) || empty($password_repeat)) {
             Session::add('feedback_negative', 'Es fehlen Informationen.');
@@ -190,5 +190,20 @@ class PasswordResetModel
 
         Session::add('feedback_negative', 'Passwort konnte nicht geändert werden.');
         return false;
+    }
+
+    public static function storeResetToken($user_id, string $token, int $timestamp): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "UPDATE users
+               SET user_password_reset_hash = :token,
+                   user_password_reset_timestamp = :timestamp
+             WHERE user_id = :user_id";
+        $stmt = $database->prepare($sql);
+        return $stmt->execute([
+            ':token'    => $token,
+            ':timestamp'=> $timestamp,
+            ':user_id'  => $user_id
+        ]);
     }
 }

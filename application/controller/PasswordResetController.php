@@ -15,7 +15,8 @@ class PasswordResetController extends Controller
         $this->View->render('login/requestPasswordReset');
     }
 
-    public function submitPasswordReset() {
+    public function submitPasswordReset(): void
+    {
         $user_input = trim(Request::post('user_name_or_email'));
         $captcha = Request::post('captcha');
 
