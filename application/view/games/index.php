@@ -4,6 +4,7 @@
 <?php
 // Hier erwarten wir, dass der Controller uns ein Array $games liefert
 $games = $this->data['games'] ?? [];
+$isSearch = $this->data['method'] ?? '';
 ?>
 <main class="games-page-wrapper">
     <div class="container-tab my-4">

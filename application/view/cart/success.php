@@ -41,7 +41,7 @@
 
                 <div class="action-buttons">
                     <a href="<?= Config::get('URL'); ?>games/index" class="btn btn-primary">Weitere Spiele entdecken</a>
-                    <a href="<?= Config::get('URL'); ?>account/orders" class="btn btn-secondary">Zu meinen Bestellungen</a>
+                    <a href="<?= Config::get('URL'); ?>user/index" class="btn btn-secondary">Zu meinen Bestellungen</a>
                 </div>
             </div>
         </div>

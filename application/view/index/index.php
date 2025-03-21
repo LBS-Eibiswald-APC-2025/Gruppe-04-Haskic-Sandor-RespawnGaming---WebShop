@@ -1,84 +1,7 @@
 <?php require APP . 'view/_templates/header.php'; ?>
+<?php require APP . 'view/_templates/feedback.php'; ?>
 
 <?php
-// Beispiel: Datenarrays für Spiele und "featured_games"
-$games = [
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg',
-        'title' => 'Left 4 Dead 2',
-        'description' => 'Tauche ein in eine fantastische Welt.',
-        'url' => Config::get('URL') . 'games/detail/8'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg',
-        'title' => 'Team Fortress 2',
-        'description' => 'Team-basierter Shooter mit Humor.',
-        'url' => Config::get('URL') . 'games/detail/9'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/570/header.jpg',
-        'title' => 'Dota 2',
-        'description' => 'Strategie und Teamwork in einem MOBA.',
-        'url' => Config::get('URL') . 'games/detail/10'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg',
-        'title' => 'Counter Strike 2',
-        'description' => 'Intensiver Taktik-Shooter im Wettkampf.',
-        'url' => Config::get('URL') . 'games/detail/11'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg',
-        'title' => 'The Witcher 3',
-        'description' => 'Episches Rollenspiel in einer offenen Welt.',
-        'url' => Config::get('URL') . 'games/detail/1'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg',
-        'title' => 'Stardew Valley',
-        'description' => 'Entspanne auf dem Land und baue deine Farm aus.',
-        'url' => Config::get('URL') . 'games/detail/12'
-    ]
-];
-
-$featured_games = [
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg',
-        'title' => 'Forza Horizon 5',
-        'description' => 'Bald verfügbar',
-        'price' => '59,99€',
-        'url' => Config::get('URL') . 'games/detail/3'
-    ],
-    (object)[
-        'image' => 'https://cdn.cloudflare.steamstatic.com/steam/apps/1190460/header.jpg',
-        'title' => 'Death Stranding',
-        'description' => 'Bald verfügbar',
-        'price' => '39,99€',
-        'url' => Config::get('URL') . 'games/detail/4'
-    ],
-    (object)[
-        'image' => 'https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3240220/header.jpg?t=1741381848',
-        'title' => 'GTA V Enhanced',
-        'description' => 'Bald verfügbar',
-        'price' => '29,99€',
-        'url' => Config::get('URL') . 'games/detail/5'
-    ],
-    (object)[
-        'image' => 'https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3159330/header.jpg?t=1741374708',
-        'title' => 'AC Shadows',
-        'description' => 'Bald verfügbar',
-        'price' => '69,99€',
-        'url' => Config::get('URL') . 'games/detail/6'
-    ],
-    (object)[
-        'image' => 'https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1599340/header.jpg?t=1736361963',
-        'title' => 'Lost Ark',
-        'description' => 'Nicht mehr verfügbar',
-        'price' => 'Gratis',
-        'url' => Config::get('URL') . 'games/detail/7'
-    ]
-];
-
 $AllGames = GamesModel::getAllGames(5);
 ?>
 
@@ -142,14 +65,14 @@ $AllGames = GamesModel::getAllGames(5);
         <section class="container my-5">
             <h2 class="text-center mb-4">Vorgeschlagene Spiele</h2>
             <div class="row">
-                <?php if (!empty($games)): ?>
-                    <?php foreach ($games as $game): ?>
+                <?php if (!empty($AllGames)): ?>
+                    <?php foreach ($AllGames as $game): ?>
                         <div class="col-md-3 mb-3">
                             <div class="card game-card">
-                                <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
+                                <img src="<?php echo $game['image'] ?>" class="card-img-top" alt="<?php echo $game['title'] ?>">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
-                                    <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
+                                    <h5 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h5>
+                                    <p class="card-text"><?php echo htmlspecialchars($game['description']); ?></p>
 
                                     <!-- Wenn url nicht gesetzt ist, verlinken wir zum Haupt-Games-Bereich -->
                                     <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">Mehr erfahren</a>

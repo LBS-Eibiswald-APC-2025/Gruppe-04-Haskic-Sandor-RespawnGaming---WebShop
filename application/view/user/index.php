@@ -24,11 +24,10 @@ $user = Session::get('user_data');
 
     <span class="icon-library"><i class="fa-solid fa-bookmark"></i></span>
 
-    <!-- Informationsbereich, der unterhalb des Headers positioniert ist -->
     <div class="profile-info">
         <h2 class="username"><?= $user['user_name']; ?></h2>
         <p class="location"><?= !empty($user['user_location']) ? 'Standort: ' . $user['user_location'] : 'Location: N/A'; ?></p>
-        <p class="member-since">Member since: <?= date('d.m.Y', strtotime($user['user_member_since'])) ?? ''; ?></p>
+        <p class="member-since">Mitglied seit: <?= date('d.m.Y', strtotime($user['user_member_since'])) ?? ''; ?></p>
 
         <hr>
 
@@ -41,7 +40,30 @@ $user = Session::get('user_data');
         <div class="library" id="library">
             <h3>Meine Bibliothek</h3>
             <div class="games">
-                <p>Coming soon</p>
+                <p>
+                    <?php
+                    $games = UserModel::getGamesByUserId($user['user_id']);
+
+                    if ($games) {
+                        $gameCount = count($games);
+                        $gameCounts = array_count_values(array_map(function($game) {
+                            return $game->title;
+                        }, $games));
+
+                        echo "<div class='game-list'>";
+                        echo "<p class='game-count'>{$gameCount} " . ($gameCount === 1 ? "Spiel" : "Spiele") . " in der Bibliothek</p>";
+                        echo "<ul>";
+                        foreach ($gameCounts as $title => $count) {
+                            $displayCount = $count > 1 ? " ({$count}x)" : "";
+                            echo "<li>{$title}{$displayCount}</li>";
+                        }
+                        echo "</ul>";
+                        echo "</div>";
+                    } else {
+                        echo "<p class='no-games'>Keine Spiele in der Bibliothek</p>";
+                    }
+                    ?>
+                </p>
             </div>
         </div>
 
