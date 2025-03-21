@@ -40,6 +40,41 @@ class GamesModel
     }
 
     /**
+     * Sucht Spiele anhand eines Suchbegriffs.
+     */
+    public static function searchGames(mixed $search): ?array
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT
+                    id,
+                    title,
+                    price,
+                    developer_id,
+                    license_required,
+                    genre,
+                    description,
+                    release_date,
+                    file_path,
+                    created_at,
+                    image,
+                    tinyImageArray,
+                    discount,
+                    snippet,
+                    category,
+                    game_url,
+                    video_url
+                FROM games
+                WHERE title LIKE :search OR description LIKE :search
+                ORDER BY release_date DESC";
+
+        $query = $database->prepare($sql);
+        $query->execute([':search' => '%' . $search . '%']);
+
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
+    /**
      * Holt ein einzelnes Spiel anhand der ID (als assoziatives Array).
      */
     public static function getGameById(int $game_id): ?array
@@ -94,26 +129,31 @@ class GamesModel
     ): bool {
         $database = DatabaseFactory::getFactory()->getConnection();
         $sql = "INSERT INTO games
-                (title, description, image, price, genre, release_date, developer_id, license_required,
-                 discount, snippet, category, video_url, file_path, created_at)
+                (id, title, price, developer_id, license_required, genre, rating, description, release_date, file_path,
+                 created_at, image, tinyImageArray, discount, snippet, category, video_url, game_url)
                 VALUES
-                (:title, :description, :image, :price, :genre, :release_date, :developer_id, :license_required,
-                 :discount, :snippet, :category, :video_url, '', NOW())";
+                (:id, :title, :price, :developer_id, :license_required, :genre, :rating, :description, :release_date,
+                 :file_path, :created_at, :image, :tinyImageArray, :discount, :snippet, :category, :video_url, :game_url, '', NOW())";
 
         $query = $database->prepare($sql);
         return $query->execute([
             ':title'           => $title,
-            ':description'     => $description,
-            ':image'           => $image,
             ':price'           => $price,
-            ':genre'           => $genre,
-            ':release_date'    => $release_date,
             ':developer_id'    => $developer_id,
             ':license_required'=> $license_required,
+            ':genre'           => $genre,
+            ':rating'          => 0,
+            ':description'     => $description,
+            ':release_date'    => $release_date,
+            ':file_path'       => '',
+            ':created_at'      => '',
+            ':image'           => $image,
+            ':tinyImageArray'  => '',
             ':discount'        => $discount,
             ':snippet'         => $snippet,
             ':category'        => $category,
-            ':video_url'       => $video_url
+            ':video_url'       => $video_url,
+            ':game_url'        => ''
         ]);
     }
 
@@ -179,38 +219,5 @@ class GamesModel
         $sql = "DELETE FROM games WHERE id = :game_id";
         $query = $database->prepare($sql);
         return $query->execute([':game_id' => $game_id]);
-    }
-
-    /**
-     * Sucht Spiele anhand eines Suchbegriffs.
-     */
-    public static function searchGames(mixed $search): ?array
-    {
-        $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT
-                    id,
-                    title,
-                    price,
-                    developer_id,
-                    license_required,
-                    genre,
-                    description,
-                    release_date,
-                    file_path,
-                    created_at,
-                    image,
-                    discount,
-                    snippet,
-                    category,
-                    video_url
-                FROM games
-                WHERE title LIKE :search OR description LIKE :search
-                ORDER BY release_date DESC";
-
-        $query = $database->prepare($sql);
-        $query->execute([':search' => '%' . $search . '%']);
-
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $result ?: null;
     }
 }

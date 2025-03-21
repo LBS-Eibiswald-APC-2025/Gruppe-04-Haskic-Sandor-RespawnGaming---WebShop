@@ -16,7 +16,7 @@ class UserRoleModel
      *
      * @return bool
      */
-    public static function changeUserRole($type)
+    public static function changeUserRole($type): bool
     {
         if (!$type) {
             return false;
@@ -39,7 +39,7 @@ class UserRoleModel
      *
      * @return bool
      */
-    public static function saveRoleToDatabase($type)
+    public static function saveRoleToDatabase($type): bool
     {
         // if $type is not 1 or 2
         if (!in_array($type, [1, 2])) {

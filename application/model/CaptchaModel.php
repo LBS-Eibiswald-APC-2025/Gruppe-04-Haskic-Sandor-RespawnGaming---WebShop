@@ -13,7 +13,7 @@ class CaptchaModel
      * Generates the captcha, "returns" a real image, this is why there is header('Content-type: image/jpeg')
      * Note: This is a very special method, as this is echoes out binary data.
      */
-    public static function generateAndShowCaptcha()
+    public static function generateAndShowCaptcha(): void
     {
         // create a captcha with the CaptchaBuilder lib (loaded via Composer)
         $captcha = new Gregwar\Captcha\CaptchaBuilder;
@@ -35,7 +35,7 @@ class CaptchaModel
      * @param $captcha string The captcha characters
      * @return bool success of captcha check
      */
-    public static function checkCaptcha($captcha)
+    public static function checkCaptcha(string $captcha): bool
     {
         if (Session::get('captcha') && ($captcha == Session::get('captcha'))) {
             return true;

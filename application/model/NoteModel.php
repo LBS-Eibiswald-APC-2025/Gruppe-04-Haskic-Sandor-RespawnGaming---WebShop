@@ -10,7 +10,7 @@ class NoteModel
      * Get all notes (notes are just example data that the user has created)
      * @return array an array with several objects (the results)
      */
-    public static function getAllNotes()
+    public static function getAllNotes(): array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -27,7 +27,7 @@ class NoteModel
      * @param int $note_id id of the specific note
      * @return object a single object (the result)
      */
-    public static function getNote($note_id)
+    public static function getNote(int $note_id): object
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
@@ -44,7 +44,7 @@ class NoteModel
      * @param string $note_text note text that will be created
      * @return bool feedback (was the note created properly ?)
      */
-    public static function createNote($note_text)
+    public static function createNote(string $note_text): bool
     {
         if (!$note_text || strlen($note_text) == 0) {
             Session::add('feedback_negative', Text::get('FEEDBACK_NOTE_CREATION_FAILED'));
@@ -72,7 +72,7 @@ class NoteModel
      * @param string $note_text new text of the specific note
      * @return bool feedback (was the update successful ?)
      */
-    public static function updateNote($note_id, $note_text)
+    public static function updateNote(int $note_id, string $note_text): bool
     {
         if (!$note_id || !$note_text) {
             return false;
@@ -97,7 +97,7 @@ class NoteModel
      * @param int $note_id id of the note
      * @return bool feedback (was the note deleted properly ?)
      */
-    public static function deleteNote($note_id)
+    public static function deleteNote(int $note_id): bool
     {
         if (!$note_id) {
             return false;

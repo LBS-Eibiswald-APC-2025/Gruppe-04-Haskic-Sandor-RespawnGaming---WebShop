@@ -42,7 +42,7 @@ class GamesController extends Controller
     {
         $searchTerm = $_POST['search'] ?? '';
         $games = GamesModel::searchGames($searchTerm);
-        $this->View->render('games/index', ['games' => $games]);
+        $this->View->render('games/index', ['method' => 'search', 'games' => $games]);
     }
 
     // Fügt ein neues Spiel hinzu (Admin)

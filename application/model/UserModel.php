@@ -22,11 +22,11 @@ class UserModel
             array_walk_recursive($user, 'Filter::XSSFilter');
 
             $all_users_profiles[$user->user_id] = new stdClass();
-            $all_users_profiles[$user->user_id]->user_id     = $user->user_id;
-            $all_users_profiles[$user->user_id]->user_name   = $user->user_name;
-            $all_users_profiles[$user->user_id]->email       = $user->email;
+            $all_users_profiles[$user->user_id]->user_id = $user->user_id;
+            $all_users_profiles[$user->user_id]->user_name = $user->user_name;
+            $all_users_profiles[$user->user_id]->email = $user->email;
             $all_users_profiles[$user->user_id]->user_active = $user->user_active;
-            $all_users_profiles[$user->user_id]->role        = $user->role;
+            $all_users_profiles[$user->user_id]->role = $user->role;
         }
 
         return $all_users_profiles;
@@ -108,7 +108,7 @@ class UserModel
                                       LIMIT 1");
         $query->execute([
             ':user_name' => $new_user_name,
-            ':user_id'   => $user_id
+            ':user_id' => $user_id
         ]);
         return ($query->rowCount() === 1);
     }
@@ -123,7 +123,7 @@ class UserModel
                                       LIMIT 1");
         $query->execute([
             ':user_email' => $new_user_email,
-            ':user_id'    => $user_id
+            ':user_id' => $user_id
         ]);
         return ($query->rowCount() === 1);
     }
@@ -221,7 +221,8 @@ class UserModel
         return $query->fetch();
     }
 
-    public static function getUserDataByUserID(int $id) {
+    public static function getUserDataByUserID(int $id)
+    {
         $database = DatabaseFactory::getFactory()->getConnection();
         $sql = "SELECT user_id, user_name, email, password_hash, user_active, role,
                        user_failed_logins, user_last_failed_login
@@ -246,8 +247,8 @@ class UserModel
                  LIMIT 1";
         $query = $database->prepare($sql);
         $query->execute([
-            ':user_id'               => $user_id,
-            ':user_remember_me_token'=> $token
+            ':user_id' => $user_id,
+            ':user_remember_me_token' => $token
         ]);
 
         return $query->fetch();
@@ -260,42 +261,47 @@ class UserModel
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "UPDATE users
-                   SET user_name = :user_name,
-                       password_hash = :password_hash,
-                       email = :email,
-                       location = :location,
-                       about = :about
-                 WHERE user_id = :user_id
-                 LIMIT 1";
-
-        $query = $database->prepare($sql);
-        $query->execute([
-            ':user_name' => $data['name'],
-            ':password_hash' => password_hash($data['password'], PASSWORD_DEFAULT),
-            ':email'     => $data['email'],
-            ':location'  => $data['location'],
-            ':about'     => $data['about'],
-            ':user_id'   => Session::get('user_id')
-        ]);
-
-        $changed_data = array();
+        $updates = [];
+        $params = [':user_id' => Session::get('user_id')];
+        $changed_data = [];
 
         if ($data['name'] != Session::get('user_name')) {
+            $updates[] = 'user_name = :user_name';
+            $params[':user_name'] = $data['name'];
             $changed_data[] = 'Benutzername';
         }
-        if ($data['password'] != null) {
+        if (!empty($data['password'])) {
+            $updates[] = 'password_hash = :password_hash';
+            $params[':password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
             $changed_data[] = 'Passwort';
         }
         if ($data['email'] != Session::get('user_email')) {
+            $updates[] = 'email = :email';
+            $params[':email'] = $data['email'];
             $changed_data[] = 'E-Mail-Adresse';
         }
         if ($data['location'] != Session::get('user_location')) {
+            $updates[] = 'location = :location';
+            $params[':location'] = $data['location'];
             $changed_data[] = 'Standort';
         }
         if ($data['about'] != Session::get('user_about')) {
+            $updates[] = 'about = :about';
+            $params[':about'] = $data['about'];
             $changed_data[] = 'Über mich';
         }
+
+        if (empty($updates)) {
+            return true;
+        }
+
+        $sql = "UPDATE users 
+                SET " . implode(', ', $updates) . "
+                WHERE user_id = :user_id 
+                LIMIT 1";
+
+        $query = $database->prepare($sql);
+        $query->execute($params);
 
         if ($query->rowCount() == 1) {
             if (!self::sendUpdateMail($data['name'], Session::get('user_email'), $changed_data)) {
@@ -303,12 +309,14 @@ class UserModel
                 return false;
             }
 
-            Session::set('user_name', $data['name']);
-            Session::set('user_email', $data['email']);
-            Session::set('user_location', $data['location']);
-            Session::set('user_about', $data['about']);
+            foreach ($params as $key => $value) {
+                $sessionKey = str_replace([':'], '', $key);
+                if ($sessionKey != 'user_id' && $sessionKey != 'password_hash') {
+                    $prefix = ($sessionKey === 'about') ? '' : 'user_';
+                    Session::set('user_data', $value, $prefix . $sessionKey);
+                }
+            }
             Session::add('feedback_positive', Text::get('FEEDBACK_PROFILE_UPDATE_SUCCESSFUL'));
-
             return true;
         }
 
@@ -358,13 +366,13 @@ class UserModel
                         </div>
                         <div class="content">
                             <h1>Konto Änderungen</h1>
-                            <p>Hallo ' .$name.',</p>
+                            <p>Hallo ' . $name . ',</p>
                             <p>Ihre folgenden Daten wurden gerade geändert:</p>
                             <ul>
-                                <li>'.implode('</li><li>', $changed_data).'</li>
+                                <li>' . implode('</li><li>', $changed_data) . '</li>
                             </ul>
                             <hr>
-                            <p>Falls diese Änderungen nicht nach Ihren Wünschen entstanden sind, wenden Sie sich bitte an unseren Support unter <a href="mailto:support@respawngaming.at">Support</a></p>
+                            <p>Falls diese Änderungen nicht nach deinen Wünschen entstanden sind, wenden dich bitte an unseren Support unter <a href="mailto:support@respawngaming.at">Support</a></p>
                             <div class="signature">
                                 <p>Freundliche Grüße</p>
                                 <p>Ihr Respawn Gaming Team</p>
@@ -445,12 +453,23 @@ class UserModel
         $sql = "UPDATE users SET password_reset_token = :token, user_password_reset_timestamp = :expiry WHERE user_id = :id";
         $stmt = $this->$database->prepare($sql);
         return $stmt->execute([
-            ':token'  => $token,
+            ':token' => $token,
             ':expiry' => $expiry,
-            ':id'     => $id,
+            ':id' => $id,
         ]);
     }
 
-
+    public static function getGamesByUserId($id): array
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT g.*
+                FROM orders o
+                JOIN order_items oi ON o.id = oi.order_id
+                JOIN games g ON g.id = oi.game_id
+                WHERE o.user_id = :id";
+        $stmt = $database->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
 }

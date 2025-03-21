@@ -167,7 +167,7 @@ class RegistrationModel
                             <div class="content">
                                 <h1>E-Mail-Bestätigung</h1>
                                 <p>Hallo,</p>
-                                <p>Vielen Dank für Ihre Registrierung bei Respawn Gaming. Bitte klicken Sie auf den folgenden Link, um Ihre E-Mail-Adresse zu bestätigen:</p>
+                                <p>Vielen Dank für deine Registrierung bei Respawn Gaming. Bitte klicke auf den folgenden Link, um deine E-Mail-Adresse zu bestätigen:</p>
                                 <p><a href="' . $verification_link . '">Verify Mail</a></p>
                                 <div class="signature">
                                     <p>Freundliche Grüße</p>
