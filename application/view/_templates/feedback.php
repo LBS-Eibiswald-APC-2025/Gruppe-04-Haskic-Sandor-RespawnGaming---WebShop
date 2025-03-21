@@ -67,5 +67,4 @@ if (isset($feedback_positive) || isset($feedback_negative) || isset($feedback_in
     }
 
     echo "</script>";
-
 }

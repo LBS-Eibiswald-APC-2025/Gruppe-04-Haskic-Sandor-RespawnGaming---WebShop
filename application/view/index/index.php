@@ -69,10 +69,10 @@ $AllGames = GamesModel::getAllGames(5);
                     <?php foreach ($AllGames as $game): ?>
                         <div class="col-md-3 mb-3">
                             <div class="card game-card">
-                                <img src="<?php echo $game['image'] ?>" class="card-img-top" alt="<?php echo $game['title'] ?>">
+                                <img src="<?php echo htmlspecialchars($game->image); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game->title); ?>">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h5>
-                                    <p class="card-text"><?php echo htmlspecialchars($game['description']); ?></p>
+                                    <h5 class="card-title"><?php echo htmlspecialchars($game->title); ?></h5>
+                                    <p class="card-text"><?php echo htmlspecialchars($game->description); ?></p>
 
                                     <!-- Wenn url nicht gesetzt ist, verlinken wir zum Haupt-Games-Bereich -->
                                     <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">Mehr erfahren</a>

@@ -11,11 +11,13 @@ $isSearch = $this->data['method'] ?? '';
         <div class="row">
             <!-- Linke Spalte: Spieleliste -->
             <div class="col-lg-8 col-md-7 px-0" id="gamesList">
-                <nav class="games-nav d-flex">
-                    <a href="#" data-category="1">Topseller</a>
-                    <a href="#" data-category="2">Beliebt &amp; bald verfügbar</a>
-                    <a href="#" data-category="3">Angebote</a>
-                </nav>
+                <?php if (!$isSearch): ?>
+                    <nav class="games-nav d-flex">
+                        <a href="#" data-category="1">Topseller</a>
+                        <a href="#" data-category="2">Beliebt &amp; bald verfügbar</a>
+                        <a href="#" data-category="3">Angebote</a>
+                    </nav>
+                <?php endif; ?>
 
                 <ul class="games-list" id="gamesListItems">
                     <?php foreach ($games
