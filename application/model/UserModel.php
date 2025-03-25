@@ -472,4 +472,97 @@ class UserModel
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
+    public static function uploadAvatar($file): array
+    {
+        $maxSize = 2 * 1024 * 1024; // 2MB
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        if ($file['size'] > $maxSize) {
+            return ['success' => false, 'message' => 'Die Datei ist zu groß (max. 2MB)'];
+        }
+
+        if (!in_array($file['type'], $allowedTypes)) {
+            return ['success' => false, 'message' => 'Ungültiges Dateiformat'];
+        }
+
+        // Altes Avatar-Bild löschen
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT avatar FROM users WHERE user_id = :user_id";
+        $query = $database->prepare($sql);
+        $query->execute([':user_id' => Session::get('user_id')]);
+        $oldAvatar = $query->fetchColumn();
+
+        if ($oldAvatar && file_exists(substr($oldAvatar, 1))) {
+            unlink(substr($oldAvatar, 1));
+        }
+
+        $fileName = 'avatar_' . Session::get('user_id') . '.webp';
+        $uploadPath = 'uploads/avatars/' . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            $sql = "UPDATE users SET avatar = :avatar WHERE user_id = :user_id";
+            $query = $database->prepare($sql);
+            $query->execute([
+                ':avatar' => '/' . $uploadPath,
+                ':user_id' => Session::get('user_id')
+            ]);
+
+            Session::set('avatar', '/' . $uploadPath);
+            Session::set('user_data', '/' . $uploadPath, 'avatar');
+
+            return [
+                'success' => true,
+                'path' => '/' . $uploadPath
+            ];
+        }
+
+        return ['success' => false, 'message' => 'Fehler beim Hochladen'];
+    }
+
+    public static function uploadBanner($file): array
+    {
+        $maxSize = 5 * 1024 * 1024; // 5MB
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+        if ($file['size'] > $maxSize) {
+            return ['success' => false, 'message' => 'Die Datei ist zu groß (max. 5MB)'];
+        }
+
+        if (!in_array($file['type'], $allowedTypes)) {
+            return ['success' => false, 'message' => 'Ungültiges Dateiformat'];
+        }
+
+        // Altes Banner-Bild löschen
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $sql = "SELECT banner FROM users WHERE user_id = :user_id";
+        $query = $database->prepare($sql);
+        $query->execute([':user_id' => Session::get('user_id')]);
+        $oldBanner = $query->fetchColumn();
+
+        if ($oldBanner && file_exists(substr($oldBanner, 1))) {
+            unlink(substr($oldBanner, 1));
+        }
+
+        $fileName = 'banner_' . Session::get('user_id') . '.webp';
+        $uploadPath = 'uploads/banners/' . $fileName;
+
+        if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
+            $sql = "UPDATE users SET banner = :banner WHERE user_id = :user_id";
+            $query = $database->prepare($sql);
+            $query->execute([
+                ':banner' => '/' . $uploadPath,
+                ':user_id' => Session::get('user_id')
+            ]);
+
+            Session::set('banner', '/' . $uploadPath);
+            Session::set('user_data', '/' . $uploadPath, 'banner');
+
+            return [
+                'success' => true,
+                'path' => '/' . $uploadPath
+            ];
+        }
+
+        return ['success' => false, 'message' => 'Fehler beim Hochladen'];
+    }
 }

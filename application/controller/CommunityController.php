@@ -181,7 +181,7 @@ class CommunityController extends Controller
 
     public function forum(): void
     {
-        require APP . 'view/community/forum.php';
+        require_once APP . '../public/forum/index.php';
         $this->View->render('community/forum');
     }
 }
