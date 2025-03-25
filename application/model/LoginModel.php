@@ -15,6 +15,8 @@ class LoginModel
                     password_hash,
                     user_active, 
                     role,
+                    avatar,
+                    banner,
                     user_remember_me_token, 
                     user_failed_logins, 
                     user_last_failed_login,
@@ -50,6 +52,8 @@ class LoginModel
         Session::set('user_id', $user->user_id);
         Session::set('user_name', $user->user_name);
         Session::set('user_email', $user->email);
+        Session::set('avatar', $user->avatar);
+        Session::set('banner', $user->banner);
 
         // user_account_type => 'Admin' oder 'User'
         Session::set('user_data', [
@@ -59,7 +63,9 @@ class LoginModel
             'user_email'        => $user->email,
             'user_location'     => $user->location,
             'user_member_since' => $user->created_at,
-            'about'             => $user->about
+            'about'             => $user->about,
+            'avatar'            => $user->avatar,
+            'banner'            => $user->banner
         ]);
 
         // concurrency-check

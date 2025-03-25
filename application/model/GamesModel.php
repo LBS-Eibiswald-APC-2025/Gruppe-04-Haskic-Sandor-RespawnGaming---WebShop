@@ -9,34 +9,17 @@ class GamesModel
     public static function getAllGames(?int $limit = 20): ?array
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT
-                    id,
-                    title,
-                    price,
-                    developer_id,
-                    license_required,
-                    genre,
-                    description,
-                    release_date,
-                    file_path,
-                    created_at,
-                    image,
-                    tinyImageArray,
-                    discount,
-                    snippet,
-                    category,
-                    game_url,
-                    video_url
-                FROM games
-                ORDER BY release_date DESC
-                LIMIT " . $limit;
+        $sql = "SELECT g.*,
+            (SELECT COUNT(*) FROM game_ratings gr WHERE gr.game_id = g.id AND gr.is_positive = 1) as positive_ratings,
+            (SELECT COUNT(*) FROM game_ratings gr WHERE gr.game_id = g.id AND gr.is_positive = 0) as negative_ratings
+            FROM games g
+            ORDER BY g.release_date DESC
+            LIMIT " . $limit;
 
         $query = $database->prepare($sql);
         $query->execute();
 
-        // Mehrere Datensätze => fetchAll(), als assoziatives Array
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        return $result ?: null;
+        return $query->fetchAll(PDO::FETCH_ASSOC) ?: null;
     }
 
     /**
@@ -219,5 +202,106 @@ class GamesModel
         $sql = "DELETE FROM games WHERE id = :game_id";
         $query = $database->prepare($sql);
         return $query->execute([':game_id' => $game_id]);
+    }
+
+    public static function getRandomGames($limit = 6, $excludeIds = []): false|array
+    {
+        try {
+            $database = DatabaseFactory::getFactory()->getConnection();
+
+            $sql = "SELECT * FROM games WHERE 1";
+
+            // Ausschließen bestimmter Spiel-IDs, falls vorhanden
+            if (!empty($excludeIds)) {
+                $placeholders = implode(',', array_fill(0, count($excludeIds), '?'));
+                $sql .= " AND id NOT IN ($placeholders)";
+            }
+
+            // Zufällige Sortierung und Limit
+            $sql .= " ORDER BY RAND() LIMIT ?";
+
+            $query = $database->prepare($sql);
+
+            // Parameter setzen
+            $paramIndex = 1;
+            foreach ($excludeIds as $id) {
+                $query->bindValue($paramIndex, $id, PDO::PARAM_INT);
+                $paramIndex++;
+            }
+
+            $query->bindValue($paramIndex, $limit, PDO::PARAM_INT);
+            $query->execute();
+
+            // Ergebnisse zurückgeben
+            return $query->fetchAll(PDO::FETCH_ASSOC);
+
+        } catch (PDOException $e) {
+            // Fehlerbehandlung, z.B. Logging
+            error_log('Datenbankfehler in GamesModel::getRandomGames: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    // In GamesModel.php
+
+    /**
+     * Speichert eine neue Bewertung
+     */
+    public static function rateGame(int $gameId, int $userId, bool $isPositive): bool
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        // Prüfen ob Nutzer das Spiel bereits bewertet hat
+        $sql = "SELECT id FROM game_ratings 
+            WHERE game_id = :game_id AND user_id = :user_id";
+
+        $query = $database->prepare($sql);
+        $query->execute([
+            ':game_id' => $gameId,
+            ':user_id' => $userId
+        ]);
+
+        if ($query->fetch()) {
+            // Update existierende Bewertung
+            $sql = "UPDATE game_ratings 
+                SET is_positive = :is_positive, updated_at = NOW() 
+                WHERE game_id = :game_id AND user_id = :user_id";
+        } else {
+            // Neue Bewertung einfügen
+            $sql = "INSERT INTO game_ratings 
+                (game_id, user_id, is_positive, created_at) 
+                VALUES (:game_id, :user_id, :is_positive, NOW())";
+        }
+
+        $query = $database->prepare($sql);
+        return $query->execute([
+            ':game_id' => $gameId,
+            ':user_id' => $userId,
+            ':is_positive' => (int)$isPositive // Boolean zu Integer konvertieren
+        ]);
+    }
+
+    /**
+     * Holt die Bewertungszahlen für ein Spiel
+     */
+    public static function getGameRatings(int $gameId): array
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT 
+                    SUM(CASE WHEN is_positive = 1 THEN 1 ELSE 0 END) as positive,
+                    SUM(CASE WHEN is_positive = 0 THEN 1 ELSE 0 END) as negative
+                FROM game_ratings 
+                WHERE game_id = :game_id";
+
+        $query = $database->prepare($sql);
+        $query->execute([':game_id' => $gameId]);
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
+        return [
+            'positive' => (int)($result['positive'] ?? 0),
+            'negative' => (int)($result['negative'] ?? 0)
+        ];
     }
 }
