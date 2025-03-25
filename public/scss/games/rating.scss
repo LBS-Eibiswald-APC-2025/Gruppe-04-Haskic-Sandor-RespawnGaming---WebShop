@@ -1,0 +1,17 @@
+@import '../main/_variables.scss';
+
+
+.rating-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .positive {
+    color: $bg_green;
+  }
+
+  .total {
+    color: darken($white, 30%);
+    font-size: 0.8rem;
+  }
+}

@@ -46,7 +46,9 @@
     }
 
     .icon-edit,
-    .icon-library {
+    .icon-library,
+    .icon-avatar,
+    .icon-banner {
         display: inline-block;
         position: relative;
         top: 0;
@@ -215,6 +217,37 @@
             &:hover {
                 transform: scale(1.05);
             }
+        }
+    }
+}
+
+.swal-content {
+    .file-upload-wrapper {
+        margin: 15px 0;
+        font-family: 'Playstation', sans-serif;
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 8px 15px;
+            background: $bg_glow_blue;
+            color: $white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            &:hover {
+                background: darken($bg_glow_blue, 10%);
+            }
+        }
+
+        .file-name {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: lighten($bg_blue1, 40%);
+        }
+
+        input[type="file"] {
+            display: none;
         }
     }
 }

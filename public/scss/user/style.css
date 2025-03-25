@@ -65,7 +65,9 @@
   height: auto;
 }
 .profile-container .icon-edit,
-.profile-container .icon-library {
+.profile-container .icon-library,
+.profile-container .icon-avatar,
+.profile-container .icon-banner {
   display: inline-block;
   position: relative;
   top: 0;
@@ -76,7 +78,9 @@
   padding: 10px;
 }
 .profile-container .icon-edit:hover,
-.profile-container .icon-library:hover {
+.profile-container .icon-library:hover,
+.profile-container .icon-avatar:hover,
+.profile-container .icon-banner:hover {
   transform: scale(1.5);
 }
 .profile-container .profile-info {
@@ -207,6 +211,31 @@
 }
 .profile-edit-box .profile-edit-link a:hover {
   transform: scale(1.05);
+}
+
+.swal-content .file-upload-wrapper {
+  margin: 15px 0;
+  font-family: "Playstation", sans-serif;
+}
+.swal-content .file-upload-wrapper .custom-file-upload {
+  display: inline-block;
+  padding: 8px 15px;
+  background: #4a90d9;
+  color: #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.swal-content .file-upload-wrapper .custom-file-upload:hover {
+  background: rgb(41.6438356164, 118.3561643836, 198.3561643836);
+}
+.swal-content .file-upload-wrapper .file-name {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
+}
+.swal-content .file-upload-wrapper input[type=file] {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */

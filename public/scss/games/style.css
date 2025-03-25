@@ -23,19 +23,11 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-@font-face {
-  font-family: "Ghost";
-  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Playstation";
-  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
-}
 .games-page-wrapper {
   position: relative;
   background: #1B2838;
   color: #FFFFFF;
-  min-height: 100vh;
+  min-height: fit-content;
   font-family: "Ghost", sans-serif;
 }
 
@@ -131,19 +123,17 @@
 }
 
 .detail-panel {
-  position: absolute; /* Innerhalb deines Containers (.steam-like-container) */
-  top: 0;
-  right: 0;
-  width: 70%;
-  margin-right: 50px;
+  position: fixed;
   background: #2A475E;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-left: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
   padding: 15px;
+  width: 70%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, top 0.3s ease;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -151,7 +141,8 @@
 }
 .detail-panel.rg-panel-active {
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
+  transform: translateX(0);
 }
 .detail-panel .detail-header {
   font-family: "Ghost", sans-serif;
@@ -298,6 +289,91 @@
 .game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-free:hover {
   background: rgb(41.6438356164, 118.3561643836, 198.3561643836);
   transform: scale(1.05);
+}
+.game-detail-wrapper .game-rating {
+  margin-top: 10px;
+  font-family: "Playstation", sans-serif;
+  font-size: 0.9rem;
+}
+.game-detail-wrapper .game-rating .rating-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
+}
+.game-detail-wrapper .game-rating .rating-mini .rating-percent {
+  color: #8ed529;
+}
+.game-detail-wrapper .game-rating .rating-mini .rating-count {
+  color: rgb(76.7710843373, 113.734939759, 159.2289156627);
+  font-size: 0.8rem;
+}
+.game-detail-wrapper .rating-section {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-top: 20px;
+}
+.game-detail-wrapper .rating-section h3 {
+  font-family: "Ghost", sans-serif;
+  margin-bottom: 15px;
+}
+.game-detail-wrapper .rating-section .rating-bars {
+  display: flex;
+  height: 30px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.game-detail-wrapper .rating-section .rating-bars .rating-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+}
+.game-detail-wrapper .rating-section .rating-bars .rating-bar.positive {
+  background: #8ed529;
+}
+.game-detail-wrapper .rating-section .rating-bars .rating-bar.negative {
+  background: #F15147;
+}
+.game-detail-wrapper .rating-section .rating-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.game-detail-wrapper .rating-section .rating-buttons .btn-rating {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Ghost", sans-serif;
+  transition: all 0.2s ease;
+}
+.game-detail-wrapper .rating-section .rating-buttons .btn-rating.positive {
+  background: #8ed529;
+  color: #FFFFFF;
+}
+.game-detail-wrapper .rating-section .rating-buttons .btn-rating.positive:hover {
+  background: rgb(113.4881889764, 170.2322834646, 32.7677165354);
+}
+.game-detail-wrapper .rating-section .rating-buttons .btn-rating.negative {
+  background: #F15147;
+  color: #FFFFFF;
+}
+.game-detail-wrapper .rating-section .rating-buttons .btn-rating.negative:hover {
+  background: rgb(237.3939393939, 36.1818181818, 23.6060606061);
+}
+.game-detail-wrapper .rating-section .login-hint {
+  color: rgb(178.5, 178.5, 178.5);
+  font-size: 0.9rem;
+}
+.game-detail-wrapper .rating-section .login-hint a {
+  color: #4a90d9;
+  text-decoration: none;
+}
+.game-detail-wrapper .rating-section .login-hint a:hover {
+  text-decoration: underline;
 }
 .game-detail-wrapper .bottom-section {
   margin-top: 30px;

@@ -123,35 +123,41 @@ class RGDetailPanel {
         const gameData = this.gamesData.find(g => parseInt(g.id, 10) === gameId);
         if (!gameData) return;
 
+        // Panel zurücksetzen bevor neue Daten geladen werden
+        this.resetPanel();
+
         this._fillDetailPanel(gameData);
 
         requestAnimationFrame(() => {
             const itemRect = item.getBoundingClientRect();
             const viewportHeight = window.innerHeight;
             const navbarHeight = 70;
-            const footerHeight = 70;
+            const footerHeight = 100; // Erhöht für mehr Abstand
 
             const panel = this.$detailPanel;
+            panel.style.position = 'fixed';
+            panel.style.left = `${itemRect.right + 20}px`;
+
+            // Panel-Höhe vor der Positionierung berechnen
             const panelHeight = panel.offsetHeight;
 
-            let top = Math.max(
-                itemRect.top,
-                navbarHeight + 10
-            );
+            // Berechnung der verfügbaren Höhe
+            const availableHeight = viewportHeight - navbarHeight - footerHeight;
 
-            if (top + panelHeight > viewportHeight - footerHeight) {
-                top = viewportHeight - panelHeight - footerHeight - 10;
+            // Wenn Panel größer als verfügbare Höhe, dann von oben beginnen
+            let proposedTop;
+            if (panelHeight > availableHeight) {
+                proposedTop = navbarHeight;
+            } else {
+                // Sonst mittig zum gehoverten Element ausrichten
+                proposedTop = Math.min(
+                    Math.max(navbarHeight, itemRect.top),
+                    viewportHeight - panelHeight - footerHeight
+                );
             }
 
-            panel.style.top = `${top}px`;
+            panel.style.top = `${proposedTop}px`;
             panel.classList.add('rg-panel-active');
-
-            if (top + panelHeight > viewportHeight) {
-                window.scrollTo({
-                    top: window.scrollY + (top + panelHeight - viewportHeight) + 100,
-                    behavior: 'smooth'
-                });
-            }
         });
     }
 
@@ -197,6 +203,23 @@ class RGDetailPanel {
             const desc = game.description || 'Keine Beschreibung verfügbar.';
             this.$description.textContent = desc.length > 200 ?
                 desc.substring(0, 200) + '...' : desc;
+        }
+
+        if (this.$rating) {
+            if (game.positive_ratings || game.negative_ratings) {
+                const total = (game.positive_ratings || 0) + (game.negative_ratings || 0);
+                const positivePercent = total > 0 ?
+                    Math.round((game.positive_ratings / total) * 100) : 0;
+
+                this.$rating.innerHTML = `
+                <div class="rating-mini">
+                    <span class="positive">${positivePercent}% Positiv</span>
+                    <span class="total">(${total} Bewertungen)</span>
+                </div>
+            `;
+            } else {
+                this.$rating.innerHTML = 'Noch keine Bewertungen';
+            }
         }
     }
 

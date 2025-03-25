@@ -1,26 +1,13 @@
 @import '../main/_variables.scss';
 
 // -------------------------------
-// Schriftarten einbinden
-// -------------------------------
-@font-face {
-  font-family: "Ghost";
-  src: url("/public/fonts/Ghost/Ghost.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "Playstation";
-  src: url("/public/fonts/Playstation/Playstation.woff2") format("woff2");
-}
-
-// -------------------------------
 // Grundlayout & Container
 // -------------------------------
 .games-page-wrapper {
   position: relative;
   background: $bg_blue1;
   color: $white;
-  min-height: 100vh;
+  min-height: fit-content;
   font-family: $font-ghost;
 }
 
@@ -155,21 +142,24 @@
 // Detail-Panel (Hover-Infos auf der Homepage)
 // -------------------------------
 .detail-panel {
-  position: absolute;  /* Innerhalb deines Containers (.steam-like-container) */
-  top: 0;
-  right: 0;
-  width: 70%;
-  margin-right: 50px;
+  position: fixed;  // Von absolute zu fixed geändert
   background: $bg_blue2;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border-left: 1px solid rgba($white, 0.1);
-
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;;
-
   padding: 15px;
+  width: 70%;
+
+  // Transition-Eigenschaften verbessert
+  opacity: 0;
+  visibility: hidden; // Neu hinzugefügt
+  transform: translateX(20px); // Von translateY zu translateX
+  transition:
+          opacity 0.3s ease,
+          transform 0.3s ease,
+          visibility 0.3s ease,
+          top 0.3s ease; // Neue Eigenschaft für smooth positioning
+
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -177,7 +167,8 @@
 
   &.rg-panel-active {
     opacity: 1;
-    transform: translateY(0);
+    visibility: visible;
+    transform: translateX(0);
   }
 
   .detail-header {
@@ -348,6 +339,110 @@
               transform: scale(1.05);
             }
           }
+        }
+      }
+    }
+  }
+
+  .game-rating {
+    margin-top: 10px;
+    font-family: 'Playstation', sans-serif;
+    font-size: 0.9rem;
+
+    .rating-mini {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: lighten($bg_blue1, 40%);
+
+      .rating-percent {
+        color: $bg_green;
+      }
+
+      .rating-count {
+        color: lighten($bg_blue1, 30%);
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  .rating-section {
+    padding: 20px;
+    background: rgba($white, 0.05);
+    border-radius: 4px;
+    margin-top: 20px;
+
+    h3 {
+      font-family: $font-ghost;
+      margin-bottom: 15px;
+    }
+
+    .rating-bars {
+      display: flex;
+      height: 30px;
+      border-radius: 4px;
+      overflow: hidden;
+
+      .rating-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $white;
+        font-size: 0.9rem;
+
+        &.positive {
+          background: $bg_green;
+        }
+
+        &.negative {
+          background: $red;
+        }
+      }
+    }
+
+    .rating-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+
+      .btn-rating {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: $font-ghost;
+        transition: all 0.2s ease;
+
+        &.positive {
+          background: $bg_green;
+          color: $white;
+
+          &:hover {
+            background: darken($bg_green, 10%);
+          }
+        }
+
+        &.negative {
+          background: $red;
+          color: $white;
+
+          &:hover {
+            background: darken($red, 10%);
+          }
+        }
+      }
+    }
+
+    .login-hint {
+      color: darken($white, 30%);
+      font-size: 0.9rem;
+
+      a {
+        color: $bg_glow_blue;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
         }
       }
     }

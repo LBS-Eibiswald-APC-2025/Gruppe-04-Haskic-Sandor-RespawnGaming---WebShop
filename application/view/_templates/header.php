@@ -21,6 +21,14 @@ foreach ($cartItems as $item) {
     <meta charset="UTF-8">
     <title>Respawn Gaming</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="/public/js/games/rating.js"></script>
+
     <link rel="stylesheet" href="/public/scss/main/style.css">
     <?php
         $scssFiles = glob(__DIR__ . '/../../../public/scss/' . $view . '/*.scss');
@@ -35,13 +43,6 @@ foreach ($cartItems as $item) {
     ?>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/scss/google/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <div id="page-loader">

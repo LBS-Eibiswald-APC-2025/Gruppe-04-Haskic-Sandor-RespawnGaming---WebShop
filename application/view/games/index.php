@@ -41,6 +41,27 @@ $isSearch = $this->data['method'] ?? '';
                                             <?php echo nl2br(htmlspecialchars($game['snippet'])); ?>
                                         </p>
                                     <?php endif; ?>
+
+                                    <!-- Bewertungsbereich -->
+                                    <!-- Bewertungsbereich -->
+                                    <div class="game-rating">
+                                        <?php
+                                        $total = ($game['positive_ratings'] ?? 0) + ($game['negative_ratings'] ?? 0);
+                                        if ($total > 0) {
+                                            $positivePercent = round(($game['positive_ratings'] / $total) * 100);
+                                        } else {
+                                            $positivePercent = 0;
+                                        }
+                                        ?>
+                                        <?php if ($total > 0): ?>
+                                            <div class="rating-mini">
+                                                <div class="rating-percent"><?php echo $positivePercent; ?>% Positiv</div>
+                                                <div class="rating-count">(<?php echo $total; ?> Bewertungen)</div>
+                                            </div>
+                                        <?php else: ?>
+                                            <div class="rating-mini">Noch keine Bewertungen</div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
 
@@ -72,9 +93,5 @@ $isSearch = $this->data['method'] ?? '';
 <script>
     window.gamesData = <?php echo json_encode($games, JSON_HEX_TAG | JSON_HEX_AMP); ?>;
 </script>
-
-<!-- Bootstrap + JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/public/js/games/gameList.js"></script>
 
 <?php require APP . 'view/_templates/footer.php'; ?>

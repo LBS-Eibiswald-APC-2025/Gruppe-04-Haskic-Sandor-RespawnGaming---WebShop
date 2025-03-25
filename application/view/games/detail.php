@@ -70,6 +70,52 @@ if (!$game) {
                     </form>
                 </div>
             <?php endif; ?>
+
+            <div class="rating-section">
+
+            <h3>Spielerbewertung</h3>
+
+            <!-- Aktuelle Bewertung -->
+            <div class="current-rating mb-3">
+                <?php
+                $total = ($game['positive_ratings'] ?? 0) + ($game['negative_ratings'] ?? 0);
+                $positivePercent = $total > 0 ? round(($game['positive_ratings'] / $total) * 100) : 0;
+                $negativePercent = 100 - $positivePercent;1
+                ?>
+                <div class="rating-bars">
+                    <?php
+                    $total = ($game['positive_ratings'] + $game['negative_ratings']);
+                    if ($total > 0) {
+                        $positivePercent = round(($game['positive_ratings'] / $total) * 100);
+                        $negativePercent = 100 - $positivePercent;
+                    } else {
+                        $positivePercent = 0;
+                        $negativePercent = 0;
+                    }
+                    ?>
+                    <div class="rating-bar positive" style="width: <?php echo $positivePercent; ?>%">
+                        <?php echo $positivePercent; ?>% Positiv
+                    </div>
+                    <div class="rating-bar negative" style="width: <?php echo $negativePercent; ?>%">
+                        <?php echo $negativePercent; ?>% Negativ
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bewertungsformular -->
+
+            <?php if (Session::userIsLoggedIn()): ?>
+                <div class="rate-game">
+                    <form id="ratingForm" class="rating-buttons">
+                        <input type="hidden" name="game_id" value="<?php echo (int)$game['id']; ?>">
+                        <button type="button" class="btn-rating positive" data-rating="positive">👍 Positiv</button>
+                        <button type="button" class="btn-rating negative" data-rating="negative">👎 Negativ</button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <p class="login-hint">Bitte <a href="<?php echo Config::get('URL'); ?>login">melde dich an</a>, um dieses Spiel zu bewerten.</p>
+            <?php endif; ?>
+            </div>
         </div>
     </section>
 

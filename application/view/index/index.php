@@ -65,29 +65,10 @@ $AllGames = GamesModel::getAllGames(5);
         <section class="container my-5">
             <h2 class="text-center mb-4">Vorgeschlagene Spiele</h2>
             <div class="row">
-                <?php if (!empty($AllGames)): ?>
-                    <?php foreach ($AllGames as $game): ?>
-                        <div class="col-md-3 mb-3">
-                            <div class="card game-card">
-                                <img src="<?php echo htmlspecialchars($game['image']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($game['title']); ?>">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($game['title']); ?></h5>
-                                    <p class="card-text"><?php echo htmlspecialchars($game['description']); ?></p>
-
-                                    <!-- Wenn url nicht gesetzt ist, verlinken wir zum Haupt-Games-Bereich -->
-                                    <a href="<?php echo isset($game->url) ? htmlspecialchars($game->url) : Config::get('URL') . 'games'; ?>" class="btn btn-outline-primary">Mehr erfahren</a>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p class="text-center text-danger">Keine Spiele verfügbar.</p>
-                <?php endif; ?>
             </div>
         </section>
     </div>
 </main>
 
-<script src="/public/js/main/carousel.js"></script>
 
 <?php require APP . 'view/_templates/footer.php'; ?>
