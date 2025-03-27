@@ -5,16 +5,24 @@ class UserModel
     /**
      * Gets an array of all users (for admin or public listings).
      */
-    public static function getPublicProfilesOfAllUsers(): array
+    public static function getPublicProfilesOfAllUsers($filter, $filter2): array
     {
-
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        // Hier 'role' ergänzt:
-        $sql = "SELECT user_id, user_name, email, user_active, role
-                  FROM users";
+        $sql = "SELECT user_id, user_name, email, user_active, role FROM users";
+        $params = [];
+
+        if (!empty($filter)) {
+            $sql .= " WHERE role = :role";
+            $params[':role'] = $filter;
+        } elseif (!empty($filter2)) {
+            $sql .= " WHERE (user_name LIKE :filter2 
+                 OR email LIKE :filter2 OR user_id LIKE :filter2)";
+            $params[':filter2'] = '%' . $filter2 . '%';
+        }
+
         $query = $database->prepare($sql);
-        $query->execute();
+        $query->execute($params);
 
         $all_users_profiles = array();
 

@@ -3,27 +3,27 @@
 /**
  * Class DatabaseFactory
  *
- * Use it like this:
+ * Beispiel für die Nutzung:
  * $database = DatabaseFactory::getFactory()->getConnection();
  *
- * That's my personal favourite when creating a database connection.
- * It's a slightly modified version of Jon Raphaelson's excellent answer on StackOverflow:
- * http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection
- *
- * Full quote from the answer:
- *
- * "Then, in 6 months when your app is super famous and getting dugg and slashdotted and you decide you need more than
- * a single connection, all you have to do is implement some pooling in the getConnection() method. Or if you decide
- * that you want a wrapper that implements SQL logging, you can pass a PDO subclass. Or if you decide you want a new
- * connection on every invocation, you can do do that. It's flexible, instead of rigid."
- *
- * Thanks! Big up, mate!
+ * Dieses Singleton-Pattern stellt sicher, dass pro Anfrage nur eine Datenbankverbindung
+ * aufgebaut wird. Die Klasse basiert auf einem modifizierten Ansatz aus einem bekannten
+ * StackOverflow-Beitrag, der die Flexibilität bei der Verwaltung von Datenbankverbindungen verbessert.
  */
 class DatabaseFactory
 {
+    // Statische Variable, die die Singleton-Instanz der Factory speichert
     private static $factory;
+
+    // Eigenschaft zur Speicherung der PDO-Datenbankverbindung
     private $database;
 
+    /**
+     * Gibt die Singleton-Instanz der DatabaseFactory zurück.
+     * Falls noch keine Instanz existiert, wird eine neue erstellt.
+     *
+     * @return DatabaseFactory
+     */
     public static function getFactory()
     {
         if (!self::$factory) {
@@ -32,31 +32,38 @@ class DatabaseFactory
         return self::$factory;
     }
 
-    public function getConnection() {
+    /**
+     * Gibt die bestehende Datenbankverbindung zurück oder baut eine neue auf.
+     *
+     * @return PDO Die Datenbankverbindung
+     */
+    public function getConnection(): PDO
+    {
         if (!$this->database) {
-
-            /**
-             * Check DB connection in try/catch block. Also when PDO is not constructed properly,
-             * prevent to exposing database host, username and password in plain text as:
-             * PDO->__construct('mysql:host=127....', 'root', '12345678', Array)
-             * by throwing custom error message
-             */
             try {
-                $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING);
+                // PDO-Optionen festlegen: Standard-Fetch-Modus als Objekt und Fehlerbehandlung als Warning
+                $options = array(
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+                );
+
+                // DSN (Data Source Name) aus Konfigurationswerten zusammenbauen
+                $dsn = Config::get('DB_TYPE') . ':host=' . Config::get('DB_HOST')
+                    . ';dbname=' . Config::get('DB_NAME') . ';port=' . Config::get('DB_PORT')
+                    . ';charset=' . Config::get('DB_CHARSET');
+
+                // Neue PDO-Verbindung erstellen
                 $this->database = new PDO(
-                   Config::get('DB_TYPE') . ':host=' . Config::get('DB_HOST') . ';dbname=' .
-                   Config::get('DB_NAME') . ';port=' . Config::get('DB_PORT') . ';charset=' . Config::get('DB_CHARSET'),
-                   Config::get('DB_USER'), Config::get('DB_PASS'), $options
-                   );
+                    $dsn,
+                    Config::get('DB_USER'),
+                    Config::get('DB_PASS'),
+                    $options
+                );
             } catch (PDOException $e) {
-
-                // Echo custom message. Echo error code gives you some info.
-                echo 'Database connection can not be estabilished. Please try again later.' . '<br>';
-                echo 'Error code: ' . $e->getCode();
-
-                // Stop application :(
-                // No connection, reached limit connections etc. so no point to keep it running
-                exit;
+                // Bei einem Fehler wird eine benutzerfreundliche Nachricht ausgegeben, ohne sensible Daten preiszugeben
+                echo 'Die Datenbankverbindung konnte nicht hergestellt werden. Bitte versuchen Sie es später erneut.' . '<br>';
+                echo 'Fehlercode: ' . $e->getCode();
+                exit; // Beendet die Ausführung, wenn keine Verbindung aufgebaut werden kann
             }
         }
         return $this->database;

@@ -15,7 +15,7 @@ class AdminController extends Controller
             Redirect::to('user');
         }
 
-        $this->View->render('admin/index', ['users' => UserModel::getPublicProfilesOfAllUsers()]);
+        $this->View->render('admin/index', ['users' => UserModel::getPublicProfilesOfAllUsers($_GET['filter'] ?? null, $_POST['filter2'] ?? null)]);
     }
 
     public function actionAccountSettings(): void
