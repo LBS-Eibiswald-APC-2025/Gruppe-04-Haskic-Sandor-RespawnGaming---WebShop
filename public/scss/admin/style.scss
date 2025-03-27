@@ -1,10 +1,5 @@
 @import '../main/_variables.scss';
 
-/* application/view/admin/style.scss */
-/* ===========================================
-   Admin Styles
-   =========================================== */
-
 .admin-page {
   background-color: $background_color_dark;
   color: $white;
@@ -15,41 +10,164 @@
   width: 90%;
   max-width: 80%;
 
+  @media (max-width: 768px) {
+    width: 95%;
+    max-width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
   h1 {
-    color: #66c0f4;
-    text-shadow: 0 0 5px #66c0f4;
+    color: $bg_glow_blue;
+    text-shadow: 0 0 5px $bg_glow_blue;
     margin-bottom: 20px;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
   }
 
   .inner-content {
-    font-family: Playstation, sans-serif;
+    font-family: $font-ps;
+    overflow-x: auto;
+
+    .title-content {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      margin-bottom: 30px;
+
+      @media (max-width: 1024px) {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      form {
+        margin-left: auto;
+
+        @media (max-width: 768px) {
+          margin-left: 0;
+          width: 100%;
+        }
+
+        input[type="text"] {
+          background-color: $bg_dark;
+          color: $white;
+          border-radius: $border-radius;
+          padding: $auth-form-padding;
+          border: none;
+
+          @media (max-width: 768px) {
+            width: calc(100% - 80px);
+          }
+        }
+      }
+
+      .btn {
+        @media (max-width: 768px) {
+          padding: $btn-padding;
+          font-size: 14px;
+          width: 100%;
+          margin-bottom: 5px;
+        }
+      }
+    }
 
     table {
-      background-color: rgba(0,0,0,0.8);
-      color: #fff;
+      background-color: $bg_dark;
+      color: $white;
+      width: 100%;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+
       th, td {
         padding: 10px;
+
+        @media (max-width: 768px) {
+          padding: 8px 5px;
+        }
       }
+
       th {
-        background-color: #193244;
+        background-color: $bg_blue2;
       }
+
       tr:nth-child(even) {
-        background-color: rgba(25, 50, 68, 0.7);
+        background-color: rgba($bg_blue2, 0.7);
+      }
+
+      @media (max-width: 576px) {
+        thead {
+          display: none;
+        }
+
+        tr {
+          display: block;
+          margin-bottom: 15px;
+          border: 1px solid $bg_blue2;
+        }
+
+        td {
+          display: block;
+          text-align: right;
+          padding-left: 50%;
+          position: relative;
+
+          &:before {
+            content: attr(data-label);
+            position: absolute;
+            left: 0;
+            width: 45%;
+            padding-left: 15px;
+            text-align: left;
+            font-weight: bold;
+          }
+        }
       }
     }
+
     button.btn-warning {
-      background-color: #c35617;
+      background-color: $red_dark;
       border: none;
+      transition: background-color $transition-time;
+
       &:hover {
-        background-color: #e27b36;
+        background-color: $red;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin: 5px 0;
       }
     }
+
     select {
-        background-color: rgba(0,0,0,0.8);
-        color: #fff;
-        border: 1px solid #193244;
-        border-radius: 5px;
-        padding: 5px;
+      background-color: $bg_dark;
+      color: $white;
+      border: 1px solid $bg_blue2;
+      border-radius: $border-radius;
+      padding: $auth-form-padding;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+    form[action*="changeUserRole"],
+    form[action*="actionAccountSettings"] {
+      @media (max-width: 768px) {
+        width: 100%;
+        display: block !important;
+      }
     }
   }
 }

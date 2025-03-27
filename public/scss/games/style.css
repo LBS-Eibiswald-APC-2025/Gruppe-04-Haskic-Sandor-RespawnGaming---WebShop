@@ -33,6 +33,7 @@
 
 .container-tab,
 .game-detail-wrapper {
+  font-family: "Playstation", sans-serif;
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 25px;
@@ -168,7 +169,7 @@
 .detail-panel .detail-tags span.tag {
   font-family: "Playstation", sans-serif;
   display: inline-block;
-  background: #4a90d9;
+  background: $g;
   padding: 2px 5px;
   margin-right: 5px;
   border-radius: 3px;
@@ -188,11 +189,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .game-detail-wrapper .breadcrumb {
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   margin-bottom: 15px;
 }
 .game-detail-wrapper .breadcrumb a {
   color: #4a90d9;
+  font-size: 1.5rem;
   text-decoration: none;
 }
 .game-detail-wrapper .breadcrumb a:hover {
@@ -235,7 +237,7 @@
   margin: 0 0 10px;
 }
 .game-detail-wrapper .top-section .right-column .short-desc {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
 }
 .game-detail-wrapper .top-section .right-column .game-meta {
@@ -243,7 +245,7 @@
   padding: 0;
 }
 .game-detail-wrapper .top-section .right-column .game-meta li {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   margin-bottom: 5px;
 }
 .game-detail-wrapper .top-section .right-column .buy-section,
@@ -262,6 +264,7 @@
 }
 .game-detail-wrapper .top-section .right-column .buy-section .cta-button,
 .game-detail-wrapper .top-section .right-column .play-section .cta-button {
+  font-family: "Playstation", sans-serif;
   padding: 10px 15px;
   border: none;
   border-radius: 3px;
@@ -347,7 +350,7 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-family: "Ghost", sans-serif;
+  font-family: "Playstation", sans-serif;
   transition: all 0.2s ease;
 }
 .game-detail-wrapper .rating-section .rating-buttons .btn-rating.positive {

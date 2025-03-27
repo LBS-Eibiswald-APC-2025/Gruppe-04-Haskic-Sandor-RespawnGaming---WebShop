@@ -65,7 +65,7 @@ $(document).ready(function() {
                             <h5 class="card-title">${game.title}</h5>
                             <p class="card-text">${game.description.length > 100 ? game.description.slice(0, 100) + '...' : game.description}</p>
                             <p class="card-text">${game.price}</p>
-                            <a href="${gameUrl}" class="btn btn-outline-primary">Details</a>
+                            <a href="${gameUrl}" class="btn btn-outline-primary">Mehr erfahren</a>
                         </div>
                     </div>
                 </div>

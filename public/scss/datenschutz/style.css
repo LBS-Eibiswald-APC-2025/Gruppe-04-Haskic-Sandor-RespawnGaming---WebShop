@@ -24,31 +24,68 @@
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
 .d-container {
-  background-color: #2A2D32;
+  background-color: #2A475E;
   color: #FFFFFF;
   border-radius: 10px;
   padding: 30px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6), 0 0 6px rgba(74, 144, 217, 0.3);
   margin: 50px auto;
   width: 90%;
   max-width: 1000px;
-  font-family: Playstation, sans-serif;
+  font-family: "Playstation", sans-serif;
+}
+@media (max-width: 768px) {
+  .d-container {
+    width: 95%;
+    padding: 20px;
+    margin: 30px auto;
+  }
+}
+@media (max-width: 576px) {
+  .d-container {
+    width: 100%;
+    padding: 15px;
+    margin: 15px auto;
+    border-radius: 0;
+  }
 }
 .d-container h3 {
   font-size: 1.8em;
   margin-bottom: 25px;
 }
+@media (max-width: 576px) {
+  .d-container h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+}
 .d-container h5 {
   font-size: 1.4em;
   margin-bottom: 5px;
+}
+@media (max-width: 576px) {
+  .d-container h5 {
+    font-size: 1.2em;
+  }
 }
 .d-container p {
   font-size: 1em;
   margin-bottom: 25px;
   line-height: 1.5;
 }
+@media (max-width: 576px) {
+  .d-container p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+}
 .d-container ul {
   margin-bottom: 70px;
+}
+@media (max-width: 576px) {
+  .d-container ul {
+    margin-bottom: 50px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

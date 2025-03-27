@@ -4,22 +4,104 @@
   background-color: $background_color_dark;
   color: $white;
   border-radius: $border-radius;
-  padding: 30px;
+  padding: $card-padding;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   margin: 50px auto;
   width: 90%;
   max-width: 1000px;
-  font-family: Playstation, sans-serif;
+  font-family: $font-ps;
+  transition: all $transition-time;
+
+  @media (max-width: 992px) {
+    width: 95%;
+    padding: 25px;
+    margin: 40px auto;
+  }
+
+  @media (max-width: 768px) {
+    width: 92%;
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: calc($border-radius - 2px);
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 0;
+  }
 
   // Überschrift für das Impressum
   h1 {
-    font-size: 2em;
-    margin-bottom: 70px;
+    font-size: $section-h2-font-size;
+    margin-bottom: 40px;
+    font-family: $font-ghost;
+
+    @media (max-width: 992px) {
+      font-size: 2.2em;
+      margin-bottom: 35px;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.8em;
+      margin-bottom: 25px;
+      text-align: center;
+    }
   }
 
   // Absätze mit Abstand
   p {
     margin-bottom: 15px;
     line-height: 1.5;
+    font-size: $base-font-size;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      text-align: left;
+    }
+
+    strong {
+      color: $bg_glow_blue;
+      font-size: 1.25rem;
+
+      @media (max-width: 576px) {
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  // Schulprojekt-Hinweis
+  .schulprojekt-hinweis {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba($bg_blue2, 0.3);
+    border-radius: calc($border-radius - 4px);
+    font-size: 0.9rem;
+    color: rgba($white, 0.8);
+
+    @media (max-width: 768px) {
+      margin-top: 25px;
+      padding: 12px;
+    }
+
+    @media (max-width: 576px) {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: calc($border-radius - 6px);
+      font-size: 0.85rem;
+    }
   }
 }

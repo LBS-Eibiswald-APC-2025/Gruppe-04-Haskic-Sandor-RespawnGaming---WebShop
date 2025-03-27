@@ -1,7 +1,4 @@
 @charset "UTF-8";
-/* ===========================================
-              SCSS Integrations
-   =========================================== */
 /* scss */
 /* ===========================
    SCSS Variablen und Fonts
@@ -26,7 +23,6 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-/* Auth-Box (z.B. für Login/Registration) */
 .auth-page-box {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -37,6 +33,33 @@
   width: 90%;
   max-width: 500px;
 }
+@media screen and (max-width: 768px) {
+  .auth-page-box {
+    padding: 25px;
+    margin: 30px auto;
+    width: 95%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box {
+    padding: 20px;
+    margin: 20px auto;
+    width: 98%;
+    border-radius: 8px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .auth-page-box h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+}
 .auth-page-box .form-control {
   font-family: "Playstation", sans-serif;
   background-color: #3a3f44;
@@ -45,6 +68,20 @@
   margin-bottom: 15px;
   color: #FFFFFF;
   border-radius: 5px;
+}
+@media screen and (max-width: 768px) {
+  .auth-page-box .form-control {
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 0.95em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box .form-control {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
 }
 .auth-page-box .form-control::placeholder {
   color: white;
@@ -55,8 +92,23 @@
   color: #FFFFFF !important;
   transition: transform 0.3s ease-in-out !important;
 }
+@media screen and (max-width: 768px) {
+  .auth-page-box .link a {
+    font-size: 0.95em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box .link a {
+    font-size: 0.9em;
+  }
+}
 .auth-page-box .link a:hover {
   transform: scale(1.05) !important;
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box .link a:hover {
+    transform: scale(1.02) !important;
+  }
 }
 .auth-page-box .btn.btn-primary {
   background-color: #66c0f4;
@@ -65,9 +117,27 @@
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
+@media screen and (max-width: 768px) {
+  .auth-page-box .btn.btn-primary {
+    padding: 8px 18px;
+    font-size: 0.95em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box .btn.btn-primary {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    width: 100%;
+  }
+}
 .auth-page-box .btn.btn-primary:hover {
   background-color: #8ed529;
   transform: scale(1.05);
+}
+@media screen and (max-width: 576px) {
+  .auth-page-box .btn.btn-primary:hover {
+    transform: scale(1.02);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

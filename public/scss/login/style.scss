@@ -1,10 +1,5 @@
-/* ===========================================
-              SCSS Integrations
-   =========================================== */
-
 @import '../main/_variables.scss';
 
-/* Auth-Box (z.B. für Login/Registration) */
 .auth-page-box {
   background-color: $background_color_dark;
   color: $white;
@@ -15,6 +10,31 @@
   width: 90%;
   max-width: 500px;
 
+  @media screen and (max-width: 768px) {
+    padding: 25px;
+    margin: 30px auto;
+    width: 95%;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 20px;
+    margin: 20px auto;
+    width: 98%;
+    border-radius: 8px;
+  }
+
+  h2 {
+    @media screen and (max-width: 768px) {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+  }
+
   .form-control {
     font-family: 'Playstation', sans-serif;
     background-color: $bg_auth;
@@ -23,6 +43,18 @@
     margin-bottom: $auth-form-margin-bottom;
     color: $white;
     border-radius: $auth-form-border-radius;
+
+    @media screen and (max-width: 768px) {
+      padding: 12px;
+      margin-bottom: 12px;
+      font-size: 0.95em;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
 
     &::placeholder {
       color: lighten($white, 20%);
@@ -36,8 +68,20 @@
       color: $white !important;
       transition: transform $transition-time ease-in-out !important;
 
+      @media screen and (max-width: 768px) {
+        font-size: 0.95em;
+      }
+
+      @media screen and (max-width: 576px) {
+        font-size: 0.9em;
+      }
+
       &:hover {
         transform: scale(1.05) !important;
+
+        @media screen and (max-width: 576px) {
+          transform: scale(1.02) !important;
+        }
       }
     }
   }
@@ -49,9 +93,24 @@
     cursor: pointer;
     transition: transform $transition-time ease-in-out;
 
+    @media screen and (max-width: 768px) {
+      padding: 8px 18px;
+      font-size: 0.95em;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 8px 15px;
+      font-size: 0.9em;
+      width: 100%;
+    }
+
     &:hover {
       background-color: $bg_green;
       transform: scale(1.05);
+
+      @media screen and (max-width: 576px) {
+        transform: scale(1.02);
+      }
     }
   }
 }

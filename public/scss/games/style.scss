@@ -13,6 +13,7 @@
 
 .container-tab,
 .game-detail-wrapper {
+  font-family: $font_ps;
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 25px;
@@ -227,11 +228,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   .breadcrumb {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     margin-bottom: 15px;
 
     a {
       color: $bg_glow_blue;
+      font-size: 1.5rem;
       text-decoration: none;
 
       &:hover {
@@ -283,7 +285,7 @@
       }
 
       .short-desc {
-        font-size: 1rem;
+        font-size: 1.1rem;
         color: lighten($bg_blue1, 40%);
       }
 
@@ -292,7 +294,7 @@
         padding: 0;
 
         li {
-          font-size: 0.9rem;
+          font-size: 1.2rem;
           margin-bottom: 5px;
         }
       }
@@ -312,6 +314,7 @@
         }
 
         .cta-button {
+          font-family: $font-ps;
           padding: 10px 15px;
           border: none;
           border-radius: 3px;
@@ -410,7 +413,7 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        font-family: $font-ghost;
+        font-family: $font-ps;
         transition: all 0.2s ease;
 
         &.positive {

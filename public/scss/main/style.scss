@@ -1,29 +1,17 @@
-/* ===========================================
-   SCSS Integrations
-   =========================================== */
 @import './_variables.scss';
-
-/* ===========================================
-   Global Reset und Basis-Styling
-   =========================================== */
-
-/* Reset: Alle Elemente ohne Margin & Padding */
 
 * {
   margin: 0;
   padding: 0;
 }
 
-/* HTML und Body Grund-Einstellungen */
-html,
-body {
+html, body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   overflow-x: hidden;
 }
 
-/* Body-Hintergrund, Schrift und Layout */
 body {
   background-image: url($background_url);
   background-attachment: fixed;
@@ -40,16 +28,25 @@ body {
   p {
     font-family: Playstation, sans-serif;
     font-size: 150%;
+
+    @media screen and (max-width: 768px) {
+      font-size: 120%;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 110%;
+    }
   }
 }
-
-/* ===========================================
-   Scrollbar-Styling (WebKit)
-   =========================================== */
 
 ::-webkit-scrollbar {
   width: $scrollbar-size !important;
   height: $scrollbar-size !important;
+
+  @media screen and (max-width: 576px) {
+    width: 8px !important;
+    height: 8px !important;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -74,23 +71,16 @@ body {
   background: $background_color_dark !important;
 }
 
-/* ===========================================
-   Layout-Struktur
-   =========================================== */
-
-/* Wrapper für das Layout */
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Haupt-Inhalt */
 .main-content {
   flex: 1;
 }
 
-/* Zentrale Hauptsektion */
 main {
   display: flex;
   flex-direction: column;
@@ -105,112 +95,29 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 992px) {
+      width: 95%;
+    }
+
+    @media screen and (max-width: 576px) {
+      width: 98%;
+    }
   }
 }
 
 .container {
   max-width: 1500px !important;
-}
 
-// PHP Error-Feedback
-.php-error {
-  font-family: 'Playstation', sans-serif;
-  font-size: 14px !important;
-  line-height: 2.4 !important;
-  color: $white !important;
-  text-align: center !important;
-
-  background-color: $bg_blue2;
-  border: 2px solid $white;
-  border-radius: 25px;
-  width: 100%;
-  max-width: 1500px;
-  margin: 25px auto;
-  padding: 40px 25px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 2.4);
-
-  // ALLE Kinder übernehmen diese Font-Size
-  * {
-    font-size: inherit !important;
-    color: inherit !important;
-    text-align: inherit !important;
-    line-height: inherit !important;
+  @media screen and (max-width: 992px) {
+    max-width: 95% !important;
   }
 
-  table {
-    width: 100%;
-    margin: 25px auto;
-    border-collapse: collapse;
-    background-color: $white !important;
-  }
-
-  tr, td, th {
-    border: 1px solid $bg_blue2;
-    padding: 5px;
-  }
-
-  th {
-    font-weight: bold;
-    background-color: lighten($bg_blue2, 10%) !important;
-    color: $white !important;
-  }
-
-  td {
-    color: $bg_blue2 !important;
-    background-color: $white !important;
-  }
-
-  pre, code {
-    white-space: pre-wrap;
-    display: block;
-    margin: 20px auto;
-    color: $bg_blue2 !important;
-    background-color: $white !important;
-    padding: 10px;
+  @media screen and (max-width: 576px) {
+    max-width: 98% !important;
   }
 }
 
-//feedback
-.feedback {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  width: 100%;
-  padding: 10px;
-  text-align: center;
-  background-color: $bg_green;
-
-  &.error {
-    background-color: $red;
-  }
-}
-
-/* Allgemeine Container-Sektionen */
-section.container {
-  padding: $section-padding;
-
-  h2 {
-    color: $white;
-    font-size: $section-h2-font-size;
-    text-align: center;
-    margin-bottom: $section-h2-margin-bottom;
-  }
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-  }
-}
-
-/* ===========================================
-   Komponenten
-   =========================================== */
-
-/* Navbar mit Glow-Effekt */
 .navbar {
   justify-content: space-between;
   align-items: center;
@@ -222,6 +129,20 @@ section.container {
   top: 0;
   z-index: 1000;
 
+  @media screen and (max-width: 992px) {
+    padding: 15px !important;
+    font-size: 1.1em;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 12px !important;
+    font-size: 1em;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 10px !important;
+    font-size: 0.9em;
+  }
 
   .nav-link {
     position: relative;
@@ -257,6 +178,10 @@ section.container {
       text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
       border-bottom: 2px solid $bg_glow_blue;
     }
+
+    @media screen and (max-width: 768px) {
+      margin-right: 10px;
+    }
   }
 
   a {
@@ -269,6 +194,10 @@ section.container {
     &.navbar-brand {
       font-size: 1.7em;
       text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue !important;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.4em;
+      }
     }
 
     &:after {
@@ -299,10 +228,163 @@ section.container {
     width: auto;
     border-radius: 5px;
     transition: transform 0.3s ease;
+
+    @media screen and (max-width: 992px) {
+      height: 35px;
+    }
+
+    @media screen and (max-width: 768px) {
+      height: 30px;
+    }
+
+    @media screen and (max-width: 576px) {
+      height: 25px;
+    }
+
+    &:hover {
+      transform: scale(1.5);
+
+      @media screen and (max-width: 576px) {
+        transform: scale(1.3);
+      }
+    }
+  }
+}
+
+.php-error {
+  font-family: 'Playstation', sans-serif;
+  font-size: 14px !important;
+  line-height: 2.4 !important;
+  color: $white !important;
+  text-align: center !important;
+  background-color: $bg_blue2;
+  border: 2px solid $white;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 25px auto;
+  padding: 40px 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 2.4);
+
+  @media screen and (max-width: 992px) {
+    padding: 30px 20px;
+    font-size: 13px !important;
   }
 
-  .logo:hover {
-    transform: scale(1.5);
+  @media screen and (max-width: 768px) {
+    padding: 25px 15px;
+    font-size: 12px !important;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 20px 12px;
+    font-size: 11px !important;
+    border-radius: 15px;
+  }
+
+  * {
+    font-size: inherit !important;
+    color: inherit !important;
+    text-align: inherit !important;
+    line-height: inherit !important;
+  }
+
+  table {
+    width: 100%;
+    margin: 25px auto;
+    border-collapse: collapse;
+    background-color: $white !important;
+
+    @media screen and (max-width: 576px) {
+      margin: 15px auto;
+    }
+  }
+
+  tr, td, th {
+    border: 1px solid $bg_blue2;
+    padding: 5px;
+  }
+
+  th {
+    font-weight: bold;
+    background-color: lighten($bg_blue2, 10%) !important;
+    color: $white !important;
+  }
+
+  td {
+    color: $bg_blue2 !important;
+    background-color: $white !important;
+  }
+
+  pre, code {
+    white-space: pre-wrap;
+    display: block;
+    margin: 20px auto;
+    color: $bg_blue2 !important;
+    background-color: $white !important;
+    padding: 10px;
+  }
+}
+
+.feedback {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: $bg_green;
+
+  @media screen and (max-width: 768px) {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 6px;
+    font-size: 0.85em;
+  }
+
+  &.error {
+    background-color: $red;
+  }
+}
+
+section.container {
+  padding: $section-padding;
+
+  h2 {
+    color: $white;
+    font-size: $section-h2-font-size;
+    text-align: center;
+    margin-bottom: $section-h2-margin-bottom;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2em;
+      margin-bottom: 25px;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    @media screen and (max-width: 768px) {
+      gap: 20px;
+    }
+
+    @media screen and (max-width: 576px) {
+      gap: 15px;
+    }
   }
 }
 
@@ -312,9 +394,13 @@ section.container {
   background-image: linear-gradient(to right, rgba(74, 144, 217, 0), rgba(74, 144, 217, 1), rgba(74, 144, 217, 0));
   margin-top: 30px;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 576px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }
 
-/* Footer */
 footer {
   background-color: $background_color_dark;
   color: $white;
@@ -325,26 +411,46 @@ footer {
   p {
     margin: 0;
     font-size: 0.9em;
+
+    @media screen and (max-width: 576px) {
+      font-size: 0.85em;
+    }
   }
 }
 
 .footer-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 
-    a {
-        color: $white;
-        text-decoration: none;
-        transition: text-shadow $transition-time ease;
+  @media screen and (max-width: 768px) {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
 
-        &:hover {
-        text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
-        }
+  @media screen and (max-width: 576px) {
+    gap: 12px;
+  }
+
+  a {
+    color: $white;
+    text-decoration: none;
+    transition: text-shadow $transition-time ease;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.9em;
     }
+
+    @media screen and (max-width: 576px) {
+      font-size: 0.85em;
+    }
+
+    &:hover {
+      text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+    }
+  }
 }
 
-/* Formular-Steuerung */
 .form-control {
   background: $bg_blue2 !important;
   border-radius: 10px !important;
@@ -355,7 +461,6 @@ footer {
   }
 }
 
-/* Primärer Button */
 .btn-primary {
   border-radius: 10px !important;
 }
@@ -364,15 +469,15 @@ footer {
   font-family: Playstation, sans-serif !important;
   text-align: justify;
   line-height: 1.5;
+
+  @media screen and (max-width: 576px) {
+    font-size: 0.9em;
+  }
 }
 
 .swal-button {
-    font-family: Playstation, sans-serif !important;
+  font-family: Playstation, sans-serif !important;
 }
-
-/* ===========================================
-   Ladebildschirm
-   =========================================== */
 
 #page-loader {
   position: fixed;
@@ -408,38 +513,22 @@ footer {
       animation: wave 1.2s infinite ease-in-out;
     }
 
-    span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    span:nth-child(4) {
-      animation-delay: 0.6s;
-    }
-
-    span:nth-child(5) {
-      animation-delay: 0.8s;
-    }
-  }
-
-  @keyframes wave {
-    0%, 100% {
-      transform: scaleY(1);
-    }
-    50% {
-      transform: scaleY(2);
-    }
+    span:nth-child(2) { animation-delay: 0.2s; }
+    span:nth-child(3) { animation-delay: 0.4s; }
+    span:nth-child(4) { animation-delay: 0.6s; }
+    span:nth-child(5) { animation-delay: 0.8s; }
   }
 }
 
-/* ===========================================
-   Animationen (Keyframes für Karussell)
-   =========================================== */
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(2);
+  }
+}
 
-/* Rechts raus/slide */
 @keyframes slideOutLeft {
   0% {
     transform: translateX(0);
@@ -451,7 +540,6 @@ footer {
   }
 }
 
-/* Von rechts herein slide */
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
@@ -463,7 +551,6 @@ footer {
   }
 }
 
-/* Links raus/slide */
 @keyframes slideOutRight {
   0% {
     transform: translateX(0);
@@ -475,7 +562,6 @@ footer {
   }
 }
 
-/* Von links herein slide */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);
@@ -501,26 +587,4 @@ footer {
 
 .slide-in-left {
   animation: slideInLeft 0.7s forwards ease-in-out;
-}
-
-// Responsive Design
-@media (max-width: 768px) {
-  .inner {
-    width: 95%;
-  }
-
-  .hero-section h1 {
-    font-size: 250%;
-    color: $white;
-    text-transform: uppercase;
-    position: relative;
-    animation: glowingText 4s linear infinite;
-    text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
-  }
-
-  section.container {
-    h2 {
-      font-size: 200%;
-    }
-  }
 }

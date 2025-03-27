@@ -1,0 +1,87 @@
+@import '../main/_variables.scss';
+
+.error-page {
+  background: $bg_blue1 !important;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-ghost !important;
+  color: $white;
+  text-align: center;
+  padding: 1rem;
+
+  @media (max-width: 576px) {
+    min-height: 70vh;
+  }
+}
+
+.error-container {
+  max-width: 800px;
+  width: 95%;
+  padding: 2rem;
+  background: rgba($bg_blue1, 0.6);
+  border-radius: $border-radius;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0;
+  }
+}
+
+.error-image {
+  width: auto;
+  height: 40vh;
+  max-width: 400px;
+  margin: 0 auto 1.25rem;
+  display: block;
+  animation: pulse 2s infinite;
+
+  @media (max-width: 768px) {
+    height: 35vh;
+  }
+
+  @media (max-width: 576px) {
+    height: 30vh;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.error-title {
+  font-size: 3rem;
+  margin-bottom: 0.625rem;
+  color: $white;
+  text-shadow: 0 0 10px rgba($bg_glow_blue, 0.5);
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 2rem;
+  }
+}
+
+.error-message {
+  font-size: 1.2rem;
+  color: $red;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
+}

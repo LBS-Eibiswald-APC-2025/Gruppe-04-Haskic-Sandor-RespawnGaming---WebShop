@@ -1,7 +1,4 @@
 @charset "UTF-8";
-/* ===========================================
-   SCSS Integrations
-   =========================================== */
 /* scss */
 /* ===========================
    SCSS Variablen und Fonts
@@ -26,25 +23,18 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-/* ===========================================
-   Global Reset und Basis-Styling
-   =========================================== */
-/* Reset: Alle Elemente ohne Margin & Padding */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* HTML und Body Grund-Einstellungen */
-html,
-body {
+html, body {
   height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   overflow-x: hidden;
 }
 
-/* Body-Hintergrund, Schrift und Layout */
 body {
   background-image: url("https://shared.steamstatic.com/store_item_assets/steam/apps/2142790/page_bg_generated_v6b.jpg?t=1732653943");
   background-attachment: fixed;
@@ -62,13 +52,26 @@ body p {
   font-family: Playstation, sans-serif;
   font-size: 150%;
 }
+@media screen and (max-width: 768px) {
+  body p {
+    font-size: 120%;
+  }
+}
+@media screen and (max-width: 576px) {
+  body p {
+    font-size: 110%;
+  }
+}
 
-/* ===========================================
-   Scrollbar-Styling (WebKit)
-   =========================================== */
 ::-webkit-scrollbar {
   width: 12px !important;
   height: 12px !important;
+}
+@media screen and (max-width: 576px) {
+  ::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -92,22 +95,16 @@ body p {
   background: #2A2D32 !important;
 }
 
-/* ===========================================
-   Layout-Struktur
-   =========================================== */
-/* Wrapper für das Layout */
 .wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Haupt-Inhalt */
 .main-content {
   flex: 1;
 }
 
-/* Zentrale Hauptsektion */
 main {
   display: flex;
   flex-direction: column;
@@ -123,9 +120,158 @@ main .inner {
   flex-direction: column;
   align-items: center;
 }
+@media screen and (max-width: 992px) {
+  main .inner {
+    width: 95%;
+  }
+}
+@media screen and (max-width: 576px) {
+  main .inner {
+    width: 98%;
+  }
+}
 
 .container {
   max-width: 1500px !important;
+}
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 95% !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .container {
+    max-width: 98% !important;
+  }
+}
+
+.navbar {
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25em;
+  background-color: #2A2D32;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 20px !important;
+  position: sticky !important;
+  top: 0;
+  z-index: 1000;
+}
+@media screen and (max-width: 992px) {
+  .navbar {
+    padding: 15px !important;
+    font-size: 1.1em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 12px !important;
+    font-size: 1em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding: 10px !important;
+    font-size: 0.9em;
+  }
+}
+.navbar .nav-link {
+  position: relative;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  margin-right: 15px;
+  transition: text-shadow 0.3s ease;
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #FFFFFF;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar .nav-link:hover, .navbar .nav-link.active-link {
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+}
+.navbar .nav-link:hover::after, .navbar .nav-link.active-link::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 8px 4px #4a90d9;
+}
+.navbar .nav-link:active {
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+  border-bottom: 2px solid #4a90d9;
+}
+@media screen and (max-width: 768px) {
+  .navbar .nav-link {
+    margin-right: 10px;
+  }
+}
+.navbar a {
+  position: relative;
+  color: #FFFFFF !important;
+  text-decoration: none;
+  margin-right: 15px;
+  transition: text-shadow 0.3s ease;
+}
+.navbar a.navbar-brand {
+  font-size: 1.7em;
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9 !important;
+}
+@media screen and (max-width: 768px) {
+  .navbar a.navbar-brand {
+    font-size: 1.4em;
+  }
+}
+.navbar a:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #FFFFFF;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.navbar a:hover {
+  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+}
+.navbar a:hover:after {
+  transform: scaleX(1);
+  box-shadow: 0 0 8px 4px #4a90d9;
+}
+.navbar .logo {
+  height: 40px;
+  width: auto;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+}
+@media screen and (max-width: 992px) {
+  .navbar .logo {
+    height: 35px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .navbar .logo {
+    height: 30px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .navbar .logo {
+    height: 25px;
+  }
+}
+.navbar .logo:hover {
+  transform: scale(1.5);
+}
+@media screen and (max-width: 576px) {
+  .navbar .logo:hover {
+    transform: scale(1.3);
+  }
 }
 
 .php-error {
@@ -143,6 +289,25 @@ main .inner {
   padding: 40px 25px;
   box-shadow: 0 0 10px rgb(0, 0, 0);
 }
+@media screen and (max-width: 992px) {
+  .php-error {
+    padding: 30px 20px;
+    font-size: 13px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .php-error {
+    padding: 25px 15px;
+    font-size: 12px !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  .php-error {
+    padding: 20px 12px;
+    font-size: 11px !important;
+    border-radius: 15px;
+  }
+}
 .php-error * {
   font-size: inherit !important;
   color: inherit !important;
@@ -154,6 +319,11 @@ main .inner {
   margin: 25px auto;
   border-collapse: collapse;
   background-color: #FFFFFF !important;
+}
+@media screen and (max-width: 576px) {
+  .php-error table {
+    margin: 15px auto;
+  }
 }
 .php-error tr, .php-error td, .php-error th {
   border: 1px solid #2A475E;
@@ -188,11 +358,22 @@ main .inner {
   text-align: center;
   background-color: #8ed529;
 }
+@media screen and (max-width: 768px) {
+  .feedback {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .feedback {
+    padding: 6px;
+    font-size: 0.85em;
+  }
+}
 .feedback.error {
   background-color: #F15147;
 }
 
-/* Allgemeine Container-Sektionen */
 section.container {
   padding: 0 20px;
 }
@@ -202,96 +383,33 @@ section.container h2 {
   text-align: center;
   margin-bottom: 40px;
 }
+@media screen and (max-width: 768px) {
+  section.container h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
+}
+@media screen and (max-width: 576px) {
+  section.container h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+}
 section.container .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
 }
-
-/* ===========================================
-   Komponenten
-   =========================================== */
-/* Navbar mit Glow-Effekt */
-.navbar {
-  justify-content: space-between;
-  align-items: center;
-  font-size: 1.25em;
-  background-color: #2A2D32;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  padding: 20px !important;
-  position: sticky !important;
-  top: 0;
-  z-index: 1000;
+@media screen and (max-width: 768px) {
+  section.container .row {
+    gap: 20px;
+  }
 }
-.navbar .nav-link {
-  position: relative;
-  color: #FFFFFF !important;
-  text-decoration: none;
-  margin-right: 15px;
-  transition: text-shadow 0.3s ease;
-}
-.navbar .nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background: #FFFFFF;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.navbar .nav-link:hover, .navbar .nav-link.active-link {
-  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
-}
-.navbar .nav-link:hover::after, .navbar .nav-link.active-link::after {
-  transform: scaleX(1);
-  box-shadow: 0 0 8px 4px #4a90d9;
-}
-.navbar .nav-link:active {
-  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
-  border-bottom: 2px solid #4a90d9;
-}
-.navbar a {
-  position: relative;
-  color: #FFFFFF !important;
-  text-decoration: none;
-  margin-right: 15px;
-  transition: text-shadow 0.3s ease;
-}
-.navbar a.navbar-brand {
-  font-size: 1.7em;
-  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9 !important;
-}
-.navbar a:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background: #FFFFFF;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.navbar a:hover {
-  text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
-}
-.navbar a:hover:after {
-  transform: scaleX(1);
-  box-shadow: 0 0 8px 4px #4a90d9;
-}
-.navbar .logo {
-  height: 40px;
-  width: auto;
-  border-radius: 5px;
-  transition: transform 0.3s ease;
-}
-.navbar .logo:hover {
-  transform: scale(1.5);
+@media screen and (max-width: 576px) {
+  section.container .row {
+    gap: 15px;
+  }
 }
 
 .space-line {
@@ -301,8 +419,13 @@ section.container .row {
   margin-top: 30px;
   margin-bottom: 30px;
 }
+@media screen and (max-width: 576px) {
+  .space-line {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 
-/* Footer */
 footer {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -314,22 +437,47 @@ footer p {
   margin: 0;
   font-size: 0.9em;
 }
+@media screen and (max-width: 576px) {
+  footer p {
+    font-size: 0.85em;
+  }
+}
 
 .footer-nav {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
+@media screen and (max-width: 768px) {
+  .footer-nav {
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 576px) {
+  .footer-nav {
+    gap: 12px;
+  }
+}
 .footer-nav a {
   color: #FFFFFF;
   text-decoration: none;
   transition: text-shadow 0.3s ease;
 }
+@media screen and (max-width: 768px) {
+  .footer-nav a {
+    font-size: 0.9em;
+  }
+}
+@media screen and (max-width: 576px) {
+  .footer-nav a {
+    font-size: 0.85em;
+  }
+}
 .footer-nav a:hover {
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
 }
 
-/* Formular-Steuerung */
 .form-control {
   background: #2A475E !important;
   border-radius: 10px !important;
@@ -339,7 +487,6 @@ footer p {
   color: #FFFFFF !important;
 }
 
-/* Primärer Button */
 .btn-primary {
   border-radius: 10px !important;
 }
@@ -349,14 +496,16 @@ footer p {
   text-align: justify;
   line-height: 1.5;
 }
+@media screen and (max-width: 576px) {
+  .swal-text {
+    font-size: 0.9em;
+  }
+}
 
 .swal-button {
   font-family: Playstation, sans-serif !important;
 }
 
-/* ===========================================
-   Ladebildschirm
-   =========================================== */
 #page-loader {
   position: fixed;
   top: 0;
@@ -401,6 +550,7 @@ footer p {
 #page-loader .loader span:nth-child(5) {
   animation-delay: 0.8s;
 }
+
 @keyframes wave {
   0%, 100% {
     transform: scaleY(1);
@@ -409,11 +559,6 @@ footer p {
     transform: scaleY(2);
   }
 }
-
-/* ===========================================
-   Animationen (Keyframes für Karussell)
-   =========================================== */
-/* Rechts raus/slide */
 @keyframes slideOutLeft {
   0% {
     transform: translateX(0);
@@ -424,7 +569,6 @@ footer p {
     opacity: 0;
   }
 }
-/* Von rechts herein slide */
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
@@ -435,7 +579,6 @@ footer p {
     opacity: 1;
   }
 }
-/* Links raus/slide */
 @keyframes slideOutRight {
   0% {
     transform: translateX(0);
@@ -446,7 +589,6 @@ footer p {
     opacity: 0;
   }
 }
-/* Von links herein slide */
 @keyframes slideInLeft {
   0% {
     transform: translateX(-100%);
@@ -471,23 +613,6 @@ footer p {
 
 .slide-in-left {
   animation: slideInLeft 0.7s forwards ease-in-out;
-}
-
-@media (max-width: 768px) {
-  .inner {
-    width: 95%;
-  }
-  .hero-section h1 {
-    font-size: 250%;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    position: relative;
-    animation: glowingText 4s linear infinite;
-    text-shadow: 0 0 5px #4a90d9, 0 0 10px #4a90d9, 0 0 20px #4a90d9;
-  }
-  section.container h2 {
-    font-size: 200%;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */

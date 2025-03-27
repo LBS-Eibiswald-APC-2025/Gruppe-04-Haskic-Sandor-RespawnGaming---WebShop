@@ -133,7 +133,22 @@
   background: #8ed529;
 }
 
-/* Karten-Design für Spiele */
+.games-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .games-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 15px;
+  }
+}
+
 .game-card {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -142,42 +157,75 @@
   overflow: hidden;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease;
-  max-width: 350px;
   width: 100%;
+  max-width: 300px;
+  height: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 768px) {
+  .game-card {
+    max-width: 100%;
+    height: auto;
+    min-height: 450px;
+  }
 }
 .game-card img {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+@media screen and (max-width: 768px) {
+  .game-card img {
+    height: 180px;
+  }
 }
 .game-card .card-body {
   padding: 20px;
   background: #1B2838;
   color: #FFFFFF;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 768px) {
+  .game-card .card-body {
+    padding: 15px;
+  }
 }
 .game-card .card-body .card-title {
-  font-size: 1.5em;
-  margin-bottom: 15px;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 768px) {
+  .game-card .card-body .card-title {
+    font-size: 1.1em;
+  }
 }
 .game-card .card-body .card-text {
-  margin-bottom: 20px;
   font-family: "Playstation", sans-serif;
-  font-size: 120%;
+  font-size: 1em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: auto;
 }
-.game-card .card-body .btn.btn-outline-primary {
-  background: transparent;
-  border: 1px solid #4a90d9;
-  color: #4a90d9;
-  padding: 8px 15px;
-  transition: background 0.3s, color 0.3s;
-  cursor: pointer;
-  text-decoration: none;
+@media screen and (max-width: 768px) {
+  .game-card .card-body .card-text {
+    font-size: 0.9em;
+    -webkit-line-clamp: 4;
+  }
 }
-.game-card .card-body .btn.btn-outline-primary:hover {
-  background: #4a90d9;
-  color: #FFFFFF;
-}
-.game-card:hover {
-  transform: scale(1.05);
+@media screen and (min-width: 769px) {
+  .game-card:hover {
+    transform: scale(1.02);
+  }
 }
 
 /* Carousel-Container */
@@ -293,7 +341,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .carousel-indicators-custom .indicator {
   width: 12px;
@@ -382,46 +431,38 @@
     transform: translateX(100%);
   }
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .custom-carousel-container .carousel-slide {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 992px) {
   .hero-section h1 {
-    font-size: 2.5em;
+    font-size: 2.7em;
   }
-  .hero-section p {
-    font-size: 1.2em;
+  .custom-carousel-container {
+    width: 95%;
+    margin: 0 auto;
   }
-  .hero-section .search-bar .input-group input.form-control {
-    font-size: 1em;
+}
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.4em;
   }
-  .hero-section .search-bar .input-group button.btn-primary {
-    font-size: 1em;
+  .hero-section .search-bar .input-group {
+    width: 90%;
   }
-  .game-card .card-body .card-title {
-    font-size: 1.2em;
+}
+@media screen and (max-width: 768px) and (max-width: 576px) {
+  .hero-section h1 {
+    font-size: 2.1em;
   }
-  .game-card .card-body .card-text {
-    font-size: 100%;
+  .hero-section .search-bar .input-group {
+    width: 95%;
   }
-  .game-card .card-body .btn.btn-outline-primary {
-    font-size: 0.8em;
-  }
-  .custom-carousel-title {
-    font-size: 200%;
-  }
-  .custom-carousel-container .carousel-slide .carousel-info h3 {
-    font-size: 130%;
-  }
-  .custom-carousel-container .carousel-slide .carousel-info p {
-    font-size: 90%;
-  }
-  .custom-carousel-container .carousel-slide .carousel-info span {
-    font-size: 80%;
-  }
-  .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails img {
+  .custom-carousel-container {
     width: 100%;
-    height: auto;
-  }
-  .carousel-status {
-    font-size: 1rem;
   }
 }
 

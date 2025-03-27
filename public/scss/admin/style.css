@@ -23,10 +23,6 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
-/* application/view/admin/style.scss */
-/* ===========================================
-   Admin Styles
-   =========================================== */
 .admin-page {
   background-color: #2A2D32;
   color: #FFFFFF;
@@ -37,40 +33,158 @@
   width: 90%;
   max-width: 80%;
 }
+@media (max-width: 768px) {
+  .admin-page {
+    width: 95%;
+    max-width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+}
 .admin-page h1 {
-  color: #66c0f4;
-  text-shadow: 0 0 5px #66c0f4;
+  color: #4a90d9;
+  text-shadow: 0 0 5px #4a90d9;
   margin-bottom: 20px;
 }
+@media (max-width: 768px) {
+  .admin-page h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+}
 .admin-page .inner-content {
-  font-family: Playstation, sans-serif;
+  font-family: "Playstation", sans-serif;
+  overflow-x: auto;
+}
+.admin-page .inner-content .title-content {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+@media (max-width: 1024px) {
+  .admin-page .inner-content .title-content {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content .title-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+.admin-page .inner-content .title-content form {
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content .title-content form {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.admin-page .inner-content .title-content form input[type=text] {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content .title-content form input[type=text] {
+    width: calc(100% - 80px);
+  }
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content .title-content .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 5px;
+  }
 }
 .admin-page .inner-content table {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content table {
+    font-size: 14px;
+  }
 }
 .admin-page .inner-content table th, .admin-page .inner-content table td {
   padding: 10px;
 }
+@media (max-width: 768px) {
+  .admin-page .inner-content table th, .admin-page .inner-content table td {
+    padding: 8px 5px;
+  }
+}
 .admin-page .inner-content table th {
-  background-color: #193244;
+  background-color: #2A475E;
 }
 .admin-page .inner-content table tr:nth-child(even) {
-  background-color: rgba(25, 50, 68, 0.7);
+  background-color: rgba(42, 71, 94, 0.7);
+}
+@media (max-width: 576px) {
+  .admin-page .inner-content table thead {
+    display: none;
+  }
+  .admin-page .inner-content table tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #2A475E;
+  }
+  .admin-page .inner-content table td {
+    display: block;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .admin-page .inner-content table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 15px;
+    text-align: left;
+    font-weight: bold;
+  }
 }
 .admin-page .inner-content button.btn-warning {
-  background-color: #c35617;
+  background-color: #B93F2F;
   border: none;
+  transition: background-color 0.3s;
 }
 .admin-page .inner-content button.btn-warning:hover {
-  background-color: #e27b36;
+  background-color: #F15147;
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content button.btn-warning {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
 .admin-page .inner-content select {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border: 1px solid #193244;
-  border-radius: 5px;
-  padding: 5px;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  border: 1px solid #2A475E;
+  border-radius: 10px;
+  padding: 10px;
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content select {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .admin-page .inner-content form[action*=changeUserRole],
+  .admin-page .inner-content form[action*=actionAccountSettings] {
+    width: 100%;
+    display: block !important;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

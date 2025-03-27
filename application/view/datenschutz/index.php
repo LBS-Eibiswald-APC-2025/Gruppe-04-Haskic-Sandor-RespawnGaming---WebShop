@@ -7,14 +7,14 @@ require APP . 'view/_templates/feedback.php';
 <main>
     <div class="d-container">
         <h3> Erklärung zur Informationspflicht </h3><br>
-        <p<strong>Datenschutzerklärung</strong>
+        <h5> Datenschutzerklärung </h5>
         <p> In folgender Datenschutzerklärung informieren wir Sie über die wichtigsten Aspekte der Datenverarbeitung im Rahmen unserer Webseite. Wir erheben und verarbeiten personenbezogene Daten nur auf Grundlage der gesetzlichen Bestimmungen (Datenschutzgrundverordnung, Telekommunikationsgesetz 2003). </p>
         <p> Sobald Sie als Benutzer auf unsere Webseite zugreifen oder diese besuchen wird Ihre IP-Adresse, Beginn sowie Beginn und Ende der Sitzung erfasst. Dies ist technisch bedingt und stellt somit ein berechtigtes Interesse iSv Art 6 Abs 1 lit f DSGVO. </p>
         <h5>Kontakt mit uns</h5>
         <p>Wenn Sie uns, entweder über unser Kontaktformular auf unserer Webseite, oder per Email kontaktieren, dann werden die von Ihnen an uns übermittelten Daten zwecks Bearbeitung Ihrer Anfrage oder für den Fall von weiteren Anschlussfragen für sechs Monate bei uns gespeichert. Es erfolgt, ohne Ihre Einwilligung, keine Weitergabe Ihrer übermittelten Daten.</p>
         <h5> Datenspeicherung </h5>
         <p> Im Rahmen der Erleichterung des Einkaufsvorganges und zur späteren Vertragsabwicklung werden vom Webshop-Betreiber im Rahmen von Cookies die IP-Adresse des Anschlussinhabers gespeichert, ebenso wie Name, Anschrift, Zahlungsinformationen. </p>
-        <p> Für die Vertragsabwicklung werden auch folgende Daten bei uns gespeichert:<br> Email. </p>
+        <p> Für die Vertragsabwicklung werden auch folgende Daten bei uns gespeichert:<br> Username <br> E-Mail <br> Standort (Wenn im UserProfile angegeben) <br> Beginn der Mitgliedschaft <br> Spiele-Bibliothek </p>
         <p> Die von Ihnen bereitgestellten Daten sind für die Vertragserfüllung und zur Durchführung vorvertraglicher Maßnahmen erforderlich.
             Ein Vertragsabschluss ohne dieser Daten ist nicht möglich.
             Eine Übermittlung der erhobenen Daten an Dritte erfolgt nicht, mit Ausnahme der Übermittlung von Zahlungsdaten (Kreditkartendaten) an die abwickelnden Bankinstitute/Zahlungsdienstleister zum Zwecke der Abbuchung des Einkaufspreises, an das von uns Beauftragte Versandunternehmen

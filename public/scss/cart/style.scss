@@ -1,22 +1,18 @@
 @import '../main/_variables.scss';
 
-/*
-   ==========================
-   Warenkorb im dunklen Stil
-   ==========================
-*/
-
-/* Der Hauptbereich */
 .cart-page {
   min-height: 10vh;
-  margin-top: 10px !important;
+  margin: 10px !important;
   color: $white;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  @media (max-width: 576px) {
+    margin: 5px !important;
+  }
 }
 
-/* Das umschließende Panel */
 .cart-container {
   max-width: 900px;
   width: 95%;
@@ -24,39 +20,50 @@
   background-color: $bg_blue2;
   border-radius: $border-radius;
   padding: 20px;
-  box-shadow: darken($bg_blue2, 25%) 0 0 15px, $bg_glow_blue 0 0 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
 
-  & p {
-    font-family: 'Playstation', sans-serif;
-    font-size: 1.2rem;
+  @media (max-width: 768px) {
+    width: 98%;
+    padding: 15px;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    padding: 10px;
+    border-radius: 0;
   }
 }
 
-/* Überschrift in Ghost-Font */
 .cart-title {
-  font-family: 'Ghost', sans-serif;
+  font-family: $font-ghost;
   text-transform: uppercase;
   color: $white;
-  text-shadow: 0 0 5px $bg_glow_blue, 0 0 10px $bg_glow_blue, 0 0 20px $bg_glow_blue;
+  text-shadow: 0 0 5px $bg_glow_blue;
   margin-bottom: 20px;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2.0rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 1.3rem;
+  }
 }
 
-/* Wenn der Warenkorb leer ist */
 .cart-empty {
+  font-family: $font-ps;
+  font-size: 1.0rem;
   text-align: center;
-  font-family: 'Playstation', sans-serif;
-  font-size: 1.2rem;
+  margin: 20px;
 }
 
-/* Tabellen-Wrapper */
 .cart-table-container {
   overflow-x: auto;
   margin-bottom: 20px;
 }
 
-/* Haupt-Tabelle */
 .cart-table {
   width: 100%;
   border-collapse: collapse;
@@ -66,29 +73,26 @@
     border: 1px solid $gray;
     padding: 15px;
     text-align: left;
-    font-family: 'Playstation', sans-serif;
-    font-weight: normal;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+    }
+
+    @media (max-width: 576px) {
+      padding: 8px;
+    }
   }
 
   th {
-    background-color: darken($bg_blue1, 5%);
+    background-color: $bg_blue1;
     text-transform: uppercase;
-    font-size: 0.9rem;
   }
 
-  /* Hover-Effekt auf Tabellenreihen */
   tr:hover {
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba($bg_blue1, 0.3);
   }
 }
 
-/* Spaltenbreiten */
-.cart-col-game    { width: 45%; }
-.cart-col-price   { width: 20%; }
-.cart-col-qty     { width: 10%; }
-.cart-col-action  { width: 25%; }
-
-/* Spielinfo-Zelle: Cover + Titel nebeneinander */
 .cart-gameinfo {
   display: flex;
   align-items: center;
@@ -100,81 +104,67 @@
   height: auto;
   border: 1px solid $gray;
   border-radius: 5px;
+
+  @media (max-width: 576px) {
+    width: 50px;
+  }
 }
 
-/* Spieltitel in Playstation-Font */
-.cart-gametitle {
-  font-family: 'Playstation', sans-serif;
-  font-size: 1rem;
+.cart-remove-btn {
+  background-color: $red;
   color: $white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color $transition-time;
+
+  &:hover {
+    background-color: $red_dark;
+  }
+
+  @media (max-width: 576px) {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
 }
 
-/* Preis + Menge in Playstation-Font (ohne bold) */
-.cart-price,
-.cart-quantity {
-  font-family: 'Playstation', sans-serif !important;
-  text-align: center !important;
-  font-size: 1rem;
-}
-
-/* Footer-Bereich (Gesamt + Checkout) */
 .cart-footer {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 15px;
+
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
 }
 
-/* Gesamt-Block */
 .cart-total {
-  font-family: 'Playstation', sans-serif;
   font-size: 1.2rem;
-  .cart-total-label {
-    margin-right: 10px;
-    color: lighten($white, 10%);
-  }
-  .cart-total-value {
-    color: $white;
-  }
-}
-
-/* Button Entfernen */
-.cart-remove-btn {
-  background-color: $red;
   color: $white;
-  border: 1px solid transparent;
-  padding: 8px 16px;
-  border-radius: 3px;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-family: 'Playstation', sans-serif;
-  font-weight: normal;
-  font-size: 0.95rem;
-  transition: background-color $transition-time;
+
+  .cart-total-label {
+    color: rgba($white, 0.9);
+  }
 }
 
-.cart-remove-btn:hover {
-  background-color: $red_dark;
-}
-
-/* Checkout-Button */
 .cart-checkout-btn {
   background-color: $bg_glow_blue;
   color: $white;
-  text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius;
   padding: $btn-padding;
   cursor: pointer;
   text-transform: uppercase;
-  font-family: 'Playstation', sans-serif;
-  font-weight: normal;
-  font-size: 1rem;
-  transition: $transition-time;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
-}
+  transition: all $transition-time;
 
-.cart-checkout-btn:hover {
-  transform: scale(1.05);
-  background: $bg_green;
+  &:hover {
+    background-color: $bg_green;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 12px 20px;
+  }
 }

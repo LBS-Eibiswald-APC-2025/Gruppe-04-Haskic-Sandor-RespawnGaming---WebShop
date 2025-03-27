@@ -9,17 +9,167 @@
   margin: 25px auto;
   width: 90%;
   max-width: 1000px;
-  font-family: Playstation, sans-serif;
+  font-family: $font-ps;
 
-  // Einheitlicher Abstand für alle Überschriften
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 50px;
-    margin-bottom: 5px;
+  @media (max-width: 1024px) {
+    width: 95%;
+    padding: 25px;
+    margin: 20px auto;
   }
 
-  // Absätze mit genügend Abstand und angenehmer Zeilenhöhe
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 0;
+  }
+
+  // Überschriften
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    color: $bg_glow_blue;
+
+    @media (max-width: 768px) {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+  }
+
+  h1 {
+    font-size: 2.5em;
+
+    @media (max-width: 768px) {
+      font-size: 2em;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.8em;
+    }
+  }
+
+  h2 {
+    font-size: 2em;
+
+    @media (max-width: 768px) {
+      font-size: 1.7em;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.5em;
+    }
+  }
+
+  h3 {
+    font-size: 1.7em;
+
+    @media (max-width: 768px) {
+      font-size: 1.4em;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 1.3em;
+    }
+  }
+
+  // Absätze
   p {
     margin-bottom: 25px;
-    line-height: 1;
+    line-height: 1.6;
+    font-size: $base-font-size;
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    @media (max-width: 576px) {
+      margin-bottom: 15px;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+  }
+
+  // Listen
+  ul, ol {
+    margin-bottom: 25px;
+    padding-left: 30px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+      padding-left: 25px;
+    }
+
+    @media (max-width: 576px) {
+      margin-bottom: 15px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+
+      @media (max-width: 768px) {
+        margin-bottom: 8px;
+        line-height: 1.5;
+        font-size: 15px;
+      }
+
+      @media (max-width: 576px) {
+        margin-bottom: 6px;
+        line-height: 1.4;
+        font-size: 14px;
+      }
+    }
+  }
+
+  // Links
+  a {
+    color: $bg_auth_btn;
+    text-decoration: none;
+    transition: color $transition-time;
+
+    &:hover {
+      color: $bg_auth_btn_hover;
+    }
+  }
+
+  // Tabellen
+  table {
+    width: 100%;
+    margin-bottom: 25px;
+    background-color: $bg_dark;
+    border-radius: $border-radius;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
+
+    th {
+      background-color: $bg_blue2;
+      padding: 12px;
+      text-align: left;
+
+      @media (max-width: 576px) {
+        padding: 8px;
+      }
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid $bg_blue2;
+
+      @media (max-width: 576px) {
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }

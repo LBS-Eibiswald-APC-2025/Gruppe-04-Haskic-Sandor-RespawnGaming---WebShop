@@ -12,7 +12,7 @@ if (!$game) {
 <div class="game-detail-wrapper">
     <!-- Breadcrumb / Navigation -->
     <div class="breadcrumb">
-        <a href="<?php echo Config::get('URL'); ?>games">Alle Spiele</a> >
+        <a href="<?php echo Config::get('URL'); ?>games"> Alle Spiele </a>  -->
         <?php echo htmlspecialchars($game['title']); ?>
     </div>
 

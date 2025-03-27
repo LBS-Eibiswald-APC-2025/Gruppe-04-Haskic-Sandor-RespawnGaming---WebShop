@@ -1,8 +1,6 @@
 @import '../main/_variables.scss';
 
-/* ===================================================
-   User Index – Profilanzeige
-   =================================================== */
+/* Profile Container */
 .profile-container {
     background-color: $background_color_dark;
     color: $white;
@@ -12,12 +10,31 @@
     width: 90%;
     max-width: 1000px;
 
+    @media screen and (max-width: 768px) {
+        width: 95%;
+        margin: 30px auto;
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 98%;
+        margin: 20px auto;
+        border-radius: 8px;
+    }
+
     .profile-header {
         position: relative;
         width: 100%;
-        height: 300px; // Höhe des Coverbildes
+        height: 300px;
         background-color: lighten($background_color_dark, 10%);
         border-radius: $border-radius;
+
+        @media screen and (max-width: 768px) {
+            height: 250px;
+        }
+
+        @media screen and (max-width: 576px) {
+            height: 200px;
+        }
 
         .cover {
             width: 100%;
@@ -29,7 +46,7 @@
 
         .avatar {
             position: absolute;
-            bottom: -60px; // Ragt 60px unterhalb des Headers heraus
+            bottom: -60px;
             left: 30px;
             width: 150px;
             height: 150px;
@@ -37,6 +54,20 @@
             border-radius: 50%;
             overflow: hidden;
             background-color: $white;
+
+            @media screen and (max-width: 768px) {
+                width: 120px;
+                height: 120px;
+                bottom: -40px;
+                left: 20px;
+            }
+
+            @media screen and (max-width: 576px) {
+                width: 100px;
+                height: 100px;
+                bottom: -30px;
+                left: 15px;
+            }
 
             img {
                 width: 100%;
@@ -58,18 +89,44 @@
         transition: transform $transition-time ease-in-out;
         padding: 10px;
 
+        @media screen and (max-width: 576px) {
+            padding: 8px;
+            margin: 8px;
+        }
+
         &:hover {
             transform: scale(1.5);
+
+            @media screen and (max-width: 576px) {
+                transform: scale(1.3);
+            }
         }
     }
 
     .profile-info {
-        padding: 80px 20px 20px; // Obere Padding berücksichtigt den überlappenden Avatar
+        padding: 80px 20px 20px;
         text-align: left;
+
+        @media screen and (max-width: 768px) {
+            padding: 60px 15px 15px;
+        }
+
+        @media screen and (max-width: 576px) {
+            padding: 50px 12px 12px;
+        }
 
         .username {
             font-size: 68px;
             margin: 0 0 10px 0;
+            text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+
+            @media screen and (max-width: 768px) {
+                font-size: 48px;
+            }
+
+            @media screen and (max-width: 576px) {
+                font-size: 36px;
+            }
         }
 
         .status,
@@ -77,6 +134,14 @@
         .member-since {
             margin: 5px 0;
             font-size: 20px;
+
+            @media screen and (max-width: 768px) {
+                font-size: 16px;
+            }
+
+            @media screen and (max-width: 576px) {
+                font-size: 14px;
+            }
         }
 
         .about {
@@ -84,170 +149,228 @@
             font-size: 12px;
         }
 
-        hr {
-            margin: 15px 0;
-            border: 0;
-            border-top: 1px solid rgba($white, 0.1);
-        }
-
         .library {
-            h3 {
-                margin-bottom: 10px;
-            }
+            margin-top: 25px;
+            font-family: Playstation, sans-serif;
 
-            .games {
-                p {
-                    font-size: 16px;
+            h3 {
+                font-size: 24px;
+                margin-bottom: 15px;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 20px;
+                }
+
+                @media screen and (max-width: 576px) {
+                    font-size: 18px;
                 }
             }
+
+            .game-list {
+                .game-count {
+                    font-size: 16px;
+                    margin-top: 15px;
+                    margin-bottom: 12px;
+                    text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+
+                    li {
+                        font-size: 16px;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+
+            .no-games {
+                font-style: italic;
+                color: $gray;
+            }
         }
-    }
-
-    .game-list {
-        margin: 10px 0;
-        font-family: Playstation, sans-serif;
-    }
-
-    .game-count {
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #666;
-    }
-
-    .game-list ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .game-list li {
-        padding: 5px 0;
-        border-bottom: 1px solid #eee;
-    }
-
-    .game-list li:last-child {
-        border-bottom: none;
-    }
-
-    .no-games {
-        color: #666;
-        font-style: italic;
     }
 }
 
-/* ===================================================
-   User Edit – Profil bearbeiten
-   =================================================== */
+/* Profile Edit Box */
 .profile-edit-box {
     background-color: $background_color_dark;
     color: $white;
     border-radius: $border-radius;
-    padding: 30px;
+    padding: 25px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-    margin: 50px auto;
+    margin: 40px auto;
     width: 90%;
     max-width: 500px;
+    font-family: $font-ps;
+
+    @media screen and (max-width: 768px) {
+        width: 95%;
+        padding: 20px;
+        margin: 25px auto;
+    }
+
+    @media screen and (max-width: 576px) {
+        width: 98%;
+        padding: 15px;
+        margin: 20px auto;
+    }
 
     .profile-edit-title {
         text-align: center;
-        margin-bottom: 20px;
-        font-family: 'Ghost', sans-serif;
-        font-size: 1.8rem;
+        margin-bottom: 25px;
+        font-size: 2rem;
+
+        @media screen and (max-width: 768px) {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        @media screen and (max-width: 576px) {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
     }
 
     form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-
         .profile-edit-group {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 15px;
 
             label {
-                font-size: 0.9rem;
-                margin-bottom: 5px;
-                color: lighten($white, 10%);
+                display: block;
+                margin-bottom: 6px;
+                font-size: 1.2rem;
+                color: $white;
+
+                @media screen and (max-width: 768px) {
+                    font-size: 1.1rem;
+                    margin-bottom: 5px;
+                }
+
+                @media screen and (max-width: 576px) {
+                    font-size: 1rem;
+                    margin-bottom: 4px;
+                }
             }
 
             input,
             textarea {
-                font-family: 'Playstation', sans-serif;
+                width: 100%;
                 background-color: $bg_auth;
                 border: none;
-                padding: 10px 15px;
-                color: $white;
                 border-radius: $auth-form-border-radius;
+                color: $white;
+                padding: 8px 12px;
                 font-size: 1rem;
+                margin-bottom: 8px;
+
+                @media screen and (max-width: 768px) {
+                    padding: 7px 10px;
+                    font-size: 0.95rem;
+                }
+
+                @media screen and (max-width: 576px) {
+                    padding: 6px 8px;
+                    font-size: 0.9rem;
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px $bg_glow_blue;
+                }
             }
 
             textarea {
+                min-height: 100px;
                 resize: vertical;
-                min-height: 80px;
             }
         }
 
-        .profile-edit-btn {
-            background-color: $bg-auth-btn;
-            border: none;
-            padding: $btn-padding;
-            cursor: pointer;
-            font-family: 'Playstation', sans-serif;
-            font-size: 1rem;
-            border-radius: $auth-form-border-radius;
-            transition: transform $transition-time ease-in-out, background-color $transition-time ease-in-out;
-            width: 100%;
-
-            &:hover {
-                background-color: $bg_green;
-                transform: scale(1.02);
-            }
+        textarea {
+            min-height: 80px;
+            resize: vertical;
         }
     }
 
-    .profile-edit-link {
-        text-align: center;
-        margin-top: 15px;
+    .profile-edit-btn {
+        width: 100%;
+        background-color: $bg-auth-btn;
+        color: $white;
+        border: none;
+        border-radius: $auth-form-border-radius;
+        padding: 10px 16px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background-color $transition-time ease;
 
-        a {
-            font-family: 'Playstation', sans-serif;
-            color: $white;
-            transition: transform $transition-time ease-in-out;
+        @media screen and (max-width: 768px) {
+            font-size: 1rem;
+            padding: 8px 14px;
+        }
 
-            &:hover {
-                transform: scale(1.05);
-            }
+        @media screen and (max-width: 576px) {
+            font-size: 0.95rem;
+            padding: 7px 12px;
+        }
+
+        &:hover {
+            background-color: $bg_green;
         }
     }
 }
 
+.profile-edit-link {
+    text-align: center;
+    margin-top: 15px;
+
+    a {
+        color: $white;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color $transition-time ease;
+
+        &:hover {
+            color: $bg_glow_blue;
+        }
+    }
+}
+
+/* Sweet Alert File Upload */
 .swal-content {
     .file-upload-wrapper {
-        margin: 15px 0;
-        font-family: 'Playstation', sans-serif;
-
         .custom-file-upload {
             display: inline-block;
             padding: 8px 15px;
-            background: $bg_glow_blue;
+            background-color: $bg-auth-btn;
             color: $white;
-            border-radius: 4px;
+            border-radius: $auth-form-border-radius;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: background-color $transition-time ease;
+
+            @media screen and (max-width: 768px) {
+                padding: 7px 12px;
+                font-size: 0.95rem;
+            }
+
+            @media screen and (max-width: 576px) {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
 
             &:hover {
-                background: darken($bg_glow_blue, 10%);
+                background-color: $bg-auth-btn-hover;
             }
         }
 
         .file-name {
-            margin-top: 8px;
+            margin-top: 10px;
             font-size: 0.9rem;
-            color: lighten($bg_blue1, 40%);
-        }
 
-        input[type="file"] {
-            display: none;
+            @media screen and (max-width: 576px) {
+                font-size: 0.85rem;
+            }
         }
     }
 }

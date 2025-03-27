@@ -27,20 +27,110 @@
   background-color: #2A2D32;
   color: #FFFFFF;
   border-radius: 10px;
-  padding: 30px;
+  padding: 20px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   margin: 50px auto;
   width: 90%;
   max-width: 1000px;
-  font-family: Playstation, sans-serif;
+  font-family: "Playstation", sans-serif;
+  transition: all 0.3s;
+}
+@media (max-width: 992px) {
+  .i-container {
+    width: 95%;
+    padding: 25px;
+    margin: 40px auto;
+  }
+}
+@media (max-width: 768px) {
+  .i-container {
+    width: 92%;
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: 8px;
+  }
+}
+@media (max-width: 576px) {
+  .i-container {
+    width: 100%;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 0;
+  }
 }
 .i-container h1 {
-  font-size: 2em;
-  margin-bottom: 70px;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-family: "Ghost", sans-serif;
+}
+@media (max-width: 992px) {
+  .i-container h1 {
+    font-size: 2.2em;
+    margin-bottom: 35px;
+  }
+}
+@media (max-width: 768px) {
+  .i-container h1 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+}
+@media (max-width: 576px) {
+  .i-container h1 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+  }
 }
 .i-container p {
   margin-bottom: 15px;
   line-height: 1.5;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .i-container p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+@media (max-width: 576px) {
+  .i-container p {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    text-align: left;
+  }
+}
+.i-container p strong {
+  color: #4a90d9;
+  font-size: 1.25rem;
+}
+@media (max-width: 576px) {
+  .i-container p strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+.i-container .schulprojekt-hinweis {
+  margin-top: 30px;
+  padding: 15px;
+  background: rgba(42, 71, 94, 0.3);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+@media (max-width: 768px) {
+  .i-container .schulprojekt-hinweis {
+    margin-top: 25px;
+    padding: 12px;
+  }
+}
+@media (max-width: 576px) {
+  .i-container .schulprojekt-hinweis {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

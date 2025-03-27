@@ -1,10 +1,5 @@
-/* ===========================================
-              SCSS Integrations
-   =========================================== */
-
 @import '../main/_variables.scss';
 
-/* Auth-Box (z.B. für Login/Registration) */
 .auth-page-box {
   background-color: $background_color_dark;
   color: $white;
@@ -15,22 +10,82 @@
   width: 90%;
   max-width: 500px;
 
+  @media screen and (max-width: 768px) {
+    padding: 25px;
+    width: 95%;
+    margin: 30px auto;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 20px;
+    width: 98%;
+    margin: 20px auto;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 25px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (max-width: 576px) {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+    }
+  }
+
   .verify_box {
     text-align: center;
 
-    .verification-button   {
-        display: inline-block;
-        padding: 10px 20px;
-        margin-top: 20px;
-        background-color: $bg-auth-btn;
-        color: $white;
-        border-radius: $auth-form-border-radius;
-        transition: transform $transition-time ease-in-out;
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 25px;
 
-        &:hover {
-          background-color: $bg_green;
-          transform: scale(1.05);
+      @media screen and (max-width: 768px) {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      @media screen and (max-width: 576px) {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+      }
+    }
+
+    .verification-button {
+      display: inline-block;
+      padding: 12px 25px;
+      margin-top: 20px;
+      background-color: $bg-auth-btn;
+      color: $white;
+      border-radius: $auth-form-border-radius;
+      transition: all $transition-time ease-in-out;
+      font-size: 1.1em;
+
+      @media screen and (max-width: 768px) {
+        padding: 10px 20px;
+        margin-top: 15px;
+        font-size: 1em;
+      }
+
+      @media screen and (max-width: 576px) {
+        padding: 8px 18px;
+        margin-top: 12px;
+        font-size: 0.95em;
+      }
+
+      &:hover {
+        background-color: $bg_green;
+        transform: scale(1.05);
+
+        @media screen and (max-width: 576px) {
+          transform: scale(1.03);
         }
+      }
     }
   }
 
@@ -42,6 +97,19 @@
     margin-bottom: $auth-form-margin-bottom;
     color: $white;
     border-radius: $auth-form-border-radius;
+    font-size: 1em;
+
+    @media screen and (max-width: 768px) {
+      padding: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95em;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 7px;
+      margin-bottom: 10px;
+      font-size: 0.9em;
+    }
 
     &::placeholder {
       color: lighten($white, 20%);
@@ -49,14 +117,33 @@
   }
 
   .link {
+    margin-top: 15px;
+
+    @media screen and (max-width: 576px) {
+      margin-top: 12px;
+    }
+
     a {
       display: inline-block;
       font-family: 'Playstation', sans-serif !important;
       color: $white !important;
       transition: transform $transition-time ease-in-out !important;
+      font-size: 1em;
+
+      @media screen and (max-width: 768px) {
+        font-size: 0.95em;
+      }
+
+      @media screen and (max-width: 576px) {
+        font-size: 0.9em;
+      }
 
       &:hover {
         transform: scale(1.05) !important;
+
+        @media screen and (max-width: 576px) {
+          transform: scale(1.03) !important;
+        }
       }
     }
   }
@@ -66,11 +153,26 @@
     border: none;
     padding: $btn-padding;
     cursor: pointer;
-    transition: transform $transition-time ease-in-out;
+    transition: all $transition-time ease-in-out;
+    font-size: 1.1em;
+
+    @media screen and (max-width: 768px) {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    @media screen and (max-width: 576px) {
+      padding: 8px;
+      font-size: 0.95em;
+    }
 
     &:hover {
       background-color: $bg_green;
       transform: scale(1.05);
+
+      @media screen and (max-width: 576px) {
+        transform: scale(1.03);
+      }
     }
   }
 }
