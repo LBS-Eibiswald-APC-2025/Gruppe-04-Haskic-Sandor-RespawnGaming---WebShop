@@ -337,40 +337,124 @@
     }
 }
 
-/* Sweet Alert File Upload */
+/* Sweet Alert Customization */
+.swal-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.swal-modal {
+    background-color: $background_color_dark;
+    border-radius: $border-radius;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba($bg_glow_blue, 0.2);
+    padding: 20px;
+    width: 500px;
+
+    @media screen and (max-width: 576px) {
+        width: 90%;
+        margin: 0 auto;
+    }
+}
+
 .swal-content {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
     .file-upload-wrapper {
+        margin: 20px 0;
+        text-align: center;
+
+        input[type="file"] {
+            display: none; // Versteckt den Standard-Dateiauswahl-Button
+        }
+
         .custom-file-upload {
             display: inline-block;
-            padding: 8px 15px;
+            padding: 12px 24px;
             background-color: $bg-auth-btn;
             color: $white;
             border-radius: $auth-form-border-radius;
             cursor: pointer;
-            transition: background-color $transition-time ease;
-
-            @media screen and (max-width: 768px) {
-                padding: 7px 12px;
-                font-size: 0.95rem;
-            }
-
-            @media screen and (max-width: 576px) {
-                padding: 6px 10px;
-                font-size: 0.9rem;
-            }
+            font-family: $font-ps;
+            font-size: 1.1rem;
+            transition: all $transition-time ease;
+            border: none;
+            margin: 10px 0;
+            width: auto;
 
             &:hover {
-                background-color: $bg-auth-btn-hover;
+                background-color: $bg_green;
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba($bg_green, 0.4);
             }
         }
 
         .file-name {
+            display: block;
             margin-top: 10px;
-            font-size: 0.9rem;
+            color: $white;
+            font-family: $font-ps;
+            font-size: 1rem;
+            word-break: break-all;
+        }
+    }
+}
 
-            @media screen and (max-width: 576px) {
-                font-size: 0.85rem;
-            }
+.swal-title {
+    font-family: $font-ps;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    color: $white;
+}
+
+.swal-text {
+    font-family: $font-ps;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 0;
+    color: $white;
+}
+
+.swal-footer {
+    background-color: transparent;
+    border: none;
+    margin-top: 15px;
+    padding: 0;
+    text-align: center;
+}
+
+.swal-button-container {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.swal-button {
+    padding: 12px 24px;
+    font-family: $font-ps;
+    font-size: 1.1rem;
+    font-weight: normal;
+    transition: all $transition-time ease;
+    border: none;
+
+    &--confirm {
+        background-color: $bg-auth-btn;
+        color: $white;
+
+        &:hover {
+            background-color: $bg_green !important;
+            transform: translateY(-1px);
+        }
+    }
+
+    &--cancel {
+        background-color: $gray;
+        color: $white;
+
+        &:hover {
+            background-color: darken($gray, 10%) !important;
+            transform: translateY(-1px);
         }
     }
 }
