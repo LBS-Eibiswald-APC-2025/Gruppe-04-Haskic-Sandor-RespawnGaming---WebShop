@@ -26,4 +26,5 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 20.03.2025|1.7.2,1.6.2|09:25-12:50|3h25min|LBS|Mit Dino Inhaltsverzeichnis angepasst und besprochen, Präsentation angefangen und PDF anpassung fertiggestellt||[Github]
 21.03.2025|1.5.3|07:30-10:15|2h45min|LBS|PDF kleine anpassung (fertig), Passswort Reset auch kleine anpassungen|In der Früh mit Dino Code hochgepushed aber es gab ein problem und wie bereits erwähnt hat das Reseting funktioniert aber noch in kleiner Bearbeitung|[Github]
 25.03.2025|1.7.2, 1.5.5|10:00-12:20|2h20min|LBS|Dokumentation schreiben für Freitag, User bearbeitung (Bild und Banner anpassung möglich), Community Forum ist der Aufwand zu groß und wird durch eine Chat-Funktion ausgetauscht||[Github]
-20.03.2025|1.8.3,1.5.1|09:25-12:50|3h25min|LBS|Anpassung für Admin User (Filterung das nur Kunden oder nur Entwickler angezeigt werden) und den Rest des Tages mit Dokumentation beschäftigt||[Github]
+27.03.2025|1.8.3,1.5.1|09:25-12:50|3h25min|LBS|Anpassung für Admin User (Filterung das nur Kunden oder nur Entwickler angezeigt werden) und den Rest des Tages mit Dokumentation beschäftigt||[Github]
+28.03.2025|1.5.1, 1.8.3 |07:30-10:15|2h45min|LBS|Für den Chatraum abfragen gemacht und geteset funktioniert mal so, sonst nur Dokumentation für den Rest des Tages||[Github]
