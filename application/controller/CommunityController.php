@@ -1,187 +1,194 @@
 <?php
 
-use JetBrains\PhpStorm\NoReturn;
-
 class CommunityController extends Controller
 {
-    public function __construct()
+    public function __construct($parameters = [])
     {
-        parent::__construct();
+        parent::__construct($parameters);
     }
 
-    /**
-     * Zeigt die Community-Startseite.
-     */
     public function index(): void
     {
-        //Hole alle Threads
-        $threads = CommunityModel::getAllThreads();
-
-        $this->View->render('community/index', [
-            'threads' => $threads
-        ]);
-    }
-
-    public function detail(?int $post_id = 0): void {
-        $post = CommunityModel::getPostById($post_id);
-        if (!$post) {
-            Session::add('feedback_negative', 'Post nicht gefunden.');
-            header('Location: /community/index');
-            exit();
+        if (!LoginModel::isUserLoggedIn()) {
+            Session::set('feedback_negative', 'Bitte logge dich zuerst ein einlogge.');
+            Redirect::to('login/index');
         }
-        $this->View->render('community/detail', [
-            'post' => $post
-        ]);
+
+        $chatRooms = CommunityModel::getChatRooms();
+        $this->View->render('community/index', ['chatRooms' => $chatRooms]);
     }
 
-    /**
-     * Zeigt alle Community-Posts für ein bestimmtes Spiel.
-     */
-    public function gamePosts(int $game_id): void
+    public function chatRoom(): void
     {
-        $posts = CommunityModel::getPostsByGame($game_id);
-        $this->View->render('community/game_posts', [
-            'posts'   => $posts,
-            'game_id' => $game_id
-        ]);
+        $messages = CommunityModel::getChatRoomMessages($this->parameters[0] ?? 0);
+        $roomDetails = self::_getRoomDetails($this->parameters[0] ?? 0);
+
+        $this->View->render('community/chat_room', ['messages' => $messages, 'roomDetails' => $roomDetails]);
     }
 
-    /**
-     * Fügt einen neuen Community-Post hinzu (für Spiel-Posts).
-     */
-    public function addPost(): void
+    public function sendMessage(): void
     {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login?error=not_logged_in');
-            exit();
-        }
+        header('Content-Type: application/json');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $game_id   = $_POST['game_id'];
-            $user_id   = $_SESSION['user_id'];
-            $post_type = $_POST['post_type'];
-            $title     = $_POST['title'];
-            $content   = $_POST['content'];
+            $userId = $this->_getCurrentUserId();
+            $roomId = $_POST['room_id'] ?? null;
+            $messageText = $_POST['message'] ?? '';
 
-            if (CommunityModel::addPost($game_id, $user_id, $post_type, $title, $content)) {
-                header("Location: /community/games/$game_id");
-            } else {
-                header("Location: /community/games/$game_id?error=failed");
+            if ($roomId && $messageText) {
+                $messageId = CommunityModel::sendMessage($userId, $roomId, $messageText);
+
+                if ($messageId) {
+                    echo json_encode([
+                        'status' => 'success',
+                        'username' => $_SESSION['user_name'] ?? 'Unbekannt',
+                        'avatar' => $_SESSION['avatar'] ?? '/avatars/default.jpg',
+                        'isOwnMessage' => true,
+                        'messageId' => $messageId // Neue Message-ID
+                    ]);
+                } else {
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Nachrichtenversand fehlgeschlagen'
+                    ]);
+                }
             }
-            exit();
-        }
-    }
-
-    /**
-     * Löscht einen Community-Post.
-     */
-    #[NoReturn] public function deletePost(int $post_id): void
-    {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login?error=not_logged_in');
-            exit();
-        }
-
-        $user_id  = $_SESSION['user_id'];
-        $user_role = $_SESSION['role'] ?? null;
-
-        if (CommunityModel::deletePost($post_id, $user_id, $user_role)) {
-            header("Location: " . $_SERVER['HTTP_REFERER']);
-        } else {
-            header("Location: " . $_SERVER['HTTP_REFERER'] . "?error=delete_failed");
         }
         exit();
     }
 
-    /* ============================
-       Neue Methoden für Threads
-       ============================ */
-
-    /**
-     * Verarbeitet das Formular für ein neues Thema (Thread).
-     */
-    public function createThread(): void
+    public function getNewMessages(): void
     {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login?error=not_logged_in');
-            exit();
+        header('Content-Type: application/json');
+
+        $roomId = $_GET['room_id'] ?? null;
+        $lastMessageId = $_GET['last_message_id'] ?? 0;
+
+        if ($roomId) {
+            $database = DatabaseFactory::getFactory()->getConnection();
+            $currentUserId = $this->_getCurrentUserId();
+
+            $sql = "SELECT 
+                m.id, 
+                m.message_text, 
+                m.created_at, 
+                u.user_name, 
+                u.avatar,
+                m.user_id = :currentUserId as is_own_message
+            FROM messages m
+            JOIN users u ON m.user_id = u.user_id
+            WHERE m.room_id = :roomId 
+            AND m.id > :lastMessageId
+            ORDER BY m.created_at ASC";
+
+            $query = $database->prepare($sql);
+            $query->bindValue(':roomId', $roomId, PDO::PARAM_INT);
+            $query->bindValue(':lastMessageId', $lastMessageId, PDO::PARAM_INT);
+            $query->bindValue(':currentUserId', $currentUserId, PDO::PARAM_INT);
+            $query->execute();
+
+            $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            echo json_encode(['messages' => $messages]);
+        } else {
+            echo json_encode(['messages' => []]);
         }
+        exit();
+    }
+
+    private function _getCurrentUserId(): ?int
+    {
+        $userId = $_SESSION['user_id'] ?? null;
+        if (!$userId) {
+            return null;
+        }
+        return (int) $userId;
+    }
+
+    private function _getRoomDetails(int $roomId): array
+    {
+        //get details from the database
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $sql = "SELECT id, name, description FROM chat_rooms WHERE id = :roomId";
+        $query = $database->prepare($sql);
+        $query->bindValue(':roomId', $roomId, PDO::PARAM_INT);
+        $query->execute();
+        $roomDetails = $query->fetch(PDO::FETCH_ASSOC);
+        if (!$roomDetails) {
+            Session::set('feedback_negative', 'Raum nicht gefunden.');
+            Redirect::to('community/index');
+        }
+        return $roomDetails;
+    }
+
+    private static function _setFeedback(string $string, string $string1): void
+    {
+        if ($string1 === 'success') {
+            Session::set('feedback', $string);
+        } elseif ($string1 === 'error') {
+            Session::set('feedback', $string);
+        }
+    }
+
+    public function updateTypingStatus(): void
+    {
+        header('Content-Type: application/json');
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Daten aus dem Formular
-            $title    = trim($_POST['threadTitle']);
-            $category = trim($_POST['threadCategory']);
-            $content  = trim($_POST['threadContent']);
-            $user_id  = $_SESSION['user_id'];
-            // Falls Threads nicht spielgebunden sind, setzen wir game_id = 0
-            $game_id  = 0;
+            $data = json_decode(file_get_contents('php://input'), true);
+            $roomId = $data['room_id'] ?? null;
+            $isTyping = $data['is_typing'] ?? false;
+            $userId = $_SESSION['user_id'] ?? null;
 
-            // Erstelle den Thread – hier wird in der Datenbank als post_type 'thread' gesetzt.
-            if (CommunityModel::createThread($user_id, $title, $content, $category, $game_id)) {
-                Session::add('feedback_positive', 'Thread wurde erstellt.');
-                header('Location: /community/index');
-            } else {
-                Session::add('feedback_negative', 'Thread konnte nicht erstellt werden.');
-                header('Location: /community/index');
+            if ($roomId && $userId) {
+                $database = DatabaseFactory::getFactory()->getConnection();
+
+                $sql = "INSERT INTO typing_status (user_id, room_id, is_typing) 
+                    VALUES (:userId, :roomId, :isTyping)
+                    ON DUPLICATE KEY UPDATE 
+                    is_typing = :isTyping,
+                    last_update = CURRENT_TIMESTAMP";
+
+                $query = $database->prepare($sql);
+                $query->execute([
+                    ':userId' => $userId,
+                    ':roomId' => $roomId,
+                    ':isTyping' => $isTyping
+                ]);
+
+                echo json_encode(['success' => true]);
+                exit();
             }
-            exit();
         }
+        echo json_encode(['success' => false]);
+        exit();
     }
 
-    /**
-     * Zeigt einen einzelnen Thread inklusive Antworten an.
-     *
-     * URL: /community/thread/{thread_id}
-     */
-    public function thread(int $thread_id): void
+    public function getTypingUsers(): void
     {
-        // Hole den Thread
-        $thread = CommunityModel::getThreadById($thread_id);
-        if (!$thread) {
-            header('Location: /community/index?error=thread_not_found');
+        header('Content-Type: application/json');
+
+        $roomId = $_GET['room_id'] ?? null;
+        if ($roomId) {
+            $database = DatabaseFactory::getFactory()->getConnection();
+
+            $sql = "SELECT u.user_name 
+                FROM typing_status ts
+                JOIN users u ON ts.user_id = u.user_id
+                WHERE ts.room_id = :roomId 
+                AND ts.is_typing = 1
+                AND ts.last_update >= DATE_SUB(NOW(), INTERVAL 5 SECOND)";
+
+            $query = $database->prepare($sql);
+            $query->execute([':roomId' => $roomId]);
+
+            $typingUsers = $query->fetchAll(PDO::FETCH_COLUMN);
+
+            echo json_encode(['typing_users' => $typingUsers]);
             exit();
         }
-
-        // Erhöhe die View-Zahl
-        CommunityModel::increaseThreadViews($thread_id);
-
-        // Hole alle Antworten (Replies)
-        $replies = CommunityModel::getRepliesByThreadId($thread_id);
-
-        // Render die View 'community/thread' und übergebe Thread und Replies
-        $this->View->render('community/thread', [
-            'thread'  => $thread,
-            'replies' => $replies
-        ]);
-    }
-
-    /**
-     * Verarbeitet das Formular zum Erstellen einer Antwort (Reply) in einem Thread.
-     */
-    public function createReply_action(): void
-    {
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login?error=not_logged_in');
-            exit();
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $thread_id = (int)$_POST['thread_id'];
-            $content   = trim($_POST['postContent']);
-            $user_id   = $_SESSION['user_id'];
-
-            if (CommunityModel::addReply($thread_id, $user_id, $content)) {
-                header("Location: /community/thread/$thread_id");
-            } else {
-                header("Location: /community/thread/$thread_id?error=reply_failed");
-            }
-            exit();
-        }
-    }
-
-    public function forum(): void
-    {
-        require_once APP . '../public/forum/index.php';
-        $this->View->render('community/forum');
+        echo json_encode(['typing_users' => []]);
+        exit();
     }
 }
