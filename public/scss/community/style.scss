@@ -1,0 +1,287 @@
+@import '../main/_variables.scss';
+
+.community-page {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0 15px;
+    margin: 15px auto;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 0 10px;
+    margin: 10px auto;
+  }
+
+  h1 {
+    color: $white;
+    text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+    font-family: $font-ps;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2.5em;
+  }
+}
+
+.chat-rooms-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chat-room-card {
+  height: 180px;
+  background: linear-gradient(180deg, rgba($bg_blue2, 0.9), rgba($bg_blue1, 0.9));
+  border-radius: $border-radius;
+  padding: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
+  border: 1px solid rgba($bg_glow_blue, 0.2);
+  transition: all $transition-time ease;
+
+  h3 {
+    color: $white;
+    font-family: $font-ps;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8);
+  }
+
+  p {
+    color: $white;
+    margin: 0;
+    font-family: $font-ps;
+    font-size: 1.0em;
+  }
+
+  .btn-primary {
+    background-color: $bg-auth-btn;
+    color: $white;
+    border: none;
+    padding: $btn-padding;
+    border-radius: $border-radius;
+    font-family: $font-ps;
+    transition: all $transition-time ease;
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+
+    &:hover {
+      background-color: $bg_green;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba($bg_green, 0.4);
+    }
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 15px rgba($bg_glow_blue, 0.4);
+  }
+}
+
+.chat-room {
+  margin: 0 auto;
+  background: $bg_blue1;
+  border-radius: $border-radius;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border: 1px solid rgba($bg_glow_blue, 0.2);
+
+  h1 {
+    color: $white;
+    font-family: $font-ps;
+    text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8);
+    margin-bottom: 12px;
+    font-size: 1.8em;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 15px;
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 10px;
+  }
+}
+
+.typing-status {
+  color: rgba($white, 0.7);
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 10px;
+  height: 20px;
+  font-family: $font-ps;
+}
+
+.chat-messages {
+  height: 50vh;
+  width: 1200px;
+  overflow-y: auto;
+  border: 1px solid rgba($bg_glow_blue, 0.2);
+  border-radius: $border-radius;
+  padding: 12px;
+  margin: 0 auto;
+  background-color: rgba($bg_blue1, 0.5);
+
+  @media screen and (max-width: 768px) {
+    height: 350px;
+    width: 90%;
+  }
+
+  @media screen and (max-width: 576px) {
+    height: 300px;
+    width: 95%;
+  }
+
+  &::-webkit-scrollbar {
+    width: $scrollbar-size;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bg_blue1;
+    border-radius: $border-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $bg-auth-btn;
+    border-radius: $border-radius;
+
+    &:hover {
+      background: $bg_glow_blue;
+    }
+  }
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 8px;
+  background-color: rgba($bg_blue2, 0.7);
+  border-radius: $border-radius;
+  border: 1px solid rgba($bg_glow_blue, 0.1);
+  max-width: 40%;
+  margin-left: 0; // Standardmäßig links ausgerichtet
+
+  &.own-message {
+    margin-left: auto; // Rechts ausrichten
+    margin-right: 0;
+    flex-direction: row-reverse;
+    background-color: rgba($bg_green, 0.2);
+
+    .user-avatar {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+
+    .message-content {
+      align-items: flex-end;
+      text-align: right;
+
+      strong {
+        color: $bg_green;
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    padding: 8px;
+    max-width: 85%;
+  }
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid rgba($bg_glow_blue, 0.3);
+  box-shadow: 0 0 10px rgba($bg_glow_blue, 0.2);
+
+  @media screen and (max-width: 576px) {
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+  }
+}
+
+.message-content {
+  flex: 1;
+
+  strong {
+    color: $bg_glow_blue;
+    font-family: $font-ps;
+    margin-right: 8px;
+    text-shadow: 0 0 5px rgba($bg_glow_blue, 0.5);
+    font-size: 0.9em;
+  }
+
+  .timestamp {
+    color: rgba($white, 0.6);
+    font-size: 0.8em;
+    font-family: $font-ps;
+  }
+
+  p {
+    margin-top: 3px;
+    color: $white;
+    font-family: $font-ps;
+    font-size: 0.95em;
+  }
+}
+
+.message-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+
+  @media screen and (max-width: 576px) {
+    gap: 8px;
+  }
+
+  textarea {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: rgba($bg_blue1, 0.7);
+    border: 1px solid rgba($bg_glow_blue, 0.2);
+    border-radius: $border-radius;
+    color: $white;
+    font-family: $font-ps;
+    resize: none;
+    min-height: 45px;
+    height: 45px;
+
+    &:focus {
+      outline: none;
+      border-color: $bg_glow_blue;
+      box-shadow: 0 0 10px rgba($bg_glow_blue, 0.2);
+    }
+  }
+}
+
+.btn-send {
+  min-width: 80px;
+  height: 45px;
+  background: linear-gradient(180deg, rgba($bg_blue2, 0.9), rgba($bg_blue1, 0.9));
+  color: $white !important;
+  border: none;
+  padding: 8px 15px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-family: $font-ps;
+  transition: all $transition-time ease;
+  font-size: 0.9em;
+
+  @media screen and (max-width: 576px) {
+    min-width: 70px;
+  }
+
+  &:hover {
+    background: linear-gradient(180deg, rgba($bg_green, 0.9), rgba($bg_green, 0.7));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba($bg_green, 0.4);
+  }
+}

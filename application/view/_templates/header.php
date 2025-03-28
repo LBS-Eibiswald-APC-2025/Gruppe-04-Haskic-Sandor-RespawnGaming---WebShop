@@ -27,6 +27,7 @@ foreach ($cartItems as $item) {
 
     <script src="https://kit.fontawesome.com/9a7be7a56e.js" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script src="/public/js/games/rating.js"></script>
 
     <link rel="stylesheet" href="/public/scss/main/style.css">
@@ -78,8 +79,8 @@ foreach ($cartItems as $item) {
                        href="<?php echo Config::get('URL'); ?>games">Spiele</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo (str_contains($current_page, '/community/forum')) ? 'active-link' : ''; ?>"
-                       href="<?php echo Config::get('URL'); ?>community/forum">Community</a>
+                    <a class="nav-link <?php echo (str_contains($current_page, '/community')) ? 'active-link' : ''; ?>"
+                       href="<?php echo Config::get('URL'); ?>community">Community</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/info')) ? 'active-link' : ''; ?>"
@@ -149,4 +150,9 @@ foreach ($cartItems as $item) {
             }
         });
     });
+
+    //wenn chatRoom
+    if (window.location.href.includes('community/chatRoom')) {
+        window.currentUsername = '<?= htmlspecialchars($_SESSION['user_name'] ?? '') ?>';
+    }
 </script>
