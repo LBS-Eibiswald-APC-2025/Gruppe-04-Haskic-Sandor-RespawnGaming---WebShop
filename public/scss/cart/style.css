@@ -23,40 +23,48 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .cart-page {
   min-height: 10vh;
-  margin: 10px !important;
+  margin: 5px !important;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
 }
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   .cart-page {
-    margin: 5px !important;
+    margin: 10px !important;
   }
 }
 
 .cart-container {
-  max-width: 900px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   background-color: #2A475E;
-  border-radius: 10px;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba(74, 144, 217, 0.3);
+  overflow: visible;
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .cart-container {
     width: 98%;
     padding: 15px;
+    border-radius: 10px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .cart-container {
-    width: 100%;
-    padding: 10px;
-    border-radius: 0;
+    width: 95%;
+    padding: 20px;
+    max-width: 900px;
   }
 }
 
@@ -65,76 +73,160 @@
   text-transform: uppercase;
   color: #ffffff;
   text-shadow: 0 0 5px #4a90d9;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.3rem;
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .cart-title {
     font-size: 1.5rem;
+    margin-bottom: 20px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .cart-title {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
 }
 
 .cart-empty {
   font-family: "Playstation", sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-align: center;
-  margin: 20px;
+  margin: 15px;
+}
+@media (min-width: 576px) {
+  .cart-empty {
+    font-size: 1rem;
+    margin: 20px;
+  }
 }
 
 .cart-table-container {
   overflow-x: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+@media (min-width: 576px) {
+  .cart-table-container {
+    margin-bottom: 20px;
+  }
 }
 
 .cart-table {
   width: 100%;
   border-collapse: collapse;
   color: #ffffff;
+  font-size: 0.9rem;
+  font-family: "Playstation", sans-serif;
+  min-width: 450px;
+}
+@media (min-width: 768px) {
+  .cart-table {
+    font-size: 1rem;
+  }
 }
 .cart-table th, .cart-table td {
   border: 1px solid #666666;
-  padding: 15px;
+  padding: 8px;
   text-align: left;
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .cart-table th, .cart-table td {
     padding: 10px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .cart-table th, .cart-table td {
-    padding: 8px;
+    padding: 15px;
   }
 }
 .cart-table th {
   background-color: #1B2838;
   text-transform: uppercase;
+  font-size: 0.8rem;
+  font-family: "Ghost", sans-serif;
+}
+@media (min-width: 576px) {
+  .cart-table th {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 768px) {
+  .cart-table th {
+    font-size: 1rem;
+  }
 }
 .cart-table tr:hover {
   background-color: rgba(27, 40, 56, 0.3);
+}
+.cart-table .cart-col-game {
+  width: 45%;
+}
+.cart-table .cart-col-price, .cart-table .cart-col-qty {
+  width: 15%;
+}
+.cart-table .cart-col-action {
+  width: 25%;
 }
 
 .cart-gameinfo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+}
+@media (min-width: 576px) {
+  .cart-gameinfo {
+    gap: 10px;
+  }
 }
 
 .cart-cover {
-  width: 70px;
+  width: 40px;
   height: auto;
   border: 1px solid #666666;
   border-radius: 5px;
 }
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   .cart-cover {
     width: 50px;
+  }
+}
+@media (min-width: 768px) {
+  .cart-cover {
+    width: 70px;
+  }
+}
+
+.cart-gametitle {
+  font-size: 0.85rem;
+  word-break: break-word;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 576px) {
+  .cart-gametitle {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 768px) {
+  .cart-gametitle {
+    font-size: 1rem;
+  }
+}
+
+.cart-price, .cart-quantity {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 576px) {
+  .cart-price, .cart-quantity {
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 768px) {
+  .cart-price, .cart-quantity {
+    font-size: 1rem;
   }
 }
 
@@ -142,36 +234,59 @@
   background-color: #F15147;
   color: #ffffff;
   border: none;
-  padding: 8px 16px;
+  padding: 6px 8px;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 0.8rem;
+  font-family: "Playstation", sans-serif;
 }
-.cart-remove-btn:hover {
-  background-color: #B93F2F;
-}
-@media (max-width: 576px) {
+@media (min-width: 576px) {
   .cart-remove-btn {
     padding: 6px 12px;
     font-size: 0.9rem;
   }
 }
+@media (min-width: 768px) {
+  .cart-remove-btn {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+}
+.cart-remove-btn:hover {
+  background-color: #B93F2F;
+}
 
 .cart-footer {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 15px;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .cart-footer {
-    gap: 10px;
+    gap: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .cart-footer {
+    align-items: flex-end;
   }
 }
 
 .cart-total {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #ffffff;
+  text-align: right;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 768px) {
+  .cart-total {
+    font-size: 1.2rem;
+  }
 }
 .cart-total .cart-total-label {
   color: rgba(255, 255, 255, 0.9);
@@ -182,18 +297,46 @@
   color: #ffffff;
   border: none;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 10px 15px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s;
+  width: 100%;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 576px) {
+  .cart-checkout-btn {
+    padding: 12px 20px;
+  }
+}
+@media (min-width: 768px) {
+  .cart-checkout-btn {
+    width: auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
 }
 .cart-checkout-btn:hover {
   background-color: #8ed529;
 }
-@media (max-width: 768px) {
-  .cart-checkout-btn {
-    width: 100%;
-    padding: 12px 20px;
+
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .cart-container {
+    padding-bottom: 80px;
+  }
+  .cart-table-container {
+    max-height: none;
+  }
+  .cart-footer {
+    position: relative;
+    margin-top: 30px;
+  }
+}
+@media (max-width: -0.02) {
+  .cart-item td {
+    padding: 5px;
   }
 }
 

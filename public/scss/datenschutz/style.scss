@@ -1,64 +1,199 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
+// Sicherstellung der Scrollbarkeit
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .d-container {
   background-color: $bg_blue2;
   color: $white;
-  border-radius: $border-radius;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
-  margin: 50px auto;
-  width: 90%;
-  max-width: 1000px;
-  font-family: $font-ps;
+  margin: 15px auto;
+  width: 100%;
+  font-family: $font-ps; // Playstation-Schriftart für Text
 
-  @media (max-width: 768px) {
-    width: 95%;
+  @include breakpoint-up('sm') {
     padding: 20px;
     margin: 30px auto;
+    width: 95%;
+    border-radius: $border-radius;
   }
 
-  @media (max-width: 576px) {
-    width: 100%;
-    padding: 15px;
-    margin: 15px auto;
-    border-radius: 0;
+  @include breakpoint-up('md') {
+    padding: 25px;
+    width: 90%;
+    margin: 40px auto;
+  }
+
+  @include breakpoint-up('lg') {
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
   }
 
   h3 {
-    font-size: 1.8em;
-    margin-bottom: 25px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: $white;
+    font-family: $font-ghost; // Ghost-Schriftart für Hauptüberschriften
+    text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8);
 
-    @media (max-width: 576px) {
-      font-size: 1.5em;
+    @include breakpoint-up('sm') {
+      font-size: 1.6em;
       margin-bottom: 20px;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1.8em;
+      margin-bottom: 25px;
     }
   }
 
   h5 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     margin-bottom: 5px;
+    color: $bg_glow_blue;
+    font-family: $font-ghost; // Ghost-Schriftart für Unterüberschriften
 
-    @media (max-width: 576px) {
-      font-size: 1.2em;
+    @include breakpoint-up('sm') {
+      font-size: 1.3em;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1.4em;
     }
   }
 
   p {
-    font-size: 1em;
-    margin-bottom: 25px;
-    line-height: 1.5;
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-family: $font-ps; // Playstation-Schriftart für Text
 
-    @media (max-width: 576px) {
-      font-size: 0.9em;
-      margin-bottom: 20px;
+    @include breakpoint-up('sm') {
+      font-size: 0.95em;
+      margin-bottom: 22px;
+      line-height: 1.45;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1em;
+      margin-bottom: 25px;
+      line-height: 1.5;
     }
   }
 
   ul {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
+    padding-left: 20px;
+    font-family: $font-ps; // Playstation-Schriftart für Listen
 
-    @media (max-width: 576px) {
+    @include breakpoint-up('sm') {
       margin-bottom: 50px;
+      padding-left: 25px;
+    }
+
+    @include breakpoint-up('md') {
+      margin-bottom: 60px;
+      padding-left: 30px;
+    }
+
+    @include breakpoint-up('lg') {
+      margin-bottom: 70px;
+    }
+
+    li {
+      margin-bottom: 5px;
+      font-size: 0.9em;
+
+      @include breakpoint-up('sm') {
+        font-size: 0.95em;
+        margin-bottom: 7px;
+      }
+
+      @include breakpoint-up('md') {
+        font-size: 1em;
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  a {
+    color: $bg_auth_btn;
+    text-decoration: none;
+    transition: color $transition-time;
+
+    &:hover {
+      color: $bg_green;
+      text-decoration: underline;
+    }
+  }
+
+  // Schulprojekt-Hinweis
+  .schulprojekt-hinweis {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: rgba($bg_blue1, 0.7);
+    border-radius: $border-radius;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.85em;
+    border: 1px solid rgba($bg_glow_blue, 0.2);
+
+    @include breakpoint-up('sm') {
+      margin-top: 40px;
+      padding: 12px;
+      font-size: 0.9em;
+    }
+
+    @include breakpoint-up('md') {
+      margin-top: 50px;
+      padding: 15px;
+      font-size: 0.95em;
+    }
+  }
+}
+
+// Für bessere Lesbarkeit auf kleineren Bildschirmen
+@include breakpoint-down('sm') {
+  .d-container {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    p, li {
+      text-align: justify;
     }
   }
 }

@@ -1,74 +1,163 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
+// Sicherstellung der Scrollbarkeit
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .community-page {
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
+  margin: 10px auto;
+  padding: 0 10px;
 
-  @media screen and (max-width: 768px) {
-    padding: 0 15px;
+  @include breakpoint-up('sm') {
     margin: 15px auto;
+    padding: 0 15px;
   }
 
-  @media screen and (max-width: 576px) {
-    padding: 0 10px;
-    margin: 10px auto;
+  @include breakpoint-up('md') {
+    margin: 20px auto;
+    padding: 0 20px;
   }
 
   h1 {
     color: $white;
     text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
-    font-family: $font-ps;
-    margin-bottom: 25px;
+    font-family: $font-ghost; // Ghost-Schriftart für Überschriften
+    margin-bottom: 15px;
     text-align: center;
-    font-size: 2.5em;
+    font-size: 1.8em;
+
+    @include breakpoint-up('sm') {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 2.5em;
+      margin-bottom: 25px;
+    }
   }
 }
 
 .chat-rooms-overview {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  max-width: 800px;
+  gap: 10px;
+  width: 100%;
   margin: 0 auto;
+
+  @include breakpoint-up('sm') {
+    gap: 12px;
+    max-width: 90%;
+  }
+
+  @include breakpoint-up('md') {
+    gap: 15px;
+    max-width: 800px;
+  }
 }
 
 .chat-room-card {
-  height: 180px;
+  height: auto;
+  min-height: 150px;
   background: linear-gradient(180deg, rgba($bg_blue2, 0.9), rgba($bg_blue1, 0.9));
   border-radius: $border-radius;
-  padding: 15px;
+  padding: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
   border: 1px solid rgba($bg_glow_blue, 0.2);
   transition: all $transition-time ease;
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint-up('sm') {
+    min-height: 165px;
+    padding: 15px;
+  }
+
+  @include breakpoint-up('md') {
+    min-height: 180px;
+  }
 
   h3 {
     color: $white;
-    font-family: $font-ps;
-    margin-bottom: 10px;
+    font-family: $font-ghost; // Ghost-Schriftart für Überschriften
+    margin-bottom: 8px;
     text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8);
+    font-size: 1.2em;
+
+    @include breakpoint-up('sm') {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
   }
 
   p {
     color: $white;
-    margin: 0;
-    font-family: $font-ps;
-    font-size: 1.0em;
+    margin: 0 0 5px 0;
+    font-family: $font-ps; // Playstation-Schriftart für Text
+    font-size: 0.9em;
+
+    @include breakpoint-up('sm') {
+      font-size: 1em;
+      margin: 0 0 7px 0;
+    }
   }
 
   .btn-primary {
     background-color: $bg-auth-btn;
     color: $white;
     border: none;
-    padding: $btn-padding;
+    padding: 8px 12px;
     border-radius: $border-radius;
-    font-family: $font-ps;
+    font-family: $font-ps; // Playstation-Schriftart für Buttons
     transition: all $transition-time ease;
     display: inline-block;
     text-decoration: none;
     width: 100%;
     text-align: center;
-    margin-top: 15px;
+    margin-top: auto;
+    font-size: 0.9em;
+
+    @include breakpoint-up('sm') {
+      padding: 10px 15px;
+      margin-top: 12px;
+    }
+
+    @include breakpoint-up('md') {
+      padding: $btn-padding;
+      margin-top: 15px;
+      font-size: 1em;
+    }
 
     &:hover {
       background-color: $bg_green;
@@ -89,57 +178,105 @@
   background: $bg_blue1;
   border-radius: $border-radius;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-  padding: 15px;
+  padding: 10px;
   border: 1px solid rgba($bg_glow_blue, 0.2);
+  width: 100%;
+  max-width: 100%;
+
+  @include breakpoint-up('sm') {
+    padding: 12px;
+    max-width: 95%;
+  }
+
+  @include breakpoint-up('md') {
+    padding: 15px;
+    max-width: 90%;
+  }
+
+  @include breakpoint-up('lg') {
+    max-width: 80%;
+  }
 
   h1 {
     color: $white;
-    font-family: $font-ps;
+    font-family: $font-ghost; // Ghost-Schriftart für Überschriften
     text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8);
-    margin-bottom: 12px;
-    font-size: 1.8em;
+    margin-bottom: 8px;
+    font-size: 1.4em;
+
+    @include breakpoint-up('sm') {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
   }
 
-  @media screen and (max-width: 768px) {
-    padding: 15px;
-  }
+  p {
+    color: $white;
+    font-family: $font-ps; // Playstation-Schriftart für Text
+    font-size: 0.9em;
+    margin-bottom: 10px;
 
-  @media screen and (max-width: 576px) {
-    padding: 10px;
+    @include breakpoint-up('sm') {
+      font-size: 1em;
+      margin-bottom: 12px;
+    }
   }
 }
 
 .typing-status {
   color: rgba($white, 0.7);
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-style: italic;
-  margin-top: 10px;
+  margin-top: 8px;
   height: 20px;
-  font-family: $font-ps;
+  font-family: $font-ps; // Playstation-Schriftart für Text
+
+  @include breakpoint-up('sm') {
+    font-size: 0.9em;
+    margin-top: 10px;
+  }
 }
 
 .chat-messages {
-  height: 50vh;
-  width: 1200px;
+  height: 300px;
+  width: 100%;
   overflow-y: auto;
   border: 1px solid rgba($bg_glow_blue, 0.2);
   border-radius: $border-radius;
-  padding: 12px;
+  padding: 10px;
   margin: 0 auto;
   background-color: rgba($bg_blue1, 0.5);
 
-  @media screen and (max-width: 768px) {
+  @include breakpoint-up('sm') {
     height: 350px;
-    width: 90%;
+    padding: 12px;
   }
 
-  @media screen and (max-width: 576px) {
-    height: 300px;
-    width: 95%;
+  @include breakpoint-up('md') {
+    height: 400px;
+  }
+
+  @include breakpoint-up('lg') {
+    height: 50vh;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  @include breakpoint-up('xl') {
+    max-width: 1200px;
   }
 
   &::-webkit-scrollbar {
-    width: $scrollbar-size;
+    width: 8px;
+
+    @include breakpoint-up('md') {
+      width: $scrollbar-size;
+    }
   }
 
   &::-webkit-scrollbar-track {
@@ -159,23 +296,42 @@
 
 .message {
   display: flex;
-  margin-bottom: 10px;
-  padding: 8px;
+  margin-bottom: 8px;
+  padding: 6px;
   background-color: rgba($bg_blue2, 0.7);
   border-radius: $border-radius;
   border: 1px solid rgba($bg_glow_blue, 0.1);
-  max-width: 40%;
+  width: auto; // Änderung: keine max-width für bewegliche Größe
+  max-width: 70%; // Wichtige Änderung: Reduzierte max-width
   margin-left: 0; // Standardmäßig links ausgerichtet
+
+  @include breakpoint-up('sm') {
+    margin-bottom: 10px;
+    padding: 8px;
+    max-width: 60%;
+  }
+
+  @include breakpoint-up('md') {
+    max-width: 50%;
+  }
+
+  @include breakpoint-up('lg') {
+    max-width: 40%;
+  }
 
   &.own-message {
     margin-left: auto; // Rechts ausrichten
     margin-right: 0;
-    flex-direction: row-reverse;
+    flex-direction: row-reverse; // Umgekehrte Ausrichtung
     background-color: rgba($bg_green, 0.2);
 
     .user-avatar {
       margin-right: 0;
-      margin-left: 10px;
+      margin-left: 8px;
+
+      @include breakpoint-up('sm') {
+        margin-left: 10px;
+      }
     }
 
     .message-content {
@@ -187,73 +343,105 @@
       }
     }
   }
-
-  @media screen and (max-width: 576px) {
-    padding: 8px;
-    max-width: 85%;
-  }
 }
 
 .user-avatar {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 8px;
   border: 2px solid rgba($bg_glow_blue, 0.3);
   box-shadow: 0 0 10px rgba($bg_glow_blue, 0.2);
+  flex-shrink: 0; // Wichtig: Verhindert Verkleinerung bei kleinen Bildschirmen
 
-  @media screen and (max-width: 576px) {
-    width: 30px;
-    height: 30px;
-    margin-right: 8px;
+  @include breakpoint-up('sm') {
+    width: 32px;
+    height: 32px;
+  }
+
+  @include breakpoint-up('md') {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
   }
 }
 
 .message-content {
   flex: 1;
+  min-width: 0; // Wichtig: Erlaubt Textumbruch
+  overflow-wrap: break-word; // Wichtig: Erzwingt Wortumbruch bei langen Wörtern
+  word-break: break-all; // Zusätzliche Unterstützung für sehr lange Wörter
 
   strong {
     color: $bg_glow_blue;
-    font-family: $font-ps;
-    margin-right: 8px;
+    font-family: $font-ghost; // Ghost-Schriftart für Namen
+    margin-right: 6px;
     text-shadow: 0 0 5px rgba($bg_glow_blue, 0.5);
-    font-size: 0.9em;
+    font-size: 0.85em;
+
+    @include breakpoint-up('sm') {
+      font-size: 0.9em;
+      margin-right: 8px;
+    }
   }
 
   .timestamp {
     color: rgba($white, 0.6);
-    font-size: 0.8em;
-    font-family: $font-ps;
+    font-size: 0.75em;
+    font-family: $font-ps; // Playstation-Schriftart für Text
+
+    @include breakpoint-up('sm') {
+      font-size: 0.8em;
+    }
   }
 
   p {
     margin-top: 3px;
     color: $white;
-    font-family: $font-ps;
-    font-size: 0.95em;
+    font-family: $font-ps; // Playstation-Schriftart für Text
+    font-size: 0.9em;
+    overflow-wrap: break-word; // Wichtig: Erzwingt Wortumbruch
+    word-break: break-word; // Verwendet break-word statt break-all für bessere Lesbarkeit
+    max-width: 100%; // Wichtig: Beschränkt auf Container-Breite
+
+    @include breakpoint-up('sm') {
+      font-size: 0.95em;
+    }
   }
 }
 
 .message-form {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 8px;
+  margin-top: 12px;
+  width: 100%;
 
-  @media screen and (max-width: 576px) {
-    gap: 8px;
+  @include breakpoint-up('sm') {
+    gap: 10px;
+    margin-top: 15px;
   }
 
   textarea {
     flex-grow: 1;
-    padding: 10px;
+    flex-shrink: 1; // Wichtig: Erlaubt Verkleinerung wenn nötig
+    min-width: 0; // Wichtig: Erlaubt korrekte Flex-Verkleinerung
+    padding: 8px;
     background-color: rgba($bg_blue1, 0.7);
     border: 1px solid rgba($bg_glow_blue, 0.2);
     border-radius: $border-radius;
     color: $white;
-    font-family: $font-ps;
+    font-family: $font-ps; // Playstation-Schriftart für Text
     resize: none;
-    min-height: 45px;
-    height: 45px;
+    min-height: 40px;
+    height: 40px;
+    font-size: 0.9em;
+
+    @include breakpoint-up('sm') {
+      padding: 10px;
+      min-height: 45px;
+      height: 45px;
+      font-size: 1em;
+    }
 
     &:focus {
       outline: none;
@@ -264,25 +452,48 @@
 }
 
 .btn-send {
-  min-width: 80px;
-  height: 45px;
+  min-width: 60px; // Kleinere Mindestbreite
+  width: auto; // Automatische Breite
+  height: 40px;
   background: linear-gradient(180deg, rgba($bg_blue2, 0.9), rgba($bg_blue1, 0.9));
   color: $white !important;
   border: none;
-  padding: 8px 15px;
+  padding: 6px 10px; // Reduziertes Padding
   border-radius: $border-radius;
   cursor: pointer;
-  font-family: $font-ps;
+  font-family: $font-ps; // Playstation-Schriftart für Text
   transition: all $transition-time ease;
-  font-size: 0.9em;
+  font-size: 0.85em;
+  flex-shrink: 0; // Wichtig: Verhindert Verkleinerung des Buttons
 
-  @media screen and (max-width: 576px) {
+  @include breakpoint-up('sm') {
     min-width: 70px;
+    padding: 6px 12px;
+    font-size: 0.9em;
+  }
+
+  @include breakpoint-up('md') {
+    min-width: 80px;
+    height: 45px;
+    padding: 8px 15px;
   }
 
   &:hover {
     background: linear-gradient(180deg, rgba($bg_green, 0.9), rgba($bg_green, 0.7));
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba($bg_green, 0.4);
+  }
+}
+
+// Fix für iPad und Tablets
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .chat-room {
+    padding-bottom: 70px;
+  }
+
+  .message-form {
+    position: relative;
+    margin-top: 20px;
+    padding-bottom: 10px;
   }
 }

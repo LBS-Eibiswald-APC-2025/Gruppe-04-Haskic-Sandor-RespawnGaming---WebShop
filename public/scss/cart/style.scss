@@ -1,112 +1,224 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
+// Sicherstellung der Scrollbarkeit
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .cart-page {
   min-height: 10vh;
-  margin: 10px !important;
+  margin: 5px !important;
   color: $white;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
 
-  @media (max-width: 576px) {
-    margin: 5px !important;
+  @include breakpoint-up('sm') {
+    margin: 10px !important;
   }
 }
 
 .cart-container {
-  max-width: 900px;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   background-color: $bg_blue2;
-  border-radius: $border-radius;
-  padding: 20px;
+  padding: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 0 6px rgba($bg_glow_blue, 0.3);
+  overflow: visible;
 
-  @media (max-width: 768px) {
+  @include breakpoint-up('sm') {
     width: 98%;
     padding: 15px;
+    border-radius: $border-radius;
   }
 
-  @media (max-width: 576px) {
-    width: 100%;
-    padding: 10px;
-    border-radius: 0;
+  @include breakpoint-up('md') {
+    width: 95%;
+    padding: 20px;
+    max-width: 900px;
   }
 }
 
 .cart-title {
-  font-family: $font-ghost;
+  font-family: $font-ghost; // Ghost-Schriftart für Überschriften
   text-transform: uppercase;
   color: $white;
   text-shadow: 0 0 5px $bg_glow_blue;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: center;
-  font-size: 2.0rem;
+  font-size: 1.3rem;
 
-  @media (max-width: 768px) {
+  @include breakpoint-up('sm') {
     font-size: 1.5rem;
+    margin-bottom: 20px;
   }
 
-  @media (max-width: 576px) {
-    font-size: 1.3rem;
+  @include breakpoint-up('md') {
+    font-size: 2.0rem;
   }
 }
 
 .cart-empty {
-  font-family: $font-ps;
-  font-size: 1.0rem;
+  font-family: $font-ps; // Playstation-Schriftart für Texte
+  font-size: 0.9rem;
   text-align: center;
-  margin: 20px;
+  margin: 15px;
+
+  @include breakpoint-up('sm') {
+    font-size: 1.0rem;
+    margin: 20px;
+  }
 }
 
 .cart-table-container {
   overflow-x: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+
+  @include breakpoint-up('sm') {
+    margin-bottom: 20px;
+  }
 }
 
 .cart-table {
   width: 100%;
   border-collapse: collapse;
   color: $white;
+  font-size: 0.9rem;
+  font-family: $font-ps; // Playstation-Schriftart für Tabelle
+  min-width: 450px;
+
+  @include breakpoint-up('md') {
+    font-size: 1rem;
+  }
 
   th, td {
     border: 1px solid $gray;
-    padding: 15px;
+    padding: 8px;
     text-align: left;
 
-    @media (max-width: 768px) {
+    @include breakpoint-up('sm') {
       padding: 10px;
     }
 
-    @media (max-width: 576px) {
-      padding: 8px;
+    @include breakpoint-up('md') {
+      padding: 15px;
     }
   }
 
   th {
     background-color: $bg_blue1;
     text-transform: uppercase;
+    font-size: 0.8rem;
+    font-family: $font-ghost; // Ghost-Schriftart für Tabellenüberschriften
+
+    @include breakpoint-up('sm') {
+      font-size: 0.9rem;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1rem;
+    }
   }
 
   tr:hover {
     background-color: rgba($bg_blue1, 0.3);
+  }
+
+  // Spaltenbreiten optimieren
+  .cart-col-game {
+    width: 45%;
+  }
+
+  .cart-col-price, .cart-col-qty {
+    width: 15%;
+  }
+
+  .cart-col-action {
+    width: 25%;
   }
 }
 
 .cart-gameinfo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
+
+  @include breakpoint-up('sm') {
+    gap: 10px;
+  }
 }
 
 .cart-cover {
-  width: 70px;
+  width: 40px;
   height: auto;
   border: 1px solid $gray;
   border-radius: 5px;
 
-  @media (max-width: 576px) {
+  @include breakpoint-up('sm') {
     width: 50px;
+  }
+
+  @include breakpoint-up('md') {
+    width: 70px;
+  }
+}
+
+.cart-gametitle {
+  font-size: 0.85rem;
+  word-break: break-word;
+  font-family: $font-ps; // Playstation-Schriftart für Spieltitel
+
+  @include breakpoint-up('sm') {
+    font-size: 0.9rem;
+  }
+
+  @include breakpoint-up('md') {
+    font-size: 1rem;
+  }
+}
+
+.cart-price, .cart-quantity {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-family: $font-ps; // Playstation-Schriftart für Preis und Menge
+
+  @include breakpoint-up('sm') {
+    font-size: 0.9rem;
+  }
+
+  @include breakpoint-up('md') {
+    font-size: 1rem;
   }
 }
 
@@ -114,35 +226,55 @@
   background-color: $red;
   color: $white;
   border: none;
-  padding: 8px 16px;
+  padding: 6px 8px;
   border-radius: $border-radius;
   cursor: pointer;
   transition: background-color $transition-time;
+  font-size: 0.8rem;
+  font-family: $font-ps; // Playstation-Schriftart für Buttons
+
+  @include breakpoint-up('sm') {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  @include breakpoint-up('md') {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
 
   &:hover {
     background-color: $red_dark;
-  }
-
-  @media (max-width: 576px) {
-    padding: 6px 12px;
-    font-size: 0.9rem;
   }
 }
 
 .cart-footer {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 15px;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba($white, 0.2);
 
-  @media (max-width: 768px) {
-    gap: 10px;
+  @include breakpoint-up('sm') {
+    gap: 15px;
+  }
+
+  @include breakpoint-up('md') {
+    align-items: flex-end;
   }
 }
 
 .cart-total {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: $white;
+  text-align: right;
+  font-family: $font-ps; // Playstation-Schriftart für Gesamtpreis
+
+  @include breakpoint-up('md') {
+    font-size: 1.2rem;
+  }
 
   .cart-total-label {
     color: rgba($white, 0.9);
@@ -154,17 +286,51 @@
   color: $white;
   border: none;
   border-radius: $border-radius;
-  padding: $btn-padding;
+  padding: 10px 15px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all $transition-time;
+  width: 100%;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  font-family: $font-ps; // Playstation-Schriftart für Checkout-Button
+
+  @include breakpoint-up('sm') {
+    padding: 12px 20px;
+  }
+
+  @include breakpoint-up('md') {
+    width: auto;
+    padding: $btn-padding;
+    font-size: 1rem;
+  }
 
   &:hover {
     background-color: $bg_green;
   }
+}
 
-  @media (max-width: 768px) {
-    width: 100%;
-    padding: 12px 20px;
+// Verbesserte Tablet-Darstellung
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .cart-container {
+    padding-bottom: 80px;
+  }
+
+  .cart-table-container {
+    max-height: none;
+  }
+
+  .cart-footer {
+    position: relative;
+    margin-top: 30px;
+  }
+}
+
+// Extra Fix für sehr kleine Bildschirme
+@include breakpoint-down('xs') {
+  .cart-item {
+    td {
+      padding: 5px;
+    }
   }
 }
