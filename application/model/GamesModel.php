@@ -42,7 +42,7 @@ class GamesModel
                     image,
                     tinyImageArray,
                     discount,
-                    snippet,
+                    systemRequirements,
                     category,
                     game_url,
                     video_url
@@ -57,39 +57,43 @@ class GamesModel
         return $result ?: null;
     }
 
-    /**
-     * Holt ein einzelnes Spiel anhand der ID (als assoziatives Array).
-     */
-    public static function getGameById(int $game_id): ?array
+    public static function getGameById($game_id)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
-        $sql = "SELECT
-                    id,
-                    title,
-                    price,
-                    developer_id,
-                    license_required,
-                    genre,
-                    description,
-                    release_date,
-                    file_path,
-                    created_at,
-                    image,
-                    tinyImageArray,
-                    discount,
-                    snippet,
-                    category,
-                    video_url,
-                    game_url
-                FROM games
-                WHERE id = :game_id
-                LIMIT 1";
+
+        $sql = "SELECT * FROM games WHERE id = :game_id LIMIT 1";
 
         $query = $database->prepare($sql);
         $query->execute([':game_id' => $game_id]);
 
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        return $result ?: null;
+        $game = $query->fetch(PDO::FETCH_ASSOC); // oder wie du das Spiel abrufst
+
+        if ($game) {
+            // JSON-String in Array umwandeln
+            if (isset($game['systemRequirements']) && is_string($game['systemRequirements'])) {
+                $game['systemRequirements'] = json_decode($game['systemRequirements'], true);
+            }
+
+            // Fallback, falls JSON ungültig ist oder fehlt
+            if (!isset($game['systemRequirements']) || !is_array($game['systemRequirements'])) {
+                $game['systemRequirements'] = [
+                    'min_os' => '',
+                    'min_processor' => '',
+                    'min_memory' => '',
+                    'min_graphics' => '',
+                    'min_directx' => '',
+                    'min_storage' => '',
+                    'rec_os' => '',
+                    'rec_processor' => '',
+                    'rec_memory' => '',
+                    'rec_graphics' => '',
+                    'rec_directx' => '',
+                    'rec_storage' => ''
+                ];
+            }
+        }
+
+        return $game;
     }
 
     /**
@@ -106,17 +110,17 @@ class GamesModel
         ?int   $developer_id,
         int    $license_required = 0,
         string $discount         = '',
-        string $snippet          = '',
+        string $systemRequirements          = '',
         string $category         = '',
         string $video_url        = ''
     ): bool {
         $database = DatabaseFactory::getFactory()->getConnection();
         $sql = "INSERT INTO games
                 (id, title, price, developer_id, license_required, genre, rating, description, release_date, file_path,
-                 created_at, image, tinyImageArray, discount, snippet, category, video_url, game_url)
+                 created_at, image, tinyImageArray, discount, systemRequirements, category, video_url, game_url)
                 VALUES
                 (:id, :title, :price, :developer_id, :license_required, :genre, :rating, :description, :release_date,
-                 :file_path, :created_at, :image, :tinyImageArray, :discount, :snippet, :category, :video_url, :game_url, '', NOW())";
+                 :file_path, :created_at, :image, :tinyImageArray, :discount, :systemRequirements, :category, :video_url, :game_url, '', NOW())";
 
         $query = $database->prepare($sql);
         return $query->execute([
@@ -133,7 +137,7 @@ class GamesModel
             ':image'           => $image,
             ':tinyImageArray'  => '',
             ':discount'        => $discount,
-            ':snippet'         => $snippet,
+            ':systemRequirements'         => $systemRequirements,
             ':category'        => $category,
             ':video_url'       => $video_url,
             ':game_url'        => ''
@@ -154,7 +158,7 @@ class GamesModel
         ?int   $developer_id,
         int    $license_required,
         string $discount   = '',
-        string $snippet    = '',
+        string $systemRequirements    = '',
         string $category   = '',
         string $video_url  = ''
     ): bool {
@@ -170,7 +174,7 @@ class GamesModel
                     developer_id    = :developer_id,
                     license_required= :license_required,
                     discount        = :discount,
-                    snippet         = :snippet,
+                    systemRequirements         = :systemRequirements,
                     category        = :category,
                     video_url       = :video_url
                 WHERE id = :game_id";
@@ -187,7 +191,7 @@ class GamesModel
             ':developer_id'    => $developer_id,
             ':license_required'=> $license_required,
             ':discount'        => $discount,
-            ':snippet'         => $snippet,
+            ':systemRequirements'         => $systemRequirements,
             ':category'        => $category,
             ':video_url'       => $video_url
         ]);

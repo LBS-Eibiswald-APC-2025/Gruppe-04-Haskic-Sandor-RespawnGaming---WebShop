@@ -57,6 +57,35 @@ class CommunityController extends Controller
         exit();
     }
 
+    public static function getChatRoomMessages(int $roomId, int $limit = 50): array
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+        $currentUserId = $_SESSION['user_id'] ?? 0;
+
+        $sql = "SELECT 
+                    m.id,
+                    m.message_text, 
+                    m.created_at, 
+                    u.user_name, 
+                    u.avatar,
+                    m.user_id = :currentUserId as is_own_message
+                  FROM messages m
+                  JOIN users u ON m.user_id = u.user_id
+                  WHERE m.room_id = :roomId
+                  ORDER BY m.id DESC
+                  LIMIT :limit";
+
+        $query = $database->prepare($sql);
+        $query->bindValue(':roomId', $roomId, PDO::PARAM_INT);
+        $query->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $query->bindValue(':currentUserId', $currentUserId, PDO::PARAM_INT);
+        $query->execute();
+
+        // Nachrichten in umgekehrter Reihenfolge zurückgeben, damit die älteste Nachricht zuerst angezeigt wird
+        $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+        return array_reverse($messages);
+    }
+
     public function getNewMessages(): void
     {
         header('Content-Type: application/json');
@@ -69,17 +98,17 @@ class CommunityController extends Controller
             $currentUserId = $this->_getCurrentUserId();
 
             $sql = "SELECT 
-                m.id, 
-                m.message_text, 
-                m.created_at, 
-                u.user_name, 
-                u.avatar,
-                m.user_id = :currentUserId as is_own_message
-            FROM messages m
-            JOIN users u ON m.user_id = u.user_id
-            WHERE m.room_id = :roomId 
-            AND m.id > :lastMessageId
-            ORDER BY m.created_at ASC";
+                        m.id, 
+                        m.message_text, 
+                        m.created_at, 
+                        u.user_name, 
+                        u.avatar,
+                        m.user_id = :currentUserId as is_own_message
+                    FROM messages m
+                    JOIN users u ON m.user_id = u.user_id
+                    WHERE m.room_id = :roomId 
+                    AND m.id > :lastMessageId
+                    ORDER BY m.id ASC";
 
             $query = $database->prepare($sql);
             $query->bindValue(':roomId', $roomId, PDO::PARAM_INT);
@@ -102,7 +131,7 @@ class CommunityController extends Controller
         if (!$userId) {
             return null;
         }
-        return (int) $userId;
+        return (int)$userId;
     }
 
     private function _getRoomDetails(int $roomId): array
