@@ -28,3 +28,4 @@ Datum|AP NR|Zeitraum|Aufwand|Ort|Tätigkeit|Probleme|Quellen
 25.03.2025|1.7.2, 1.5.5|10:00-12:20|2h20min|LBS|Dokumentation schreiben für Freitag, User bearbeitung (Bild und Banner anpassung möglich), Community Forum ist der Aufwand zu groß und wird durch eine Chat-Funktion ausgetauscht||[Github]
 27.03.2025|1.8.3,1.5.1|09:25-12:50|3h25min|LBS|Anpassung für Admin User (Filterung das nur Kunden oder nur Entwickler angezeigt werden) und den Rest des Tages mit Dokumentation beschäftigt||[Github]
 28.03.2025|1.5.1, 1.8.3 |07:30-10:15|2h45min|LBS|Für den Chatraum abfragen gemacht und geteset funktioniert mal so, sonst nur Dokumentation für den Rest des Tages||[Github]
+01.04.2025|1.5.6, 1.5.7|10:00-12:20|2h20min|LBS|Anpassung für Chat Funktion(SQl Abfragen), Developer Controller und Model hinzugefügt (Nooch in Arbeit das Devekoper Exe.-Files hochladen können)||[Github]
