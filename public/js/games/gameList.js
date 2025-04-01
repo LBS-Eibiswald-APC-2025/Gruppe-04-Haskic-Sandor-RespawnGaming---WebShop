@@ -125,7 +125,6 @@ class RGDetailPanel {
 
         // Panel zurücksetzen bevor neue Daten geladen werden
         this.resetPanel();
-
         this._fillDetailPanel(gameData);
 
         requestAnimationFrame(() => {

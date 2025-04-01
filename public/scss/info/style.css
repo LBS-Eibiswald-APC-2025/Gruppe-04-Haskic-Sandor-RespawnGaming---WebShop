@@ -30,10 +30,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 700px;
   text-align: center;
   margin: 20px;
-  color: #FFFFFF;
+  color: #ffffff;
   background-blend-mode: darken;
   background-size: cover;
   background: rgba(0, 0, 0, 0.3) url("../../image/main/Hero_Illustration.png") no-repeat center;
@@ -163,14 +163,14 @@
   color: #8ed529;
 }
 .info-page .online-status p {
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
   margin-bottom: 10px;
 }
 .info-page .info-btn {
   padding: 15px 30px;
   background-color: #4a90d9;
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.3s ease;

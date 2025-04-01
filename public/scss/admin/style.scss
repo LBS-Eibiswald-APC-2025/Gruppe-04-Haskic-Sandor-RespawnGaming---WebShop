@@ -1,30 +1,90 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
 .admin-page {
   background-color: $background_color_dark;
   color: $white;
   border-radius: $border-radius;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
-  max-width: 80%;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 100%;
 
-  @media (max-width: 768px) {
-    width: 95%;
-    max-width: 100%;
-    padding: 15px;
-    margin: 20px auto;
+  @include breakpoint-up('md') {
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+  }
+
+  @include breakpoint-up('lg') {
+    padding: 30px;
+    margin: 50px auto;
+    max-width: 90%;
+  }
+
+  @include breakpoint-up('xl') {
+    max-width: 80%;
   }
 
   h1 {
     color: $bg_glow_blue;
     text-shadow: 0 0 5px $bg_glow_blue;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 22px;
 
-    @media (max-width: 768px) {
+    @include breakpoint-up('sm') {
       font-size: 24px;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: 32px;
+    }
+  }
+
+  .right-content {
+    h2 {
+      font-size: 18px;
       margin-bottom: 15px;
+
+      @include breakpoint-up('md') {
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+
+      @include breakpoint-up('lg') {
+        font-size: 24px;
+      }
     }
   }
 
@@ -34,103 +94,209 @@
 
     .title-content {
       display: flex;
-      flex-direction: row;
-      gap: 50px;
-      margin-bottom: 30px;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
 
-      @media (max-width: 1024px) {
-        gap: 20px;
+      @include breakpoint-up('sm') {
+        flex-direction: row;
         flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
       }
 
-      @media (max-width: 768px) {
-        flex-direction: column;
+      @include breakpoint-up('lg') {
         gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      @include breakpoint-up('xl') {
+        gap: 20px;
+      }
+
+      h3 {
+        font-size: 16px;
+        margin-bottom: 10px;
+        width: 100%;
+
+        @include breakpoint-up('md') {
+          font-size: 18px;
+          margin-bottom: 0;
+        }
+      }
+
+      a.btn {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        padding: 6px 12px;
+        font-size: 14px;
+
+        @include breakpoint-up('md') {
+          margin-bottom: 0;
+          padding: 8px 15px;
+        }
+
+        @include breakpoint-up('lg') {
+          padding: $btn-padding;
+          font-size: $base-font-size;
+        }
       }
 
       form {
-        margin-left: auto;
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
 
-        @media (max-width: 768px) {
-          margin-left: 0;
-          width: 100%;
+        @include breakpoint-up('sm') {
+          width: auto;
+          margin-left: auto;
+          margin-top: 0;
         }
 
         input[type="text"] {
+          flex: 1;
           background-color: $bg_dark;
           color: $white;
           border-radius: $border-radius;
-          padding: $auth-form-padding;
+          padding: 6px 10px;
           border: none;
+          min-width: 150px;
 
-          @media (max-width: 768px) {
-            width: calc(100% - 80px);
+          @include breakpoint-up('md') {
+            padding: $auth-form-padding;
+            min-width: 200px;
           }
         }
-      }
 
-      .btn {
-        @media (max-width: 768px) {
-          padding: $btn-padding;
+        button.btn {
+          white-space: nowrap;
+          padding: 6px 12px;
           font-size: 14px;
-          width: 100%;
-          margin-bottom: 5px;
+          margin-left: 5px;
+
+          @include breakpoint-up('md') {
+            padding: 8px 15px;
+          }
+
+          @include breakpoint-up('lg') {
+            padding: $btn-padding;
+            font-size: $base-font-size;
+          }
         }
       }
     }
 
+    // Responsive Tabelle
     table {
       background-color: $bg_dark;
       color: $white;
       width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
 
-      @media (max-width: 768px) {
+      @include breakpoint-up('md') {
         font-size: 14px;
       }
 
-      th, td {
-        padding: 10px;
+      @include breakpoint-up('lg') {
+        font-size: 16px;
+      }
 
-        @media (max-width: 768px) {
-          padding: 8px 5px;
+      th, td {
+        padding: 6px 4px;
+        text-align: left;
+
+        @include breakpoint-up('sm') {
+          padding: 8px 6px;
+        }
+
+        @include breakpoint-up('md') {
+          padding: 10px 8px;
         }
       }
 
       th {
         background-color: $bg_blue2;
+        white-space: nowrap;
       }
 
       tr:nth-child(even) {
         background-color: rgba($bg_blue2, 0.7);
       }
 
-      @media (max-width: 576px) {
-        thead {
-          display: none;
+      // Responsive Tabelle für Mobile
+      @include breakpoint-down('xs') {
+        display: block;
+
+        thead, tbody, th, td, tr {
+          display: block;
+        }
+
+        thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
         }
 
         tr {
-          display: block;
-          margin-bottom: 15px;
           border: 1px solid $bg_blue2;
+          margin-bottom: 15px;
         }
 
         td {
-          display: block;
-          text-align: right;
-          padding-left: 50%;
+          border: none;
           position: relative;
+          padding-left: 50%;
+          text-align: left;
 
           &:before {
-            content: attr(data-label);
             position: absolute;
-            left: 0;
+            top: 6px;
+            left: 6px;
             width: 45%;
-            padding-left: 15px;
-            text-align: left;
+            padding-right: 10px;
+            white-space: nowrap;
             font-weight: bold;
           }
+
+          // Labels für Mobile
+          &:nth-of-type(1):before { content: "UserID"; }
+          &:nth-of-type(2):before { content: "Benutzername"; }
+          &:nth-of-type(3):before { content: "Email"; }
+          &:nth-of-type(4):before { content: "Aktiv?"; }
+          &:nth-of-type(5):before { content: "Rolle"; }
+          &:nth-of-type(6):before { content: "Aktionen"; }
         }
+      }
+    }
+
+    // Formulare innerhalb der Tabelle
+    td {
+      form {
+        @include breakpoint-down('sm') {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+      }
+    }
+
+    // Buttons innerhalb der Tabelle
+    button.btn {
+      padding: 4px 8px;
+      font-size: 12px;
+      margin-top: 5px;
+
+      @include breakpoint-up('md') {
+        padding: 6px 10px;
+        font-size: 13px;
+        margin-top: 0;
+      }
+
+      @include breakpoint-up('lg') {
+        padding: 8px 12px;
+        font-size: 14px;
       }
     }
 
@@ -142,10 +308,15 @@
       &:hover {
         background-color: $red;
       }
+    }
 
-      @media (max-width: 768px) {
-        width: 100%;
-        margin: 5px 0;
+    button.btn-success {
+      background-color: $bg_green_dark;
+      border: none;
+      transition: background-color $transition-time;
+
+      &:hover {
+        background-color: $bg_green;
       }
     }
 
@@ -154,19 +325,31 @@
       color: $white;
       border: 1px solid $bg_blue2;
       border-radius: $border-radius;
-      padding: $auth-form-padding;
+      padding: 4px 8px;
+      width: 100%;
+      margin-bottom: 5px;
 
-      @media (max-width: 768px) {
-        width: 100%;
-        margin-bottom: 5px;
+      @include breakpoint-up('md') {
+        width: auto;
+        padding: 6px 10px;
+        margin-right: 5px;
+        margin-bottom: 0;
+      }
+
+      @include breakpoint-up('lg') {
+        padding: $auth-form-padding;
       }
     }
 
+    // Formulare in Aktionen und Rollen
     form[action*="changeUserRole"],
     form[action*="actionAccountSettings"] {
-      @media (max-width: 768px) {
-        width: 100%;
-        display: block !important;
+      display: block !important;
+      width: 100%;
+
+      @include breakpoint-up('md') {
+        display: inline-block !important;
+        width: auto;
       }
     }
   }

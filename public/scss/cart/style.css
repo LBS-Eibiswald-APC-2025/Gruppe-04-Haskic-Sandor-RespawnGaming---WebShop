@@ -26,7 +26,7 @@
 .cart-page {
   min-height: 10vh;
   margin: 10px !important;
-  color: #FFFFFF;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -63,7 +63,7 @@
 .cart-title {
   font-family: "Ghost", sans-serif;
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   text-shadow: 0 0 5px #4a90d9;
   margin-bottom: 20px;
   text-align: center;
@@ -95,7 +95,7 @@
 .cart-table {
   width: 100%;
   border-collapse: collapse;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .cart-table th, .cart-table td {
   border: 1px solid #666666;
@@ -140,7 +140,7 @@
 
 .cart-remove-btn {
   background-color: #F15147;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   padding: 8px 16px;
   border-radius: 10px;
@@ -171,7 +171,7 @@
 
 .cart-total {
   font-size: 1.2rem;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .cart-total .cart-total-label {
   color: rgba(255, 255, 255, 0.9);
@@ -179,7 +179,7 @@
 
 .cart-checkout-btn {
   background-color: #4a90d9;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;

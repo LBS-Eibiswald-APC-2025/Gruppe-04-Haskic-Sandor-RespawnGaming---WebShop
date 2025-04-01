@@ -7,7 +7,7 @@
 
         <div class="chat-messages" id="chatMessages">
             <?php foreach (array_reverse($this->data['messages']) as $message): ?>
-                <div class="message <?= $message['is_own_message'] ? 'own-message' : '' ?>">
+                <div class="message <?= $message['is_own_message'] ? 'own-message' : '' ?>" data-id="<?= $message['id'] ?>">
                     <img src="<?= htmlspecialchars($message['avatar'] ?? '/avatars/default.jpg') ?>" alt="Avatar" class="user-avatar">
                     <div class="message-content">
                         <strong><?= htmlspecialchars($message['user_name']) ?></strong>

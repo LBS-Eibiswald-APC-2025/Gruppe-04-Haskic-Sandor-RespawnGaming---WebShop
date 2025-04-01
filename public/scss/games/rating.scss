@@ -60,10 +60,6 @@
     transition: width $transition-time;
     font-family: $font-ps;
 
-    @media (max-width: 576px) {
-      font-size: 0.8rem;
-    }
-
     &.positive {
       background: linear-gradient(to right, darken($bg_green, 10%), $bg_green);
     }

@@ -34,7 +34,7 @@
 /* Hero-Section (Titelbereich) */
 .hero-section {
   width: 100%;
-  padding: 100px 20px;
+  padding: 50px 15px;
   text-align: center;
   border-radius: 0 0 15px 15px;
   background-blend-mode: darken;
@@ -43,33 +43,89 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
+@media (min-width: 576px) {
+  .hero-section {
+    padding: 70px 15px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 80px 20px;
+  }
+}
+@media (min-width: 992px) {
+  .hero-section {
+    padding: 100px 20px;
+  }
+}
 .hero-section h1 {
-  font-size: 3em;
+  font-size: 1.65em;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #FFFFFF, #4a90d9, #FFFFFF, #4a90d9, #FFFFFF);
+  background: linear-gradient(90deg, #ffffff, #4a90d9, #ffffff, #4a90d9, #ffffff);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 15s linear infinite;
   margin: 0;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
+}
+@media (min-width: 576px) {
+  .hero-section h1 {
+    font-size: 2.1em;
+    padding-bottom: 14px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.55em;
+    padding-bottom: 17px;
+  }
+}
+@media (min-width: 992px) {
+  .hero-section h1 {
+    font-size: 3em;
+    padding-bottom: 20px;
+  }
 }
 .hero-section p {
   font-family: "Playstation", sans-serif;
-  font-size: 1.5em;
-  color: #FFFFFF;
-  margin-bottom: 30px;
+  font-size: 1.2em;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+@media (min-width: 576px) {
+  .hero-section p {
+    font-size: 1.3em;
+    margin-bottom: 25px;
+  }
+}
+@media (min-width: 768px) {
+  .hero-section p {
+    font-size: 1.4em;
+  }
+}
+@media (min-width: 992px) {
+  .hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+  }
 }
 .hero-section .btn-primary {
   display: inline-block;
   background: linear-gradient(135deg, #66c0f4, #4a90d9);
   border: none;
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 14.4px;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.3s ease-in-out;
+}
+@media (min-width: 768px) {
+  .hero-section .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
 }
 .hero-section .btn-primary:hover {
   background: #8ed529;
@@ -79,38 +135,75 @@
   display: inline-block;
   background: linear-gradient(135deg, #66c0f4, #4a90d9);
   border: none;
-  color: #FFFFFF;
-  padding: 10px 20px;
-  font-size: 16px;
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 14.4px;
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.3s ease-in-out;
+}
+@media (min-width: 768px) {
+  .hero-section .btn-secondary {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
 }
 .hero-section .btn-secondary:hover {
   background: #8ed529;
 }
 .hero-section .search-bar {
-  margin-top: 40px;
+  margin-top: 25px;
   display: flex;
   justify-content: center;
 }
+@media (min-width: 768px) {
+  .hero-section .search-bar {
+    margin-top: 35px;
+  }
+}
+@media (min-width: 992px) {
+  .hero-section .search-bar {
+    margin-top: 40px;
+  }
+}
 .hero-section .search-bar .input-group {
   display: flex;
-  width: 100%;
+  width: 95%;
   max-width: 600px;
   background: #2A475E;
   border-radius: 50px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+@media (min-width: 576px) {
+  .hero-section .search-bar .input-group {
+    width: 90%;
+  }
+}
+@media (min-width: 768px) {
+  .hero-section .search-bar .input-group {
+    width: 85%;
+  }
+}
+@media (min-width: 992px) {
+  .hero-section .search-bar .input-group {
+    width: 100%;
+  }
+}
 .hero-section .search-bar .input-group input.form-control {
   flex: 1;
   background: transparent;
   border: none;
-  padding: 12px 20px;
-  font-size: 16px;
-  color: #FFFFFF;
+  padding: 9px 16px;
+  font-size: 14.4px;
+  color: #ffffff;
   font-family: "Playstation", sans-serif;
+}
+@media (min-width: 768px) {
+  .hero-section .search-bar .input-group input.form-control {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
 }
 .hero-section .search-bar .input-group input.form-control::placeholder {
   color: rgba(255, 255, 255, 0.7);
@@ -121,10 +214,16 @@
 .hero-section .search-bar .input-group button.btn-primary {
   background: linear-gradient(135deg, #66c0f4, #4a90d9);
   border: none;
-  color: #FFFFFF;
-  padding: 0 25px;
-  font-size: 16px;
+  color: #ffffff;
+  padding: 0 20px;
+  font-size: 14.4px;
   cursor: pointer;
+}
+@media (min-width: 768px) {
+  .hero-section .search-bar .input-group button.btn-primary {
+    padding: 0 25px;
+    font-size: 16px;
+  }
 }
 .hero-section .search-bar .input-group button.btn-primary:hover {
   background: #8ed529;
@@ -132,94 +231,144 @@
 
 .games-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 15px;
   max-width: 1200px;
   margin: 0 auto;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .games-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .games-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
     padding: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .games-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px;
+  }
+}
+@media (min-width: 1200px) {
+  .games-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
   }
 }
 
 .game-card {
   background-color: #2A2D32;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   transition: transform 0.3s ease;
   width: 100%;
-  max-width: 300px;
-  height: 450px;
+  height: auto;
+  min-height: 400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .game-card {
-    max-width: 100%;
-    height: auto;
+    min-height: 420px;
+    max-width: 400px;
+  }
+}
+@media (min-width: 992px) {
+  .game-card {
     min-height: 450px;
+    max-width: 300px;
   }
 }
 .game-card img {
   width: 100%;
-  height: 200px;
+  height: 160px;
   object-fit: cover;
   flex-shrink: 0;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
+  .game-card img {
+    height: 170px;
+  }
+}
+@media (min-width: 768px) {
   .game-card img {
     height: 180px;
   }
 }
+@media (min-width: 992px) {
+  .game-card img {
+    height: 200px;
+  }
+}
 .game-card .card-body {
-  padding: 20px;
+  padding: 16px;
   background: #1B2838;
-  color: #FFFFFF;
+  color: #ffffff;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .game-card .card-body {
-    padding: 15px;
+    padding: 20px;
   }
 }
 .game-card .card-body .card-title {
-  font-size: 1.3em;
-  margin-bottom: 10px;
+  font-size: 1.1em;
+  margin-bottom: 8px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .game-card .card-body .card-title {
-    font-size: 1.1em;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .game-card .card-body .card-title {
+    font-size: 1.3em;
   }
 }
 .game-card .card-body .card-text {
   font-family: "Playstation", sans-serif;
-  font-size: 1em;
+  font-size: 0.9em;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   margin-bottom: auto;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .game-card .card-body .card-text {
-    font-size: 0.9em;
-    -webkit-line-clamp: 4;
+    font-size: 0.95em;
   }
 }
-@media screen and (min-width: 769px) {
+@media (min-width: 768px) {
+  .game-card .card-body .card-text {
+    font-size: 1em;
+    -webkit-line-clamp: 3;
+  }
+}
+@media (min-width: 576px) {
+  .game-card:hover {
+    transform: scale(1.01);
+  }
+}
+@media (min-width: 992px) {
   .game-card:hover {
     transform: scale(1.02);
   }
@@ -228,36 +377,78 @@
 /* Carousel-Container */
 .custom-carousel-title {
   font-family: "Ghost", sans-serif;
-  font-size: 250%;
-  color: #FFFFFF;
+  font-size: 180%;
+  color: #ffffff;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 60px;
+}
+@media (min-width: 576px) {
+  .custom-carousel-title {
+    font-size: 200%;
+    margin-top: 80px;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-title {
+    font-size: 220%;
+    margin-top: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-title {
+    font-size: 250%;
+    margin-top: 120px;
+  }
 }
 
 /* Container um Slide, Pfeile und Info-Bereich */
 .custom-carousel-container {
-  position: relative; /* Wichtig für Pfeile mit absolute Position */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  color: #FFFFFF;
-  margin-bottom: 20px;
+  gap: 10px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 0 10px;
   /* Linker Pfeil */
   /* Rechter Pfeil */
+}
+@media (min-width: 576px) {
+  .custom-carousel-container {
+    gap: 15px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-container {
+    gap: 20px;
+    padding: 0;
+  }
 }
 .custom-carousel-container .carousel-btn {
   background: none;
   border: none;
-  color: #FFFFFF;
-  font-size: 3rem;
+  color: #ffffff;
+  font-size: 2rem;
   cursor: pointer;
-  z-index: 5; /* Über dem Slide liegen */
-  transition: color 0.3s ease;
-  /* Pfeile über dem Slide platzieren */
+  z-index: 5;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  transition: color 0.3s ease;
+}
+@media (min-width: 576px) {
+  .custom-carousel-container .carousel-btn {
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-btn {
+    font-size: 3rem;
+  }
 }
 .custom-carousel-container .carousel-btn:hover {
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
@@ -270,57 +461,151 @@
 }
 .custom-carousel-container .carousel-slide {
   display: flex;
-  align-items: stretch;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  padding: 20px;
-  max-width: 900px;
+  padding: 15px;
   width: 100%;
-  height: 390px;
+  max-width: 900px;
+  height: auto;
+  min-height: 450px;
+}
+@media (min-width: 576px) {
+  .custom-carousel-container .carousel-slide {
+    padding: 20px;
+    gap: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 350px;
+    height: 370px;
+    gap: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-container .carousel-slide {
+    height: 390px;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-image {
-  flex: 3;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-image {
+    flex: 3;
+    width: auto;
+  }
+}
 .custom-carousel-container .carousel-slide .carousel-image img {
   max-width: 100%;
+  max-height: 180px;
   border-radius: 5px;
   object-fit: cover;
 }
+@media (min-width: 576px) {
+  .custom-carousel-container .carousel-slide .carousel-image img {
+    max-height: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-image img {
+    max-height: none;
+    max-width: 100%;
+    height: auto;
+  }
+}
 .custom-carousel-container .carousel-slide .carousel-info {
-  flex: 2;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   font-family: "Playstation", sans-serif;
-  font-size: 120%;
-  /*
-     NEU: 2×2 Grid für Thumbnails
-     --------------------------------
-     - Werden per JS gefüllt
-  */
+  font-size: 100%;
+  /* 2×2 Grid für Thumbnails */
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-info {
+    flex: 2;
+    font-size: 110%;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-container .carousel-slide .carousel-info {
+    font-size: 120%;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-info h3 {
   font-family: "Ghost", sans-serif;
-  font-size: 150%;
+  font-size: 130%;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-info h3 {
+    font-size: 140%;
+    text-align: left;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-container .carousel-slide .carousel-info h3 {
+    font-size: 150%;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-info p {
-  font-size: 100%;
+  font-size: 90%;
   margin: 0 !important;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-info p {
+    font-size: 95%;
+    text-align: left;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-container .carousel-slide .carousel-info p {
+    font-size: 100%;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-info span {
   margin: 0;
-  font-size: 90%;
+  font-size: 80%;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-info span {
+    font-size: 85%;
+    text-align: left;
+  }
+}
+@media (min-width: 992px) {
+  .custom-carousel-container .carousel-slide .carousel-info span {
+    font-size: 90%;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin: 15px 0;
+}
+@media (min-width: 576px) {
+  .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails {
+    gap: 10px;
+    margin: 18px 0;
+  }
+}
+@media (min-width: 768px) {
+  .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails {
+    margin: 20px 0;
+  }
 }
 .custom-carousel-container .carousel-slide .carousel-info .carousel-thumbnails img {
   width: 100%;
@@ -338,36 +623,74 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+@media (min-width: 576px) {
+  .carousel-indicators-custom {
+    margin-top: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .carousel-indicators-custom {
+    margin-top: 18px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: 992px) {
+  .carousel-indicators-custom {
+    margin-top: 20px;
+  }
 }
 .carousel-indicators-custom .indicator {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   background-color: #666666;
   border-radius: 15%;
-  margin: 0 7px;
+  margin: 0 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
+@media (min-width: 768px) {
+  .carousel-indicators-custom .indicator {
+    width: 12px;
+    height: 12px;
+    margin: 0 7px;
+  }
+}
 .carousel-indicators-custom .indicator.active {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   transform: scale(1.2);
 }
 .carousel-indicators-custom .indicator:hover {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-/*
-   NEU: Status-Anzeige unter den Punkten
-   Beispiel: "1 / 4"
-*/
+/* Status-Anzeige unter den Punkten */
 .carousel-status {
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Playstation", sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 40px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+@media (min-width: 576px) {
+  .carousel-status {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+}
+@media (min-width: 768px) {
+  .carousel-status {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 992px) {
+  .carousel-status {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
 }
 
 /* Animationsklassen für Slide-Wechsel */
@@ -428,39 +751,55 @@
     transform: translateX(100%);
   }
 }
-@media screen and (max-width: 1200px) {
-  .custom-carousel-container .carousel-slide {
-    width: 90%;
-    margin: 0 auto;
+.container .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.container .row .col-md-3 {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+@media (min-width: 576px) {
+  .container .row .col-md-3 {
+    width: 50%;
   }
 }
-@media screen and (max-width: 992px) {
-  .hero-section h1 {
-    font-size: 2.7em;
-  }
-  .custom-carousel-container {
-    width: 95%;
-    margin: 0 auto;
+@media (min-width: 768px) {
+  .container .row .col-md-3 {
+    width: 33.3333%;
   }
 }
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.4em;
-  }
-  .hero-section .search-bar .input-group {
-    width: 90%;
+@media (min-width: 992px) {
+  .container .row .col-md-3 {
+    width: 25%;
   }
 }
-@media screen and (max-width: 768px) and (max-width: 576px) {
-  .hero-section h1 {
-    font-size: 2.1em;
+
+.game-card .card-body a.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  background: linear-gradient(135deg, #66c0f4, #4a90d9);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  transition: background 0.3s;
+}
+@media (min-width: 768px) {
+  .game-card .card-body a.btn {
+    padding: 10px 20px;
+    font-size: 1em;
   }
-  .hero-section .search-bar .input-group {
-    width: 95%;
-  }
-  .custom-carousel-container {
-    width: 100%;
-  }
+}
+.game-card .card-body a.btn:hover {
+  background: #8ed529;
 }
 
 /*# sourceMappingURL=style.css.map */

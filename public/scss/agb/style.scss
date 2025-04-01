@@ -1,125 +1,179 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
 .a-container {
   background-color: $background_color_dark;
   color: $white;
-  border-radius: $border-radius;
-  padding: 30px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 25px auto;
-  width: 90%;
-  max-width: 1000px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  margin: 10px auto;
+  width: 100%;
   font-family: $font-ps;
 
-  @media (max-width: 1024px) {
-    width: 95%;
-    padding: 25px;
-    margin: 20px auto;
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
+  @include breakpoint-up('sm') {
+    border-radius: $border-radius;
     padding: 20px;
     margin: 15px auto;
-    border-radius: 0;
+    width: 95%;
+  }
+
+  @include breakpoint-up('md') {
+    padding: 25px;
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  @include breakpoint-up('lg') {
+    padding: 30px;
+    margin: 25px auto;
+    max-width: 1000px;
   }
 
   // Überschriften
   h1, h2, h3, h4, h5, h6 {
-    margin-top: 50px;
-    margin-bottom: 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
     color: $bg_glow_blue;
 
-    @media (max-width: 768px) {
-      margin-top: 30px;
-      margin-bottom: 10px;
+    @include breakpoint-up('md') {
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+
+    @include breakpoint-up('lg') {
+      margin-top: 50px;
     }
   }
 
   h1 {
-    font-size: 2.5em;
+    font-size: 1.6em;
+    margin-top: 0;
 
-    @media (max-width: 768px) {
-      font-size: 2em;
+    @include breakpoint-up('sm') {
+      font-size: 1.8em;
     }
 
-    @media (max-width: 576px) {
-      font-size: 1.8em;
+    @include breakpoint-up('md') {
+      font-size: 2.2em;
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: 2.5em;
     }
   }
 
   h2 {
-    font-size: 2em;
+    font-size: 1.4em;
 
-    @media (max-width: 768px) {
+    @include breakpoint-up('sm') {
+      font-size: 1.5em;
+    }
+
+    @include breakpoint-up('md') {
       font-size: 1.7em;
     }
 
-    @media (max-width: 576px) {
-      font-size: 1.5em;
+    @include breakpoint-up('lg') {
+      font-size: 2em;
     }
   }
 
   h3 {
-    font-size: 1.7em;
+    font-size: 1.2em;
 
-    @media (max-width: 768px) {
-      font-size: 1.4em;
+    @include breakpoint-up('sm') {
+      font-size: 1.3em;
     }
 
-    @media (max-width: 576px) {
-      font-size: 1.3em;
+    @include breakpoint-up('md') {
+      font-size: 1.5em;
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: 1.7em;
     }
   }
 
   // Absätze
   p {
-    margin-bottom: 25px;
-    line-height: 1.6;
-    font-size: $base-font-size;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    font-size: 14px;
 
-    @media (max-width: 768px) {
-      margin-bottom: 20px;
+    @include breakpoint-up('sm') {
       line-height: 1.5;
       font-size: 15px;
     }
 
-    @media (max-width: 576px) {
-      margin-bottom: 15px;
-      line-height: 1.4;
-      font-size: 14px;
+    @include breakpoint-up('md') {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      font-size: $base-font-size;
+    }
+
+    @include breakpoint-up('lg') {
+      margin-bottom: 25px;
     }
   }
 
   // Listen
   ul, ol {
-    margin-bottom: 25px;
-    padding-left: 30px;
+    margin-bottom: 15px;
+    padding-left: 20px;
 
-    @media (max-width: 768px) {
-      margin-bottom: 20px;
+    @include breakpoint-up('sm') {
       padding-left: 25px;
     }
 
-    @media (max-width: 576px) {
-      margin-bottom: 15px;
-      padding-left: 20px;
+    @include breakpoint-up('md') {
+      margin-bottom: 20px;
+      padding-left: 30px;
+    }
+
+    @include breakpoint-up('lg') {
+      margin-bottom: 25px;
     }
 
     li {
-      margin-bottom: 10px;
-      line-height: 1.6;
+      margin-bottom: 6px;
+      line-height: 1.4;
+      font-size: 14px;
 
-      @media (max-width: 768px) {
+      @include breakpoint-up('sm') {
         margin-bottom: 8px;
         line-height: 1.5;
         font-size: 15px;
       }
 
-      @media (max-width: 576px) {
-        margin-bottom: 6px;
-        line-height: 1.4;
-        font-size: 14px;
+      @include breakpoint-up('md') {
+        margin-bottom: 10px;
+        line-height: 1.6;
+        font-size: $base-font-size;
       }
     }
   }
@@ -138,38 +192,84 @@
   // Tabellen
   table {
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     background-color: $bg_dark;
     border-radius: $border-radius;
-    overflow: hidden;
+    overflow-x: auto;
+    display: block;
 
-    @media (max-width: 768px) {
-      font-size: 14px;
+    @include breakpoint-up('sm') {
+      margin-bottom: 20px;
+    }
+
+    @include breakpoint-up('md') {
+      margin-bottom: 25px;
+      font-size: 15px;
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: $base-font-size;
+      display: table;
     }
 
     th {
       background-color: $bg_blue2;
-      padding: 12px;
+      padding: 8px;
       text-align: left;
 
-      @media (max-width: 576px) {
-        padding: 8px;
+      @include breakpoint-up('sm') {
+        padding: 10px;
+      }
+
+      @include breakpoint-up('md') {
+        padding: 12px;
       }
     }
 
     td {
-      padding: 12px;
+      padding: 8px;
       border-bottom: 1px solid $bg_blue2;
 
-      @media (max-width: 576px) {
-        padding: 8px;
+      @include breakpoint-up('sm') {
+        padding: 10px;
+      }
+
+      @include breakpoint-up('md') {
+        padding: 12px;
       }
     }
+  }
 
-    @media (max-width: 576px) {
-      display: block;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+  // Schulprojekt-Hinweis
+  .schulprojekt-hinweis {
+    margin-top: 40px;
+    padding: 10px;
+    background-color: rgba($bg_blue2, 0.5);
+    border-radius: $border-radius;
+    text-align: center;
+    font-style: italic;
+    font-size: 13px;
+
+    @include breakpoint-up('sm') {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    @include breakpoint-up('md') {
+      margin-top: 50px;
+      padding: 15px;
+      font-size: 15px;
+    }
+  }
+
+  // Bessere Lesbarkeit auf kleineren Bildschirmen
+  @include breakpoint-down('sm') {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+
+    h3 {
+      line-height: 1.3;
     }
   }
 }

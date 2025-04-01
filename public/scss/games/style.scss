@@ -470,9 +470,69 @@
   }
 }
 
-// -------------------------------
-// Responsives Design
-// -------------------------------
+.game-system-requirements {
+  background-color: #1b2838;
+  color: #c6d4df;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.game-requirements-heading {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #4b5866;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.game-requirements-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.game-requirements-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.requirements-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requirements-list li {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.requirement-label {
+  color: #8f98a0;
+  display: block;
+}
+
+.requirement-value {
+  color: #b8b6b4;
+}
+
+@media (max-width: 768px) {
+  .game-requirements-container {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 1000px) {
   .container-tab {
     max-width: 100%;

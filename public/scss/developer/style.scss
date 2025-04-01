@@ -1,0 +1,798 @@
+@import "../main/_variables.scss";
+
+// Game Developer Dashboard Styling
+.developer-dashboard {
+    padding: 30px;
+    color: $white;
+    background-color: $bg_blue1;
+    border-radius: $border-radius;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    font-family: $font-ps;
+
+    // Überschriften
+    h2 {
+        font-family: $font-ps;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: $white;
+        margin-bottom: 30px;
+        text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8), 0 0 15px rgba($bg_glow_blue, 0.5);
+        position: relative;
+        padding-bottom: 15px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 150px;
+            height: 3px;
+            background: $btn-primary-gradient;
+            border-radius: 2px;
+        }
+    }
+
+    h3 {
+        font-family: $font-ps;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: $bg_glow_blue;
+        margin: 25px 0 15px;
+        position: relative;
+    }
+
+    // Formularbereiche
+    form {
+        background: rgba($background_color_dark, 0.4);
+        border-radius: $border-radius;
+        padding: 25px;
+        border: 1px solid rgba(74, 144, 217, 0.1);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+
+        .form-label {
+            color: lighten($white, 20%);
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            background-color: rgba($bg_dark, 0.6);
+            border: 1px solid rgba(74, 144, 217, 0.2);
+            color: $white;
+            padding: 12px 15px;
+            border-radius: 5px;
+            transition: all $transition-time;
+            margin-bottom: 15px;
+            font-family: $font-ps;
+
+            &:focus {
+                background-color: rgba($bg_blue1, 0.8);
+                border-color: $bg_glow_blue;
+                box-shadow: 0 0 10px rgba($bg_glow_blue, 0.4);
+                outline: none;
+            }
+
+            &::placeholder {
+                color: rgba($white, 0.4);
+            }
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+
+            option {
+                background-color: $bg_blue1;
+                color: $white;
+            }
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            background: rgba($bg_blue2, 0.3);
+            cursor: pointer;
+
+            &::-webkit-file-upload-button {
+                background: $btn-primary-gradient;
+                border: none;
+                color: $white;
+                padding: 8px 15px;
+                border-radius: 4px;
+                margin-right: 10px;
+                cursor: pointer;
+                font-family: $font-ps;
+                transition: all $transition-time;
+
+                &:hover {
+                    background: $btn-primary-gradient-hover;
+                }
+            }
+        }
+
+        button[type="submit"] {
+            background: $btn-primary-gradient;
+            border: none;
+            color: $white;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 12px 30px;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all $transition-time;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+
+            &:hover {
+                background: $btn-primary-gradient-hover;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+                transform: rotate(45deg);
+                transition: all 0.8s;
+                opacity: 0;
+            }
+
+            &:hover::after {
+                opacity: 1;
+                left: 100%;
+            }
+        }
+    }
+
+    // EXE-Datei Upload Styling
+    .executable-label {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        color: lighten($bg_glow_blue, 20%);
+        margin-bottom: 10px;
+
+        i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+    }
+
+    .custom-file-upload {
+        position: relative;
+        overflow: hidden;
+        border: 2px dashed rgba($bg_glow_blue, 0.4);
+        border-radius: 6px;
+        padding: 20px;
+        text-align: center;
+        background: rgba($bg_blue2, 0.2);
+        transition: all $transition-time;
+
+        &:hover {
+            border-color: $bg_glow_blue;
+            background: rgba($bg_blue2, 0.3);
+        }
+
+        input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .upload-icon-container {
+            pointer-events: none;
+
+            .upload-icon {
+                font-size: 2rem;
+                color: rgba($bg_glow_blue, 0.7);
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .file-info {
+        margin-top: 10px;
+        padding: 10px;
+        background: rgba($bg_blue1, 0.4);
+        border-radius: 4px;
+        font-size: 0.9rem;
+
+        &:empty {
+            display: none;
+        }
+
+        .file-icon {
+            margin-right: 5px;
+            color: $bg_glow_blue;
+        }
+
+        .file-size {
+            float: right;
+            color: rgba($white, 0.7);
+        }
+    }
+
+    // Thumbnail Vorschau
+    .upload-preview,
+    .thumbnail-preview {
+        margin-top: 10px;
+        text-align: center;
+        display: none;
+
+        img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 4px;
+            border: 2px solid rgba($bg_glow_blue, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .file-uploads-container {
+        background: rgba($bg_blue1, 0.4);
+        border-radius: $border-radius;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid rgba($bg_glow_blue, 0.1);
+    }
+
+    // Miniaturbilder Grid
+    .timageDiv {
+        .form-label {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .timage-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+
+            .timage-container {
+                position: relative;
+
+                .timage {
+                    width: 100%;
+                    padding: 10px;
+                    background: rgba($bg_blue2, 0.3);
+                    border: 1px solid rgba(74, 144, 217, 0.2);
+                    border-radius: 4px;
+                    color: $white;
+                    transition: all $transition-time;
+
+                    &:focus {
+                        background-color: rgba($bg_blue1, 0.8);
+                        border-color: $bg_glow_blue;
+                        box-shadow: 0 0 10px rgba($bg_glow_blue, 0.4);
+                        outline: none;
+                    }
+
+                    &::-webkit-file-upload-button {
+                        background: $btn-primary-gradient;
+                        border: none;
+                        color: $white;
+                        padding: 8px 15px;
+                        border-radius: 4px;
+                        margin-right: 10px;
+                        cursor: pointer;
+                        font-family: $font-ps;
+                        transition: all $transition-time;
+
+                        &:hover {
+                            background: $btn-primary-gradient-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Video-Info Styling
+    .video-info {
+        margin-top: 10px;
+        font-size: 0.9rem;
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    // Systemanforderungen Karte
+    .system-requirements-card {
+        background: rgba($background_color_dark, 0.5);
+        border: 1px solid rgba(74, 144, 217, 0.15);
+        border-radius: $border-radius;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+        .card-header {
+            background: linear-gradient(90deg, rgba($bg_blue2, 0.7), rgba($bg_blue1, 0.7));
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(74, 144, 217, 0.2);
+            border-radius: $border-radius $border-radius 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+
+            h5 {
+                color: $white;
+                font-weight: 600;
+                margin: 0;
+                font-size: 1.2rem;
+            }
+
+            .toggle-icon {
+                transition: transform $transition-time;
+            }
+
+            &.collapsed .toggle-icon {
+                transform: rotate(-90deg);
+            }
+        }
+
+        .card-body {
+            padding: 20px;
+
+            h6 {
+                color: $bg_glow_blue;
+                font-size: 1rem;
+                margin-bottom: 15px;
+                font-weight: 600;
+                position: relative;
+                padding-left: 20px;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 10px;
+                    height: 10px;
+                    background: $bg_glow_blue;
+                    border-radius: 50%;
+                }
+            }
+
+            hr {
+                border-color: rgba(74, 144, 217, 0.2);
+                margin: 20px 0;
+            }
+        }
+    }
+
+    // Formular Unterbereich für Veröffentlichungseinstellungen
+    .publish-controls {
+        background: rgba($bg_blue1, 0.6);
+        padding: 20px;
+        border-radius: $border-radius;
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba($bg_glow_blue, 0.2);
+
+        .form-check {
+            margin-bottom: 0;
+
+            .form-check-input {
+                width: 1.2rem;
+                height: 1.2rem;
+                background-color: rgba($bg_dark, 0.7);
+                border: 1px solid rgba($bg_glow_blue, 0.4);
+
+                &:checked {
+                    background-color: $bg_glow_blue;
+                    border-color: $bg_glow_blue;
+                }
+            }
+
+            .form-check-label {
+                padding-left: 5px;
+                cursor: pointer;
+            }
+        }
+
+        .game-upload-btn {
+            padding: 12px 30px;
+            font-weight: 600;
+
+            i {
+                transition: transform $transition-time;
+            }
+
+            &:hover i {
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    // Liste der Spiele
+    .list-group {
+        margin-top: 20px;
+
+        .list-group-item {
+            background: rgba($background_color_dark, 0.4);
+            border: 1px solid rgba(74, 144, 217, 0.15);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: all $transition-time;
+            position: relative;
+            overflow: hidden;
+            color: $white;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 4px;
+                background: $bg_glow_blue;
+                opacity: 0.6;
+            }
+
+            &:hover {
+                transform: translateY(-3px);
+                background: rgba($background_color_dark, 0.6);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+
+                &::before {
+                    opacity: 1;
+                }
+            }
+
+            h5 {
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: $bg_glow_blue;
+            }
+
+            p {
+                font-size: 0.95rem;
+                color: rgba($white, 0.9);
+                margin-bottom: 0;
+            }
+
+            .game-list-thumbnail {
+                height: 100px;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 4px;
+                border: 1px solid rgba($bg_glow_blue, 0.2);
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .no-image-placeholder {
+                height: 100px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba($bg_blue1, 0.5);
+                border-radius: 4px;
+
+                i {
+                    font-size: 2rem;
+                    color: rgba($white, 0.5);
+                }
+            }
+
+            .game-meta {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 8px;
+
+                .badge {
+                    padding: 5px 10px;
+                    border-radius: 15px;
+                    font-weight: normal;
+                    font-size: 0.8rem;
+                }
+
+                .game-price {
+                    margin-left: auto;
+                    background: rgba($bg_blue2, 0.6);
+                    padding: 5px 10px;
+                    border-radius: 15px;
+                    font-weight: 600;
+                    font-size: 0.9rem;
+                }
+            }
+
+            .game-actions {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    // Leere Liste Styling
+    .empty-games-message {
+        background: rgba($background_color_dark, 0.4);
+        border: 1px dashed rgba(74, 144, 217, 0.3);
+        border-radius: 8px;
+        padding: 40px 30px;
+        text-align: center;
+        margin-top: 15px;
+
+        .empty-games-icon {
+            font-size: 4rem;
+            color: rgba($bg_glow_blue, 0.3);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        p {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            color: $white;
+
+            &.text-muted {
+                color: rgba($white, 0.6) !important;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    // Modal Styling
+    .modal-content {
+        background: linear-gradient(to bottom, rgba($bg_blue1, 0.95), rgba($background_color_dark, 0.95));
+        border: 1px solid rgba($bg_glow_blue, 0.2);
+        border-radius: $border-radius;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+
+        .modal-header {
+            border-bottom-color: rgba($bg_glow_blue, 0.2);
+
+            .modal-title {
+                color: $white;
+            }
+
+            .btn-close {
+                filter: invert(1) brightness(0.8);
+            }
+        }
+
+        .modal-body {
+            color: rgba($white, 0.9);
+        }
+
+        .modal-footer {
+            border-top-color: rgba($bg_glow_blue, 0.2);
+        }
+    }
+
+    // Responsive Anpassungen
+    @media (max-width: 768px) {
+        padding: 20px 15px;
+
+        h2 {
+            font-size: 1.8rem;
+        }
+
+        .timageDiv .timage-grid {
+            grid-template-columns: 1fr;
+        }
+
+        form {
+            padding: 15px;
+        }
+
+        .list-group-item {
+            .game-actions {
+                justify-content: flex-start;
+                margin-top: 15px;
+            }
+        }
+
+        .publish-controls {
+            flex-direction: column;
+            gap: 15px;
+
+            .form-check {
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+// Animationen
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+}
+
+// Zusätzlicher Effekt für Schriftenkennzeichnung
+.special-text {
+    font-family: $font-ps;
+    color: $bg_glow_blue;
+    text-shadow: 0 0 5px rgba($bg_glow_blue, 0.5);
+}
+
+// Animierter Hintergrund für bestimmte Sektionen
+.animated-bg {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(125deg,
+                rgba($bg_blue1, 0) 0%,
+                rgba($bg_glow_blue, 0.05) 25%,
+                rgba($bg_glow_blue, 0.1) 50%,
+                rgba($bg_glow_blue, 0.05) 75%,
+                rgba($bg_blue1, 0) 100%);
+        background-size: 400% 400%;
+        animation: gradientBg 15s ease infinite;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    * {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@keyframes gradientBg {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+
+// Glowing Effekt für Fokussierte Elemente
+.glow-on-hover {
+    transition: all $transition-time;
+
+    &:hover, &:focus {
+        box-shadow: 0 0 15px rgba($bg_glow_blue, 0.6);
+    }
+}
+
+// Outline Button-Stile
+.btn-outline-primary {
+    background: transparent;
+    border: 1px solid $bg_glow_blue;
+    color: $bg_glow_blue;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all $transition-time;
+    font-family: $font-ps;
+
+    &:hover {
+        background: rgba($bg_glow_blue, 0.2);
+        color: $white;
+        border-color: $bg_glow_blue;
+        box-shadow: 0 0 10px rgba($bg_glow_blue, 0.4);
+    }
+}
+
+.btn-outline-danger {
+    background: transparent;
+    border: 1px solid $red;
+    color: $red;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all $transition-time;
+    font-family: $font-ps;
+
+    &:hover {
+        background: rgba($red, 0.2);
+        color: $white;
+        border-color: $red;
+    }
+}
+
+.btn-outline-info {
+    background: transparent;
+    border: 1px solid lighten($bg_glow_blue, 10%);
+    color: lighten($bg_glow_blue, 10%);
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all $transition-time;
+    font-family: $font-ps;
+
+    &:hover {
+        background: rgba($bg_glow_blue, 0.2);
+        color: $white;
+        border-color: lighten($bg_glow_blue, 10%);
+    }
+}
+
+// Badge Styles
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+
+    &.badge-primary {
+        background: linear-gradient(135deg, #66c0f4, #4a90d9);
+        color: $white;
+    }
+
+    &.badge-success {
+        background: linear-gradient(135deg, $bg_green, $bg_green_dark);
+        color: $white;
+    }
+
+    &.badge-danger {
+        background: linear-gradient(135deg, $red, $red_dark);
+        color: $white;
+    }
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+    width: $scrollbar-size;
+    height: $scrollbar-size;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba($bg_blue1, 0.8);
+    border: 1px solid $scrollbar-track-border;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba($bg_glow_blue, 0.6);
+    border-radius: 6px;
+    transition: all $transition-time;
+
+    &:hover {
+        background: rgba($bg_glow_blue, 0.8);
+    }
+}

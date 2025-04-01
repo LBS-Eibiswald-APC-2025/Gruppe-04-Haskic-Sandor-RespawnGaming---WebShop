@@ -5,9 +5,7 @@
     <div class="checkout-container">
         <h2 class="checkout-title">Kasse</h2>
 
-        <!-- Flex-Container: linke Spalte für persönliche Daten, rechte für Bestellübersicht & Fake-PayPal -->
         <div class="checkout-content">
-            <!-- Rechte Spalte: Bestellübersicht und Fake-PayPal -->
             <div class="checkout-block">
                 <div class="checkout-summary">
                     <h3 class="checkout-heading">Zahlungsmethode</h3>

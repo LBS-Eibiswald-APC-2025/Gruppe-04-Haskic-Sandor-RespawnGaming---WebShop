@@ -337,13 +337,8 @@
     }
 }
 
-/* Sweet Alert Customization */
-.swal-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
 .swal-modal {
-    background-color: $background_color_dark;
+    background-color: $white;
     border-radius: $border-radius;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
     border: 1px solid rgba($bg_glow_blue, 0.2);
@@ -373,7 +368,7 @@
             display: inline-block;
             padding: 12px 24px;
             background-color: $bg-auth-btn;
-            color: $white;
+            color: $bg_dark;
             border-radius: $auth-form-border-radius;
             cursor: pointer;
             font-family: $font-ps;
@@ -393,7 +388,7 @@
         .file-name {
             display: block;
             margin-top: 10px;
-            color: $white;
+            color: $bg_dark;
             font-family: $font-ps;
             font-size: 1rem;
             word-break: break-all;
@@ -406,7 +401,7 @@
     font-size: 1.5rem;
     margin: 0;
     padding: 0;
-    color: $white;
+    color: $bg_dark;
 }
 
 .swal-text {
@@ -414,7 +409,7 @@
     font-size: 1.1rem;
     margin: 0;
     padding: 0;
-    color: $white;
+    color: $bg_dark;
 }
 
 .swal-footer {
@@ -440,7 +435,7 @@
 
     &--confirm {
         background-color: $bg-auth-btn;
-        color: $white;
+        color: $bg_dark;
 
         &:hover {
             background-color: $bg_green !important;
@@ -450,7 +445,7 @@
 
     &--cancel {
         background-color: $gray;
-        color: $white;
+        color: $bg_dark;
 
         &:hover {
             background-color: darken($gray, 10%) !important;

@@ -85,10 +85,11 @@
 
 .chat-room {
   margin: 0 auto;
+  height: auto;
   background: $bg_blue1;
   border-radius: $border-radius;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-  padding: 20px;
+  padding: 15px;
   border: 1px solid rgba($bg_glow_blue, 0.2);
 
   h1 {

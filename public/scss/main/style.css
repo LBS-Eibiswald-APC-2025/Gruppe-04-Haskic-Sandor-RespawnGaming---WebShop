@@ -41,7 +41,7 @@ body {
   background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   font-family: "Ghost", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
   display: flex;
   flex-direction: column;
@@ -176,7 +176,7 @@ main .inner {
 }
 .navbar .nav-link {
   position: relative;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   text-decoration: none;
   margin-right: 15px;
   transition: text-shadow 0.3s ease;
@@ -188,7 +188,7 @@ main .inner {
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background: #FFFFFF;
+  background: #ffffff;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -211,7 +211,7 @@ main .inner {
 }
 .navbar a {
   position: relative;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   text-decoration: none;
   margin-right: 15px;
   transition: text-shadow 0.3s ease;
@@ -232,7 +232,7 @@ main .inner {
   bottom: -2px;
   width: 100%;
   height: 2px;
-  background: #FFFFFF;
+  background: #ffffff;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -278,10 +278,10 @@ main .inner {
   font-family: "Playstation", sans-serif;
   font-size: 14px !important;
   line-height: 2.4 !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
   text-align: center !important;
   background-color: #2A475E;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   border-radius: 25px;
   width: 100%;
   max-width: 1500px;
@@ -318,7 +318,7 @@ main .inner {
   width: 100%;
   margin: 25px auto;
   border-collapse: collapse;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }
 @media screen and (max-width: 576px) {
   .php-error table {
@@ -332,18 +332,18 @@ main .inner {
 .php-error th {
   font-weight: bold;
   background-color: rgb(57.75, 97.625, 129.25) !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .php-error td {
   color: #2A475E !important;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
 }
 .php-error pre, .php-error code {
   white-space: pre-wrap;
   display: block;
   margin: 20px auto;
   color: #2A475E !important;
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important;
   padding: 10px;
 }
 
@@ -378,7 +378,7 @@ section.container {
   padding: 0 20px;
 }
 section.container h2 {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2.5em;
   text-align: center;
   margin-bottom: 40px;
@@ -428,7 +428,7 @@ section.container .row {
 
 footer {
   background-color: #2A2D32;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   padding: 10px 20px;
   margin-top: auto;
@@ -460,7 +460,7 @@ footer p {
   }
 }
 .footer-nav a {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   transition: text-shadow 0.3s ease;
 }
@@ -481,10 +481,10 @@ footer p {
 .form-control {
   background: #2A475E !important;
   border-radius: 10px !important;
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 .form-control:active {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .btn-primary {
@@ -495,11 +495,6 @@ footer p {
   font-family: Playstation, sans-serif !important;
   text-align: justify;
   line-height: 1.5;
-}
-@media screen and (max-width: 576px) {
-  .swal-text {
-    font-size: 0.9em;
-  }
 }
 
 .swal-button {

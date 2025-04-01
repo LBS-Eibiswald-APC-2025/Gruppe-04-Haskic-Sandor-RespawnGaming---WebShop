@@ -26,7 +26,6 @@
 #carouselSlide {
   position: relative;
   width: 100%;
-  /* Feste (oder zumindest minimale) Höhe, damit nichts springt */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +64,7 @@
   text-overflow: ellipsis;
   /* Style */
   font-size: 1.5rem;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-bottom: 10px;
   line-height: 1.2; /* Anpassen je nach Wunsch */
   max-width: 100%;
@@ -90,7 +89,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
   border-radius: 3px;
 }
 
@@ -101,7 +100,7 @@
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0, 0, 0, 0.5);
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
   font-size: 1.5rem;
   width: 40px;

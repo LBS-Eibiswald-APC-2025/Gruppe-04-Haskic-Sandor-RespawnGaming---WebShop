@@ -29,6 +29,7 @@ $user = Session::get('user_data');
 
             </span>
 
+                <!-- Änderungen an der Tabelle in der admin/index.php -->
                 <table class="table table-dark table-striped">
                     <thead>
                     <tr>
@@ -44,12 +45,12 @@ $user = Session::get('user_data');
                     <?php if (!empty($this->data['users'])) : ?>
                         <?php foreach ($this->data['users'] as $user) : ?>
                             <tr>
-                                <td><?= htmlentities($user->user_id); ?></td>
-                                <td><?= htmlentities($user->user_name); ?></td>
-                                <td><?= htmlentities($user->email); ?></td>
-                                <td><?= $user->user_active == 1 ? 'Ja' : 'Nein'; ?></td>
-                                <td>
-                                    <form action="<?= Config::get('URL'); ?>admin/changeUserRole" method="post" style="display:inline-block;">
+                                <td data-label="UserID"><?= htmlentities($user->user_id); ?></td>
+                                <td data-label="Benutzername"><?= htmlentities($user->user_name); ?></td>
+                                <td data-label="Email"><?= htmlentities($user->email); ?></td>
+                                <td data-label="Aktiv?"><?= $user->user_active == 1 ? 'Ja' : 'Nein'; ?></td>
+                                <td data-label="Rolle">
+                                    <form action="<?= Config::get('URL'); ?>admin/changeUserRole" method="post">
                                         <input type="hidden" name="user_id" value="<?= $user->user_id; ?>"/>
                                         <label>
                                             <select name="user_account_type">
@@ -61,9 +62,9 @@ $user = Session::get('user_data');
                                         <button type="submit" class="btn btn-primary">Rolle ändern</button>
                                     </form>
                                 </td>
-                                <td>
+                                <td data-label="Aktionen">
                                     <!-- Formular zum Sperren oder Entsperren -->
-                                    <form action="<?= Config::get('URL'); ?>admin/actionAccountSettings" method="post" style="display:inline-block;">
+                                    <form action="<?= Config::get('URL'); ?>admin/actionAccountSettings" method="post">
                                         <input type="hidden" name="user_id" value="<?= $user->user_id; ?>"/>
 
                                         <!-- 1 = gesperrt, 0 = entsperrt -->

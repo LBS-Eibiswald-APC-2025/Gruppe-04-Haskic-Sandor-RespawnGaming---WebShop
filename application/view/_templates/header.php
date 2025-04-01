@@ -63,6 +63,7 @@ foreach ($cartItems as $item) {
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+
                 <!-- Warenkorb-Link mit DB-basiertem Zähler -->
                 <li class="nav-item">
                     <a class="nav-link <?php echo (str_contains($current_page, '/cart')) ? 'active-link' : ''; ?>"
@@ -94,12 +95,18 @@ foreach ($cartItems as $item) {
                     </li>
                     <?php
                     $userData = Session::get('user_data');
-                    if (isset($userData['user_account_type']) && $userData['user_account_type'] === 'Admin'):
-                        ?>
-                        <li class="nav-item">
-                            <a class="nav-link <?php echo (str_contains($current_page, '/admin/index')) ? 'active-link' : ''; ?>"
-                               href="<?php echo Config::get('URL'); ?>admin/index">Admin</a>
-                        </li>
+                    if (isset($userData['user_account_type'])):
+                        if ($userData['user_account_type'] === 'Admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (str_contains($current_page, '/admin/index')) ? 'active-link' : ''; ?>"
+                                   href="<?php echo Config::get('URL'); ?>admin/index">Admin</a>
+                            </li>
+                        <?php elseif ($userData['user_account_type'] === 'Entwickler'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link <?php echo (str_contains($current_page, '/developer/index')) ? 'active-link' : ''; ?>"
+                                   href="<?php echo Config::get('URL'); ?>developer/index">Developer</a>
+                            </li>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo Config::get('URL'); ?>login/logout">Logout</a>

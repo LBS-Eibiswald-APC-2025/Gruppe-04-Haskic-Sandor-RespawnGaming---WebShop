@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }, TYPING_TIMER_LENGTH);
         });
 
-        // Zusätzlich: Status zurücksetzen wenn Textarea verlassen wird
+        // Zusätzlich: Status zurücksetzen, wenn Textarea verlassen wird
         messageTextarea.addEventListener('blur', function() {
             clearTimeout(typingTimer);
             updateTypingStatus(false);
@@ -174,18 +174,17 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchNewMessages() {
         if (!roomId) return;
 
-        // Initialisiere lastMessageId falls noch nicht gesetzt
-        if (lastMessageId === 0) {
-            initializeLastMessageId();
-        }
-
         fetch(`/community/getNewMessages?room_id=${roomId}&last_message_id=${lastMessageId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.messages && data.messages.length > 0) {
+                    const existingMessages = new Set(
+                        Array.from(document.querySelectorAll('.message'))
+                            .map(el => el.dataset.messageId)
+                    );
+
                     data.messages.forEach(message => {
-                        // Prüfen ob die Nachricht bereits existiert
-                        if (!document.querySelector(`.message[data-message-id="${message.id}"]`)) {
+                        if (!existingMessages.has(String(message.id))) {
                             const messageElement = createMessageElement(
                                 message.user_name,
                                 message.avatar || '/avatars/default.jpg',
@@ -195,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 message.id
                             );
                             chatMessages.appendChild(messageElement);
-                            lastMessageId = Math.max(lastMessageId, message.id);
+                            lastMessageId = message.id;
                         }
                     });
                     scrollToLatestMessage();
@@ -211,20 +210,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function initializeLastMessageId() {
+        chatMessages.innerHTML = ''; // Chat leeren
         const messages = chatMessages.querySelectorAll('.message');
-        if (messages.length > 0) {
-            const lastMessage = messages[messages.length - 1];
-            const messageId = parseInt(lastMessage.dataset.messageId || '0');
-            lastMessageId = messageId;
-            lastSentMessageId = messageId; // Verhindert doppeltes Laden der letzten Nachricht
-        }
+        lastMessageId = messages.length > 0 ?
+            parseInt(messages[messages.length - 1].dataset.messageId) : 0;
     }
 
     initializeLastMessageId();
     scrollToLatestMessage();
 
     if (roomId) {
-        setInterval(fetchNewMessages, 3000);
+        setInterval(fetchNewMessages, 1000);
     }
 
     window.addEventListener('beforeunload', function() {

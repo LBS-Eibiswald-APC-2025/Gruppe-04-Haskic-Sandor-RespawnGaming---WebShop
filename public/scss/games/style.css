@@ -26,7 +26,7 @@
 .games-page-wrapper {
   position: relative;
   background: #1B2838;
-  color: #FFFFFF;
+  color: #ffffff;
   min-height: fit-content;
   font-family: "Ghost", sans-serif;
 }
@@ -47,7 +47,7 @@
   gap: 15px;
 }
 .games-nav a {
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   font-family: "Playstation", sans-serif;
   font-size: 1.1rem;
@@ -118,7 +118,7 @@
   text-align: center;
   width: 100px;
   height: auto;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Playstation", sans-serif;
   font-size: 1rem;
 }
@@ -169,7 +169,7 @@
 .detail-panel .detail-tags span.tag {
   font-family: "Playstation", sans-serif;
   display: inline-block;
-  background: $g;
+  background: #4a90d9;
   padding: 2px 5px;
   margin-right: 5px;
   border-radius: 3px;
@@ -276,7 +276,7 @@
 .game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-buy,
 .game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-buy {
   background: #8ed529;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-buy:hover,
 .game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-buy:hover {
@@ -286,7 +286,7 @@
 .game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-free,
 .game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-free {
   background: #4a90d9;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .game-detail-wrapper .top-section .right-column .buy-section .cta-button.cta-free:hover,
 .game-detail-wrapper .top-section .right-column .play-section .cta-button.cta-free:hover {
@@ -331,7 +331,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 0.9rem;
 }
 .game-detail-wrapper .rating-section .rating-bars .rating-bar.positive {
@@ -355,14 +355,14 @@
 }
 .game-detail-wrapper .rating-section .rating-buttons .btn-rating.positive {
   background: #8ed529;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .game-detail-wrapper .rating-section .rating-buttons .btn-rating.positive:hover {
   background: rgb(113.4881889764, 170.2322834646, 32.7677165354);
 }
 .game-detail-wrapper .rating-section .rating-buttons .btn-rating.negative {
   background: #F15147;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 .game-detail-wrapper .rating-section .rating-buttons .btn-rating.negative:hover {
   background: rgb(237.3939393939, 36.1818181818, 23.6060606061);
@@ -394,6 +394,68 @@
   color: rgb(104.5421686747, 139.4698795181, 182.4578313253);
 }
 
+.game-system-requirements {
+  background-color: #1b2838;
+  color: #c6d4df;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
+.game-requirements-heading {
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #4b5866;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.game-requirements-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.game-requirements-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.requirements-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.requirements-list li {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.requirement-label {
+  color: #8f98a0;
+  display: block;
+}
+
+.requirement-value {
+  color: #b8b6b4;
+}
+
+@media (max-width: 768px) {
+  .game-requirements-container {
+    flex-direction: column;
+  }
+}
 @media (max-width: 1000px) {
   .container-tab {
     max-width: 100%;

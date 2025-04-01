@@ -25,31 +25,68 @@
 /* Scrollbar-Farbe */
 .admin-page {
   background-color: #2A2D32;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
-  padding: 30px;
+  padding: 15px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
-  max-width: 80%;
+  margin: 20px auto;
+  width: 95%;
+  max-width: 100%;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .admin-page {
-    width: 95%;
-    max-width: 100%;
-    padding: 15px;
-    margin: 20px auto;
+    padding: 20px;
+    margin: 30px auto;
+    width: 90%;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page {
+    padding: 30px;
+    margin: 50px auto;
+    max-width: 90%;
+  }
+}
+@media (min-width: 1200px) {
+  .admin-page {
+    max-width: 80%;
   }
 }
 .admin-page h1 {
   color: #4a90d9;
   text-shadow: 0 0 5px #4a90d9;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  font-size: 22px;
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .admin-page h1 {
     font-size: 24px;
-    margin-bottom: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .admin-page h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page h1 {
+    font-size: 32px;
+  }
+}
+.admin-page .right-content h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+@media (min-width: 768px) {
+  .admin-page .right-content h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page .right-content h2 {
+    font-size: 24px;
   }
 }
 .admin-page .inner-content {
@@ -58,98 +95,214 @@
 }
 .admin-page .inner-content .title-content {
   display: flex;
-  flex-direction: row;
-  gap: 50px;
-  margin-bottom: 30px;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
 }
-@media (max-width: 1024px) {
+@media (min-width: 576px) {
   .admin-page .inner-content .title-content {
-    gap: 20px;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 992px) {
   .admin-page .inner-content .title-content {
-    flex-direction: column;
     gap: 15px;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 1200px) {
+  .admin-page .inner-content .title-content {
+    gap: 20px;
+  }
+}
+.admin-page .inner-content .title-content h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .admin-page .inner-content .title-content h3 {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+}
+.admin-page .inner-content .title-content a.btn {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .admin-page .inner-content .title-content a.btn {
+    margin-bottom: 0;
+    padding: 8px 15px;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page .inner-content .title-content a.btn {
+    padding: 10px 20px;
+    font-size: 16px;
   }
 }
 .admin-page .inner-content .title-content form {
-  margin-left: auto;
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
 }
-@media (max-width: 768px) {
+@media (min-width: 576px) {
   .admin-page .inner-content .title-content form {
-    margin-left: 0;
-    width: 100%;
+    width: auto;
+    margin-left: auto;
+    margin-top: 0;
   }
 }
 .admin-page .inner-content .title-content form input[type=text] {
+  flex: 1;
   background-color: #1A1A1A;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 10px;
-  padding: 10px;
+  padding: 6px 10px;
   border: none;
+  min-width: 150px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .admin-page .inner-content .title-content form input[type=text] {
-    width: calc(100% - 80px);
+    padding: 10px;
+    min-width: 200px;
   }
 }
-@media (max-width: 768px) {
-  .admin-page .inner-content .title-content .btn {
+.admin-page .inner-content .title-content form button.btn {
+  white-space: nowrap;
+  padding: 6px 12px;
+  font-size: 14px;
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  .admin-page .inner-content .title-content form button.btn {
+    padding: 8px 15px;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page .inner-content .title-content form button.btn {
     padding: 10px 20px;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 5px;
+    font-size: 16px;
   }
 }
 .admin-page .inner-content table {
   background-color: #1A1A1A;
-  color: #FFFFFF;
+  color: #ffffff;
   width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .admin-page .inner-content table {
     font-size: 14px;
   }
 }
-.admin-page .inner-content table th, .admin-page .inner-content table td {
-  padding: 10px;
+@media (min-width: 992px) {
+  .admin-page .inner-content table {
+    font-size: 16px;
+  }
 }
-@media (max-width: 768px) {
+.admin-page .inner-content table th, .admin-page .inner-content table td {
+  padding: 6px 4px;
+  text-align: left;
+}
+@media (min-width: 576px) {
   .admin-page .inner-content table th, .admin-page .inner-content table td {
-    padding: 8px 5px;
+    padding: 8px 6px;
+  }
+}
+@media (min-width: 768px) {
+  .admin-page .inner-content table th, .admin-page .inner-content table td {
+    padding: 10px 8px;
   }
 }
 .admin-page .inner-content table th {
   background-color: #2A475E;
+  white-space: nowrap;
 }
 .admin-page .inner-content table tr:nth-child(even) {
   background-color: rgba(42, 71, 94, 0.7);
 }
-@media (max-width: 576px) {
-  .admin-page .inner-content table thead {
-    display: none;
+@media (max-width: -0.02) {
+  .admin-page .inner-content table {
+    display: block;
+  }
+  .admin-page .inner-content table thead, .admin-page .inner-content table tbody, .admin-page .inner-content table th, .admin-page .inner-content table td, .admin-page .inner-content table tr {
+    display: block;
+  }
+  .admin-page .inner-content table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
   }
   .admin-page .inner-content table tr {
-    display: block;
-    margin-bottom: 15px;
     border: 1px solid #2A475E;
+    margin-bottom: 15px;
   }
   .admin-page .inner-content table td {
-    display: block;
-    text-align: right;
-    padding-left: 50%;
+    border: none;
     position: relative;
+    padding-left: 50%;
+    text-align: left;
   }
   .admin-page .inner-content table td:before {
-    content: attr(data-label);
     position: absolute;
-    left: 0;
+    top: 6px;
+    left: 6px;
     width: 45%;
-    padding-left: 15px;
-    text-align: left;
+    padding-right: 10px;
+    white-space: nowrap;
     font-weight: bold;
+  }
+  .admin-page .inner-content table td:nth-of-type(1):before {
+    content: "UserID";
+  }
+  .admin-page .inner-content table td:nth-of-type(2):before {
+    content: "Benutzername";
+  }
+  .admin-page .inner-content table td:nth-of-type(3):before {
+    content: "Email";
+  }
+  .admin-page .inner-content table td:nth-of-type(4):before {
+    content: "Aktiv?";
+  }
+  .admin-page .inner-content table td:nth-of-type(5):before {
+    content: "Rolle";
+  }
+  .admin-page .inner-content table td:nth-of-type(6):before {
+    content: "Aktionen";
+  }
+}
+@media (max-width: 575.98px) {
+  .admin-page .inner-content td form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+.admin-page .inner-content button.btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  margin-top: 5px;
+}
+@media (min-width: 768px) {
+  .admin-page .inner-content button.btn {
+    padding: 6px 10px;
+    font-size: 13px;
+    margin-top: 0;
+  }
+}
+@media (min-width: 992px) {
+  .admin-page .inner-content button.btn {
+    padding: 8px 12px;
+    font-size: 14px;
   }
 }
 .admin-page .inner-content button.btn-warning {
@@ -160,30 +313,46 @@
 .admin-page .inner-content button.btn-warning:hover {
   background-color: #F15147;
 }
-@media (max-width: 768px) {
-  .admin-page .inner-content button.btn-warning {
-    width: 100%;
-    margin: 5px 0;
-  }
+.admin-page .inner-content button.btn-success {
+  background-color: #5a921e;
+  border: none;
+  transition: background-color 0.3s;
+}
+.admin-page .inner-content button.btn-success:hover {
+  background-color: #8ed529;
 }
 .admin-page .inner-content select {
   background-color: #1A1A1A;
-  color: #FFFFFF;
+  color: #ffffff;
   border: 1px solid #2A475E;
   border-radius: 10px;
-  padding: 10px;
+  padding: 4px 8px;
+  width: 100%;
+  margin-bottom: 5px;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .admin-page .inner-content select {
-    width: 100%;
-    margin-bottom: 5px;
+    width: auto;
+    padding: 6px 10px;
+    margin-right: 5px;
+    margin-bottom: 0;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 992px) {
+  .admin-page .inner-content select {
+    padding: 10px;
+  }
+}
+.admin-page .inner-content form[action*=changeUserRole],
+.admin-page .inner-content form[action*=actionAccountSettings] {
+  display: block !important;
+  width: 100%;
+}
+@media (min-width: 768px) {
   .admin-page .inner-content form[action*=changeUserRole],
   .admin-page .inner-content form[action*=actionAccountSettings] {
-    width: 100%;
-    display: block !important;
+    display: inline-block !important;
+    width: auto;
   }
 }
 

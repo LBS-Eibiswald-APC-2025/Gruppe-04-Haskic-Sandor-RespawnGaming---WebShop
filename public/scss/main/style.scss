@@ -469,10 +469,6 @@ footer {
   font-family: Playstation, sans-serif !important;
   text-align: justify;
   line-height: 1.5;
-
-  @media screen and (max-width: 576px) {
-    font-size: 0.9em;
-  }
 }
 
 .swal-button {

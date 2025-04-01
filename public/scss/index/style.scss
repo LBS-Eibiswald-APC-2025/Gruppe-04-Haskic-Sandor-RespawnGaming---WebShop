@@ -1,5 +1,31 @@
 @import '../main/_variables.scss';
 
+// Definition eigener Breakpoints
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
 // Globale Keyframes für den Schimmer-Effekt
 @keyframes shimmer {
   0% {
@@ -13,7 +39,7 @@
 /* Hero-Section (Titelbereich) */
 .hero-section {
   width: 100%;
-  padding: 100px 20px;
+  padding: 50px 15px; // Reduziertes Padding für mobile Geräte
   text-align: center;
   border-radius: 0 0 15px 15px;
   background-blend-mode: darken;
@@ -22,8 +48,20 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 
+  @include breakpoint-up('sm') {
+    padding: 70px 15px;
+  }
+
+  @include breakpoint-up('md') {
+    padding: 80px 20px;
+  }
+
+  @include breakpoint-up('lg') {
+    padding: 100px 20px;
+  }
+
   h1 {
-    font-size: $hero-h1-font-size;
+    font-size: calc($hero-h1-font-size * 0.55); // Kleinere Größe für Mobile
     text-transform: uppercase;
     background: linear-gradient(90deg, $white, $bg_glow_blue, $white, $bg_glow_blue, $white);
     background-size: 200% auto;
@@ -31,14 +69,43 @@
     -webkit-text-fill-color: transparent;
     animation: shimmer 15s linear infinite;
     margin: 0;
-    padding-bottom: $hero-h1-padding-bottom;
+    padding-bottom: calc($hero-h1-padding-bottom * 0.6);
+
+    @include breakpoint-up('sm') {
+      font-size: calc($hero-h1-font-size * 0.7);
+      padding-bottom: calc($hero-h1-padding-bottom * 0.7);
+    }
+
+    @include breakpoint-up('md') {
+      font-size: calc($hero-h1-font-size * 0.85);
+      padding-bottom: calc($hero-h1-padding-bottom * 0.85);
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: $hero-h1-font-size;
+      padding-bottom: $hero-h1-padding-bottom;
+    }
   }
 
   p {
     font-family: 'Playstation', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: $white;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+
+    @include breakpoint-up('sm') {
+      font-size: 1.3em;
+      margin-bottom: 25px;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 1.4em;
+    }
+
+    @include breakpoint-up('lg') {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
   }
 
   .btn-primary {
@@ -46,11 +113,16 @@
     background: $btn-primary-gradient;
     border: none;
     color: $white;
-    padding: $btn-padding;
-    font-size: $base-font-size;
+    padding: 8px 16px; // Kleinere Buttons für Mobile
+    font-size: calc($base-font-size * 0.9);
     cursor: pointer;
     text-decoration: none;
     transition: transform $transition-time ease-in-out;
+
+    @include breakpoint-up('md') {
+      padding: $btn-padding;
+      font-size: $base-font-size;
+    }
 
     &:hover {
       background: $bg_green;
@@ -63,11 +135,16 @@
     background: $btn-primary-gradient;
     border: none;
     color: $white;
-    padding: $btn-padding;
-    font-size: $base-font-size;
+    padding: 8px 16px; // Kleinere Buttons für Mobile
+    font-size: calc($base-font-size * 0.9);
     cursor: pointer;
     text-decoration: none;
     transition: transform $transition-time ease-in-out;
+
+    @include breakpoint-up('md') {
+      padding: $btn-padding;
+      font-size: $base-font-size;
+    }
 
     &:hover {
       background: $bg_green;
@@ -75,27 +152,52 @@
   }
 
   .search-bar {
-    margin-top: 40px;
+    margin-top: 25px;
     display: flex;
     justify-content: center;
 
+    @include breakpoint-up('md') {
+      margin-top: 35px;
+    }
+
+    @include breakpoint-up('lg') {
+      margin-top: 40px;
+    }
+
     .input-group {
       display: flex;
-      width: 100%;
+      width: 95%;
       max-width: 600px;
       background: $bg_blue2;
       border-radius: 50px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 
+      @include breakpoint-up('sm') {
+        width: 90%;
+      }
+
+      @include breakpoint-up('md') {
+        width: 85%;
+      }
+
+      @include breakpoint-up('lg') {
+        width: 100%;
+      }
+
       input.form-control {
         flex: 1;
         background: transparent;
         border: none;
-        padding: $input-padding;
-        font-size: $base-font-size;
+        padding: 9px 16px; // Etwas kleineres Padding für Mobile
+        font-size: calc($base-font-size * 0.9);
         color: $white;
         font-family: 'Playstation', sans-serif;
+
+        @include breakpoint-up('md') {
+          padding: $input-padding;
+          font-size: $base-font-size;
+        }
 
         &::placeholder {
           color: rgba(255, 255, 255, 0.7);
@@ -110,9 +212,14 @@
         background: $btn-primary-gradient;
         border: none;
         color: $white;
-        padding: $search-btn-padding;
-        font-size: $base-font-size;
+        padding: 0 20px; // Etwas kleineres Padding für Mobile
+        font-size: calc($base-font-size * 0.9);
         cursor: pointer;
+
+        @include breakpoint-up('md') {
+          padding: $search-btn-padding;
+          font-size: $base-font-size;
+        }
 
         &:hover {
           background: $bg_green;
@@ -125,16 +232,32 @@
 // Container für die Game-Cards
 .games-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 15px;
   max-width: 1200px;
   margin: 0 auto;
 
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
+  @include breakpoint-up('sm') {
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  @include breakpoint-up('md') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
     padding: 15px;
+  }
+
+  @include breakpoint-up('lg') {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px;
+  }
+
+  @include breakpoint-up('xl') {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
   }
 }
 
@@ -148,71 +271,96 @@
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
   transition: transform $transition-time ease;
   width: 100%;
-  max-width: 300px;
-  height: 450px;
+  height: auto;
+  min-height: 400px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 
-  @media screen and (max-width: 768px) {
-    max-width: 100%;
-    height: auto;
+  @include breakpoint-up('md') {
+    min-height: 420px;
+    max-width: 400px;
+  }
+
+  @include breakpoint-up('lg') {
     min-height: 450px;
+    max-width: 300px;
   }
 
   img {
     width: 100%;
-    height: 200px;
+    height: 160px;
     object-fit: cover;
     flex-shrink: 0;
 
-    @media screen and (max-width: 768px) {
+    @include breakpoint-up('sm') {
+      height: 170px;
+    }
+
+    @include breakpoint-up('md') {
       height: 180px;
+    }
+
+    @include breakpoint-up('lg') {
+      height: 200px;
     }
   }
 
   .card-body {
-    padding: $card-padding;
+    padding: 16px; // Festen Wert statt calc() verwenden
     background: $bg_blue1;
     color: $white;
     flex: 1;
     display: flex;
     flex-direction: column;
 
-    @media screen and (max-width: 768px) {
-      padding: 15px;
+    @include breakpoint-up('md') {
+      padding: $card-padding;
     }
 
     .card-title {
-      font-size: 1.3em;
-      margin-bottom: 10px;
+      font-size: 1.1em;
+      margin-bottom: 8px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
 
-      @media screen and (max-width: 768px) {
-        font-size: 1.1em;
+      @include breakpoint-up('sm') {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      @include breakpoint-up('md') {
+        font-size: 1.3em;
       }
     }
 
     .card-text {
       font-family: $font-ps;
-      font-size: 1em;
+      font-size: 0.9em;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       margin-bottom: auto;
 
-      @media screen and (max-width: 768px) {
-        font-size: 0.9em;
-        -webkit-line-clamp: 4;
+      @include breakpoint-up('sm') {
+        font-size: 0.95em;
+      }
+
+      @include breakpoint-up('md') {
+        font-size: 1em;
+        -webkit-line-clamp: 3;
       }
     }
   }
 
   &:hover {
-    @media screen and (min-width: 769px) {
+    @include breakpoint-up('sm') {
+      transform: scale(1.01);
+    }
+
+    @include breakpoint-up('lg') {
       transform: scale(1.02);
     }
   }
@@ -221,35 +369,69 @@
 /* Carousel-Container */
 .custom-carousel-title {
   font-family: 'Ghost', sans-serif;
-  font-size: 250%;
+  font-size: 180%;
   color: $white;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 60px;
+
+  @include breakpoint-up('sm') {
+    font-size: 200%;
+    margin-top: 80px;
+  }
+
+  @include breakpoint-up('md') {
+    font-size: 220%;
+    margin-top: 100px;
+  }
+
+  @include breakpoint-up('lg') {
+    font-size: 250%;
+    margin-top: 120px;
+  }
 }
 
 /* Container um Slide, Pfeile und Info-Bereich */
 .custom-carousel-container {
-  position: relative; /* Wichtig für Pfeile mit absolute Position */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   color: $white;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 0 10px;
+
+  @include breakpoint-up('sm') {
+    gap: 15px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+  }
+
+  @include breakpoint-up('md') {
+    gap: 20px;
+    padding: 0;
+  }
 
   .carousel-btn {
     background: none;
     border: none;
     color: $white;
-    font-size: 3rem;
+    font-size: 2rem;
     cursor: pointer;
-    z-index: 5; /* Über dem Slide liegen */
-    transition: color 0.3s ease;
-
-    /* Pfeile über dem Slide platzieren */
+    z-index: 5;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    transition: color 0.3s ease;
+
+    @include breakpoint-up('sm') {
+      font-size: 2.5rem;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 3rem;
+    }
 
     &:hover {
       text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
@@ -268,62 +450,140 @@
 
   .carousel-slide {
     display: flex;
-    align-items: stretch;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
-    padding: 20px;
-    max-width: 900px;
+    padding: 15px;
     width: 100%;
-    height: 390px;
+    max-width: 900px;
+    height: auto;
+    min-height: 450px;
+
+    @include breakpoint-up('sm') {
+      padding: 20px;
+      gap: 15px;
+    }
+
+    @include breakpoint-up('md') {
+      flex-direction: row;
+      align-items: stretch;
+      min-height: 350px;
+      height: 370px;
+      gap: 20px;
+    }
+
+    @include breakpoint-up('lg') {
+      height: 390px;
+    }
 
     .carousel-image {
-      flex: 3;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
 
+      @include breakpoint-up('md') {
+        flex: 3;
+        width: auto;
+      }
+
       img {
         max-width: 100%;
+        max-height: 180px;
         border-radius: 5px;
         object-fit: cover;
+
+        @include breakpoint-up('sm') {
+          max-height: 200px;
+        }
+
+        @include breakpoint-up('md') {
+          max-height: none;
+          max-width: 100%;
+          height: auto;
+        }
       }
     }
 
     .carousel-info {
-      flex: 2;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       font-family: 'Playstation', sans-serif;
-      font-size: 120%;
+      font-size: 100%;
+
+      @include breakpoint-up('md') {
+        flex: 2;
+        font-size: 110%;
+      }
+
+      @include breakpoint-up('lg') {
+        font-size: 120%;
+      }
 
       h3 {
         font-family: 'Ghost', sans-serif;
-        font-size: 150%;
+        font-size: 130%;
+        text-align: center;
+
+        @include breakpoint-up('md') {
+          font-size: 140%;
+          text-align: left;
+        }
+
+        @include breakpoint-up('lg') {
+          font-size: 150%;
+        }
       }
 
       p {
-        font-size: 100%;
+        font-size: 90%;
         margin: 0 !important;
+        text-align: center;
+
+        @include breakpoint-up('md') {
+          font-size: 95%;
+          text-align: left;
+        }
+
+        @include breakpoint-up('lg') {
+          font-size: 100%;
+        }
       }
 
       span {
         margin: 0;
-        font-size: 90%;
+        font-size: 80%;
+        text-align: center;
+
+        @include breakpoint-up('md') {
+          font-size: 85%;
+          text-align: left;
+        }
+
+        @include breakpoint-up('lg') {
+          font-size: 90%;
+        }
       }
 
-      /*
-         NEU: 2×2 Grid für Thumbnails
-         --------------------------------
-         - Werden per JS gefüllt
-      */
+      /* 2×2 Grid für Thumbnails */
       .carousel-thumbnails {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        gap: 8px;
+        margin: 15px 0;
+
+        @include breakpoint-up('sm') {
+          gap: 10px;
+          margin: 18px 0;
+        }
+
+        @include breakpoint-up('md') {
+          margin: 20px 0;
+        }
 
         img {
           width: 100%;
@@ -346,17 +606,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 12px;
+  margin-bottom: 8px;
+
+  @include breakpoint-up('sm') {
+    margin-top: 15px;
+  }
+
+  @include breakpoint-up('md') {
+    margin-top: 18px;
+    margin-bottom: 10px;
+  }
+
+  @include breakpoint-up('lg') {
+    margin-top: 20px;
+  }
 
   .indicator {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     background-color: $gray;
     border-radius: 15%;
-    margin: 0 7px;
+    margin: 0 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+
+    @include breakpoint-up('md') {
+      width: 12px;
+      height: 12px;
+      margin: 0 7px;
+    }
 
     &.active {
       background-color: $white;
@@ -369,16 +648,28 @@
   }
 }
 
-/*
-   NEU: Status-Anzeige unter den Punkten
-   Beispiel: "1 / 4"
-*/
+/* Status-Anzeige unter den Punkten */
 .carousel-status {
   text-align: center;
   color: $white;
   font-family: 'Playstation', sans-serif;
-  font-size: 1.2rem;
-  margin-bottom: 40px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+
+  @include breakpoint-up('sm') {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  @include breakpoint-up('md') {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+
+  @include breakpoint-up('lg') {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
 }
 
 /* Animationsklassen für Slide-Wechsel */
@@ -443,53 +734,53 @@
   }
 }
 
-// Gesamter Code im Responsive-Design
-@media screen and (max-width: 1200px) {
-  .custom-carousel-container {
-    .carousel-slide {
-      width: 90%;
-      margin: 0 auto;
+// Fix für das Responsive Layout bei vorgeschlagenen Spielen
+.container .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-right: -15px;
+  margin-left: -15px;
+
+  .col-md-3 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+
+    @include breakpoint-up('sm') {
+      width: 50%;
+    }
+
+    @include breakpoint-up('md') {
+      width: 33.3333%;
+    }
+
+    @include breakpoint-up('lg') {
+      width: 25%;
     }
   }
 }
 
-@media screen and (max-width: 992px) {
-  .hero-section {
-    h1 {
-      font-size: calc($hero-h1-font-size * 0.9);
-    }
+// Anpassung für Buttons in Game-Cards
+.game-card .card-body a.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  background: $btn-primary-gradient;
+  color: $white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  transition: background $transition-time;
+
+  @include breakpoint-up('md') {
+    padding: 10px 20px;
+    font-size: 1em;
   }
 
-  .custom-carousel-container {
-    width: 95%;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section {
-    h1 {
-      font-size: calc($hero-h1-font-size * 0.8);
-    }
-
-    .search-bar .input-group {
-      width: 90%;
-    }
-  }
-
-  @media screen and (max-width: 576px) {
-    .hero-section {
-      h1 {
-        font-size: calc($hero-h1-font-size * 0.7);
-      }
-
-      .search-bar .input-group {
-        width: 95%;
-      }
-    }
-
-    .custom-carousel-container {
-      width: 100%;
-    }
+  &:hover {
+    background: $bg_green;
   }
 }

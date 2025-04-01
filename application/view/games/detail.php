@@ -121,12 +121,72 @@ if (!$game) {
 
     <!-- Unterer Bereich: Snippet + Beschreibung -->
     <section class="bottom-section">
-        <h2>Über dieses Spiel</h2>
-        <?php if (!empty($game['snippet'])): ?>
-            <p><em><?php echo nl2br(htmlspecialchars($game['snippet'])); ?></em></p>
-        <?php endif; ?>
+        <h2>Systemanforderungen</h2>
 
-        <p><?php echo nl2br(htmlspecialchars($game['description'])); ?></p>
+        <div class="game-system-requirements">
+            <div class="game-requirements-heading">SYSTEMANFORDERUNGEN</div>
+            <div class="game-requirements-container">
+                <div class="game-requirements-column min-requirements">
+                    <div class="requirements-title">MINDESTANFORDERUNGEN:</div>
+                    <ul class="requirements-list">
+                        <li>
+                            <span class="requirement-label">Betriebssystem:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_os']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Prozessor:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_processor']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Arbeitsspeicher:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_memory']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Grafik:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_graphics']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">DirectX:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_directx']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Speicherplatz:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['min_storage']); ?></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="game-requirements-column rec-requirements">
+                    <div class="requirements-title">EMPFOHLEN:</div>
+                    <ul class="requirements-list">
+                        <li>
+                            <span class="requirement-label">Betriebssystem:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_os']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Prozessor:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_processor']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Arbeitsspeicher:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_memory']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Grafik:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_graphics']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">DirectX:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_directx']); ?></span>
+                        </li>
+                        <li>
+                            <span class="requirement-label">Speicherplatz:</span>
+                            <span class="requirement-value"><?php echo htmlspecialchars($game['systemRequirements']['rec_storage']); ?></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 </div>
 
