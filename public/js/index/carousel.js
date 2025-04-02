@@ -1,6 +1,5 @@
-// Exportierbare Funktion für Tests
-function initCarousel(games) {
-    const featuredGames = games || [];
+document.addEventListener('DOMContentLoaded', () => {
+    const featuredGames = window.allgames || [];
     const slideEl = document.getElementById('carouselSlide');
     const carouselImg = document.getElementById('carouselImg');
     const carouselTitle = document.getElementById('carouselTitle');
@@ -81,6 +80,7 @@ function initCarousel(games) {
         if (isAnimating) return;
         isAnimating = true;
 
+
         slideEl.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
 
         if (direction === 'right') {
@@ -92,6 +92,7 @@ function initCarousel(games) {
                 slideEl.classList.add('slide-in-right');
                 setTimeout(() => {
                     slideEl.classList.remove('slide-in-right');
+
                     isAnimating = false;
                 }, 700);
             }, 700);
@@ -104,6 +105,7 @@ function initCarousel(games) {
                 slideEl.classList.add('slide-in-left');
                 setTimeout(() => {
                     slideEl.classList.remove('slide-in-left');
+
                     isAnimating = false;
                 }, 700);
             }, 700);
@@ -138,24 +140,4 @@ function initCarousel(games) {
         updateCarousel();
         startAutoSwitch();
     }
-
-    // Gebe ein Objekt zurück, das für Tests verwendet werden kann
-    return {
-        getCurrentIndex: () => currentIndex,
-        isAnimating: () => isAnimating,
-        goToSlide,
-        updateCarousel
-    };
-}
-
-// Nur im Browser ausführen
-if (typeof document !== 'undefined' && typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initCarousel(window.allgames || []);
-    });
-}
-
-// Exportiere für Tests
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { initCarousel };
-}
+});
