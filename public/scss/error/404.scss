@@ -1,55 +1,107 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
+// Sicherstellung der Scrollbarkeit
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .error-page {
   background: $bg_blue1 !important;
-  min-height: 80vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: $font-ghost !important;
   color: $white;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
 
-  @media (max-width: 576px) {
-    min-height: 70vh;
+  @include breakpoint-up('sm') {
+    min-height: 75vh;
+    padding: 0.75rem;
+  }
+
+  @include breakpoint-up('md') {
+    min-height: 80vh;
+    padding: 1rem;
   }
 }
 
 .error-container {
   max-width: 800px;
-  width: 95%;
-  padding: 2rem;
+  width: 100%;
+  padding: 1rem;
   background: rgba($bg_blue1, 0.6);
-  border-radius: $border-radius;
+  border-radius: 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
-  @media (max-width: 768px) {
-    width: 90%;
+  @include breakpoint-up('sm') {
+    width: 95%;
     padding: 1.5rem;
+    border-radius: $border-radius;
   }
 
-  @media (max-width: 576px) {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 0;
+  @include breakpoint-up('md') {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  @include breakpoint-up('lg') {
+    width: 85%;
   }
 }
 
 .error-image {
   width: auto;
-  height: 40vh;
-  max-width: 400px;
-  margin: 0 auto 1.25rem;
+  height: 25vh;
+  max-width: 300px;
+  margin: 0 auto 1rem;
   display: block;
   animation: pulse 2s infinite;
 
-  @media (max-width: 768px) {
-    height: 35vh;
+  @include breakpoint-up('sm') {
+    height: 30vh;
+    margin-bottom: 1.15rem;
   }
 
-  @media (max-width: 576px) {
-    height: 30vh;
+  @include breakpoint-up('md') {
+    height: 35vh;
+    margin-bottom: 1.25rem;
+    max-width: 350px;
+  }
+
+  @include breakpoint-up('lg') {
+    height: 40vh;
+    max-width: 400px;
   }
 }
 
@@ -63,25 +115,73 @@
 }
 
 .error-title {
-  font-size: 3rem;
-  margin-bottom: 0.625rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
   color: $white;
   text-shadow: 0 0 10px rgba($bg_glow_blue, 0.5);
+  font-family: $font-ghost;
 
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
+  @include breakpoint-up('sm') {
+    font-size: 2.2rem;
+    margin-bottom: 0.55rem;
   }
 
-  @media (max-width: 576px) {
-    font-size: 2rem;
+  @include breakpoint-up('md') {
+    font-size: 2.6rem;
+    margin-bottom: 0.6rem;
+  }
+
+  @include breakpoint-up('lg') {
+    font-size: 3rem;
+    margin-bottom: 0.625rem;
   }
 }
 
 .error-message {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: $red;
+  font-family: $font-ps !important;
 
-  @media (max-width: 576px) {
+  @include breakpoint-up('sm') {
     font-size: 1rem;
+  }
+
+  @include breakpoint-up('md') {
+    font-size: 1.1rem;
+  }
+
+  @include breakpoint-up('lg') {
+    font-size: 1.2rem;
+  }
+}
+
+// Zurück zur Startseite Button (falls benötigt)
+.back-to-home {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, $bg_glow_blue, darken($bg_glow_blue, 15%));
+  color: $white;
+  text-decoration: none;
+  border-radius: $border-radius;
+  font-family: $font-ps !important;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+
+  @include breakpoint-up('sm') {
+    margin-top: 1.25rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  @include breakpoint-up('md') {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, $bg_green, darken($bg_green, 15%));
+    transform: translateY(-2px);
   }
 }

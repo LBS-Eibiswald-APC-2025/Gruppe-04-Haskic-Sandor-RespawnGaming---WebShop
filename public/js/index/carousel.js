@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const featuredGames = window.allgames || [];
+// Exportierbare Funktion für Tests
+function initCarousel(games) {
+    const featuredGames = games || [];
     const slideEl = document.getElementById('carouselSlide');
     const carouselImg = document.getElementById('carouselImg');
     const carouselTitle = document.getElementById('carouselTitle');
@@ -80,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isAnimating) return;
         isAnimating = true;
 
-        const currentHeight = slideEl.offsetHeight;
-        slideEl.style.height = currentHeight + 'px';
         slideEl.classList.remove('slide-in-right', 'slide-out-left', 'slide-in-left', 'slide-out-right');
 
         if (direction === 'right') {
@@ -93,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideEl.classList.add('slide-in-right');
                 setTimeout(() => {
                     slideEl.classList.remove('slide-in-right');
-                    slideEl.style.height = '';
                     isAnimating = false;
                 }, 700);
             }, 700);
@@ -106,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 slideEl.classList.add('slide-in-left');
                 setTimeout(() => {
                     slideEl.classList.remove('slide-in-left');
-                    slideEl.style.height = '';
                     isAnimating = false;
                 }, 700);
             }, 700);
@@ -141,4 +138,24 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
         startAutoSwitch();
     }
-});
+
+    // Gebe ein Objekt zurück, das für Tests verwendet werden kann
+    return {
+        getCurrentIndex: () => currentIndex,
+        isAnimating: () => isAnimating,
+        goToSlide,
+        updateCarousel
+    };
+}
+
+// Nur im Browser ausführen
+if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initCarousel(window.allgames || []);
+    });
+}
+
+// Exportiere für Tests
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { initCarousel };
+}

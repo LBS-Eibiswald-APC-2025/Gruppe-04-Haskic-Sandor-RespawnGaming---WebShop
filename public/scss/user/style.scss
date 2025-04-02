@@ -1,39 +1,87 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-down($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+            @content;
+        }
+    }
+}
+
+// Höhenbasierte Media Queries
+@mixin height-breakpoint-up($size) {
+    @media screen and (min-height: $size) {
+        @content;
+    }
+}
+
 /* Profile Container */
 .profile-container {
     background-color: $background_color_dark;
     color: $white;
-    border-radius: $border-radius;
+    border-radius: 8px; // Verringert für Mobile
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-    margin: 50px auto;
-    width: 90%;
+    margin: 20px auto; // Verringert für Mobile
+    width: 98%; // Fast volle Breite für Mobile
     max-width: 1000px;
+    font-family: $font-ps;
 
-    @media screen and (max-width: 768px) {
-        width: 95%;
+    // Dynamische Abstände bei größeren Bildschirmen
+    @include height-breakpoint-up(700px) {
         margin: 30px auto;
     }
 
-    @media screen and (max-width: 576px) {
-        width: 98%;
-        margin: 20px auto;
-        border-radius: 8px;
+    @include height-breakpoint-up(800px) {
+        margin: 40px auto;
+    }
+
+    @include breakpoint-up('sm') {
+        width: 95%;
+        border-radius: 10px;
+    }
+
+    @include breakpoint-up('md') {
+        width: 90%;
+        border-radius: $border-radius;
     }
 
     .profile-header {
         position: relative;
         width: 100%;
-        height: 300px;
+        height: 180px; // Kleiner für Mobile
         background-color: lighten($background_color_dark, 10%);
-        border-radius: $border-radius;
+        border-radius: 8px 8px 0 0; // Passend zum Container
 
-        @media screen and (max-width: 768px) {
-            height: 250px;
+        @include breakpoint-up('sm') {
+            height: 220px;
+            border-radius: 10px 10px 0 0;
         }
 
-        @media screen and (max-width: 576px) {
-            height: 200px;
+        @include breakpoint-up('md') {
+            height: 250px;
+            border-radius: $border-radius $border-radius 0 0;
+        }
+
+        @include breakpoint-up('lg') {
+            height: 300px;
         }
 
         .cover {
@@ -41,37 +89,54 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            border-radius: $border-radius;
+            border-radius: 8px 8px 0 0;
+
+            @include breakpoint-up('sm') {
+                border-radius: 10px 10px 0 0;
+            }
+
+            @include breakpoint-up('md') {
+                border-radius: $border-radius $border-radius 0 0;
+            }
         }
 
         .avatar {
             position: absolute;
-            bottom: -60px;
-            left: 30px;
-            width: 150px;
-            height: 150px;
-            border: 4px solid $background_color_dark;
+            bottom: -30px; // Position angepasst für kleineren Avatar
+            left: 15px;
+            width: 100px; // Kleiner für Mobile
+            height: 100px;
+            border: 3px solid $background_color_dark;
             border-radius: 50%;
             overflow: hidden;
             background-color: $white;
 
-            @media screen and (max-width: 768px) {
+            @include breakpoint-up('sm') {
                 width: 120px;
                 height: 120px;
                 bottom: -40px;
                 left: 20px;
+                border: 4px solid $background_color_dark;
             }
 
-            @media screen and (max-width: 576px) {
-                width: 100px;
-                height: 100px;
-                bottom: -30px;
-                left: 15px;
+            @include breakpoint-up('md') {
+                width: 140px;
+                height: 140px;
+                bottom: -50px;
+                left: 25px;
+            }
+
+            @include breakpoint-up('lg') {
+                width: 150px;
+                height: 150px;
+                bottom: -60px;
+                left: 30px;
             }
 
             img {
                 width: 100%;
-                height: auto;
+                height: 100%;
+                object-fit: cover;
             }
         }
     }
@@ -84,48 +149,63 @@
         position: relative;
         top: 0;
         float: right;
-        margin: 10px;
+        margin: 8px;
         cursor: pointer;
         transition: transform $transition-time ease-in-out;
-        padding: 10px;
+        padding: 8px; // Größer für bessere Touch-Targets
+        background-color: rgba($background_color_dark, 0.5); // Bessere Sichtbarkeit
+        border-radius: 50%;
+        font-size: 1rem;
 
-        @media screen and (max-width: 576px) {
-            padding: 8px;
-            margin: 8px;
+        @include breakpoint-up('sm') {
+            margin: 9px;
+            padding: 9px;
         }
 
-        &:hover {
-            transform: scale(1.5);
+        @include breakpoint-up('md') {
+            margin: 10px;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
 
-            @media screen and (max-width: 576px) {
-                transform: scale(1.3);
-            }
+        &:hover, &:active {
+            transform: scale(1.2);
+            background-color: rgba($bg_glow_blue, 0.5);
         }
     }
 
     .profile-info {
-        padding: 80px 20px 20px;
+        padding: 40px 15px 15px; // Angepasst für kleineren Avatar
         text-align: left;
 
-        @media screen and (max-width: 768px) {
-            padding: 60px 15px 15px;
+        @include breakpoint-up('sm') {
+            padding: 50px 18px 18px;
         }
 
-        @media screen and (max-width: 576px) {
-            padding: 50px 12px 12px;
+        @include breakpoint-up('md') {
+            padding: 65px 20px 20px;
+        }
+
+        @include breakpoint-up('lg') {
+            padding: 80px 25px 25px;
         }
 
         .username {
-            font-size: 68px;
+            font-size: 2rem; // Kleiner für Mobile
             margin: 0 0 10px 0;
             text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
+            font-family: $font-ghost;
 
-            @media screen and (max-width: 768px) {
-                font-size: 48px;
+            @include breakpoint-up('sm') {
+                font-size: 2.5rem;
             }
 
-            @media screen and (max-width: 576px) {
-                font-size: 36px;
+            @include breakpoint-up('md') {
+                font-size: 3rem;
+            }
+
+            @include breakpoint-up('lg') {
+                font-size: 3.5rem;
             }
         }
 
@@ -133,46 +213,76 @@
         .location,
         .member-since {
             margin: 5px 0;
-            font-size: 20px;
+            font-size: 1rem;
+            font-family: $font-ps;
 
-            @media screen and (max-width: 768px) {
-                font-size: 16px;
+            @include breakpoint-up('sm') {
+                font-size: 1.1rem;
             }
 
-            @media screen and (max-width: 576px) {
-                font-size: 14px;
+            @include breakpoint-up('md') {
+                font-size: 1.2rem;
             }
         }
 
         .about {
             margin-top: 15px;
-            font-size: 12px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            font-family: $font-ps;
+
+            @include breakpoint-up('md') {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
+
+        hr {
+            margin: 15px 0;
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(74, 144, 217, 0), rgba(74, 144, 217, 0.5), rgba(74, 144, 217, 0));
+
+            @include breakpoint-up('md') {
+                margin: 20px 0;
+            }
         }
 
         .library {
-            margin-top: 25px;
-            font-family: Playstation, sans-serif;
+            margin-top: 15px;
+            font-family: $font-ps;
+
+            @include breakpoint-up('md') {
+                margin-top: 25px;
+            }
 
             h3 {
-                font-size: 24px;
-                margin-bottom: 15px;
+                font-size: 1.2rem;
+                margin-bottom: 12px;
+                font-family: $font-ghost;
 
-                @media screen and (max-width: 768px) {
-                    font-size: 20px;
+                @include breakpoint-up('sm') {
+                    font-size: 1.4rem;
                 }
 
-                @media screen and (max-width: 576px) {
-                    font-size: 18px;
+                @include breakpoint-up('md') {
+                    font-size: 1.5rem;
+                    margin-bottom: 15px;
                 }
             }
 
             .game-list {
                 .game-count {
-                    font-size: 16px;
-                    margin-top: 15px;
-                    margin-bottom: 12px;
+                    font-size: 1rem;
+                    margin-top: 12px;
+                    margin-bottom: 10px;
                     text-shadow: 1px 1px 2px $bg_glow_blue, 0 0 1em $bg_glow_blue, 0 0 0.2em $bg_glow_blue;
 
+                    @include breakpoint-up('md') {
+                        font-size: 1.1rem;
+                        margin-top: 15px;
+                        margin-bottom: 12px;
+                    }
                 }
 
                 ul {
@@ -180,8 +290,14 @@
                     padding: 0;
 
                     li {
-                        font-size: 16px;
-                        margin-bottom: 8px;
+                        font-size: 0.95rem;
+                        margin-bottom: 6px;
+                        line-height: 1.4;
+
+                        @include breakpoint-up('md') {
+                            font-size: 1rem;
+                            margin-bottom: 8px;
+                        }
                     }
                 }
             }
@@ -189,6 +305,11 @@
             .no-games {
                 font-style: italic;
                 color: $gray;
+                font-size: 0.95rem;
+
+                @include breakpoint-up('md') {
+                    font-size: 1rem;
+                }
             }
         }
     }
@@ -198,39 +319,45 @@
 .profile-edit-box {
     background-color: $background_color_dark;
     color: $white;
-    border-radius: $border-radius;
-    padding: 25px;
+    border-radius: 8px; // Kleiner für Mobile
+    padding: 15px; // Weniger Padding für Mobile
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-    margin: 40px auto;
-    width: 90%;
+    margin: 20px auto; // Weniger Margin für Mobile
+    width: 98%; // Fast volle Breite für Mobile
     max-width: 500px;
     font-family: $font-ps;
 
-    @media screen and (max-width: 768px) {
-        width: 95%;
-        padding: 20px;
-        margin: 25px auto;
+    // Dynamische Abstände bei größeren Bildschirmen
+    @include height-breakpoint-up(700px) {
+        margin: 30px auto;
     }
 
-    @media screen and (max-width: 576px) {
-        width: 98%;
-        padding: 15px;
-        margin: 20px auto;
+    @include breakpoint-up('sm') {
+        width: 95%;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    @include breakpoint-up('md') {
+        width: 90%;
+        padding: 25px;
+        border-radius: $border-radius;
     }
 
     .profile-edit-title {
         text-align: center;
-        margin-bottom: 25px;
-        font-size: 2rem;
+        margin-bottom: 15px;
+        font-size: 1.6rem;
+        font-family: $font-ghost;
 
-        @media screen and (max-width: 768px) {
+        @include breakpoint-up('sm') {
             font-size: 1.8rem;
             margin-bottom: 20px;
         }
 
-        @media screen and (max-width: 576px) {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+        @include breakpoint-up('md') {
+            font-size: 2rem;
+            margin-bottom: 25px;
         }
     }
 
@@ -240,18 +367,18 @@
 
             label {
                 display: block;
-                margin-bottom: 6px;
-                font-size: 1.2rem;
+                margin-bottom: 4px;
+                font-size: 1rem;
                 color: $white;
 
-                @media screen and (max-width: 768px) {
+                @include breakpoint-up('sm') {
                     font-size: 1.1rem;
                     margin-bottom: 5px;
                 }
 
-                @media screen and (max-width: 576px) {
-                    font-size: 1rem;
-                    margin-bottom: 4px;
+                @include breakpoint-up('md') {
+                    font-size: 1.2rem;
+                    margin-bottom: 6px;
                 }
             }
 
@@ -260,20 +387,23 @@
                 width: 100%;
                 background-color: $bg_auth;
                 border: none;
-                border-radius: $auth-form-border-radius;
+                border-radius: 5px;
                 color: $white;
-                padding: 8px 12px;
-                font-size: 1rem;
+                padding: 10px 12px; // Größer für bessere Touch-Targets
+                font-size: 0.95rem;
                 margin-bottom: 8px;
+                font-family: $font-ps;
 
-                @media screen and (max-width: 768px) {
-                    padding: 7px 10px;
-                    font-size: 0.95rem;
+                @include breakpoint-up('sm') {
+                    padding: 10px 14px;
+                    font-size: 1rem;
+                    border-radius: 6px;
                 }
 
-                @media screen and (max-width: 576px) {
-                    padding: 6px 8px;
-                    font-size: 0.9rem;
+                @include breakpoint-up('md') {
+                    padding: 12px 15px;
+                    font-size: 1.05rem;
+                    border-radius: $auth-form-border-radius;
                 }
 
                 &:focus {
@@ -283,14 +413,13 @@
             }
 
             textarea {
-                min-height: 100px;
+                min-height: 80px;
                 resize: vertical;
-            }
-        }
 
-        textarea {
-            min-height: 80px;
-            resize: vertical;
+                @include breakpoint-up('md') {
+                    min-height: 100px;
+                }
+            }
         }
     }
 
@@ -299,55 +428,75 @@
         background-color: $bg-auth-btn;
         color: $white;
         border: none;
-        border-radius: $auth-form-border-radius;
-        padding: 10px 16px;
-        font-size: 1.1rem;
+        border-radius: 5px;
+        padding: 12px 16px; // Größer für bessere Touch-Targets
+        font-size: 1rem;
         cursor: pointer;
-        transition: background-color $transition-time ease;
+        transition: all $transition-time ease;
+        font-family: $font-ps;
 
-        @media screen and (max-width: 768px) {
-            font-size: 1rem;
-            padding: 8px 14px;
+        @include breakpoint-up('sm') {
+            border-radius: 6px;
         }
 
-        @media screen and (max-width: 576px) {
-            font-size: 0.95rem;
-            padding: 7px 12px;
+        @include breakpoint-up('md') {
+            font-size: 1.1rem;
+            padding: 12px 18px;
+            border-radius: $auth-form-border-radius;
         }
 
-        &:hover {
+        &:hover, &:active {
             background-color: $bg_green;
+            transform: scale(1.02);
         }
     }
 }
 
 .profile-edit-link {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px; // Mehr Abstand zum Button
+
+    @include breakpoint-up('md') {
+        margin-top: 25px;
+    }
 
     a {
         color: $white;
         text-decoration: none;
-        font-size: 1rem;
-        transition: color $transition-time ease;
+        font-size: 0.95rem;
+        transition: all $transition-time ease;
+        padding: 5px; // Größerer Touch-Target
+        display: inline-block;
 
-        &:hover {
+        @include breakpoint-up('sm') {
+            font-size: 1rem;
+        }
+
+        &:hover, &:active {
             color: $bg_glow_blue;
+            transform: scale(1.05);
         }
     }
 }
 
+// SweetAlert Anpassungen für responsive Design
 .swal-modal {
     background-color: $white;
-    border-radius: $border-radius;
+    border-radius: 8px;
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
     border: 1px solid rgba($bg_glow_blue, 0.2);
-    padding: 20px;
-    width: 500px;
+    padding: 15px;
+    width: 90%; // Prozentuale Breite statt feste Breite
+    max-width: 500px;
+    margin: 0 auto;
 
-    @media screen and (max-width: 576px) {
-        width: 90%;
-        margin: 0 auto;
+    @include breakpoint-up('sm') {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    @include breakpoint-up('md') {
+        border-radius: $border-radius;
     }
 }
 
@@ -357,8 +506,12 @@
     text-align: center;
 
     .file-upload-wrapper {
-        margin: 20px 0;
+        margin: 15px 0;
         text-align: center;
+
+        @include breakpoint-up('md') {
+            margin: 20px 0;
+        }
 
         input[type="file"] {
             display: none; // Versteckt den Standard-Dateiauswahl-Button
@@ -366,19 +519,31 @@
 
         .custom-file-upload {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 12px 20px; // Größere Touch-Fläche
             background-color: $bg-auth-btn;
             color: $bg_dark;
-            border-radius: $auth-form-border-radius;
+            border-radius: 5px;
             cursor: pointer;
             font-family: $font-ps;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all $transition-time ease;
             border: none;
             margin: 10px 0;
             width: auto;
 
-            &:hover {
+            @include breakpoint-up('sm') {
+                padding: 12px 22px;
+                font-size: 1.05rem;
+                border-radius: 6px;
+            }
+
+            @include breakpoint-up('md') {
+                padding: 12px 24px;
+                font-size: 1.1rem;
+                border-radius: $auth-form-border-radius;
+            }
+
+            &:hover, &:active {
                 background-color: $bg_green;
                 transform: translateY(-1px);
                 box-shadow: 0 2px 8px rgba($bg_green, 0.4);
@@ -387,29 +552,54 @@
 
         .file-name {
             display: block;
-            margin-top: 10px;
+            margin-top: 8px;
             color: $bg_dark;
             font-family: $font-ps;
-            font-size: 1rem;
+            font-size: 0.9rem;
             word-break: break-all;
+
+            @include breakpoint-up('sm') {
+                margin-top: 10px;
+                font-size: 0.95rem;
+            }
+
+            @include breakpoint-up('md') {
+                font-size: 1rem;
+            }
         }
     }
 }
 
 .swal-title {
     font-family: $font-ps;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 0;
     padding: 0;
     color: $bg_dark;
+
+    @include breakpoint-up('sm') {
+        font-size: 1.4rem;
+    }
+
+    @include breakpoint-up('md') {
+        font-size: 1.5rem;
+    }
 }
 
 .swal-text {
     font-family: $font-ps;
-    font-size: 1.1rem;
-    margin: 0;
+    font-size: 1rem;
+    margin: 10px 0 0;
     padding: 0;
     color: $bg_dark;
+
+    @include breakpoint-up('sm') {
+        font-size: 1.05rem;
+    }
+
+    @include breakpoint-up('md') {
+        font-size: 1.1rem;
+    }
 }
 
 .swal-footer {
@@ -426,18 +616,28 @@
 }
 
 .swal-button {
-    padding: 12px 24px;
+    padding: 10px 18px; // Größere Touch-Fläche
     font-family: $font-ps;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: normal;
     transition: all $transition-time ease;
     border: none;
+
+    @include breakpoint-up('sm') {
+        padding: 11px 20px;
+        font-size: 1.05rem;
+    }
+
+    @include breakpoint-up('md') {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
 
     &--confirm {
         background-color: $bg-auth-btn;
         color: $bg_dark;
 
-        &:hover {
+        &:hover, &:active {
             background-color: $bg_green !important;
             transform: translateY(-1px);
         }
@@ -447,7 +647,7 @@
         background-color: $gray;
         color: $bg_dark;
 
-        &:hover {
+        &:hover, &:active {
             background-color: darken($gray, 10%) !important;
             transform: translateY(-1px);
         }

@@ -1,71 +1,160 @@
 @import "../main/_variables.scss";
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+
+@mixin breakpoint-down($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+            @content;
+        }
+    }
+}
+
+// Sicherstellung der Scrollbarkeit
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+}
+
 // Game Developer Dashboard Styling
 .developer-dashboard {
-    padding: 30px;
+    padding: 15px;
     color: $white;
     background-color: $bg_blue1;
-    border-radius: $border-radius;
+    border-radius: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     font-family: $font-ps;
 
+    @include breakpoint-up('sm') {
+        padding: 20px;
+        border-radius: $border-radius;
+    }
+
+    @include breakpoint-up('md') {
+        padding: 30px;
+    }
+
     // Überschriften
     h2 {
-        font-family: $font-ps;
-        font-size: 2.2rem;
+        font-family: $font-ghost; // Ghost-Schriftart für Hauptüberschriften
+        font-size: 1.7rem;
         font-weight: 700;
         color: $white;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         text-shadow: 0 0 10px rgba($bg_glow_blue, 0.8), 0 0 15px rgba($bg_glow_blue, 0.5);
         position: relative;
         padding-bottom: 15px;
+
+        @include breakpoint-up('sm') {
+            font-size: 1.9rem;
+            margin-bottom: 25px;
+        }
+
+        @include breakpoint-up('md') {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
 
         &::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 150px;
+            width: 100px;
             height: 3px;
             background: $btn-primary-gradient;
             border-radius: 2px;
+
+            @include breakpoint-up('sm') {
+                width: 120px;
+            }
+
+            @include breakpoint-up('md') {
+                width: 150px;
+            }
         }
     }
 
     h3 {
-        font-family: $font-ps;
-        font-size: 1.5rem;
+        font-family: $font-ghost; // Ghost-Schriftart für Unterüberschriften
+        font-size: 1.3rem;
         font-weight: 600;
         color: $bg_glow_blue;
-        margin: 25px 0 15px;
+        margin: 20px 0 15px;
         position: relative;
+
+        @include breakpoint-up('sm') {
+            font-size: 1.4rem;
+        }
+
+        @include breakpoint-up('md') {
+            font-size: 1.5rem;
+            margin: 25px 0 15px;
+        }
     }
 
     // Formularbereiche
     form {
         background: rgba($background_color_dark, 0.4);
         border-radius: $border-radius;
-        padding: 25px;
+        padding: 15px;
         border: 1px solid rgba(74, 144, 217, 0.1);
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+
+        @include breakpoint-up('sm') {
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        @include breakpoint-up('md') {
+            padding: 25px;
+            margin-bottom: 30px;
+        }
 
         .form-label {
             color: lighten($white, 20%);
             font-weight: 500;
             margin-bottom: 5px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-family: $font-ps;
+
+            @include breakpoint-up('sm') {
+                font-size: 0.95rem;
+            }
         }
 
         .form-control {
             background-color: rgba($bg_dark, 0.6);
             border: 1px solid rgba(74, 144, 217, 0.2);
             color: $white;
-            padding: 12px 15px;
+            padding: 10px;
             border-radius: 5px;
             transition: all $transition-time;
             margin-bottom: 15px;
             font-family: $font-ps;
+
+            @include breakpoint-up('sm') {
+                padding: 12px 15px;
+            }
 
             &:focus {
                 background-color: rgba($bg_blue1, 0.8);
@@ -84,6 +173,7 @@
             background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
             background-repeat: no-repeat;
             background-position: right 10px center;
+            padding-right: 30px; // Stellt sicher, dass der Text den Pfeil nicht überdeckt
 
             option {
                 background-color: $bg_blue1;
@@ -92,25 +182,37 @@
         }
 
         textarea.form-control {
-            min-height: 120px;
+            min-height: 100px;
             resize: vertical;
+
+            @include breakpoint-up('sm') {
+                min-height: 120px;
+            }
         }
 
         input[type="file"] {
-            padding: 10px;
+            padding: 8px;
             background: rgba($bg_blue2, 0.3);
             cursor: pointer;
+
+            @include breakpoint-up('sm') {
+                padding: 10px;
+            }
 
             &::-webkit-file-upload-button {
                 background: $btn-primary-gradient;
                 border: none;
                 color: $white;
-                padding: 8px 15px;
+                padding: 6px 12px;
                 border-radius: 4px;
                 margin-right: 10px;
                 cursor: pointer;
                 font-family: $font-ps;
                 transition: all $transition-time;
+
+                @include breakpoint-up('sm') {
+                    padding: 8px 15px;
+                }
 
                 &:hover {
                     background: $btn-primary-gradient-hover;
@@ -123,8 +225,8 @@
             border: none;
             color: $white;
             font-weight: 600;
-            font-size: 1.05rem;
-            padding: 12px 30px;
+            font-size: 0.95rem;
+            padding: 10px 20px;
             border-radius: 4px;
             margin-top: 15px;
             cursor: pointer;
@@ -134,6 +236,17 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            font-family: $font-ps;
+
+            @include breakpoint-up('sm') {
+                font-size: 1rem;
+                padding: 10px 25px;
+            }
+
+            @include breakpoint-up('md') {
+                font-size: 1.05rem;
+                padding: 12px 30px;
+            }
 
             &:hover {
                 background: $btn-primary-gradient-hover;
@@ -172,10 +285,15 @@
         font-weight: 600;
         color: lighten($bg_glow_blue, 20%);
         margin-bottom: 10px;
+        font-family: $font-ps;
 
         i {
             margin-right: 8px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+
+            @include breakpoint-up('sm') {
+                font-size: 1.2rem;
+            }
         }
     }
 
@@ -184,10 +302,14 @@
         overflow: hidden;
         border: 2px dashed rgba($bg_glow_blue, 0.4);
         border-radius: 6px;
-        padding: 20px;
+        padding: 15px;
         text-align: center;
         background: rgba($bg_blue2, 0.2);
         transition: all $transition-time;
+
+        @include breakpoint-up('sm') {
+            padding: 20px;
+        }
 
         &:hover {
             border-color: $bg_glow_blue;
@@ -209,19 +331,34 @@
             pointer-events: none;
 
             .upload-icon {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 color: rgba($bg_glow_blue, 0.7);
-                margin-bottom: 10px;
+                margin-bottom: 8px;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1.8rem;
+                }
+
+                @include breakpoint-up('md') {
+                    font-size: 2rem;
+                    margin-bottom: 10px;
+                }
             }
         }
     }
 
     .file-info {
         margin-top: 10px;
-        padding: 10px;
+        padding: 8px;
         background: rgba($bg_blue1, 0.4);
         border-radius: 4px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        font-family: $font-ps;
+
+        @include breakpoint-up('sm') {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
 
         &:empty {
             display: none;
@@ -247,19 +384,28 @@
 
         img {
             max-width: 100%;
-            max-height: 150px;
+            max-height: 120px;
             border-radius: 4px;
             border: 2px solid rgba($bg_glow_blue, 0.5);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+            @include breakpoint-up('sm') {
+                max-height: 150px;
+            }
         }
     }
 
     .file-uploads-container {
         background: rgba($bg_blue1, 0.4);
         border-radius: $border-radius;
-        padding: 20px;
-        margin-bottom: 20px;
+        padding: 15px;
+        margin-bottom: 15px;
         border: 1px solid rgba($bg_glow_blue, 0.1);
+
+        @include breakpoint-up('sm') {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
     }
 
     // Miniaturbilder Grid
@@ -271,20 +417,29 @@
 
         .timage-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 10px;
+
+            @include breakpoint-up('sm') {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
 
             .timage-container {
                 position: relative;
 
                 .timage {
                     width: 100%;
-                    padding: 10px;
+                    padding: 8px;
                     background: rgba($bg_blue2, 0.3);
                     border: 1px solid rgba(74, 144, 217, 0.2);
                     border-radius: 4px;
                     color: $white;
                     transition: all $transition-time;
+
+                    @include breakpoint-up('sm') {
+                        padding: 10px;
+                    }
 
                     &:focus {
                         background-color: rgba($bg_blue1, 0.8);
@@ -297,12 +452,16 @@
                         background: $btn-primary-gradient;
                         border: none;
                         color: $white;
-                        padding: 8px 15px;
+                        padding: 6px 12px;
                         border-radius: 4px;
                         margin-right: 10px;
                         cursor: pointer;
                         font-family: $font-ps;
                         transition: all $transition-time;
+
+                        @include breakpoint-up('sm') {
+                            padding: 8px 15px;
+                        }
 
                         &:hover {
                             background: $btn-primary-gradient-hover;
@@ -316,7 +475,11 @@
     // Video-Info Styling
     .video-info {
         margin-top: 10px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+
+        @include breakpoint-up('sm') {
+            font-size: 0.9rem;
+        }
 
         &:empty {
             display: none;
@@ -328,12 +491,16 @@
         background: rgba($background_color_dark, 0.5);
         border: 1px solid rgba(74, 144, 217, 0.15);
         border-radius: $border-radius;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+        @include breakpoint-up('sm') {
+            margin-bottom: 20px;
+        }
 
         .card-header {
             background: linear-gradient(90deg, rgba($bg_blue2, 0.7), rgba($bg_blue1, 0.7));
-            padding: 15px 20px;
+            padding: 12px 15px;
             border-bottom: 1px solid rgba(74, 144, 217, 0.2);
             border-radius: $border-radius $border-radius 0 0;
             display: flex;
@@ -341,11 +508,20 @@
             align-items: center;
             cursor: pointer;
 
+            @include breakpoint-up('sm') {
+                padding: 15px 20px;
+            }
+
             h5 {
                 color: $white;
                 font-weight: 600;
                 margin: 0;
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                font-family: $font-ghost;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1.2rem;
+                }
             }
 
             .toggle-icon {
@@ -358,15 +534,25 @@
         }
 
         .card-body {
-            padding: 20px;
+            padding: 15px;
+
+            @include breakpoint-up('sm') {
+                padding: 20px;
+            }
 
             h6 {
                 color: $bg_glow_blue;
-                font-size: 1rem;
-                margin-bottom: 15px;
+                font-size: 0.95rem;
+                margin-bottom: 12px;
                 font-weight: 600;
                 position: relative;
                 padding-left: 20px;
+                font-family: $font-ghost;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1rem;
+                    margin-bottom: 15px;
+                }
 
                 &::before {
                     content: '';
@@ -374,16 +560,25 @@
                     left: 0;
                     top: 50%;
                     transform: translateY(-50%);
-                    width: 10px;
-                    height: 10px;
+                    width: 8px;
+                    height: 8px;
                     background: $bg_glow_blue;
                     border-radius: 50%;
+
+                    @include breakpoint-up('sm') {
+                        width: 10px;
+                        height: 10px;
+                    }
                 }
             }
 
             hr {
                 border-color: rgba(74, 144, 217, 0.2);
-                margin: 20px 0;
+                margin: 15px 0;
+
+                @include breakpoint-up('sm') {
+                    margin: 20px 0;
+                }
             }
         }
     }
@@ -391,22 +586,41 @@
     // Formular Unterbereich für Veröffentlichungseinstellungen
     .publish-controls {
         background: rgba($bg_blue1, 0.6);
-        padding: 20px;
+        padding: 15px;
         border-radius: $border-radius;
-        margin-top: 20px;
+        margin-top: 15px;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
         border-top: 1px solid rgba($bg_glow_blue, 0.2);
+
+        @include breakpoint-up('sm') {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        @include breakpoint-up('md') {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0;
+        }
 
         .form-check {
             margin-bottom: 0;
+            font-family: $font-ps;
 
             .form-check-input {
-                width: 1.2rem;
-                height: 1.2rem;
+                width: 1.1rem;
+                height: 1.1rem;
                 background-color: rgba($bg_dark, 0.7);
                 border: 1px solid rgba($bg_glow_blue, 0.4);
+
+                @include breakpoint-up('sm') {
+                    width: 1.2rem;
+                    height: 1.2rem;
+                }
 
                 &:checked {
                     background-color: $bg_glow_blue;
@@ -417,12 +631,27 @@
             .form-check-label {
                 padding-left: 5px;
                 cursor: pointer;
+                font-size: 0.9rem;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1rem;
+                }
             }
         }
 
         .game-upload-btn {
-            padding: 12px 30px;
+            padding: 10px 20px;
             font-weight: 600;
+            width: 100%;
+
+            @include breakpoint-up('sm') {
+                padding: 10px 25px;
+            }
+
+            @include breakpoint-up('md') {
+                width: auto;
+                padding: 12px 30px;
+            }
 
             i {
                 transition: transform $transition-time;
@@ -442,12 +671,16 @@
             background: rgba($background_color_dark, 0.4);
             border: 1px solid rgba(74, 144, 217, 0.15);
             margin-bottom: 15px;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             transition: all $transition-time;
             position: relative;
             overflow: hidden;
             color: $white;
+
+            @include breakpoint-up('sm') {
+                padding: 20px;
+            }
 
             &::before {
                 content: '';
@@ -455,9 +688,13 @@
                 left: 0;
                 top: 0;
                 height: 100%;
-                width: 4px;
+                width: 3px;
                 background: $bg_glow_blue;
                 opacity: 0.6;
+
+                @include breakpoint-up('sm') {
+                    width: 4px;
+                }
             }
 
             &:hover {
@@ -471,29 +708,48 @@
             }
 
             h5 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 font-weight: 600;
-                margin-bottom: 10px;
+                margin-bottom: 8px;
                 color: $bg_glow_blue;
+                font-family: $font-ghost;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1.2rem;
+                    margin-bottom: 10px;
+                }
             }
 
             p {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 color: rgba($white, 0.9);
                 margin-bottom: 0;
+                font-family: $font-ps;
+
+                @include breakpoint-up('sm') {
+                    font-size: 0.95rem;
+                }
             }
 
             .game-list-thumbnail {
-                height: 100px;
+                height: 80px;
                 width: 100%;
                 object-fit: cover;
                 border-radius: 4px;
                 border: 1px solid rgba($bg_glow_blue, 0.2);
                 box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+
+                @include breakpoint-up('sm') {
+                    height: 90px;
+                }
+
+                @include breakpoint-up('md') {
+                    height: 100px;
+                }
             }
 
             .no-image-placeholder {
-                height: 100px;
+                height: 80px;
                 width: 100%;
                 display: flex;
                 align-items: center;
@@ -501,43 +757,103 @@
                 background: rgba($bg_blue1, 0.5);
                 border-radius: 4px;
 
+                @include breakpoint-up('sm') {
+                    height: 90px;
+                }
+
+                @include breakpoint-up('md') {
+                    height: 100px;
+                }
+
                 i {
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                     color: rgba($white, 0.5);
+
+                    @include breakpoint-up('sm') {
+                        font-size: 1.8rem;
+                    }
+
+                    @include breakpoint-up('md') {
+                        font-size: 2rem;
+                    }
                 }
             }
 
             .game-meta {
-                margin-top: 10px;
+                margin-top: 8px;
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 6px;
+
+                @include breakpoint-up('sm') {
+                    margin-top: 10px;
+                    gap: 8px;
+                }
 
                 .badge {
-                    padding: 5px 10px;
+                    padding: 4px 8px;
                     border-radius: 15px;
                     font-weight: normal;
-                    font-size: 0.8rem;
+                    font-size: 0.75rem;
+                    font-family: $font-ps;
+
+                    @include breakpoint-up('sm') {
+                        padding: 5px 10px;
+                        font-size: 0.8rem;
+                    }
                 }
 
                 .game-price {
                     margin-left: auto;
                     background: rgba($bg_blue2, 0.6);
-                    padding: 5px 10px;
+                    padding: 4px 8px;
                     border-radius: 15px;
                     font-weight: 600;
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
+                    font-family: $font-ps;
+
+                    @include breakpoint-up('sm') {
+                        padding: 5px 10px;
+                        font-size: 0.9rem;
+                    }
                 }
             }
 
             .game-actions {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
+                justify-content: flex-start;
                 flex-wrap: wrap;
-                gap: 8px;
-                margin-top: 10px;
+                gap: 6px;
+                margin-top: 12px;
+
+                @include breakpoint-up('sm') {
+                    gap: 8px;
+                }
+
+                @include breakpoint-up('md') {
+                    justify-content: flex-end;
+                    margin-top: 10px;
+                }
+
+                .btn {
+                    font-size: 0.75rem;
+                    padding: 4px 8px;
+
+                    @include breakpoint-up('sm') {
+                        font-size: 0.8rem;
+                        padding: 5px 10px;
+                    }
+
+                    i {
+                        margin-right: 3px;
+
+                        @include breakpoint-up('sm') {
+                            margin-right: 5px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -547,25 +863,51 @@
         background: rgba($background_color_dark, 0.4);
         border: 1px dashed rgba(74, 144, 217, 0.3);
         border-radius: 8px;
-        padding: 40px 30px;
+        padding: 25px 20px;
         text-align: center;
         margin-top: 15px;
 
+        @include breakpoint-up('sm') {
+            padding: 30px 25px;
+        }
+
+        @include breakpoint-up('md') {
+            padding: 40px 30px;
+        }
+
         .empty-games-icon {
-            font-size: 4rem;
+            font-size: 3rem;
             color: rgba($bg_glow_blue, 0.3);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: pulse 2s infinite;
+
+            @include breakpoint-up('sm') {
+                font-size: 3.5rem;
+            }
+
+            @include breakpoint-up('md') {
+                font-size: 4rem;
+                margin-bottom: 20px;
+            }
         }
 
         p {
             margin-bottom: 5px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: $white;
+            font-family: $font-ps;
+
+            @include breakpoint-up('sm') {
+                font-size: 1.1rem;
+            }
 
             &.text-muted {
                 color: rgba($white, 0.6) !important;
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+
+                @include breakpoint-up('sm') {
+                    font-size: 0.9rem;
+                }
             }
         }
     }
@@ -579,9 +921,20 @@
 
         .modal-header {
             border-bottom-color: rgba($bg_glow_blue, 0.2);
+            padding: 15px;
+
+            @include breakpoint-up('sm') {
+                padding: 15px 20px;
+            }
 
             .modal-title {
                 color: $white;
+                font-family: $font-ghost;
+                font-size: 1.1rem;
+
+                @include breakpoint-up('sm') {
+                    font-size: 1.2rem;
+                }
             }
 
             .btn-close {
@@ -591,42 +944,33 @@
 
         .modal-body {
             color: rgba($white, 0.9);
+            padding: 15px;
+            font-family: $font-ps;
+            font-size: 0.9rem;
+
+            @include breakpoint-up('sm') {
+                padding: 20px;
+                font-size: 1rem;
+            }
         }
 
         .modal-footer {
             border-top-color: rgba($bg_glow_blue, 0.2);
-        }
-    }
-
-    // Responsive Anpassungen
-    @media (max-width: 768px) {
-        padding: 20px 15px;
-
-        h2 {
-            font-size: 1.8rem;
-        }
-
-        .timageDiv .timage-grid {
-            grid-template-columns: 1fr;
-        }
-
-        form {
             padding: 15px;
-        }
 
-        .list-group-item {
-            .game-actions {
-                justify-content: flex-start;
-                margin-top: 15px;
+            @include breakpoint-up('sm') {
+                padding: 15px 20px;
             }
-        }
 
-        .publish-controls {
-            flex-direction: column;
-            gap: 15px;
+            .btn {
+                font-family: $font-ps;
+                font-size: 0.85rem;
+                padding: 6px 12px;
 
-            .form-check {
-                margin-bottom: 10px;
+                @include breakpoint-up('sm') {
+                    font-size: 0.9rem;
+                    padding: 8px 15px;
+                }
             }
         }
     }
@@ -650,7 +994,7 @@
 
 // Zusätzlicher Effekt für Schriftenkennzeichnung
 .special-text {
-    font-family: $font-ps;
+    font-family: $font-ghost; // Ghost-Schriftart für spezielle Texte
     color: $bg_glow_blue;
     text-shadow: 0 0 5px rgba($bg_glow_blue, 0.5);
 }
@@ -668,131 +1012,182 @@
         right: 0;
         bottom: 0;
         background: linear-gradient(125deg,
-                rgba($bg_blue1, 0) 0%,
-                rgba($bg_glow_blue, 0.05) 25%,
-                rgba($bg_glow_blue, 0.1) 50%,
-                rgba($bg_glow_blue, 0.05) 75%,
-                rgba($bg_blue1, 0) 100%);
-        background-size: 400% 400%;
-        animation: gradientBg 15s ease infinite;
+                rgba($bg_blue1, 0),
+                rgba($bg_blue1, 0.5),
+                rgba($bg_blue1, 0.7),
+                rgba($bg_blue1, 0.9),
+                rgba($bg_blue1, 1));
+        animation: gradient-animation 15s ease-in-out infinite;
+        z-index: -1;
+        filter: blur(10px);
+        opacity: 0.5;
         pointer-events: none;
-        z-index: 1;
+        will-change: transform;
+        transform: translate3d(0, 0, 0);
+        transition: all 0.5s ease;
     }
-
-    * {
+    // Animierter Hintergrund für bestimmte Sektionen (Fortsetzung)
+    .animated-bg {
         position: relative;
-        z-index: 2;
-    }
-}
+        overflow: hidden;
 
-@keyframes gradientBg {
-    0% { background-position: 0% 50% }
-    50% { background-position: 100% 50% }
-    100% { background-position: 0% 50% }
-}
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(125deg,
+                    rgba($bg_blue1, 0) 0%,
+                    rgba($bg_glow_blue, 0.05) 25%,
+                    rgba($bg_glow_blue, 0.1) 50%,
+                    rgba($bg_glow_blue, 0.05) 75%,
+                    rgba($bg_blue1, 0) 100%);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
 
-// Glowing Effekt für Fokussierte Elemente
-.glow-on-hover {
-    transition: all $transition-time;
-
-    &:hover, &:focus {
-        box-shadow: 0 0 15px rgba($bg_glow_blue, 0.6);
-    }
-}
-
-// Outline Button-Stile
-.btn-outline-primary {
-    background: transparent;
-    border: 1px solid $bg_glow_blue;
-    color: $bg_glow_blue;
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all $transition-time;
-    font-family: $font-ps;
-
-    &:hover {
-        background: rgba($bg_glow_blue, 0.2);
-        color: $white;
-        border-color: $bg_glow_blue;
-        box-shadow: 0 0 10px rgba($bg_glow_blue, 0.4);
-    }
-}
-
-.btn-outline-danger {
-    background: transparent;
-    border: 1px solid $red;
-    color: $red;
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all $transition-time;
-    font-family: $font-ps;
-
-    &:hover {
-        background: rgba($red, 0.2);
-        color: $white;
-        border-color: $red;
-    }
-}
-
-.btn-outline-info {
-    background: transparent;
-    border: 1px solid lighten($bg_glow_blue, 10%);
-    color: lighten($bg_glow_blue, 10%);
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all $transition-time;
-    font-family: $font-ps;
-
-    &:hover {
-        background: rgba($bg_glow_blue, 0.2);
-        color: $white;
-        border-color: lighten($bg_glow_blue, 10%);
-    }
-}
-
-// Badge Styles
-.badge {
-    display: inline-block;
-    padding: 4px 8px;
-    font-size: 0.8rem;
-    border-radius: 4px;
-    font-weight: normal;
-    letter-spacing: 0.5px;
-
-    &.badge-primary {
-        background: linear-gradient(135deg, #66c0f4, #4a90d9);
-        color: $white;
+        * {
+            position: relative;
+            z-index: 2;
+        }
     }
 
-    &.badge-success {
-        background: linear-gradient(135deg, $bg_green, $bg_green_dark);
-        color: $white;
+    @keyframes gradientBg {
+        0% { background-position: 0% 50% }
+        50% { background-position: 100% 50% }
+        100% { background-position: 0% 50% }
     }
 
-    &.badge-danger {
-        background: linear-gradient(135deg, $red, $red_dark);
-        color: $white;
+    // Glowing Effekt für Fokussierte Elemente
+    .glow-on-hover {
+        transition: all $transition-time;
+
+        &:hover, &:focus {
+            box-shadow: 0 0 15px rgba($bg_glow_blue, 0.6);
+        }
     }
-}
 
-// Custom Scrollbar
-::-webkit-scrollbar {
-    width: $scrollbar-size;
-    height: $scrollbar-size;
-}
+    // Outline Button-Stile
+    .btn-outline-primary {
+        background: transparent;
+        border: 1px solid $bg_glow_blue;
+        color: $bg_glow_blue;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all $transition-time;
+        font-family: $font-ps;
 
-::-webkit-scrollbar-track {
-    background: rgba($bg_blue1, 0.8);
-    border: 1px solid $scrollbar-track-border;
-    border-radius: 6px;
-}
+        &:hover {
+            background: rgba($bg_glow_blue, 0.2);
+            color: $white;
+            border-color: $bg_glow_blue;
+            box-shadow: 0 0 10px rgba($bg_glow_blue, 0.4);
+        }
+    }
 
-::-webkit-scrollbar-thumb {
-    background: rgba($bg_glow_blue, 0.6);
-    border-radius: 6px;
-    transition: all $transition-time;
+    .btn-outline-danger {
+        background: transparent;
+        border: 1px solid $red;
+        color: $red;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all $transition-time;
+        font-family: $font-ps;
 
-    &:hover {
-        background: rgba($bg_glow_blue, 0.8);
+        &:hover {
+            background: rgba($red, 0.2);
+            color: $white;
+            border-color: $red;
+        }
+    }
+
+    .btn-outline-info {
+        background: transparent;
+        border: 1px solid lighten($bg_glow_blue, 10%);
+        color: lighten($bg_glow_blue, 10%);
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: all $transition-time;
+        font-family: $font-ps;
+
+        &:hover {
+            background: rgba($bg_glow_blue, 0.2);
+            color: $white;
+            border-color: lighten($bg_glow_blue, 10%);
+        }
+    }
+
+    // Badge Styles
+    .badge {
+        display: inline-block;
+        padding: 4px 8px;
+        font-size: 0.8rem;
+        border-radius: 4px;
+        font-weight: normal;
+        letter-spacing: 0.5px;
+        font-family: $font-ps;
+
+        &.badge-primary {
+            background: linear-gradient(135deg, #66c0f4, #4a90d9);
+            color: $white;
+        }
+
+        &.badge-success {
+            background: linear-gradient(135deg, $bg_green, $bg_green_dark);
+            color: $white;
+        }
+
+        &.badge-danger {
+            background: linear-gradient(135deg, $red, $red_dark);
+            color: $white;
+        }
+    }
+
+    // Custom Scrollbar
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+
+        @include breakpoint-up('md') {
+            width: $scrollbar-size;
+            height: $scrollbar-size;
+        }
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba($bg_blue1, 0.8);
+        border: 1px solid $scrollbar-track-border;
+        border-radius: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba($bg_glow_blue, 0.6);
+        border-radius: 6px;
+        transition: all $transition-time;
+
+        &:hover {
+            background: rgba($bg_glow_blue, 0.8);
+        }
+    }
+
+    // Mobile responsiveness final fixes
+    @include breakpoint-down('sm') {
+        .row {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        .col-md-6, .col-md-12, .col-sm-3, .col-sm-4, .col-sm-5 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .developer-dashboard {
+            overflow-x: hidden;
+        }
     }
 }

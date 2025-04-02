@@ -23,113 +23,131 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .i-container {
   background-color: #2A2D32;
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: 0;
   padding: 20px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
-  max-width: 1000px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  margin: 20px auto;
+  width: 100%;
   font-family: "Playstation", sans-serif;
   transition: all 0.3s;
+  line-height: 1.6;
 }
-@media (max-width: 992px) {
+@media (min-width: 576px) {
   .i-container {
     width: 95%;
     padding: 25px;
-    margin: 40px auto;
+    margin: 25px auto;
+    border-radius: 6px;
   }
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .i-container {
     width: 92%;
-    padding: 20px;
+    padding: 30px;
     margin: 30px auto;
     border-radius: 8px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 992px) {
   .i-container {
-    width: 100%;
-    padding: 15px;
-    margin: 20px auto;
-    border-radius: 0;
+    width: 90%;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 10px;
+    max-width: 1000px;
   }
 }
 .i-container h1 {
-  font-size: 2.5em;
-  margin-bottom: 40px;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
   font-family: "Ghost", sans-serif;
+  text-align: center;
 }
-@media (max-width: 992px) {
+@media (min-width: 576px) {
   .i-container h1 {
-    font-size: 2.2em;
-    margin-bottom: 35px;
-  }
-}
-@media (max-width: 768px) {
-  .i-container h1 {
-    font-size: 2em;
+    font-size: 2rem;
     margin-bottom: 30px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .i-container h1 {
-    font-size: 1.8em;
-    margin-bottom: 25px;
-    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+    text-align: left;
+  }
+}
+@media (min-width: 992px) {
+  .i-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
   }
 }
 .i-container p {
-  margin-bottom: 15px;
-  line-height: 1.5;
-  font-size: 16px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+  font-size: 1rem;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .i-container p {
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
   }
 }
-@media (max-width: 576px) {
+@media (min-width: 992px) {
   .i-container p {
-    font-size: 0.9rem;
-    margin-bottom: 12px;
-    text-align: left;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
 }
 .i-container p strong {
   color: #4a90d9;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  display: block;
+  margin-bottom: 6px;
 }
-@media (max-width: 576px) {
+@media (min-width: 768px) {
   .i-container p strong {
-    display: block;
+    font-size: 1.25rem;
     margin-bottom: 5px;
   }
 }
-.i-container .schulprojekt-hinweis {
-  margin-top: 30px;
-  padding: 15px;
-  background: rgba(42, 71, 94, 0.3);
-  border-radius: 6px;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-@media (max-width: 768px) {
-  .i-container .schulprojekt-hinweis {
-    margin-top: 25px;
-    padding: 12px;
+@media (min-width: 992px) {
+  .i-container p strong {
+    display: inline;
+    margin-bottom: 0;
   }
 }
-@media (max-width: 576px) {
+.i-container .schulprojekt-hinweis {
+  margin-top: 25px;
+  padding: 15px;
+  background: rgba(42, 71, 94, 0.3);
+  border-radius: 5px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+@media (min-width: 768px) {
   .i-container .schulprojekt-hinweis {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 4px;
-    font-size: 0.85rem;
+    margin-top: 30px;
+    padding: 18px;
+    font-size: 0.9rem;
+  }
+}
+@media (min-width: 992px) {
+  .i-container .schulprojekt-hinweis {
+    margin-top: 35px;
+    padding: 20px;
+    border-radius: 6px;
   }
 }
 

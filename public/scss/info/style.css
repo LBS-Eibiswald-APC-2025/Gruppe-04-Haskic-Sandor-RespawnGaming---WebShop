@@ -23,168 +23,228 @@
 /* Navbar */
 /* Auth-Box (z.B. für Login) */
 /* Scrollbar-Farbe */
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  height: auto !important;
+  min-height: 100vh;
+}
+
 .info-page {
   min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .info-page .info-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 700px;
+  width: 100%;
+  min-height: 100vh;
+  max-height: unset;
   text-align: center;
-  margin: 20px;
+  margin: 0;
+  padding: 20px;
   color: #ffffff;
   background-blend-mode: darken;
   background-size: cover;
-  background: rgba(0, 0, 0, 0.3) url("../../image/main/Hero_Illustration.png") no-repeat center;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.4) url("../../image/main/Hero_Illustration.png") no-repeat center;
+  border-radius: 0;
+  box-shadow: none;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .info-page .info-section {
-    height: 100vh;
-    margin: 0;
-    padding: 20px;
-    border-radius: 0;
-    overflow-y: auto;
+    padding: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+}
+@media (min-width: 768px) {
+  .info-page .info-section {
+    height: 650px;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
   }
 }
 .info-page .info-content {
   max-width: 600px;
-  padding: 30px;
+  padding: 20px;
   width: 100%;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .info-page .info-content {
-    padding: 15px;
+    padding: 25px;
+  }
+}
+@media (min-width: 768px) {
+  .info-page .info-content {
+    padding: 30px;
   }
 }
 .info-page .info-logo {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+@media (min-width: 768px) {
+  .info-page .info-logo {
+    margin-bottom: 30px;
+  }
 }
 .info-page .info-logo .logo {
-  height: 100px;
+  height: 80px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-logo .logo {
-    height: 80px;
+    height: 100px;
   }
 }
 .info-page .info-title {
   font-family: "Ghost", sans-serif;
-  font-size: 2.5em;
-  margin-bottom: 30px;
+  font-size: 2rem;
+  margin-bottom: 20px;
   color: #4a90d9;
   text-shadow: 0 0 10px #4a90d9;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-title {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
   }
 }
 .info-page .info-details {
-  margin-bottom: 40px;
+  margin-bottom: 25px;
+}
+@media (min-width: 768px) {
+  .info-page .info-details {
+    margin-bottom: 40px;
+  }
 }
 .info-page .info-details h2 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-family: "Ghost", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-details h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
 }
 .info-page .info-details p {
   font-family: "Playstation", sans-serif;
-  font-size: 1.1em;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-details p {
-    font-size: 1em;
-    line-height: 1.5;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
   }
 }
 .info-page .info-text {
   font-family: "Playstation", sans-serif;
-  font-size: 120%;
-  margin-bottom: 30px;
-  line-height: 1.5;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  line-height: 1.4;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-text {
-    font-size: 110%;
+    font-size: 1.1rem;
     margin-bottom: 25px;
-    line-height: 1.4;
+    line-height: 1.5;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 992px) {
   .info-page .info-text {
-    font-size: 100%;
-    margin-bottom: 20px;
-    line-height: 1.3;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
   }
 }
 .info-page .info-text h2 {
-  font-size: 1.8em;
-  margin-bottom: 15px;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-family: "Ghost", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-text h2 {
-    font-size: 1.5em;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 992px) {
   .info-page .info-text h2 {
-    font-size: 1.3em;
+    font-size: 1.8rem;
   }
 }
 .info-page .info-text p {
-  font-size: 1.1em;
-  line-height: 1.5;
-  margin-bottom: 15px;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-text p {
-    font-size: 1em;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 992px) {
   .info-page .info-text p {
-    font-size: 0.9em;
+    font-size: 1.1rem;
   }
 }
 .info-page .online-status {
-  font-size: 1.2em;
-  margin-bottom: 30px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
   color: #8ed529;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 768px) {
+  .info-page .online-status {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
 }
 .info-page .online-status p {
   color: #ffffff;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+@media (min-width: 768px) {
+  .info-page .online-status p {
+    margin-bottom: 10px;
+  }
+}
+.info-page .online-status .stat-value {
+  font-weight: bold;
 }
 .info-page .info-btn {
-  padding: 15px 30px;
+  padding: 12px 25px;
   background-color: #4a90d9;
   color: #ffffff;
   text-decoration: none;
-  border-radius: 10px;
+  border-radius: 8px;
   transition: all 0.3s ease;
   display: inline-block;
-  font-size: 1.1em;
-  min-width: 200px;
+  font-size: 1.05rem;
+  min-width: 180px;
+  font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .info-page .info-btn {
-    padding: 12px 25px;
-    font-size: 1em;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    min-width: 200px;
+    border-radius: 10px;
   }
 }
-.info-page .info-btn:hover {
+.info-page .info-btn:hover, .info-page .info-btn:active {
   transform: scale(1.05);
   background: #8ed529;
 }

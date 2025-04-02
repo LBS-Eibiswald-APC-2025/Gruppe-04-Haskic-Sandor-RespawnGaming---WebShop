@@ -28,38 +28,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 25px;
+  margin: 0;
 }
-@media screen and (max-width: 768px) {
-  .password-change-page {
-    margin-top: 20px;
-  }
-}
-@media screen and (max-width: 576px) {
+@media screen and (min-height: 700px) {
   .password-change-page {
     margin-top: 15px;
   }
 }
+@media screen and (min-height: 800px) {
+  .password-change-page {
+    margin-top: 25px;
+  }
+}
 .password-change-page .password-change-box {
   background-color: #2A2D32;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  padding: 30px;
-  width: 90%;
+  padding: 20px;
+  width: 98%;
   max-width: 500px;
   text-align: center;
+  box-sizing: border-box;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box {
     padding: 25px;
     width: 95%;
+    border-radius: 10px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box {
-    padding: 20px;
-    width: 98%;
-    border-radius: 8px;
+    padding: 30px;
+    width: 90%;
+    border-radius: 10px;
   }
 }
 .password-change-page .password-change-box * {
@@ -67,43 +69,46 @@
 }
 .password-change-page .password-change-box h2 {
   font-family: "Ghost", sans-serif !important;
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
   color: #ffffff;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box h2 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    margin-bottom: 25px;
   }
 }
 .password-change-page .password-change-box form .mb-3 {
   margin-bottom: 15px;
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box form .mb-3 {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
   }
 }
 .password-change-page .password-change-box .pw-change-label {
   display: block;
   margin-bottom: 5px;
   color: #ffffff;
-  font-size: 1em;
+  font-size: 0.95rem;
+  text-align: left;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box .pw-change-label {
-    font-size: 0.95em;
+    font-size: 1rem;
+    margin-bottom: 8px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box .pw-change-label {
-    font-size: 0.9em;
+    margin-bottom: 10px;
   }
 }
 .password-change-page .password-change-box .pw-change-input {
@@ -113,66 +118,74 @@
   color: #ffffff;
   width: 100%;
   text-align: center;
-  padding: 10px 20px;
+  padding: 12px 15px;
   margin: 0 auto 15px auto;
+  font-size: 1rem;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box .pw-change-input {
-    padding: 12px;
-    font-size: 0.95em;
+    padding: 12px 20px;
+    border-radius: 8px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box .pw-change-input {
-    padding: 10px;
-    font-size: 0.9em;
-    margin-bottom: 12px;
+    padding: 10px 20px;
+    border-radius: 5px;
   }
 }
 .password-change-page .password-change-box .pw-change-input::placeholder {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   text-align: center;
 }
 .password-change-page .password-change-box .pw-change-input:focus {
-  outline: 2px solid #4a90d9;
+  outline: none;
+  border: 1px solid #4a90d9;
 }
 .password-change-page .password-change-box .pw-change-submit-btn {
   font-family: "Ghost", sans-serif !important;
   background-color: #66c0f4;
-  padding: 10px 20px;
-  border-radius: 10px;
-  width: 70%;
+  padding: 12px 15px;
+  border-radius: 5px;
+  width: 100%;
   cursor: pointer;
   color: #ffffff;
-  border: 1px solid transparent;
-  position: relative;
-  z-index: 1;
-  transition: background-color 0.3s ease-in-out;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+  margin-top: 10px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box .pw-change-submit-btn {
     width: 80%;
-    padding: 12px;
-    font-size: 0.95em;
+    padding: 12px 20px;
+    border-radius: 8px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .password-change-page .password-change-box .pw-change-submit-btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 0.9em;
+    width: 70%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
   }
 }
-.password-change-page .password-change-box .pw-change-submit-btn:hover {
+.password-change-page .password-change-box .pw-change-submit-btn:hover, .password-change-page .password-change-box .pw-change-submit-btn:active {
   background-color: #8ed529;
-  border: 1px solid #8ed529;
+  transform: scale(1.05);
+}
+@media (max-width: 575.98px) {
+  .password-change-page .password-change-box .pw-change-submit-btn:hover, .password-change-page .password-change-box .pw-change-submit-btn:active {
+    transform: scale(1.02);
+  }
 }
 .password-change-page .password-change-box .back-to-login {
-  margin-top: 15px;
+  margin-top: 30px;
+  text-align: center;
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box .back-to-login {
-    margin-top: 12px;
+    margin-top: 35px;
   }
 }
 .password-change-page .password-change-box .back-to-login a {
@@ -180,22 +193,20 @@
   text-decoration: none;
   transition: transform 0.3s ease-in-out;
   display: inline-block;
+  font-size: 0.95rem;
+  padding: 5px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .password-change-page .password-change-box .back-to-login a {
-    font-size: 0.95em;
+    font-size: 1rem;
   }
 }
-@media screen and (max-width: 576px) {
-  .password-change-page .password-change-box .back-to-login a {
-    font-size: 0.9em;
-  }
-}
-.password-change-page .password-change-box .back-to-login a:hover {
+.password-change-page .password-change-box .back-to-login a:hover, .password-change-page .password-change-box .back-to-login a:active {
   transform: scale(1.05);
+  color: #4a90d9;
 }
-@media screen and (max-width: 576px) {
-  .password-change-page .password-change-box .back-to-login a:hover {
+@media (max-width: 575.98px) {
+  .password-change-page .password-change-box .back-to-login a:hover, .password-change-page .password-change-box .back-to-login a:active {
     transform: scale(1.02);
   }
 }

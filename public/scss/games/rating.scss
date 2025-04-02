@@ -1,27 +1,64 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
 .rating-mini {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px; // Erhöht für bessere Touch-Ziele
   padding: 5px 0;
   font-family: $font-ps;
 
-  @media (max-width: 768px) {
+  @include breakpoint-up('sm') {
+    flex-direction: row;
+    align-items: center;
     gap: 8px;
+    padding: 4px 0;
   }
 
-  @media (max-width: 576px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+  @include breakpoint-up('md') {
+    gap: 10px;
+    padding: 5px 0;
   }
 
   .rating-percent {
     color: $bg_green;
-    font-size: 0.95rem;
+    font-size: 0.9rem; // Erhöht für bessere Lesbarkeit auf Mobilgeräten
     display: flex;
     align-items: center;
+
+    @include breakpoint-up('sm') {
+      font-size: 0.9rem;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 0.95rem;
+    }
 
     &.positive {
       color: $bg_green;
@@ -34,20 +71,34 @@
 
   .rating-count {
     color: rgba($white, 0.7);
-    font-size: 0.85rem;
+    font-size: 0.8rem; // Erhöht für bessere Lesbarkeit
+
+    @include breakpoint-up('sm') {
+      font-size: 0.8rem;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 0.85rem;
+    }
   }
 }
 
 .rating-bars {
   width: 100%;
-  height: 24px;
+  height: 24px; // Erhöht für bessere Touch-Ziele
   background: rgba($bg_blue1, 0.3);
   border-radius: 4px;
   overflow: hidden;
-  margin: 10px 0;
+  margin: 10px 0; // Erhöht für besseren Abstand
 
-  @media (max-width: 768px) {
-    height: 20px;
+  @include breakpoint-up('sm') {
+    height: 24px;
+    margin: 10px 0;
+  }
+
+  @include breakpoint-up('md') {
+    height: 26px;
+    margin: 12px 0;
   }
 
   .rating-bar {
@@ -56,9 +107,18 @@
     align-items: center;
     justify-content: center;
     color: $white;
-    font-size: 0.9rem;
+    font-size: 0.8rem; // Erhöht für bessere Lesbarkeit
     transition: width $transition-time;
     font-family: $font-ps;
+    padding: 0 8px; // Sicherstellen, dass Text sichtbar ist
+
+    @include breakpoint-up('sm') {
+      font-size: 0.8rem;
+    }
+
+    @include breakpoint-up('md') {
+      font-size: 0.9rem;
+    }
 
     &.positive {
       background: linear-gradient(to right, darken($bg_green, 10%), $bg_green);
@@ -67,5 +127,49 @@
     &.negative {
       background: linear-gradient(to right, darken($red, 10%), $red);
     }
+  }
+}
+
+// Responsive Anpassung für sehr kleine Bildschirme
+@include breakpoint-down('xs') {
+  .rating-bar {
+    padding: 0 6px;
+    justify-content: flex-start;
+
+    &.positive {
+      text-align: left;
+    }
+
+    &.negative {
+      text-align: right;
+      justify-content: flex-end;
+    }
+  }
+
+  // Verbesserte Handhabung für schmale Balken
+  // Wenn die Balken sehr schmal sind, Text ausblenden
+  .rating-bar[style*="width: 20%"], // Schwellenwert erhöht
+  .rating-bar[style*="width: 19%"],
+  .rating-bar[style*="width: 18%"],
+  .rating-bar[style*="width: 17%"],
+  .rating-bar[style*="width: 16%"],
+  .rating-bar[style*="width: 15%"],
+  .rating-bar[style*="width: 14%"],
+  .rating-bar[style*="width: 13%"],
+  .rating-bar[style*="width: 12%"],
+  .rating-bar[style*="width: 11%"],
+  .rating-bar[style*="width: 10%"],
+  .rating-bar[style*="width: 9%"],
+  .rating-bar[style*="width: 8%"],
+  .rating-bar[style*="width: 7%"],
+  .rating-bar[style*="width: 6%"],
+  .rating-bar[style*="width: 5%"],
+  .rating-bar[style*="width: 4%"],
+  .rating-bar[style*="width: 3%"],
+  .rating-bar[style*="width: 2%"],
+  .rating-bar[style*="width: 1%"],
+  .rating-bar[style*="width: 0%"] {
+    font-size: 0;
+    padding: 0;
   }
 }

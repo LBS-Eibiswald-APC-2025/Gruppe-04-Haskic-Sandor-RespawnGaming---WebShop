@@ -26,118 +26,170 @@
 .auth-page-box {
   background-color: #2A2D32;
   color: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
+  border-radius: 8px;
+  padding: 20px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
+  margin: 20px auto;
+  width: 98%;
   max-width: 500px;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .auth-page-box {
     padding: 25px;
     margin: 30px auto;
     width: 95%;
+    border-radius: 10px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .auth-page-box {
-    padding: 20px;
-    margin: 20px auto;
-    width: 98%;
-    border-radius: 8px;
+    padding: 30px;
+    margin: 50px auto;
+    width: 90%;
+    border-radius: 10px;
   }
 }
-@media screen and (max-width: 768px) {
+.auth-page-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-family: "Ghost", sans-serif;
+}
+@media (min-width: 576px) {
   .auth-page-box h2 {
-    font-size: 1.8em;
+    font-size: 1.8rem;
     margin-bottom: 20px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .auth-page-box h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+}
+.auth-page-box .text-center {
+  text-align: center !important;
+}
+.auth-page-box .input-group {
+  margin-bottom: 15px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .auth-page-box .input-group {
+    margin-bottom: 20px;
   }
 }
 .auth-page-box .form-control {
   font-family: "Playstation", sans-serif;
   background-color: #3a3f44;
   border: none;
-  padding: 10px;
-  margin-bottom: 15px;
+  padding: 12px 15px;
   color: #ffffff;
   border-radius: 5px;
+  width: 100%;
+  font-size: 1rem;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .auth-page-box .form-control {
-    padding: 12px;
-    margin-bottom: 12px;
-    font-size: 0.95em;
+    padding: 12px 18px;
+    font-size: 1rem;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .auth-page-box .form-control {
     padding: 10px;
-    margin-bottom: 10px;
-    font-size: 0.9em;
+    font-size: 1.05rem;
+    border-radius: 5px;
   }
 }
 .auth-page-box .form-control::placeholder {
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
+}
+.auth-page-box .form-control:focus {
+  outline: none;
+}
+.auth-page-box form + .mt-3 {
+  margin-top: 15px !important;
+}
+@media (min-width: 768px) {
+  .auth-page-box form + .mt-3 {
+    margin-top: 25px !important;
+  }
+}
+.auth-page-box .mt-3 {
+  margin-top: 10px;
+  text-align: center !important;
+}
+@media (min-width: 576px) {
+  .auth-page-box .mt-3 {
+    margin-top: 15px;
+  }
+}
+@media (min-width: 768px) {
+  .auth-page-box .mt-3 {
+    margin-top: 15px;
+  }
+}
+.auth-page-box .link {
+  text-align: center !important;
 }
 .auth-page-box .link a {
   display: inline-block;
-  font-family: "Playstation", sans-serif !important;
+  font-family: "Playstation", sans-serif;
   color: #ffffff !important;
+  text-decoration: none;
   transition: transform 0.3s ease-in-out !important;
+  font-size: 0.9rem;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .auth-page-box .link a {
-    font-size: 0.95em;
+    font-size: 0.95rem;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .auth-page-box .link a {
-    font-size: 0.9em;
+    font-size: 1rem;
   }
 }
-.auth-page-box .link a:hover {
+.auth-page-box .link a:hover, .auth-page-box .link a:active {
   transform: scale(1.05) !important;
 }
-@media screen and (max-width: 576px) {
-  .auth-page-box .link a:hover {
+@media (max-width: 575.98px) {
+  .auth-page-box .link a:hover, .auth-page-box .link a:active {
     transform: scale(1.02) !important;
   }
 }
 .auth-page-box .btn.btn-primary {
+  display: block;
+  width: 100%;
   background-color: #66c0f4;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 15px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  font-family: "Playstation", sans-serif;
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+  margin: 10px auto 0;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .auth-page-box .btn.btn-primary {
-    padding: 8px 18px;
-    font-size: 0.95em;
+    font-size: 1.05rem;
+    padding: 12px 20px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .auth-page-box .btn.btn-primary {
-    padding: 8px 15px;
-    font-size: 0.9em;
-    width: 100%;
+    font-size: 1.1rem;
+    padding: 10px 20px;
   }
 }
-.auth-page-box .btn.btn-primary:hover {
+.auth-page-box .btn.btn-primary:hover, .auth-page-box .btn.btn-primary:active {
   background-color: #8ed529;
-  transform: scale(1.05);
 }
-@media screen and (max-width: 576px) {
-  .auth-page-box .btn.btn-primary:hover {
-    transform: scale(1.02);
-  }
+.auth-page-box .w-100 {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */

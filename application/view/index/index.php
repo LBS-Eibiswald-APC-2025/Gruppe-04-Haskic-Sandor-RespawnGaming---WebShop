@@ -13,13 +13,11 @@ $AllGames = GamesModel::getAllGames(5);
                 <h1>Respawn Gaming</h1>
                 <p>Entdecke Spiele und tritt unserer Gamer-Community bei!</p>
                 <a href="<?php echo Config::get('URL'); ?>games" class="btn-primary">Jetzt Loslegen!</a>
-                <div class="search-bar mt-4">
+                <div class="search-bar">
                     <form action="<?php echo Config::get('URL'); ?>games/search" method="post">
                         <div class="input-group">
-                            <label>
-                                <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
-                            </label>
-                            <button type="submit" class="btn-secondary">Suchen</button>
+                            <input type="text" name="search" class="form-control" placeholder="Suche nach Spielen">
+                            <button type="submit" class="btn-search">Suchen</button>
                         </div>
                     </form>
                 </div>

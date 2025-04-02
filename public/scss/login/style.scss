@@ -1,85 +1,159 @@
 @import '../main/_variables.scss';
 
+// Breakpoints definieren
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px
+);
+
+// Media Query Mixins
+@mixin breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint) - 0.02) {
+      @content;
+    }
+  }
+}
+
 .auth-page-box {
   background-color: $background_color_dark;
   color: $white;
-  border-radius: $border-radius;
-  padding: 30px;
+  border-radius: 8px; // Leicht reduzierter Radius für mobile Geräte
+  padding: 20px; // Optimiert für Mobile
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
+  margin: 20px auto;
+  width: 98%; // Fast volle Breite auf mobilen Geräten
   max-width: 500px;
 
-  @media screen and (max-width: 768px) {
+  @include breakpoint-up('sm') {
     padding: 25px;
     margin: 30px auto;
     width: 95%;
+    border-radius: 10px;
   }
 
-  @media screen and (max-width: 576px) {
-    padding: 20px;
-    margin: 20px auto;
-    width: 98%;
-    border-radius: 8px;
+  @include breakpoint-up('md') {
+    padding: 30px;
+    margin: 50px auto;
+    width: 90%;
+    border-radius: $border-radius;
   }
 
   h2 {
-    @media screen and (max-width: 768px) {
-      font-size: 1.8em;
+    font-size: 1.5rem; // Optimiert für Mobile
+    margin-bottom: 15px;
+    font-family: $font-ghost; // Sicherstellen der richtigen Schriftart
+
+    @include breakpoint-up('sm') {
+      font-size: 1.8rem;
       margin-bottom: 20px;
     }
 
-    @media screen and (max-width: 576px) {
-      font-size: 1.5em;
-      margin-bottom: 15px;
+    @include breakpoint-up('md') {
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+  }
+
+  .text-center {
+    text-align: center !important;
+  }
+
+  .input-group {
+    margin-bottom: 15px; // Mehr Abstand für Touch-Geräte
+    width: 100%;
+
+    @include breakpoint-up('md') {
+      margin-bottom: 20px;
     }
   }
 
   .form-control {
-    font-family: 'Playstation', sans-serif;
+    font-family: $font-ps;
     background-color: $bg_auth;
     border: none;
-    padding: $auth-form-padding;
-    margin-bottom: $auth-form-margin-bottom;
+    padding: 12px 15px; // Größeres Padding für bessere Touch-Bedienung
     color: $white;
-    border-radius: $auth-form-border-radius;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem; // Lesbarere Schriftgröße für mobile Geräte
 
-    @media screen and (max-width: 768px) {
-      padding: 12px;
-      margin-bottom: 12px;
-      font-size: 0.95em;
+    @include breakpoint-up('sm') {
+      padding: 12px 18px;
+      font-size: 1rem;
     }
 
-    @media screen and (max-width: 576px) {
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 0.9em;
+    @include breakpoint-up('md') {
+      padding: $auth-form-padding;
+      font-size: 1.05rem;
+      border-radius: $auth-form-border-radius;
     }
 
     &::placeholder {
-      color: lighten($white, 20%);
+      color: rgba(255, 255, 255, 0.7); // Besserer Kontrast
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // Gezielter Abstand zwischen Button und erstem Link darunter
+  form + .mt-3 {
+    margin-top: 15px !important; // Deutlich mehr Abstand
+
+    @include breakpoint-up('md') {
+      margin-top: 25px !important;
+    }
+  }
+
+  .mt-3 {
+    margin-top: 10px;
+    text-align: center !important;
+
+    @include breakpoint-up('sm') {
+      margin-top: 15px;
+    }
+
+    @include breakpoint-up('md') {
+      margin-top: 15px;
     }
   }
 
   .link {
+    text-align: center !important;
+
     a {
       display: inline-block;
-      font-family: 'Playstation', sans-serif !important;
+      font-family: $font-ps;
       color: $white !important;
+      text-decoration: none;
       transition: transform $transition-time ease-in-out !important;
+      font-size: 0.9rem;
 
-      @media screen and (max-width: 768px) {
-        font-size: 0.95em;
+      @include breakpoint-up('sm') {
+        font-size: 0.95rem;
       }
 
-      @media screen and (max-width: 576px) {
-        font-size: 0.9em;
+      @include breakpoint-up('md') {
+        font-size: 1rem;
       }
 
-      &:hover {
+      &:hover, &:active {
         transform: scale(1.05) !important;
 
-        @media screen and (max-width: 576px) {
+        @include breakpoint-down('sm') {
           transform: scale(1.02) !important;
         }
       }
@@ -87,30 +161,36 @@
   }
 
   .btn.btn-primary {
+    display: block;
+    width: 100%;
     background-color: $bg-auth-btn;
     border: none;
-    padding: $btn-padding;
+    padding: 12px 15px; // Größeres Padding für bessere Touch-Bedienung
+    border-radius: 5px;
     cursor: pointer;
-    transition: transform $transition-time ease-in-out;
+    transition: background-color $transition-time ease-in-out;
+    font-family: $font-ps;
+    font-size: 1rem;
+    color: $white;
+    text-align: center;
+    margin: 10px auto 0; // Abstand nach oben und zentriert
 
-    @media screen and (max-width: 768px) {
-      padding: 8px 18px;
-      font-size: 0.95em;
+    @include breakpoint-up('sm') {
+      font-size: 1.05rem;
+      padding: 12px 20px;
     }
 
-    @media screen and (max-width: 576px) {
-      padding: 8px 15px;
-      font-size: 0.9em;
-      width: 100%;
+    @include breakpoint-up('md') {
+      font-size: 1.1rem;
+      padding: $btn-padding;
     }
 
-    &:hover {
+    &:hover, &:active {
       background-color: $bg_green;
-      transform: scale(1.05);
-
-      @media screen and (max-width: 576px) {
-        transform: scale(1.02);
-      }
     }
+  }
+
+  .w-100 {
+    width: 100%;
   }
 }

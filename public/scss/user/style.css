@@ -27,40 +27,57 @@
 .profile-container {
   background-color: #2A2D32;
   color: #ffffff;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 50px auto;
-  width: 90%;
+  margin: 20px auto;
+  width: 98%;
   max-width: 1000px;
+  font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-height: 700px) {
   .profile-container {
-    width: 95%;
     margin: 30px auto;
   }
 }
-@media screen and (max-width: 576px) {
+@media screen and (min-height: 800px) {
   .profile-container {
-    width: 98%;
-    margin: 20px auto;
-    border-radius: 8px;
+    margin: 40px auto;
+  }
+}
+@media (min-width: 576px) {
+  .profile-container {
+    width: 95%;
+    border-radius: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .profile-container {
+    width: 90%;
+    border-radius: 10px;
   }
 }
 .profile-container .profile-header {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 180px;
   background-color: rgb(65.2826086957, 69.9456521739, 77.7173913043);
-  border-radius: 10px;
+  border-radius: 8px 8px 0 0;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-container .profile-header {
-    height: 250px;
+    height: 220px;
+    border-radius: 10px 10px 0 0;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-container .profile-header {
-    height: 200px;
+    height: 250px;
+    border-radius: 10px 10px 0 0;
+  }
+}
+@media (min-width: 992px) {
+  .profile-container .profile-header {
+    height: 300px;
   }
 }
 .profile-container .profile-header .cover {
@@ -68,38 +85,58 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 10px;
+  border-radius: 8px 8px 0 0;
+}
+@media (min-width: 576px) {
+  .profile-container .profile-header .cover {
+    border-radius: 10px 10px 0 0;
+  }
+}
+@media (min-width: 768px) {
+  .profile-container .profile-header .cover {
+    border-radius: 10px 10px 0 0;
+  }
 }
 .profile-container .profile-header .avatar {
   position: absolute;
-  bottom: -60px;
-  left: 30px;
-  width: 150px;
-  height: 150px;
-  border: 4px solid #2A2D32;
+  bottom: -30px;
+  left: 15px;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #2A2D32;
   border-radius: 50%;
   overflow: hidden;
   background-color: #ffffff;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-container .profile-header .avatar {
     width: 120px;
     height: 120px;
     bottom: -40px;
     left: 20px;
+    border: 4px solid #2A2D32;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-container .profile-header .avatar {
-    width: 100px;
-    height: 100px;
-    bottom: -30px;
-    left: 15px;
+    width: 140px;
+    height: 140px;
+    bottom: -50px;
+    left: 25px;
+  }
+}
+@media (min-width: 992px) {
+  .profile-container .profile-header .avatar {
+    width: 150px;
+    height: 150px;
+    bottom: -60px;
+    left: 30px;
   }
 }
 .profile-container .profile-header .avatar img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 .profile-container .icon-edit,
 .profile-container .icon-library,
@@ -109,165 +146,238 @@
   position: relative;
   top: 0;
   float: right;
-  margin: 10px;
+  margin: 8px;
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
-  padding: 10px;
+  padding: 8px;
+  background-color: rgba(42, 45, 50, 0.5);
+  border-radius: 50%;
+  font-size: 1rem;
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 576px) {
   .profile-container .icon-edit,
   .profile-container .icon-library,
   .profile-container .icon-avatar,
   .profile-container .icon-banner {
-    padding: 8px;
-    margin: 8px;
+    margin: 9px;
+    padding: 9px;
   }
 }
-.profile-container .icon-edit:hover,
+@media (min-width: 768px) {
+  .profile-container .icon-edit,
+  .profile-container .icon-library,
+  .profile-container .icon-avatar,
+  .profile-container .icon-banner {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+  }
+}
+.profile-container .icon-edit:hover, .profile-container .icon-edit:active,
 .profile-container .icon-library:hover,
+.profile-container .icon-library:active,
 .profile-container .icon-avatar:hover,
-.profile-container .icon-banner:hover {
-  transform: scale(1.5);
-}
-@media screen and (max-width: 576px) {
-  .profile-container .icon-edit:hover,
-  .profile-container .icon-library:hover,
-  .profile-container .icon-avatar:hover,
-  .profile-container .icon-banner:hover {
-    transform: scale(1.3);
-  }
+.profile-container .icon-avatar:active,
+.profile-container .icon-banner:hover,
+.profile-container .icon-banner:active {
+  transform: scale(1.2);
+  background-color: rgba(74, 144, 217, 0.5);
 }
 .profile-container .profile-info {
-  padding: 80px 20px 20px;
+  padding: 40px 15px 15px;
   text-align: left;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-container .profile-info {
-    padding: 60px 15px 15px;
+    padding: 50px 18px 18px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-container .profile-info {
-    padding: 50px 12px 12px;
+    padding: 65px 20px 20px;
+  }
+}
+@media (min-width: 992px) {
+  .profile-container .profile-info {
+    padding: 80px 25px 25px;
   }
 }
 .profile-container .profile-info .username {
-  font-size: 68px;
+  font-size: 2rem;
   margin: 0 0 10px 0;
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+  font-family: "Ghost", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-container .profile-info .username {
-    font-size: 48px;
+    font-size: 2.5rem;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-container .profile-info .username {
-    font-size: 36px;
+    font-size: 3rem;
+  }
+}
+@media (min-width: 992px) {
+  .profile-container .profile-info .username {
+    font-size: 3.5rem;
   }
 }
 .profile-container .profile-info .status,
 .profile-container .profile-info .location,
 .profile-container .profile-info .member-since {
   margin: 5px 0;
-  font-size: 20px;
+  font-size: 1rem;
+  font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-container .profile-info .status,
   .profile-container .profile-info .location,
   .profile-container .profile-info .member-since {
-    font-size: 16px;
+    font-size: 1.1rem;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-container .profile-info .status,
   .profile-container .profile-info .location,
   .profile-container .profile-info .member-since {
-    font-size: 14px;
+    font-size: 1.2rem;
   }
 }
 .profile-container .profile-info .about {
   margin-top: 15px;
-  font-size: 12px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-family: "Playstation", sans-serif;
 }
-.profile-container .profile-info .library {
-  margin-top: 25px;
-  font-family: Playstation, sans-serif;
-}
-.profile-container .profile-info .library h3 {
-  font-size: 24px;
-  margin-bottom: 15px;
-}
-@media screen and (max-width: 768px) {
-  .profile-container .profile-info .library h3 {
-    font-size: 20px;
+@media (min-width: 768px) {
+  .profile-container .profile-info .about {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }
-@media screen and (max-width: 576px) {
+.profile-container .profile-info hr {
+  margin: 15px 0;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(74, 144, 217, 0), rgba(74, 144, 217, 0.5), rgba(74, 144, 217, 0));
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info hr {
+    margin: 20px 0;
+  }
+}
+.profile-container .profile-info .library {
+  margin-top: 15px;
+  font-family: "Playstation", sans-serif;
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info .library {
+    margin-top: 25px;
+  }
+}
+.profile-container .profile-info .library h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-family: "Ghost", sans-serif;
+}
+@media (min-width: 576px) {
   .profile-container .profile-info .library h3 {
-    font-size: 18px;
+    font-size: 1.4rem;
+  }
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info .library h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
 }
 .profile-container .profile-info .library .game-list .game-count {
-  font-size: 16px;
-  margin-top: 15px;
-  margin-bottom: 12px;
+  font-size: 1rem;
+  margin-top: 12px;
+  margin-bottom: 10px;
   text-shadow: 1px 1px 2px #4a90d9, 0 0 1em #4a90d9, 0 0 0.2em #4a90d9;
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info .library .game-list .game-count {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    margin-bottom: 12px;
+  }
 }
 .profile-container .profile-info .library .game-list ul {
   list-style: none;
   padding: 0;
 }
 .profile-container .profile-info .library .game-list ul li {
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info .library .game-list ul li {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
 }
 .profile-container .profile-info .library .no-games {
   font-style: italic;
   color: #666666;
+  font-size: 0.95rem;
+}
+@media (min-width: 768px) {
+  .profile-container .profile-info .library .no-games {
+    font-size: 1rem;
+  }
 }
 
 /* Profile Edit Box */
 .profile-edit-box {
   background-color: #2A2D32;
   color: #ffffff;
-  border-radius: 10px;
-  padding: 25px;
+  border-radius: 8px;
+  padding: 15px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
-  margin: 40px auto;
-  width: 90%;
+  margin: 20px auto;
+  width: 98%;
   max-width: 500px;
   font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-height: 700px) {
+  .profile-edit-box {
+    margin: 30px auto;
+  }
+}
+@media (min-width: 576px) {
   .profile-edit-box {
     width: 95%;
     padding: 20px;
-    margin: 25px auto;
+    border-radius: 10px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-edit-box {
-    width: 98%;
-    padding: 15px;
-    margin: 20px auto;
+    width: 90%;
+    padding: 25px;
+    border-radius: 10px;
   }
 }
 .profile-edit-box .profile-edit-title {
   text-align: center;
-  margin-bottom: 25px;
-  font-size: 2rem;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+  font-family: "Ghost", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-edit-box .profile-edit-title {
     font-size: 1.8rem;
     margin-bottom: 20px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-edit-box .profile-edit-title {
-    font-size: 1.6rem;
-    margin-bottom: 15px;
+    font-size: 2rem;
+    margin-bottom: 25px;
   }
 }
 .profile-edit-box form .profile-edit-group {
@@ -275,20 +385,20 @@
 }
 .profile-edit-box form .profile-edit-group label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 1.2rem;
+  margin-bottom: 4px;
+  font-size: 1rem;
   color: #ffffff;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-edit-box form .profile-edit-group label {
     font-size: 1.1rem;
     margin-bottom: 5px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-edit-box form .profile-edit-group label {
-    font-size: 1rem;
-    margin-bottom: 4px;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
   }
 }
 .profile-edit-box form .profile-edit-group input,
@@ -298,22 +408,25 @@
   border: none;
   border-radius: 5px;
   color: #ffffff;
-  padding: 8px 12px;
-  font-size: 1rem;
+  padding: 10px 12px;
+  font-size: 0.95rem;
   margin-bottom: 8px;
+  font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-edit-box form .profile-edit-group input,
   .profile-edit-box form .profile-edit-group textarea {
-    padding: 7px 10px;
-    font-size: 0.95rem;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border-radius: 6px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-edit-box form .profile-edit-group input,
   .profile-edit-box form .profile-edit-group textarea {
-    padding: 6px 8px;
-    font-size: 0.9rem;
+    padding: 12px 15px;
+    font-size: 1.05rem;
+    border-radius: 5px;
   }
 }
 .profile-edit-box form .profile-edit-group input:focus,
@@ -322,12 +435,13 @@
   box-shadow: 0 0 0 2px #4a90d9;
 }
 .profile-edit-box form .profile-edit-group textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-.profile-edit-box form textarea {
   min-height: 80px;
   resize: vertical;
+}
+@media (min-width: 768px) {
+  .profile-edit-box form .profile-edit-group textarea {
+    min-height: 100px;
+  }
 }
 .profile-edit-box .profile-edit-btn {
   width: 100%;
@@ -335,53 +449,75 @@
   color: #ffffff;
   border: none;
   border-radius: 5px;
-  padding: 10px 16px;
-  font-size: 1.1rem;
+  padding: 12px 16px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  font-family: "Playstation", sans-serif;
 }
-@media screen and (max-width: 768px) {
+@media (min-width: 576px) {
   .profile-edit-box .profile-edit-btn {
-    font-size: 1rem;
-    padding: 8px 14px;
+    border-radius: 6px;
   }
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 768px) {
   .profile-edit-box .profile-edit-btn {
-    font-size: 0.95rem;
-    padding: 7px 12px;
+    font-size: 1.1rem;
+    padding: 12px 18px;
+    border-radius: 5px;
   }
 }
-.profile-edit-box .profile-edit-btn:hover {
+.profile-edit-box .profile-edit-btn:hover, .profile-edit-box .profile-edit-btn:active {
   background-color: #8ed529;
+  transform: scale(1.02);
 }
 
 .profile-edit-link {
   text-align: center;
-  margin-top: 15px;
+  margin-top: 20px;
+}
+@media (min-width: 768px) {
+  .profile-edit-link {
+    margin-top: 25px;
+  }
 }
 .profile-edit-link a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  padding: 5px;
+  display: inline-block;
 }
-.profile-edit-link a:hover {
+@media (min-width: 576px) {
+  .profile-edit-link a {
+    font-size: 1rem;
+  }
+}
+.profile-edit-link a:hover, .profile-edit-link a:active {
   color: #4a90d9;
+  transform: scale(1.05);
 }
 
 .swal-modal {
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(74, 144, 217, 0.2);
-  padding: 20px;
-  width: 500px;
+  padding: 15px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
 }
-@media screen and (max-width: 576px) {
+@media (min-width: 576px) {
   .swal-modal {
-    width: 90%;
-    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .swal-modal {
+    border-radius: 10px;
   }
 }
 
@@ -391,54 +527,104 @@
   text-align: center;
 }
 .swal-content .file-upload-wrapper {
-  margin: 20px 0;
+  margin: 15px 0;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .swal-content .file-upload-wrapper {
+    margin: 20px 0;
+  }
 }
 .swal-content .file-upload-wrapper input[type=file] {
   display: none;
 }
 .swal-content .file-upload-wrapper .custom-file-upload {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 20px;
   background-color: #66c0f4;
   color: #1A1A1A;
   border-radius: 5px;
   cursor: pointer;
   font-family: "Playstation", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   transition: all 0.3s ease;
   border: none;
   margin: 10px 0;
   width: auto;
 }
-.swal-content .file-upload-wrapper .custom-file-upload:hover {
+@media (min-width: 576px) {
+  .swal-content .file-upload-wrapper .custom-file-upload {
+    padding: 12px 22px;
+    font-size: 1.05rem;
+    border-radius: 6px;
+  }
+}
+@media (min-width: 768px) {
+  .swal-content .file-upload-wrapper .custom-file-upload {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+  }
+}
+.swal-content .file-upload-wrapper .custom-file-upload:hover, .swal-content .file-upload-wrapper .custom-file-upload:active {
   background-color: #8ed529;
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgba(142, 213, 41, 0.4);
 }
 .swal-content .file-upload-wrapper .file-name {
   display: block;
-  margin-top: 10px;
+  margin-top: 8px;
   color: #1A1A1A;
   font-family: "Playstation", sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   word-break: break-all;
+}
+@media (min-width: 576px) {
+  .swal-content .file-upload-wrapper .file-name {
+    margin-top: 10px;
+    font-size: 0.95rem;
+  }
+}
+@media (min-width: 768px) {
+  .swal-content .file-upload-wrapper .file-name {
+    font-size: 1rem;
+  }
 }
 
 .swal-title {
   font-family: "Playstation", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 0;
   padding: 0;
   color: #1A1A1A;
 }
+@media (min-width: 576px) {
+  .swal-title {
+    font-size: 1.4rem;
+  }
+}
+@media (min-width: 768px) {
+  .swal-title {
+    font-size: 1.5rem;
+  }
+}
 
 .swal-text {
   font-family: "Playstation", sans-serif;
-  font-size: 1.1rem;
-  margin: 0;
+  font-size: 1rem;
+  margin: 10px 0 0;
   padding: 0;
   color: #1A1A1A;
+}
+@media (min-width: 576px) {
+  .swal-text {
+    font-size: 1.05rem;
+  }
+}
+@media (min-width: 768px) {
+  .swal-text {
+    font-size: 1.1rem;
+  }
 }
 
 .swal-footer {
@@ -455,18 +641,30 @@
 }
 
 .swal-button {
-  padding: 12px 24px;
+  padding: 10px 18px;
   font-family: "Playstation", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: normal;
   transition: all 0.3s ease;
   border: none;
+}
+@media (min-width: 576px) {
+  .swal-button {
+    padding: 11px 20px;
+    font-size: 1.05rem;
+  }
+}
+@media (min-width: 768px) {
+  .swal-button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+  }
 }
 .swal-button--confirm {
   background-color: #66c0f4;
   color: #1A1A1A;
 }
-.swal-button--confirm:hover {
+.swal-button--confirm:hover, .swal-button--confirm:active {
   background-color: #8ed529 !important;
   transform: translateY(-1px);
 }
@@ -474,7 +672,7 @@
   background-color: #666666;
   color: #1A1A1A;
 }
-.swal-button--cancel:hover {
+.swal-button--cancel:hover, .swal-button--cancel:active {
   background-color: rgb(76.5, 76.5, 76.5) !important;
   transform: translateY(-1px);
 }

@@ -66,6 +66,7 @@ class RGDetailPanel {
         this.gamesData = config.gamesData || [];
         this.hoverDelay = config.hoverDelay || 0;
         this.hoverTimer = null;
+        this.isMobile = window.innerWidth < 992; // Check initial viewport
 
         this.$detailPanel = document.querySelector(this.detailPanelSelector);
         this.$header = document.querySelector(this.selectors.header);
@@ -76,47 +77,119 @@ class RGDetailPanel {
         this.$description = document.querySelector(this.selectors.description);
         this.$misc = document.querySelector(this.selectors.misc);
 
-        this._attachGameItemHoverEvents();
+        // Füge einen Schließen-Button für mobile Geräte hinzu
+        this._addCloseButton();
+
+        // Event-Handler
+        this._attachGameItemEvents();
         this._subscribeToEvents();
+        this._handleResize();
+    }
+
+    _addCloseButton() {
+        if (this.$detailPanel && !this.$detailPanel.querySelector('.close-detail-panel')) {
+            const closeButton = document.createElement('button');
+            closeButton.className = 'close-detail-panel';
+            closeButton.innerHTML = '&times;';
+            closeButton.addEventListener('click', () => this.resetPanel());
+            this.$detailPanel.appendChild(closeButton);
+        }
     }
 
     _subscribeToEvents() {
         this.eventBus.on('filter:changed', () => {
             this.resetPanel();
         });
+
+        // Responsiveness-Handler für Fenstergrößenänderungen
+        window.addEventListener('resize', () => this._handleResize());
     }
 
-    _attachGameItemHoverEvents() {
+    _handleResize() {
+        const wasMobile = this.isMobile;
+        this.isMobile = window.innerWidth < 992;
+
+        // Wenn sich der Device-Typ geändert hat
+        if (wasMobile !== this.isMobile) {
+            this.resetPanel();
+            // Aktualisiere Event-Listener auf Game-Items
+            this._attachGameItemEvents();
+        }
+    }
+
+    _attachGameItemEvents() {
         const gameItems = document.querySelectorAll('.game-item');
         const gamesListContainer = document.getElementById('gamesListItems');
 
+        // Entferne keine bestehenden Elemente mehr, arbeite mit den vorhandenen
+        // Füge neue Event-Listener basierend auf dem Gerätetyp hinzu
         gameItems.forEach(item => {
-            item.addEventListener('mouseover', () => {
-                if (this.hoverDelay > 0) {
-                    clearTimeout(this.hoverTimer);
-                    this.hoverTimer = setTimeout(() => {
-                        this._handleHover(item);
-                    }, this.hoverDelay);
-                } else {
-                    this._handleHover(item);
-                }
-            });
+            if (this.isMobile) {
+                // Für Mobile: Tap-Event für Detail-Panel
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
 
-            item.addEventListener('mouseleave', () => {
-                if (this.hoverDelay > 0) {
-                    clearTimeout(this.hoverTimer);
-                }
-            });
+                    // Prüfe, ob das Panel bereits aktiv ist
+                    const isPanelActive = this.$detailPanel &&
+                        this.$detailPanel.classList.contains('rg-panel-active');
+
+                    // Wenn das Panel aktiv ist, navigiere zur Detailseite
+                    if (isPanelActive) {
+                        const gameId = item.getAttribute('data-id');
+                        window.location.href = `/games/detail/${gameId}`;
+                        return;
+                    }
+
+                    // Andernfalls zeige das Detail-Panel an
+                    this._handleItemInteraction(item);
+                });
+
+                // Schließe das Panel, wenn außerhalb geklickt wird
+                document.addEventListener('click', (e) => {
+                    if (this.$detailPanel &&
+                        this.$detailPanel.classList.contains('rg-panel-active') &&
+                        !this.$detailPanel.contains(e.target) &&
+                        !e.target.closest('.game-item')) {
+                        this.resetPanel();
+                    }
+                });
+            } else {
+                // Für Desktop: Hover-Events
+                item.addEventListener('mouseover', () => {
+                    if (this.hoverDelay > 0) {
+                        clearTimeout(this.hoverTimer);
+                        this.hoverTimer = setTimeout(() => {
+                            this._handleItemInteraction(item);
+                        }, this.hoverDelay);
+                    } else {
+                        this._handleItemInteraction(item);
+                    }
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    if (this.hoverDelay > 0) {
+                        clearTimeout(this.hoverTimer);
+                    }
+                });
+
+                // Klick führt zur Detailseite
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const gameId = item.getAttribute('data-id');
+                    window.location.href = `/games/detail/${gameId}`;
+                });
+            }
         });
 
-        if (gamesListContainer) {
+        if (gamesListContainer && !this.isMobile) {
             gamesListContainer.addEventListener('mouseleave', () => {
                 this.resetPanel();
             });
         }
     }
 
-    _handleHover(item) {
+    _handleItemInteraction(item) {
         const gameId = parseInt(item.getAttribute('data-id'), 10);
         if (isNaN(gameId)) return;
 
@@ -127,36 +200,43 @@ class RGDetailPanel {
         this.resetPanel();
         this._fillDetailPanel(gameData);
 
+        // Panel positionieren und anzeigen
         requestAnimationFrame(() => {
-            const itemRect = item.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const navbarHeight = 70;
-            const footerHeight = 100; // Erhöht für mehr Abstand
-
-            const panel = this.$detailPanel;
-            panel.style.position = 'fixed';
-            panel.style.left = `${itemRect.right + 20}px`;
-
-            // Panel-Höhe vor der Positionierung berechnen
-            const panelHeight = panel.offsetHeight;
-
-            // Berechnung der verfügbaren Höhe
-            const availableHeight = viewportHeight - navbarHeight - footerHeight;
-
-            // Wenn Panel größer als verfügbare Höhe, dann von oben beginnen
-            let proposedTop;
-            if (panelHeight > availableHeight) {
-                proposedTop = navbarHeight;
+            if (this.isMobile) {
+                // Für mobile Geräte: Panel mittig auf dem Bildschirm (CSS übernimmt)
+                this.$detailPanel.classList.add('rg-panel-active');
             } else {
-                // Sonst mittig zum gehoverten Element ausrichten
-                proposedTop = Math.min(
-                    Math.max(navbarHeight, itemRect.top),
-                    viewportHeight - panelHeight - footerHeight
-                );
-            }
+                // Für Desktop: neben dem Hover-Element
+                const itemRect = item.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const navbarHeight = 70;
+                const footerHeight = 100;
 
-            panel.style.top = `${proposedTop}px`;
-            panel.classList.add('rg-panel-active');
+                const panel = this.$detailPanel;
+                panel.style.position = 'fixed';
+                panel.style.left = `${itemRect.right + 20}px`;
+
+                // Panel-Höhe vor der Positionierung berechnen
+                const panelHeight = panel.offsetHeight;
+
+                // Berechnung der verfügbaren Höhe
+                const availableHeight = viewportHeight - navbarHeight - footerHeight;
+
+                // Wenn Panel größer als verfügbare Höhe, dann von oben beginnen
+                let proposedTop;
+                if (panelHeight > availableHeight) {
+                    proposedTop = navbarHeight;
+                } else {
+                    // Sonst mittig zum gehoverten Element ausrichten
+                    proposedTop = Math.min(
+                        Math.max(navbarHeight, itemRect.top),
+                        viewportHeight - panelHeight - footerHeight
+                    );
+                }
+
+                panel.style.top = `${proposedTop}px`;
+                panel.classList.add('rg-panel-active');
+            }
         });
     }
 
@@ -263,11 +343,27 @@ document.addEventListener('DOMContentLoaded', () => {
         hoverDelay: 200
     });
 
-    document.querySelectorAll('.game-item').forEach(item => {
-        item.addEventListener('click', (e) => {
+    // Stelle sicher, dass die Klick-Events auf den Game-Items
+    // nicht die Tab-Filter-Events beeinträchtigen
+    document.querySelectorAll('.games-nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            const gameId = item.getAttribute('data-id');
-            window.location.href = `/games/detail/${gameId}`;
+
+            // Entferne active-link von allen Tabs
+            document.querySelectorAll('.games-nav a').forEach(l => {
+                l.classList.remove('active-link');
+            });
+
+            // Setze active-link auf den geklickten Tab
+            link.classList.add('active-link');
+
+            // Wende den Filter an
+            const category = link.getAttribute('data-category');
+            document.querySelectorAll('.game-item').forEach(item => {
+                const itemCategory = item.getAttribute('data-category') || '';
+                item.style.display = (itemCategory === category) ? 'flex' : 'none';
+            });
         });
     });
 });
