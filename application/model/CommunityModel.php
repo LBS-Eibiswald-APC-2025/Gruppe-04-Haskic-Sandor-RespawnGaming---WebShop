@@ -40,6 +40,9 @@ class CommunityModel
 
     public static function sendMessage(int $userId, int $roomId, string $messageText): ?int
     {
+        // Text sicher machen
+        $messageText = htmlspecialchars($messageText, ENT_QUOTES, 'UTF-8');
+
         $database = DatabaseFactory::getFactory()->getConnection();
 
         $sql = "INSERT INTO messages (user_id, room_id, message_text, created_at) 

@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 class CommunityController extends Controller
 {
     public function __construct($parameters = [])
@@ -26,6 +28,7 @@ class CommunityController extends Controller
         $this->View->render('community/chat_room', ['messages' => $messages, 'roomDetails' => $roomDetails]);
     }
 
+    #[NoReturn]
     public function sendMessage(): void
     {
         header('Content-Type: application/json');
@@ -34,6 +37,37 @@ class CommunityController extends Controller
             $userId = $this->_getCurrentUserId();
             $roomId = $_POST['room_id'] ?? null;
             $messageText = $_POST['message'] ?? '';
+
+            // Erweiterte Liste mit verdächtigen Inhalten
+            $suspicious_patterns = [
+                '/<script/i',
+                '/<\/script>/i',
+                '/<style/i',
+                '/<\/style>/i',
+                '/<iframe/i',
+                '/<\/iframe>/i',
+                '/<object/i',
+                '/<embed/i',
+                '/javascript:/i',
+                '/onclick/i',
+                '/onload/i',
+                '/onerror/i',
+                '/onmouseover/i',
+                '/onmouseout/i',
+                '/data:/i',
+                '/src=/i',
+                '/href="javascript/i'
+            ];
+
+            foreach ($suspicious_patterns as $pattern) {
+                if (preg_match($pattern, $messageText)) {
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Unerlaubte Inhalte in der Nachricht erkannt.'
+                    ]);
+                    exit;
+                }
+            }
 
             if ($roomId && $messageText) {
                 $messageId = CommunityModel::sendMessage($userId, $roomId, $messageText);
@@ -44,7 +78,7 @@ class CommunityController extends Controller
                         'username' => $_SESSION['user_name'] ?? 'Unbekannt',
                         'avatar' => $_SESSION['avatar'] ?? '/avatars/default.jpg',
                         'isOwnMessage' => true,
-                        'messageId' => $messageId // Neue Message-ID
+                        'messageId' => $messageId
                     ]);
                 } else {
                     echo json_encode([

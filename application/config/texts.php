@@ -36,7 +36,7 @@ return array(
     "FEEDBACK_EMAIL_ALREADY_TAKEN" => "Diese E-Mail-Adresse wird bereits von einem anderen Benutzer verwendet. Bitte eine andere auswählen.",
     "FEEDBACK_CAPTCHA_WRONG" => "Der eingegebene Captcha-Code war falsch.",
     "FEEDBACK_PASSWORD_REPEAT_WRONG" => "Passwort und Passwortwiederholung stimmen nicht überein.",
-    "FEEDBACK_PASSWORD_TOO_SHORT" => "Das Passwort muss mindestens 6 Zeichen lang sein.",
+    "FEEDBACK_PASSWORD_TOO_SHORT" => "Das Passwort muss mindestens 8 Zeichen lang sein.",
     "FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG" => "Der Benutzername darf nicht kürzer als 2 und nicht länger als 64 Zeichen sein.",
     "FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED" => "Das Konto wurde erfolgreich erstellt und eine E-Mail wurde verschickt. Bitte den Bestätigungslink in dieser E-Mail nutzen.",
     "FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED" => "Es konnte keine Bestätigungs-E-Mail gesendet werden. Das Konto wurde NICHT erstellt.",

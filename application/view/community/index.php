@@ -7,10 +7,10 @@
         <div class="chat-rooms-overview">
             <?php foreach ($this->data['chatRooms'] as $room): ?>
                 <div class="chat-room-card">
-                    <h3><?= htmlspecialchars($room['name']) ?></h3>
-                    <p><?= htmlspecialchars($room['description']) ?></p>
-                    <p>Spieltyp: <?= htmlspecialchars($room['game_type']) ?></p>
-                    <a href="<?= Config::get('URL') ?>community/chatRoom/<?= $room['id'] ?>" class="btn btn-primary">Raum betreten</a>
+                    <h3><?= htmlspecialchars($room['name'], ENT_QUOTES, 'UTF-8') ?></h3>
+                    <p><?= htmlspecialchars($room['description'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <p>Spieltyp: <?= htmlspecialchars($room['game_type'], ENT_QUOTES, 'UTF-8') ?></p>
+                    <a href="<?= htmlspecialchars(Config::get('URL'), ENT_QUOTES, 'UTF-8') ?>community/chatRoom/<?= (int)$room['id'] ?>" class="btn btn-primary">Raum betreten</a>
                 </div>
             <?php endforeach; ?>
         </div>

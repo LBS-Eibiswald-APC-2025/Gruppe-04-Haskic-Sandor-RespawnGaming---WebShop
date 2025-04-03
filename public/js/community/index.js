@@ -57,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (users.length > 0) {
                         typingStatus.textContent = users.length === 1
-                            ? `${users[0]} schreibt...`
-                            : `${users.join(', ')} schreiben...`;
+                            ? `${escapeHTML(users[0])} schreibt...`
+                            : `${users.map(escapeHTML).join(', ')} schreiben...`;
                     } else {
                         typingStatus.textContent = '';
                     }
@@ -94,19 +94,19 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: `room_id=${roomId}&message=${encodeURIComponent(messageText)}`
+            body: `room_id=${encodeURIComponent(roomId)}&message=${encodeURIComponent(messageText)}`
         })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
                     lastSentMessageId = data.messageId;
-                    const now = new Date(); // Erzeuge neues Datum
+                    const now = new Date();
 
                     const newMessageElement = createMessageElement(
                         data.username,
                         data.avatar || '/avatars/default.jpg',
                         messageText,
-                        now.toISOString(), // ISO-String für konsistente Formatierung
+                        now.toISOString(),
                         true,
                         data.messageId
                     );
@@ -140,10 +140,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Hilfsfunktion zum Escapen von HTML
+    function escapeHTML(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    }
+
     function createMessageElement(username, avatarUrl, messageText, timestamp, isOwnMessage, messageId) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
-        messageDiv.dataset.messageId = messageId;
+        messageDiv.dataset.id = messageId;
         if (isOwnMessage) {
             messageDiv.classList.add('own-message');
         }
@@ -159,12 +167,13 @@ document.addEventListener('DOMContentLoaded', function () {
             second: '2-digit'
         }).replace(/,/g, ' - ');
 
+        // HTML escapen aber fast wie im Original bleiben
         messageDiv.innerHTML = `
-        <img src="${avatarUrl}" alt="Avatar" class="user-avatar">
+        <img src="${escapeHTML(avatarUrl)}" alt="Avatar" class="user-avatar">
         <div class="message-content">
-            <strong>${username}</strong>
-            <span class="timestamp">${formattedTimestamp}</span>
-            <p>${messageText}</p>
+            <strong>${escapeHTML(username)}</strong>
+            <span class="timestamp">${escapeHTML(formattedTimestamp)}</span>
+            <p class="message-text">${escapeHTML(messageText)}</p>
         </div>
     `;
 
@@ -174,13 +183,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchNewMessages() {
         if (!roomId) return;
 
-        fetch(`/community/getNewMessages?room_id=${roomId}&last_message_id=${lastMessageId}`)
+        fetch(`/community/getNewMessages?room_id=${encodeURIComponent(roomId)}&last_message_id=${encodeURIComponent(lastMessageId)}`)
             .then(response => response.json())
             .then(data => {
                 if (data.messages && data.messages.length > 0) {
                     const existingMessages = new Set(
                         Array.from(document.querySelectorAll('.message'))
-                            .map(el => el.dataset.messageId)
+                            .map(el => el.dataset.id)
                     );
 
                     data.messages.forEach(message => {
@@ -194,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 message.id
                             );
                             chatMessages.appendChild(messageElement);
-                            lastMessageId = message.id;
+                            lastMessageId = Math.max(lastMessageId, message.id);
                         }
                     });
                     scrollToLatestMessage();
@@ -210,20 +219,95 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function initializeLastMessageId() {
-        chatMessages.innerHTML = ''; // Chat leeren
-        const messages = chatMessages.querySelectorAll('.message');
-        lastMessageId = messages.length > 0 ?
-            parseInt(messages[messages.length - 1].dataset.messageId) : 0;
+        const messages = document.querySelectorAll('.message');
+        if (messages.length > 0) {
+            const ids = Array.from(messages).map(msg => parseInt(msg.dataset.id || '0'));
+            lastMessageId = Math.max(...ids);
+        } else {
+            lastMessageId = 0;
+        }
     }
 
-    initializeLastMessageId();
-    scrollToLatestMessage();
+    // Verbesserte Funktion zum Schutz vor CSS- und JS-Angriffen
+    function sanitizePage() {
+        // Entferne verdächtige style-Tags
+        document.querySelectorAll('style').forEach(style => {
+            if (style.innerHTML.includes('rainbow') ||
+                style.innerHTML.includes('animation') ||
+                !style.hasAttribute('data-safe')) {
+                style.remove();
+            }
+        });
 
-    if (roomId) {
-        setInterval(fetchNewMessages, 1000);
+        // Entferne iframes
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.remove();
+        });
+
+        // Entferne objects und embeds
+        document.querySelectorAll('object, embed').forEach(obj => {
+            obj.remove();
+        });
+
+        // Entferne alle Event-Handler von Elementen
+        const dangerousAttrs = ['onclick', 'onload', 'onerror', 'onmouseover', 'onmouseout'];
+        dangerousAttrs.forEach(attr => {
+            document.querySelectorAll(`[${attr}]`).forEach(el => {
+                el.removeAttribute(attr);
+            });
+        });
+
+        // Prüfe alle Bilder auf potenziell gefährliche Attribute
+        document.querySelectorAll('img').forEach(img => {
+            if (img.hasAttribute('onload') ||
+                img.hasAttribute('onerror') ||
+                img.hasAttribute('onclick') ||
+                (img.src && img.src.startsWith('javascript:'))) {
+                // Bild erhalten aber gefährliche Attribute entfernen
+                const newImg = document.createElement('img');
+                newImg.src = img.src.startsWith('javascript:') ? '/avatars/default.jpg' : img.src;
+                newImg.alt = img.alt;
+                newImg.className = img.className;
+                img.parentNode.replaceChild(newImg, img);
+            }
+        });
+
+        // Entferne JavaScript URLs aus Links
+        document.querySelectorAll('a').forEach(link => {
+            if (link.href && link.href.toLowerCase().startsWith('javascript:')) {
+                link.href = '#';
+                link.removeAttribute('onclick');
+            }
+        });
     }
 
-    window.addEventListener('beforeunload', function() {
-        updateTypingStatus(false);
-    });
+    // Optimierter MutationObserver - nur für den Chat-Bereich
+    const chatContainer = document.getElementById('chatMessages');
+
+    if (chatContainer) {
+        const observer = new MutationObserver(function(mutations) {
+            // Prüfe, ob die Mutationen im Chat-Bereich aufgetreten sind
+            let needsCleaning = false;
+
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    needsCleaning = true;
+                    break;
+                }
+            }
+
+            if (needsCleaning) {
+                sanitizePage();
+            }
+        });
+
+        // Beobachte nur den Chat-Bereich statt dem ganzen Body
+        observer.observe(chatContainer, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    // Initial einmal ausführen
+    sanitizePage();
 });

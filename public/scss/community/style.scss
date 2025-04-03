@@ -497,3 +497,42 @@ html, body {
     padding-bottom: 10px;
   }
 }
+
+/* Fix für den Footer auf der Chat-Seite */
+.chat-room ~ footer,
+.chat-room + footer,
+.chat-room ~ .text-center,
+.chat-room + .text-center,
+footer.text-center {
+  width: 100%;
+  margin-top: 30px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+/* Sicherstellen, dass die Seite genug Platz hat */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Raum für den Footer schaffen */
+.chat-room {
+  margin-bottom: 100px; /* Anpassen je nach Footer-Höhe */
+}
+
+/* Fix für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .chat-room {
+    margin-bottom: 120px; /* Mehr Platz auf kleinen Geräten */
+  }
+}
+
+/* iPad-Fix verbessern */
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .chat-room {
+    padding-bottom: 30px; /* Verringern von 70px, da wir jetzt margin-bottom haben */
+  }
+}

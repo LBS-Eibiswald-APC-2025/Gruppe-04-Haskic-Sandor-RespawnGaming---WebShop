@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         carouselImg.src = game.image;
         carouselImg.alt = game.title;
         carouselTitle.textContent = game.title;
-        carouselDesc.textContent = 'Bald Verfügbar';
+        carouselDesc.textContent = 'Verfügbar';
         carouselPrice.textContent = game.price;
 
         // Aktiviere den richtigen Indikator

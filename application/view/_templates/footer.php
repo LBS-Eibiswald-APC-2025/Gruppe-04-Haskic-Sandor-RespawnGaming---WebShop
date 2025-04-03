@@ -1,5 +1,5 @@
 </body>
-<footer class="text-center">
+<footer class="site-footer">
     <p>&copy; 2025 Respawn Gaming - Alle Rechte vorbehalten.</p>
     <div id="google_translate_element"></div>
     <script type="text/javascript">
