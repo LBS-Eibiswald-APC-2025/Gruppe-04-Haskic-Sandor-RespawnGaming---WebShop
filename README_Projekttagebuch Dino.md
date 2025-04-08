@@ -29,3 +29,4 @@
 | 27.03.2025 | 1.4.1 | 09:25-12:50 | 3h25min | LBS | Response-Design nun auf der ganzen aktuell bestehenden Seite / Buttons und Filter auf Admin-Page            | ---                                                      | [GitHub]            |
 | 28.03.2025 | 1.4.5 | 07:30-10:15 | 2h45min | LBS | Community Seite hat nun 3 Standard Chaträume / Style und JS                                                 | Code konnte noch nicht zu 100% wiederhergestellt werden. | [GitHub]            |
 | 01.04.2025 | 1.4.1 | 10:00-12:20 | 2h20min | LBS | Developer Page hinzugefügt und weitere Anpassungen am Responsive-Design                                     | Responsive funktioniert noch nicht auf gesamter Seite    | [GitHub]            |
+| 03.04.2025 |       | 09:25-12:50 | 3h25min | LBS | Präsentationstag                                                                                            | ---                                                      | [GitHub]            |
